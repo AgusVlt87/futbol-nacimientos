@@ -30,10 +30,11 @@ tercio. El orden se sostiene con cinco denominadores distintos.
 
 **La formación está mucho más concentrada que el nacimiento.** El 46,6% de los
 futbolistas se forma fuera de su provincia de nacimiento, contra el 13,8% de la
-población general que vive fuera de la suya (OR 5,47; IC 95% 5,02–5,96). Entre
-los nacidos en pueblos de menos de 10.000 habitantes, el 94,6% se forma en otro
-departamento, a 282 km de mediana; entre los nacidos en aglomerados grandes, a
-7 km. El NEA retiene al 11,2% de los suyos; el AMBA, al 91,9%.
+población general que vive fuera de la suya (OR 5,47; IC 95% 5,02–5,96). El corte
+es un escalón, no un gradiente: quien nace en un aglomerado de más de 500.000
+habitantes se forma a 7 km de mediana; quien nace en cualquier otro lado cambia
+de departamento en el 86–98% de los casos y viaja entre 260 y 470 km. El NEA
+retiene al 11,2% de los suyos; el AMBA, al 91,9%.
 
 **No es un artefacto de Wikidata.** El gradiente por tamaño de ciudad se
 sostiene en los cuatro niveles competitivos, incluido el de selección mayor,

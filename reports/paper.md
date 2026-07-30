@@ -32,9 +32,10 @@ al NOA (10,7).
 el nacimiento.** El 46,6% de los futbolistas se forma en una provincia distinta
 de aquella en la que nació, contra el 13,8% de la población general que reside
 fuera de su provincia de nacimiento (OR 5,47; IC 95% 5,02–5,96). Entre los
-nacidos en pueblos de menos de 10.000 habitantes, el 94,6% se forma en otro
-departamento, a una mediana de 282 km. El NEA retiene al 11,2% de los
-futbolistas que nacen en su territorio; el AMBA, al 91,9%.
+nacidos fuera de un aglomerado de más de 500.000 habitantes, entre el 86% y el
+98% se forma en otro departamento, a distancias medianas de entre 260 y 470 km;
+entre los nacidos dentro de uno, la mediana es de 7 km. El NEA retiene al 11,2%
+de los futbolistas que nacen en su territorio; el AMBA, al 91,9%.
 
 El estudio replica por primera vez, con método y baseline poblacional, un
 fenómeno sobre el que en Argentina solo había descripción periodística.
@@ -322,7 +323,7 @@ OR 5,47 (IC 95% 5,02–5,96). El punto de comparación es lo que vuelve
 interpretable el número: sin saber que apenas el 13,8% de los argentinos vive
 fuera de su provincia de nacimiento, un 46,6% no dice nada.
 
-**El gradiente por origen es el hallazgo dentro del hallazgo:**
+**El corte por origen no es un gradiente: es un escalón.**
 
 | Tamaño de la ciudad de nacimiento | n | Cambia de departamento | Cambia de provincia | Distancia mediana al club |
 |---|---:|---:|---:|---:|
@@ -332,8 +333,12 @@ fuera de su provincia de nacimiento, un 46,6% no dice nada.
 | 100–500k | 243 | 86,0% | 66,7% | 470 km |
 | >500k | 1.300 | 51,3% | 36,5% | **7 km** |
 
-Nacer en una ciudad grande significa formarse a siete kilómetros de casa. Nacer
-en un pueblo significa, con probabilidad de 19 sobre 20, irse.
+Entre los cuatro tramos menores no hay gradiente: todos migran masivamente, con
+distancias medianas del mismo orden y sin ordenamiento claro entre ellos. Lo que
+hay es un escalón entre los aglomerados de más de 500.000 habitantes y todo lo
+demás. Nacer en una ciudad grande significa formarse a siete kilómetros de casa;
+nacer en cualquier otro lado significa, en más de 19 casos de cada 20 hasta los
+50.000 habitantes, cambiar de departamento.
 
 **Por región de origen**, la asimetría es estructural:
 

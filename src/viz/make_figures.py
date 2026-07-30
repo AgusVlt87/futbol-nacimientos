@@ -86,10 +86,21 @@ def fig_mapa_provincias(cfg, p):
     cb.ax.tick_params(labelsize=7, color=style.MUTED, labelcolor=style.INK_2)
     cb.outline.set_visible(False)
 
+    corto = {"Ciudad Autónoma de Buenos Aires": "CABA"}
     for _, r in g.nlargest(3, "obs_sobre_esp").iterrows():
         c = r.geometry.centroid
-        ax.annotate(f"{r['provincia']}\n×{r['obs_sobre_esp']:.1f}", (c.x, c.y),
-                    ha="center", va="center", fontsize=6.5, color="#ffffff", weight="bold")
+        etiqueta = f"{corto.get(r['provincia'], r['provincia'])}\n×{r['obs_sobre_esp']:.1f}"
+        if r["provincia"] in corto:
+            # CABA es un polígono diminuto: la etiqueta no entra adentro y, puesta
+            # ahí, tapa media provincia de Buenos Aires. Va afuera, con guía.
+            ax.annotate(etiqueta, (c.x, c.y), xytext=(40, 16),
+                        textcoords="offset points", ha="left", va="center",
+                        fontsize=6.5, color=style.INK, weight="bold",
+                        linespacing=1.15,
+                        arrowprops=dict(arrowstyle="-", lw=0.6, color=style.INK_2))
+        else:
+            ax.annotate(etiqueta, (c.x, c.y), ha="center", va="center",
+                        fontsize=6.5, color="#ffffff", weight="bold", linespacing=1.15)
     _pie(fig, "Azul: produce menos futbolistas de los que le tocarían por población. "
               "Rojo: produce más.\n" + FUENTE_BASE)
     style.guardar(fig, "fig03_mapa_provincias_obs_esp", cfg, p.figures)
@@ -324,12 +335,15 @@ def fig_migracion_por_tamano(cfg, p):
     ax.set_xlim(0, 100)
     ax.set_xlabel("% que se forma en otra provincia (y distancia mediana al club)")
     ax.set_ylabel("Tamaño de la ciudad de nacimiento")
-    style.titulo_y_bajada(ax, "Cuanto más chico el pueblo, más lejos hay que irse",
-                          "Migración hasta el club formador según el origen")
-    _pie(fig, "En la población general, el 13,8% vive fuera de su provincia de "
-              "nacimiento (Censo 2022, variable P14). Entre los futbolistas nacidos "
-              "en pueblos de menos de 10.000 habitantes, el 59% se forma fuera.\n"
-              + FUENTE_BASE)
+    # El título dice lo que muestran los datos: no hay gradiente entre los cuatro
+    # tramos menores, hay un escalón entre el mayor y todos los demás.
+    style.titulo_y_bajada(
+        ax, "Solo desde las ciudades grandes se llega sin mudarse",
+        "Migración hasta el club formador según el tamaño de la ciudad de nacimiento")
+    _pie(fig, "El corte está entre los aglomerados de más de 500.000 habitantes y "
+              "todo lo demás; entre el resto de los tramos no hay gradiente. En la "
+              "población general, el 13,8% vive fuera de su provincia de nacimiento "
+              "(Censo 2022, variable P14).\n" + FUENTE_BASE)
     style.guardar(fig, "fig09_migracion_por_tamano", cfg, p.figures)
 
 
