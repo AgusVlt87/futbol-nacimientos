@@ -1,0 +1,26 @@
+# entornos
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ipynb_checkpoints/
+
+# Datos crudos y derivados: NO se versionan (se regeneran con el pipeline).
+# Sí se versionan los manifiestos/snapshots que documentan la procedencia.
+data/raw/**
+data/interim/**
+data/processed/**
+!data/**/.gitkeep
+!data/raw/**/_snapshot.json
+!data/raw/**/_manifest.json
+
+# salidas regenerables
+outputs/figures/*
+outputs/tables/*
+!outputs/**/.gitkeep
+
+# sistema
+Thumbs.db
+desktop.ini
+.DS_Store

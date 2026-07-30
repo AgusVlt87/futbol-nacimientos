@@ -1,0 +1,37 @@
+# Birthplace effect en el fútbol argentino — dependencias fijadas
+# Python 3.11+ (probado en 3.14.5, Windows 11)
+#
+# Instalación:
+#   python -m venv .venv
+#   .venv\Scripts\activate
+#   pip install -r requirements.txt
+
+# --- datos ---
+pandas==2.3.3
+numpy==2.4.6
+pyarrow==24.0.0            # parquet para intermedios
+openpyxl==3.1.5            # xlsx de fuentes oficiales (códigos geográficos INDEC)
+
+# --- ingesta ---
+requests==2.34.2           # SPARQL y APIs vía HTTP (no hace falta SPARQLWrapper)
+PyYAML==6.0.3
+
+# --- geo ---
+geopandas==1.1.4
+shapely==2.1.2
+pyproj==3.7.2              # proyecciones (POSGAR 2007 / cónica igual-área)
+pyogrio==0.13.0            # lectura rápida de shapefiles/GeoPackage
+mapclassify==2.10.0        # cortes naturales / quantiles en coropléticos
+Unidecode==1.4.0           # normalización de nombres de localidades
+
+# --- estadística ---
+scipy==1.17.1
+statsmodels==0.14.6        # GLM Poisson/neg-binomial, IC, FDR
+
+# --- visualización ---
+matplotlib==3.10.9         # figuras del paper (vectorial)
+plotly==6.8.0              # exploración interactiva
+folium==0.20.0             # mapas interactivos
+
+# --- tests ---
+pytest==9.1.1

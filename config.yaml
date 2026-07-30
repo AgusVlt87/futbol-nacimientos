@@ -1,0 +1,290 @@
+# =============================================================================
+# Birthplace effect en el fútbol argentino — configuración maestra
+# =============================================================================
+# Fija las DECISIONES DE DISEÑO del estudio (sección 3 de CLAUDE.md).
+# Todo el pipeline las lee de acá. NO hardcodear estos valores en el código.
+#
+# Cambiar acá y re-correr el pipeline. Cada decisión lleva su justificación.
+# =============================================================================
+
+project:
+  name: futbol-geografia-arg
+  country: AR
+  country_qid: Q414
+  # La escribe el script de ingesta; no editar a mano.
+  snapshot_note: "Ver data/raw/wikidata/_snapshot.json"
+
+# -----------------------------------------------------------------------------
+# DECISIÓN 1 — Muestra de jugadores
+# -----------------------------------------------------------------------------
+# Base amplia (todo futbolista argentino en Wikidata) como esqueleto, para tener
+# n y un baseline estable. Encima, capas por nivel competitivo para H4.
+sample:
+  # Ocupación: Q937857 = futbolista (association football player).
+  # Se expande con /wdt:P279* para capturar subclases (arquero, etc.).
+  occupation_qid: Q937857
+  expand_occupation_subclasses: true
+
+  # Regla de pertenencia a la muestra. Un jugador entra si cumple `citizenship`
+  # (P27 = Q414). `birth_country` se usa además como chequeo cruzado: el análisis
+  # geográfico requiere que P19 caiga dentro de Argentina.
+  membership_rule: citizenship
+  require_birthplace_in_country: true
+
+  # El birthplace effect está documentado casi enteramente sobre fútbol masculino
+  # y la muestra femenina de Wikidata es chica y con cobertura muy distinta.
+  # Se analizan por separado; `male` es la muestra principal.
+  gender_filter: male          # male | female | all
+  drop_duplicate_qids: true
+
+# -----------------------------------------------------------------------------
+# DECISIÓN 1b — Nivel competitivo (H4)
+# -----------------------------------------------------------------------------
+# Wikidata no tiene "nivel" como atributo. Se derivan tiers de señales
+# verificables. Gana el tier más alto que aplique.
+competitive_level:
+  tiers:
+    T1_seleccion:
+      description: "Jugó en la selección mayor argentina"
+      national_team_qids: [Q79800]        # Argentina national football team
+    T2_europa_top:
+      description: "Jugó en un club de una liga top de UEFA"
+      elite_league_qids:
+        Q15804: "Serie A (Italia)"
+        Q9448: "Premier League (Inglaterra)"
+        Q324867: "LaLiga (España)"
+        Q82595: "Bundesliga (Alemania)"
+        Q13394: "Ligue 1 (Francia)"
+    T3_primera_ar:
+      description: "Jugó en la Primera División argentina"
+      league_qids: [Q1163, Q7247972]
+    T4_resto:
+      description: "Resto de la muestra (profesional registrado en Wikidata)"
+
+  # Medida CONTINUA de prominencia: cantidad de ediciones de Wikipedia con
+  # artículo del jugador. Proxy de notoriedad, no de calidad. Se usa como
+  # control y para el análisis de sensibilidad al sesgo de cobertura.
+  prominence_metric: sitelinks
+  prominence_high_percentile: 90
+
+  # Caso ilustrativo con gancho narrativo (no entra en los tests principales).
+  showcase:
+    world_cup_squads: [Q189571, Q101751, Q79859]   # 1978, 1986, 2022 (verificar QIDs en Fase 1)
+
+# -----------------------------------------------------------------------------
+# DECISIÓN 2 — Cohortes / período de nacimiento
+# -----------------------------------------------------------------------------
+# El límite real lo pone el baseline poblacional, no Wikidata.
+#
+# El denominador principal sale del Censo 2022 (INDEC), que permite contar
+# población POR EDAD: para la cohorte nacida en el año Y, el denominador son las
+# personas de edad (2022 - Y) en ese lugar. Eso exige que la cohorte esté viva y
+# residiendo en el país en 2022 → hacia atrás, la mortalidad y la emigración
+# erosionan el denominador.
+#
+#   1970–2000  → 22 a 52 años en 2022. Mortalidad acumulada baja, carrera
+#                profesional completa o en curso. Es la ventana principal.
+#   <1970      → sesgo de supervivencia creciente; solo análisis temporal.
+#   >2000      → carrera incompleta; muchos aún no debutaron (censura a derecha).
+cohorts:
+  # Ventana que se ingesta en crudo (barata, se hace una sola vez).
+  ingest_min_year: 1900
+  ingest_max_year: 2010
+  # Ventana del análisis principal (H1, H2, H3, H4).
+  analysis_min_year: 1970
+  analysis_max_year: 2000
+  # Ventana ampliada para el análisis temporal, agrupada en bins.
+  temporal_min_year: 1930
+  temporal_max_year: 2004
+  temporal_bin_years: 10
+  # Mínimo de jugadores para reportar un subgrupo (evita tasas y OR inestables).
+  min_n_subgroup: 30
+
+# -----------------------------------------------------------------------------
+# DECISIÓN 3 — Unidades geográficas
+# -----------------------------------------------------------------------------
+# Se reportan los tres niveles. Provincia es robusto; departamento es el nivel
+# analítico principal (529 unidades, buen equilibrio); localidad es el que define
+# el "tamaño de ciudad" de H1 pero tiene más ruido de normalización.
+geography:
+  levels: [provincia, departamento, localidad]
+  primary_level: departamento
+
+  # Normalización: por COORDENADA (P625 de Wikidata) contra la API oficial
+  # Georef, no por matching de strings. Los nombres de localidades argentinas
+  # tienen homónimos entre provincias y variantes ortográficas.
+  geocoder:
+    name: georef
+    base_url: "https://apis.datos.gob.ar/georef/api"
+    # Fallback cuando el jugador no tiene coordenada: matching de nombre
+    # normalizado (sin tildes, lowercase) restringido a la provincia si se
+    # conoce. Si queda ambiguo → se marca `unresolved`, NO se adivina.
+    fallback: name_match_within_province
+    max_results_per_query: 10
+
+  # AMBA para H2: CABA + los partidos del Gran Buenos Aires.
+  # Códigos INDEC de departamento (5 dígitos: 2 provincia + 3 departamento).
+  amba:
+    caba_province_code: "02"
+    gba_department_codes:
+      - "06028"  # Almirante Brown
+      - "06035"  # Avellaneda
+      - "06091"  # Berazategui
+      - "06260"  # Esteban Echeverría
+      - "06270"  # Ezeiza
+      - "06274"  # Florencio Varela
+      - "06371"  # General San Martín
+      - "06408"  # Hurlingham
+      - "06410"  # Ituzaingó
+      - "06412"  # José C. Paz
+      - "06427"  # La Matanza
+      - "06434"  # Lanús
+      - "06441"  # Lomas de Zamora
+      - "06490"  # Malvinas Argentinas
+      - "06515"  # Merlo
+      - "06525"  # Moreno
+      - "06529"  # Morón
+      - "06560"  # Quilmes
+      - "06568"  # San Fernando
+      - "06638"  # San Isidro
+      - "06648"  # San Miguel
+      - "06749"  # Tigre
+      - "06756"  # Tres de Febrero
+      - "06805"  # Vicente López
+    # Definición ampliada (40 partidos) para análisis de sensibilidad.
+    include_extended_gba: false
+
+  # Regiones para el análisis descriptivo (agrupación estándar argentina).
+  regiones:
+    AMBA:      []                                    # se resuelve con `amba` de arriba
+    Pampeana:  ["06", "14", "30", "42", "82"]        # Bs.As. (resto), Córdoba, E.Ríos, La Pampa, Santa Fe
+    NOA:       ["10", "38", "46", "66", "86", "90"]  # Catamarca, Jujuy, La Rioja, Salta, Sgo.Estero, Tucumán
+    NEA:       ["18", "22", "34", "54"]              # Corrientes, Chaco, Formosa, Misiones
+    Cuyo:      ["50", "70", "74"]                    # Mendoza, San Juan, San Luis
+    Patagonia: ["26", "58", "62", "78", "94"]        # Chubut, Neuquén, Río Negro, Santa Cruz, T.del Fuego
+
+# -----------------------------------------------------------------------------
+# DECISIÓN 4 — Tamaño de ciudad
+# -----------------------------------------------------------------------------
+# Dos esquemas de corte. `principal` es el del diseño; `cote2006` replica los
+# cortes del paper clásico para poder comparar con la literatura. Se reportan
+# los dos: si el efecto aparece con uno solo, es un artefacto de la partición.
+#
+# El tamaño se mide sobre la LOCALIDAD censal de nacimiento (INDEC, Censo 2022).
+# Limitación declarada: es el tamaño actual, no el que tenía la localidad cuando
+# el jugador se formaba. Ver `sensitivity` abajo.
+city_size:
+  schemes:
+    principal:
+      # (límite inferior inclusive, límite superior exclusivo)
+      bins:    [0, 10000, 50000, 100000, 500000, null]
+      labels:  ["<10k", "10–50k", "50–100k", "100–500k", ">500k"]
+      # Tramo de referencia para los odds ratios (la categoría "grande").
+      reference_label: ">500k"
+    cote2006:
+      bins:    [0, 1000, 10000, 30000, 100000, 250000, 500000, null]
+      labels:  ["<1k", "1–10k", "10–30k", "30–100k", "100–250k", "250–500k", ">500k"]
+      reference_label: ">500k"
+  default_scheme: principal
+
+# -----------------------------------------------------------------------------
+# Baseline poblacional
+# -----------------------------------------------------------------------------
+# El corazón metodológico. Se reportan varios y se comparan.
+#
+#   census_total       — población total del lugar en el censo. El clásico.
+#   census_cohort      — población del lugar en el censo RESTRINGIDA a la edad
+#                        correspondiente a la cohorte de nacimiento del jugador.
+#                        Mejor: controla la estructura etaria, que varía mucho
+#                        entre el AMBA y el NOA.
+#   birth_province     — solo a nivel provincia: personas censadas en 2022 que
+#                        declararon haber NACIDO en esa provincia (var. P14),
+#                        por cohorte de edad. Es el denominador correcto para H2
+#                        a nivel provincial: cuenta nacimientos, no residencia.
+baseline:
+  modes: [census_total, census_cohort, birth_province]
+  primary: census_cohort
+  # `birth_province` solo existe a nivel provincia (el censo no pregunta
+  # departamento ni localidad de nacimiento).
+  birth_province_levels: [provincia]
+
+  census:
+    year: 2022
+    source_name: "INDEC — Censo Nacional de Población, Hogares y Viviendas 2022 (microdatos REDATAM)"
+    portal: "https://datos.gob.ar/dataset/censo-nacional-de-poblacion-hogares-y-viviendas-2022"
+    # Solo la población del mismo sexo que la muestra (ver sample.gender_filter).
+    match_sex_to_sample: true
+
+  # Sensibilidad: el tamaño de localidad medido en 2022 no es el que tenía en la
+  # infancia del jugador. Si se consiguen censos anteriores por localidad, se
+  # agregan acá y se re-corre H1 con cada uno. Mientras no estén, el análisis se
+  # corre solo con 2022 y la limitación se declara — NO se interpola población.
+  sensitivity:
+    alternative_census_years: []     # ej. [2010, 2001] cuando estén ingestados
+    restrict_to_recent_cohorts: true # re-correr H1 solo con nacidos ≥1985
+
+  # Fuente adicional para cohortes recientes (2012+), no usada en la ventana
+  # principal pero documentada.
+  renaper:
+    portal: "https://estadisticas.renaper.gob.ar/app_myn/"
+    used: false
+
+# -----------------------------------------------------------------------------
+# Estadística
+# -----------------------------------------------------------------------------
+stats:
+  alpha: 0.05
+  ci_level: 0.95
+  # Chi-cuadrado de bondad de ajuste contra la distribución poblacional real.
+  # NUNCA uniforme como único baseline.
+  gof_test: chisquare
+  effect_sizes: [cohens_w, cramers_v]
+  # OR con corrección Haldane-Anscombe cuando hay celdas chicas.
+  or_ci_method: woolf_haldane
+  # Tasas per cápita: IC exacto de Poisson (Garwood).
+  rate_ci_method: exact_poisson
+  rate_per: 100000
+  # Regresión tamaño → tasa: Poisson/negativo-binomial con offset log(población).
+  regression_family: negative_binomial
+  # Corrección por comparaciones múltiples en los cruces exploratorios
+  # (posición × región). Obligatoria.
+  multiple_comparisons: fdr_bh
+  random_seed: 20260730
+
+# -----------------------------------------------------------------------------
+# Ingesta
+# -----------------------------------------------------------------------------
+ingest:
+  wikidata:
+    endpoint: "https://query.wikidata.org/sparql"
+    user_agent: "futbol-geografia-arg/0.1 (investigación académica; contacto: aviullet@gmail.com) python-requests"
+    timeout_seconds: 300
+    max_retries: 4
+    backoff_seconds: 20
+    polite_delay_seconds: 1.5
+    # Paginado por año de nacimiento para evitar timeouts del endpoint público.
+    page_by: birth_year
+  georef:
+    polite_delay_seconds: 0.2
+    batch_size: 500          # el endpoint acepta lotes vía POST
+  indec:
+    census_2022_package: "censo-nacional-de-poblacion-hogares-y-viviendas-2022"
+    ckan_api: "https://datos.gob.ar/api/3/action/package_show"
+
+# -----------------------------------------------------------------------------
+# Visualización
+# -----------------------------------------------------------------------------
+viz:
+  formats: [pdf, svg, png]
+  dpi: 300
+  base_font_size: 9
+  figure_width_single: 3.5     # pulgadas, 1 columna
+  figure_width_double: 7.2     # pulgadas, 2 columnas
+  # Proyección para los mapas de Argentina: POSGAR 2007 / Argentina 3
+  # (conforme, oficial del IGN). Para el país entero se usa una cónica igual-área.
+  crs_display: "EPSG:5347"
+  crs_equal_area: "+proj=aea +lat_1=-30 +lat_2=-50 +lat_0=-40 +lon_0=-64 +datum=WGS84 +units=m"
+  # Clasificación de rangos en los coropléticos. `quantiles` para el mapa de
+  # conteos, `natural_breaks` para el de tasas (mostrar y justificar).
+  choropleth_scheme: quantiles
+  n_classes: 6
