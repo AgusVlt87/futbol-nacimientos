@@ -8,7 +8,39 @@ esos lugares? Este repo contiene el pipeline reproducible que responde esa
 pregunta con datos, no con folklore.
 
 La especificación completa del estudio está en [CLAUDE.md](CLAUDE.md); las
-decisiones de diseño, en [config.yaml](config.yaml).
+decisiones de diseño, en [config.yaml](config.yaml); **los resultados, en
+[reports/paper.md](reports/paper.md)**.
+
+---
+
+## Qué encontramos
+
+Sobre 5.451 futbolistas argentinos nacidos entre 1970 y 2000, con denominador
+poblacional emparejado por cohorte:
+
+**El *birthplace effect* clásico no aparece: aparece invertido.** La producción
+per cápita crece de forma monótona con el tamaño de la ciudad, de 17,5 por
+100.000 en localidades de menos de 10.000 habitantes a 30,5 en aglomerados de
+más de 500.000 (RR 0,57; IC 95% 0,52–0,63). No hay pico en las ciudades
+medianas: el término cuadrático de la regresión no aporta ajuste.
+
+**El mapa no separa capital de interior sino un corredor pampeano del resto.**
+Santa Fe produce 2,2 veces lo esperado por su población y CABA 2,6; el NOA, un
+tercio. El orden se sostiene con cinco denominadores distintos.
+
+**La formación está mucho más concentrada que el nacimiento.** El 46,6% de los
+futbolistas se forma fuera de su provincia de nacimiento, contra el 13,8% de la
+población general que vive fuera de la suya (OR 5,47; IC 95% 5,02–5,96). Entre
+los nacidos en pueblos de menos de 10.000 habitantes, el 94,6% se forma en otro
+departamento, a 282 km de mediana; entre los nacidos en aglomerados grandes, a
+7 km. El NEA retiene al 11,2% de los suyos; el AMBA, al 91,9%.
+
+**No es un artefacto de Wikidata.** El gradiente por tamaño de ciudad se
+sostiene en los cuatro niveles competitivos, incluido el de selección mayor,
+donde la cobertura del corpus es prácticamente censal.
+
+Los dos sesgos conocidos —migración y cobertura— empujan en contra de estos
+resultados, así que son conservadores. El detalle está en el paper.
 
 ---
 
@@ -27,12 +59,31 @@ Probado en Python 3.14.5 sobre Windows 11.
 ## Cómo se corre
 
 ```powershell
-python -m src.ingest.wikidata_players      # Fase 1
-python -m src.ingest.indec_census          # Fase 2
-python -m src.ingest.ign_boundaries        # Fase 2
-python -m src.clean.geocode_birthplaces    # Fase 3
-python -m src.analysis.run_all             # Fase 5
-python -m src.viz.make_figures             # Fase 6
+# Fase 1 — jugadores, lugares y carreras (Wikidata)
+python -m src.ingest.wikidata_players
+python -m src.ingest.wikidata_places
+python -m src.ingest.wikidata_careers
+python -m src.ingest.wikidata_clubs
+
+# Fase 2 — población y geografía
+python -m src.ingest.indec_census
+python -m src.ingest.georef
+python -m src.ingest.ign_boundaries
+
+# Fase 3 — limpieza, denominadores y geocoding (este orden importa:
+# el crosswalk necesita las localidades del censo ya construidas)
+python -m src.clean.build_players
+python -m src.clean.build_population
+python -m src.clean.crosswalk_localidades
+python -m src.clean.geocode_places
+python -m src.clean.build_analysis_dataset
+python -m src.clean.build_careers
+python -m src.clean.geocode_clubs
+
+# Fases 5 a 7 — análisis y figuras
+python -m src.analysis.run_all
+python -m src.analysis.run_levels_and_flow
+python -m src.viz.make_figures
 ```
 
 Cada script es idempotente: si el crudo ya está descargado no lo vuelve a pedir

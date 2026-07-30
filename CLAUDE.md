@@ -22,11 +22,36 @@
 | IGN — capas SIG | pendiente | Fase 2. |
 
 **Hallazgo metodológico:** el censo 2022 pregunta **provincia de nacimiento** (`P14`).
-Cruzado con `EDAD`, da un denominador *cohorte-matched por provincia de nacimiento* —
-mucho mejor que "población residente en el censo X" y, además, provee el baseline
-migratorio de la población general para contrastar contra el flujo de H3.
+Es el baseline migratorio de la población general y el punto de comparación de H3.
+(Ojo: `P14` es un marginal por radio, no está cruzado con `EDAD`, así que ese
+baseline es de todas las cohortes juntas.)
 
-**Fases:** 0 ✅ · 1 ⏳ · 2–8 pendientes.
+**Fases:** 0 ✅ · 1 ✅ · 2 ✅ · 3 ✅ · 4 ✅ · 5 ✅ · 6 ✅ · 7 ✅ · 8 ✅ —
+resultados en [reports/paper.md](reports/paper.md).
+
+### Trampas encontradas (no volver a pisarlas)
+
+1. **`P19` = «Argentina».** 255 jugadores tienen el país como lugar de
+   nacimiento. El centroide de `Q414` cae en el departamento Presidente Roque
+   Sáenz Peña (Córdoba) y convertía a General Levalle, 5.674 habitantes, en la
+   tercera cuna de futbolistas del país. `geocode_places.granularity()` clasifica
+   país / provincia / departamento / región / localidad **antes** de usar la
+   coordenada.
+2. **Los ids de localidad de Georef son del Censo 2010 y no coinciden con el
+   `CODLOC` del 2022.** Olavarría es `06595080` en Georef y `06595070` en el
+   censo, donde `06595080` es Recalde: unir por id daba la población de otra
+   localidad, en silencio. El puente es `src/clean/crosswalk_localidades.py`,
+   por departamento + nombre normalizado.
+3. **Los padrones traen caracteres invisibles.** Guiones blandos (U+00AD)
+   sueltos en nombres rompían el matching sin verse. `normalize_name` descarta
+   las categorías Unicode Cf y Cc.
+4. **«Tamaño de ciudad» tiene que ser el aglomerado, no la localidad.** Lanús no
+   es una ciudad de 200.000 habitantes.
+5. **`geopandas.read_file` no funciona en esta máquina**: el Application Control
+   de Windows bloquea la DLL de GDAL de `pyogrio`. `src/geo.py` lee los
+   shapefiles con `pyshp`.
+6. **El módulo `csv` corta los campos a 128 KB** y la geometría WKT de un radio
+   censal los supera. Ver `src/ingest/download.py`.
 
 ---
 
