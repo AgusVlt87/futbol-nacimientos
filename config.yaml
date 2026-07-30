@@ -42,22 +42,28 @@ sample:
 # -----------------------------------------------------------------------------
 # Wikidata no tiene "nivel" como atributo. Se derivan tiers de señales
 # verificables. Gana el tier más alto que aplique.
+# Todos los QID de abajo fueron verificados contra el endpoint (2026-07-30):
+# se consultó su etiqueta y su país antes de fijarlos. No agregar entradas sin
+# verificar — un QID equivocado no rompe nada, simplemente no matchea nunca y
+# el tier queda vacío en silencio.
 competitive_level:
   tiers:
     T1_seleccion:
       description: "Jugó en la selección mayor argentina"
-      national_team_qids: [Q79800]        # Argentina national football team
+      national_team_qids: [Q79800]        # selección de fútbol de Argentina
+      # Juveniles: NO cuentan como T1, pero se registran aparte.
+      youth_team_qids: [Q1187790, Q2902690]   # sub-20, sub-17
     T2_europa_top:
       description: "Jugó en un club de una liga top de UEFA"
       elite_league_qids:
         Q15804: "Serie A (Italia)"
         Q9448: "Premier League (Inglaterra)"
-        Q324867: "LaLiga (España)"
+        Q324867: "Primera División (España)"
         Q82595: "Bundesliga (Alemania)"
         Q13394: "Ligue 1 (Francia)"
     T3_primera_ar:
       description: "Jugó en la Primera División argentina"
-      league_qids: [Q1163, Q7247972]
+      league_qids: [Q223170]              # Primera División de Argentina
     T4_resto:
       description: "Resto de la muestra (profesional registrado en Wikidata)"
 

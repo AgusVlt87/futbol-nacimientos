@@ -41,7 +41,10 @@ def fetch_capa(base_url: str, capa: str, campos: str) -> list[dict]:
                          params={"max": PAGE, "inicio": offset, "campos": campos},
                          headers={"User-Agent": UA}, timeout=180)
         r.raise_for_status()
-        payload = r.json()
+        # El endpoint no declara charset y `requests` adivina latin-1, lo que
+        # rompe los nombres con tilde ("Olavarría" -> "Olavarrí\xada") y hace
+        # fallar el matching por nombre. Se decodifica UTF-8 explícitamente.
+        payload = json.loads(r.content.decode("utf-8"))
         batch = payload[capa]
         out.extend(batch)
         total = payload.get("total", len(out))
@@ -81,9 +84,13 @@ def main() -> None:
         "base_url": base_url,
         "license": "Datos abiertos de la Administración Pública Nacional",
         "counts": counts,
-        "note": ("El id de `localidades_censales` coincide con el CODLOC del "
-                 "Censo 2022: es la bisagra entre el padrón geográfico y el "
-                 "denominador poblacional."),
+        "note": ("OJO: los ids de `localidades_censales` de Georef son los del "
+                 "Censo 2010 y NO coinciden con el CODLOC del Censo 2022 — el "
+                 "2022 renumeró localidades y agregó pseudo-localidades «ZONA "
+                 "RURAL». Ejemplo: Olavarría es 06595080 en Georef y 06595070 "
+                 "en el censo 2022, donde 06595080 es Recalde. El puente lo "
+                 "arma src/clean/crosswalk_localidades.py por departamento + "
+                 "nombre normalizado."),
     })
     log.info("listo: %s", counts)
 

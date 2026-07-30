@@ -73,6 +73,14 @@ def main() -> None:
         df[f"tramo_{name}"] = city_size_series(df["pob_ciudad"], scheme)
     df["tramo"] = df[f"tramo_{scheme_name}"]
 
+    # `ciudad_id` es la unidad de tamaño: el aglomerado si la localidad forma
+    # parte de uno, si no la localidad. Numerador y denominador se agrupan por
+    # esta misma clave — si no, las tasas no cierran.
+    df["ciudad_id"] = np.where(df["aglomerado_id"].notna(),
+                               "AGLO_" + df["aglomerado_id"].astype(str),
+                               "LOC_" + df["localidad_id"].astype(str))
+    df.loc[df["localidad_id"].isna() & df["aglomerado_id"].isna(), "ciudad_id"] = None
+
     df["edad_censo_2022"] = CENSO_YEAR - df["birth_year"]
     df["decada"] = (df["birth_year"] // 10) * 10
 
@@ -112,6 +120,19 @@ def main() -> None:
         ciudad[f"tramo_{name}"] = city_size_series(ciudad["pob_ciudad"], scheme)
     ciudad["tramo"] = ciudad[f"tramo_{scheme_name}"]
     ciudad.to_parquet(p.processed / "denom_ciudad.parquet", index=False)
+
+    # Una fila por CIUDAD, no por localidad: si no, el Gran Buenos Aires entra
+    # 40 veces con sus 16 millones y el denominador se dispara.
+    ciudad["ciudad_id"] = np.where(ciudad["aglomerado_id"].notna(),
+                                   "AGLO_" + ciudad["aglomerado_id"].astype(str),
+                                   "LOC_" + ciudad["localidad_id"].astype(str))
+    unica = (ciudad.sort_values("pob_localidad", ascending=False)
+                   .drop_duplicates("ciudad_id")
+                   .assign(ciudad_nombre=lambda d: d["aglomerado_nombre"].fillna(
+                       d["localidad_nombre"])))
+    cols = ["ciudad_id", "ciudad_nombre", "prov_id", "pob_ciudad", "pob_cohorte_ciudad",
+            "tramo"] + [f"tramo_{n}" for n in cfg["city_size"]["schemes"]]
+    unica[cols].to_parquet(p.processed / "denom_ciudad_unica.parquet", index=False)
 
     qa_df = pd.DataFrame(qa)
     qa_df["pct_restante"] = (100 * qa_df["n"] / qa_df["n"].iloc[0]).round(1)

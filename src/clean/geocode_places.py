@@ -37,6 +37,16 @@ log = get_logger("clean.geocode")
 
 # Tipos (P31) que indican que la entidad NO es una localidad sino una unidad
 # administrativa mayor. El orden es de más grueso a más fino.
+#
+# El caso país no es teórico: 255 jugadores de la muestra tienen como lugar de
+# nacimiento la entidad «Argentina» (Q414). Su coordenada es el centroide del
+# país, que cae en el departamento Presidente Roque Sáenz Peña de Córdoba: sin
+# este filtro, un pueblo de 5.674 habitantes aparecía como la tercera cuna de
+# futbolistas del país.
+COUNTRY_TYPES = {"Q6256",        # país
+                 "Q3624078",     # estado soberano
+                 "Q10551526",    # estado unitario / república federal
+                 "Q6266"}        # nación
 PROVINCE_TYPES = {"Q44753"}                    # provincia de Argentina
 DEPARTMENT_TYPES = {"Q952274",                 # departamento de Argentina
                     "Q13997861"}               # partido de la provincia de Buenos Aires
@@ -112,6 +122,8 @@ def granularity(types: list[str]) -> str:
     Aires) y queda fuera del análisis geográfico.
     """
     ts = set(types)
+    if ts & COUNTRY_TYPES:
+        return "pais"
     if ts & PROVINCE_TYPES:
         return "provincia"
     if ts & DEPARTMENT_TYPES:
@@ -156,7 +168,8 @@ def assign_localidad(df: pd.DataFrame, localidades: pd.DataFrame) -> pd.DataFram
     by_dept = {k: v for k, v in localidades.groupby("dept_id_raw")}
     for row in df.itertuples():
         if row.granularity != "localidad" or pd.isna(row.lat) or not row.dept_id_raw:
-            out.append({"place_qid": row.place_qid, "localidad_id": None,
+            out.append({"place_qid": row.place_qid, "georef_localidad_id": None,
+                        "localidad_id": None,
                         "localidad_nombre": None, "localidad_km": np.nan,
                         "localidad_match": ("no_aplica_por_granularidad"
                                             if row.granularity != "localidad"
@@ -164,13 +177,15 @@ def assign_localidad(df: pd.DataFrame, localidades: pd.DataFrame) -> pd.DataFram
             continue
         if str(row.dept_id_raw).startswith("02"):
             # CABA: una sola localidad. Cualquier barrio cae en ella.
-            out.append({"place_qid": row.place_qid, "localidad_id": CABA_LOCALIDAD_ID,
+            out.append({"place_qid": row.place_qid, "georef_localidad_id": None,
+                        "localidad_id": CABA_LOCALIDAD_ID,
                         "localidad_nombre": CABA_LOCALIDAD_NOMBRE, "localidad_km": 0.0,
                         "localidad_match": "caba_unidad_unica"})
             continue
         cand = by_dept.get(row.dept_id_raw)
         if cand is None or cand.empty:
-            out.append({"place_qid": row.place_qid, "localidad_id": None,
+            out.append({"place_qid": row.place_qid, "georef_localidad_id": None,
+                        "localidad_id": None,
                         "localidad_nombre": None, "localidad_km": np.nan,
                         "localidad_match": "departamento_sin_localidades"})
             continue
@@ -185,9 +200,18 @@ def assign_localidad(df: pd.DataFrame, localidades: pd.DataFrame) -> pd.DataFram
             match = "solo_cercania"
         else:
             match = "descartado_por_distancia"
+        ok = match != "descartado_por_distancia"
+        # `censo_id` es el id del Censo 2022, que NO es el de Georef: viene del
+        # crosswalk. Si la localidad desapareció o se fusionó en 2022, queda
+        # sin id censal y por lo tanto sin tamaño de ciudad.
+        censo_id = best.get("censo_localidad_id") if ok else None
+        if ok and (censo_id is None or (isinstance(censo_id, float) and np.isnan(censo_id))):
+            match = "sin_localidad_censal_2022"
+            censo_id = None
         out.append({"place_qid": row.place_qid,
-                    "localidad_id": best["id"] if match != "descartado_por_distancia" else None,
-                    "localidad_nombre": best["nombre"] if match != "descartado_por_distancia" else None,
+                    "georef_localidad_id": best["id"] if ok else None,
+                    "localidad_id": censo_id,
+                    "localidad_nombre": best["nombre"] if ok else None,
                     "localidad_km": km,
                     "localidad_match": match})
     return pd.DataFrame(out)
@@ -219,14 +243,17 @@ def main() -> None:
     # que a veces falta o trae la entidad histórica.
     df["en_argentina"] = df["prov_id"].notna()
 
-    loc = pd.DataFrame(
-        json.loads((p.raw / "georef" / "localidades_censales.json").read_text(encoding="utf-8"))["items"])
+    cw_path = p.interim / "crosswalk_localidades.parquet"
+    if not cw_path.exists():
+        raise SystemExit("falta el crosswalk; correr src.clean.crosswalk_localidades primero")
+    cw = pd.read_parquet(cw_path)
     localidades = pd.DataFrame({
-        "id": loc["id"],
-        "nombre": loc["nombre"],
-        "dept_id_raw": loc["departamento"].apply(lambda d: d["id"]),
-        "lat": loc["centroide"].apply(lambda c: c["lat"]),
-        "lon": loc["centroide"].apply(lambda c: c["lon"]),
+        "id": cw["georef_id"],
+        "nombre": cw["georef_nombre"],
+        "dept_id_raw": cw["dept_id_georef"],
+        "lat": cw["lat"],
+        "lon": cw["lon"],
+        "censo_localidad_id": cw["localidad_id"],
     })
 
     df = df.merge(assign_localidad(df, localidades), on="place_qid", how="left")
@@ -234,14 +261,16 @@ def main() -> None:
     df["dept_nombre"] = np.where(df["dept_id"] == "02000",
                                  "Ciudad Autónoma de Buenos Aires", df["dept_nombre_raw"])
 
-    # Una región no tiene departamento: el centroide de "Cuyo" cae en un partido
-    # cualquiera. Se anula para que no se filtre al análisis por departamento.
-    es_region = df["granularity"] == "region"
-    df.loc[es_region, ["dept_id", "dept_nombre", "dept_id_raw", "dept_nombre_raw"]] = None
+    # Un país o una región no tienen departamento: el centroide de "Argentina" o
+    # de "Cuyo" cae en un partido cualquiera. Se anula el departamento para que
+    # no se filtre al análisis geográfico.
+    demasiado_grueso = df["granularity"].isin(["pais", "region"])
+    df.loc[demasiado_grueso,
+           ["dept_id", "dept_nombre", "dept_id_raw", "dept_nombre_raw"]] = None
 
     df["geo_status"] = np.select(
-        [df["lat"].isna(), ~df["en_argentina"], es_region, df["dept_id"].isna()],
-        ["sin_coordenada", "fuera_de_argentina", "region_sin_departamento",
+        [df["lat"].isna(), ~df["en_argentina"], demasiado_grueso, df["dept_id"].isna()],
+        ["sin_coordenada", "fuera_de_argentina", "lugar_demasiado_generico",
          "sin_departamento"],
         default="ok")
 

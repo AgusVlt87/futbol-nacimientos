@@ -35,7 +35,12 @@ def normalize_name(name: str | None) -> str:
     if name is None or (isinstance(name, float) and math.isnan(name)):
         return ""
     s = unicodedata.normalize("NFKD", str(name))
-    s = "".join(c for c in s if not unicodedata.combining(c))
+    # Se descartan los diacríticos y también los caracteres invisibles de
+    # formato/control (Cf, Cc). Los padrones oficiales traen guiones blandos
+    # (U+00AD) sueltos que rompen el matching sin que se vean.
+    s = "".join(c for c in s
+                if not unicodedata.combining(c)
+                and unicodedata.category(c) not in {"Cf", "Cc"})
     s = _PUNCT.sub(" ", s.lower())
     return _SPACES.sub(" ", s).strip()
 
