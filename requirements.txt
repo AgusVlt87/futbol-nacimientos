@@ -20,9 +20,12 @@ PyYAML==6.0.3
 geopandas==1.1.4
 shapely==2.1.2
 pyproj==3.7.2              # proyecciones (POSGAR 2007 / cónica igual-área)
-pyogrio==0.13.0            # lectura rápida de shapefiles/GeoPackage
 mapclassify==2.10.0        # cortes naturales / quantiles en coropléticos
 Unidecode==1.4.0           # normalización de nombres de localidades
+pyshp==2.3.1               # lectura de shapefiles en Python puro (ver src/geo.py)
+# pyogrio / fiona NO se usan: en Windows con Application Control activo, la DLL
+# de GDAL queda bloqueada y `geopandas.read_file` falla. `src/geo.py` lee los
+# shapefiles con pyshp y arma el GeoDataFrame a mano. Mismo archivo, otra vía.
 
 # --- estadística ---
 scipy==1.17.1
