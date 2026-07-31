@@ -26,8 +26,13 @@ Es el baseline migratorio de la población general y el punto de comparación de
 (Ojo: `P14` es un marginal por radio, no está cruzado con `EDAD`, así que ese
 baseline es de todas las cohortes juntas.)
 
-**Fases:** 0 ✅ · 1 ✅ · 2 ✅ · 3 ✅ · 4 ✅ · 5 ✅ · 6 ✅ · 7 ✅ · 8 ✅ —
-resultados en [reports/paper.md](reports/paper.md).
+**Fases:** todas cerradas. Resultados en [reports/paper.md](reports/paper.md).
+
+**Revisión mayor (2026-07-31).** El denominador dejó de ser la población censada
+en 2022 y pasó a ser el número de **nacidos vivos** de cada cohorte (DEIS,
+1914–2024). La ventana va de 1975 a 2008. Las figuras se reescribieron con un
+sistema de layout propio (`src/viz/style.Figura`). Se agregó el módulo de fútbol
+(`src/analysis/run_futbol.py`): clubes formadores, cunas y selección.
 
 ### Trampas encontradas (no volver a pisarlas)
 
@@ -52,6 +57,21 @@ resultados en [reports/paper.md](reports/paper.md).
    shapefiles con `pyshp`.
 6. **El módulo `csv` corta los campos a 128 KB** y la geometría WKT de un radio
    censal los supera. Ver `src/ingest/download.py`.
+7. **La serie de nacidos vivos del DEIS no trae 1971–1974.** Único hueco en 110
+   años. Con la ventana arrancando en 1970, esa cohorte quedaba con el
+   denominador de un solo año y su tasa salía 5× más alta sin que nada fallara.
+   `build_denominators.verificar_cobertura` ahora rechaza cualquier ventana con
+   huecos.
+8. **El recurso del DEIS se publica como `.csv` pero el archivo es `xlsx`.**
+9. **`datos.salud.gob.ar` no envía el certificado intermedio** y el almacén de CA
+   de `certifi` no puede cerrar la cadena. `download.fetch` reintenta con `curl`,
+   que usa el almacén del sistema — sin desactivar la verificación.
+10. **Los títulos de las figuras se montaban sobre los gráficos** porque
+    `ax.set_title` mide en puntos, el subtitulo en fracción de ejes y
+    `bbox_inches="tight"` recorta después de todo: tres sistemas de coordenadas
+    decidiendo el mismo espacio. `style.Figura` reserva bandas en coordenadas de
+    figura y guarda sin recorte automático. **No volver a usar `ax.set_title`
+    para títulos de panel**: usar el parámetro `titulos` de `ejes_lado_a_lado`.
 
 ---
 

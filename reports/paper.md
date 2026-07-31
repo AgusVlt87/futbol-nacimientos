@@ -1,44 +1,40 @@
 # ¿De dónde salen los futbolistas argentinos?
 
-### Geografía del nacimiento y de la formación en el fútbol argentino, cohortes 1970–2000
+### Geografía del nacimiento y de la formación en el fútbol argentino, cohortes 1975–2008
 
-*Análisis reproducible sobre Wikidata y el Censo Nacional 2022 del INDEC.
-Snapshot de Wikidata: 30 de julio de 2026.*
+*Análisis reproducible sobre Wikidata, la serie histórica de nacidos vivos del
+DEIS y el Censo Nacional 2022 del INDEC. Snapshot de Wikidata: 30 de julio de 2026.*
 
 ---
 
 ## Resumen
 
-Se analiza el lugar de nacimiento de 5.451 futbolistas profesionales argentinos
-nacidos entre 1970 y 2000, contra un denominador poblacional emparejado por
-cohorte construido con los microdatos del Censo Nacional 2022. Se obtienen tres
-resultados.
+Se analiza el lugar de nacimiento de 5.511 futbolistas profesionales argentinos
+nacidos entre 1975 y 2008, contra el número de **nacidos vivos** de cada cohorte
+en cada lugar. La tasa se lee directo: de cada 100.000 bebés nacidos en un lugar,
+cuántos llegaron a futbolistas profesionales.
 
 **Primero: el *birthplace effect* clásico no aparece en Argentina, y lo que
-aparece es su inverso.** La producción per cápita crece de forma monótona con el
-tamaño de la ciudad de nacimiento, de 17,5 futbolistas por cada 100.000
-habitantes de la cohorte en localidades de menos de 10.000 habitantes a 30,5 en
-aglomerados de más de 500.000 (RR 0,57; IC 95% 0,52–0,63). El término cuadrático
-de un modelo binomial negativo no aporta ajuste: no hay pico en las ciudades
-medianas.
+aparece es su inverso.** La producción crece de forma monótona con el tamaño de
+la ciudad de nacimiento, de 12,9 futbolistas cada 100.000 nacidos en localidades
+de menos de 10.000 habitantes a 30,5 en aglomerados de más de 500.000 (RR 0,42;
+IC 95% 0,38–0,47). El término cuadrático de un modelo binomial negativo no aporta
+ajuste: no hay pico en las ciudades medianas.
 
-**Segundo: el mapa federal no separa capital de interior, sino un corredor
-pampeano del resto del país.** Santa Fe produce 2,2 veces lo que le
-correspondería por población y CABA 2,6; el NOA produce un tercio de lo
-esperado. La región pampeana (36,2 por 100.000) supera al AMBA (31,9) y triplica
-al NOA (10,7).
+**Segundo: la producción se concentra en el AMBA y en un corredor pampeano.**
+CABA produce 2,6 veces lo que le correspondería por sus nacimientos y Santa Fe
+2,3; Salta, Catamarca y San Juan producen menos de un cuarto. El AMBA (35,0 cada
+100.000) y la Pampa (30,2) cuadruplican al NOA (8,7).
 
-**Tercero, y es el hallazgo central: la formación está mucho más concentrada que
-el nacimiento.** El 46,6% de los futbolistas se forma en una provincia distinta
-de aquella en la que nació, contra el 13,8% de la población general que reside
-fuera de su provincia de nacimiento (OR 5,47; IC 95% 5,02–5,96). Entre los
-nacidos fuera de un aglomerado de más de 500.000 habitantes, entre el 86% y el
-98% se forma en otro departamento, a distancias medianas de entre 260 y 470 km;
-entre los nacidos dentro de uno, la mediana es de 7 km. El NEA retiene al 11,2%
-de los futbolistas que nacen en su territorio; el AMBA, al 91,9%.
+**Tercero: la formación está mucho más concentrada que el nacimiento.** El 47,1%
+de los futbolistas se forma en una provincia distinta de aquella en la que nació,
+contra el 13,8% de la población general que reside fuera de su provincia de
+nacimiento (OR 5,58; IC 95% 5,10–6,10). El NEA retiene al 8,3% de los futbolistas
+que nacen en su territorio; el AMBA, al 91,6%. Diez clubes concentran el 48% de
+toda la formación del país.
 
-El estudio replica por primera vez, con método y baseline poblacional, un
-fenómeno sobre el que en Argentina solo había descripción periodística.
+El patrón se sostiene entre los jugadores de la selección mayor, donde la
+cobertura de Wikidata es prácticamente censal: no lo fabrica el corpus.
 
 ---
 
@@ -51,37 +47,30 @@ uno de los hallazgos más replicados en la investigación sobre desarrollo
 deportivo. Côté y colegas (2006) documentaron que las ciudades chicas y medianas
 producen desproporcionadamente más atletas de elite que las grandes urbes y que
 las zonas rurales, con un óptimo típicamente situado entre los 50.000 y los
-100.000 habitantes. La explicación habitual combina tres mecanismos: espacio
-físico y seguridad para el juego libre, densidad social suficiente para sostener
-competencia organizada pero no tanta como para generar barreras de acceso, y
-relaciones entrenador-jugador más estables.
+100.000 habitantes. La explicación habitual combina espacio físico para el juego
+libre, densidad social suficiente para sostener competencia organizada sin
+generar barreras de acceso, y relaciones entrenador-jugador más estables.
 
-El fenómeno se ha estudiado sobre todo en Norteamérica y Europa, con réplicas
-para el fútbol en varios países y una revisión sistemática específica de la
-disciplina.
+### 1.2 El caso argentino
 
-### 1.2 El caso argentino y el vacío que llena este trabajo
+Argentina exporta futbolistas en volumen y tiene un relato nacional muy
+establecido sobre su origen. El «crack del interior», el potrero, el pueblo chico
+que da campeones del mundo —Gualeguay, 44.000 habitantes, dos— describe con
+precisión el patrón que el *birthplace effect* predice.
 
-Argentina es un caso de interés obvio: exporta futbolistas en volumen y tiene un
-relato nacional muy establecido sobre su origen. El «crack del interior», el
-potrero, el pueblo chico que da campeones del mundo —Gualeguay, 44.000
-habitantes, dos— describe con precisión el patrón que el *birthplace effect*
-predice.
-
-Ese relato, sin embargo, nunca fue puesto a prueba. Lo que existe es periodismo
-descriptivo: listas de jugadores por provincia, sin denominador poblacional y
-por lo tanto sin capacidad de distinguir «produce muchos» de «vive mucha gente».
-Este trabajo es, hasta donde alcanza nuestra búsqueda, el primer análisis
-estadístico del *birthplace effect* en el fútbol argentino.
+Ese relato nunca fue puesto a prueba. Lo que existe es periodismo descriptivo:
+listas de jugadores por provincia, sin denominador y por lo tanto sin capacidad
+de distinguir «produce muchos» de «nace mucha gente». Este trabajo es, hasta
+donde alcanza nuestra búsqueda, el primer análisis estadístico del *birthplace
+effect* en el fútbol argentino.
 
 ### 1.3 Hipótesis
 
-- **H1.** Los futbolistas están sobrerrepresentados entre los nacidos en
-  ciudades chicas y medianas respecto de lo esperado por la distribución
-  poblacional.
+- **H1.** Los futbolistas están sobrerrepresentados entre los nacidos en ciudades
+  chicas y medianas.
 - **H2.** El interior produce más futbolistas per cápita que el AMBA.
-- **H3.** Existe una migración sistemática entre el lugar de nacimiento y el
-  club formador.
+- **H3.** Existe migración sistemática entre el lugar de nacimiento y el club
+  formador.
 - **H4.** El efecto se intensifica con el nivel competitivo alcanzado.
 - **Exploratorio.** Asociación entre posición y región de nacimiento.
 
@@ -89,122 +78,111 @@ estadístico del *birthplace effect* en el fútbol argentino.
 
 ## 2. Métodos
 
-### 2.1 Muestra
+### 2.1 El denominador: nacidos vivos, no población censada
 
-**Fuente.** Wikidata, vía SPARQL sobre el endpoint público, paginado por año de
-nacimiento. Snapshot del 30 de julio de 2026, fechado en
-`data/raw/wikidata/_snapshot.json`. La ocupación se consultó expandiendo
-subclases (`wdt:P106/wdt:P279* wd:Q937857`) y la pertenencia por ciudadanía
-argentina (`wdt:P27 wd:Q414`).
+Es la decisión metodológica central y conviene explicar por qué.
 
-**Construcción de la muestra** (tabla `qa_players_filtros.csv`):
+**Lo que no sirve.** Contar futbolistas nacidos en 1975 contra la población
+censada en 2022 no mide nacimientos: mide quiénes seguían vivos y residiendo en
+el mismo lugar casi cincuenta años después. Ese denominador está contaminado por
+mortalidad y, sobre todo, por migración interna —que en Argentina va justamente
+del interior hacia el centro, en la misma dirección que el fenómeno bajo estudio.
 
-| Paso | n | Descartados |
-|---|---:|---:|
-| Futbolistas argentinos en Wikidata | 9.115 | — |
-| Con precisión de fecha de nacimiento ≥ año | 8.976 | 139 |
-| Muestra masculina | 8.649 | 327 |
-| Con lugar de nacimiento (`P19`) | 8.290 | 359 |
-| Con lugar resuelto dentro de Argentina | 7.711 | 579 |
-| **Cohortes 1970–2000 (muestra de análisis)** | **5.451** | 2.260 |
+**Lo que se usa.** El denominador es el número de **nacidos vivos** de cada
+cohorte en cada lugar:
 
-La muestra se restringe a varones porque la literatura del *birthplace effect*
-está construida casi enteramente sobre fútbol masculino y porque la muestra
-femenina de Wikidata (348 jugadoras) tiene una cobertura de naturaleza
-suficientemente distinta como para que mezclarlas confunda más de lo que aporta.
+| Nivel | Fuente | Naturaleza |
+|---|---|---|
+| Provincia | DEIS, serie histórica de nacidos vivos por jurisdicción, 1914–2024 | **Dato real**, por año |
+| Departamento / ciudad | el total provincial real, repartido según la participación de cada departamento en la población de su provincia en el censo más cercano al año de nacimiento (1991, 2001, 2010, 2022) | **Estimado** |
 
-**Ventana de cohortes.** El límite lo impone el denominador, no la fuente. El
-denominador principal cuenta a las personas que en 2022 tenían la edad
-correspondiente a cada cohorte de nacimiento: hacia atrás, la mortalidad y la
-emigración erosionan ese conteo; hacia adelante, las carreras están censuradas a
-derecha. La ventana 1970–2000 corresponde a personas de 22 a 52 años en 2022.
+El reparto intraprovincial es el único supuesto de la cadena, y se valida: el
+RENAPER publica nacimientos por departamento para 2012–2022, cohortes demasiado
+recientes para tener futbolistas pero suficientes para medir el error del
+supuesto. El estimador correlaciona **r = 0,993** con los nacimientos reales, con
+un error relativo mediano del **9,1%** y el 83,8% de los departamentos dentro del
+20% (tabla `qa_validacion_denominador.csv`).
 
-### 2.2 Resolución geográfica
+**Un detalle que hace válida la comparación.** La serie del DEIS cuenta
+nacimientos **ocurridos**, por lugar del parto, que es exactamente la definición
+que usa el `P19` de Wikidata: quien nació en una maternidad de la Capital figura
+en la Capital en las dos puntas del cociente. El criterio alternativo —«por
+residencia de la madre»— mediría otra cosa y no coincidiría con el numerador.
+
+Como control, se reportan además cinco denominadores alternativos (población
+total en los censos 1991, 2001, 2010 y 2022, y personas que en 2022 declararon
+haber nacido en cada provincia). El orden de las provincias no cambia.
+
+### 2.2 Ventana de cohortes
+
+**1975–2008.** Los dos límites los impuso el dato, no la comodidad:
+
+- *Hacia atrás*: la serie del DEIS **no publica 1971–1974**, único hueco en 110
+  años. Empezar en 1970 dejaba a esa cohorte con el denominador de un solo año y
+  su tasa salía cinco veces más alta sin que nada fallara. El pipeline ahora
+  rechaza cualquier ventana con huecos (`build_denominators.verificar_cobertura`).
+- *Hacia adelante*: la carrera. Quien nació en 2008 tenía 14 años en 2022 y no
+  puede haber debutado.
+
+La censura a derecha se cuantifica cohorte por cohorte (**Figura 12**, tabla
+`diagnostico_censura_cohortes.csv`): la tasa sube de 17 por 100.000 en 1975–1979
+a un pico de 37 en 1985–1989, y cae a 15 en 2000–2004 y 3 en 2005–2009. La caída
+final es censura; la inicial es cobertura, porque Wikidata registra peor a los
+jugadores más viejos. El análisis principal usa toda la ventana y se repite
+restringido a cohortes ≤ 2002 como robustez.
+
+### 2.3 Muestra
+
+Wikidata vía SPARQL, paginado por año de nacimiento, snapshot fechado en
+`data/raw/wikidata/_snapshot.json`.
+
+| Paso | n |
+|---|---:|
+| Futbolistas argentinos en Wikidata | 9.115 |
+| Con precisión de fecha ≥ año | 8.976 |
+| Muestra masculina | 8.649 |
+| Con lugar de nacimiento (`P19`) | 8.290 |
+| Con lugar resuelto dentro de Argentina | 7.711 |
+| **Cohortes 1975–2008** | **5.511** |
+
+### 2.4 Resolución geográfica
 
 Los nombres de lugares argentinos en Wikidata son inconsistentes: hay homónimos
-entre provincias (cuatro localidades se llaman Santa Rosa), variantes
-ortográficas, y entidades que son provincias o partidos y no ciudades. Resolver
-por *string* garantiza error.
+entre provincias (cuatro localidades se llaman Santa Rosa) y entidades que son
+provincias o partidos y no ciudades. **Se resuelve por coordenada** (`P625`)
+contra la API Georef del Estado argentino; el nombre solo se usa como chequeo
+cruzado.
 
-**El lugar de nacimiento se resuelve por coordenada** (`P625`) contra la API
-Georef del Estado argentino, que devuelve el departamento y la provincia
-oficiales. El nombre se usa solo como chequeo cruzado al asignar la localidad
-censal. Resultado (tabla `qa_geocoding.csv`): de 1.084 lugares distintos, 624 se
-asignaron con coincidencia de nombre **y** proximidad, 167 solo por proximidad
-(mediana: 2,2 km) y 19 corresponden a barrios de CABA.
-
-**La granularidad de cada entidad se clasifica antes de usarla.** Veinte lugares
-de nacimiento son provincias, 83 son departamentos o partidos, dos son regiones
-(«Cuyo», «Gran Buenos Aires») y cuatro son países. El centroide de una provincia
-no ubica a nadie: esas entidades se resuelven solo hasta el nivel que les
-corresponde y quedan fuera del análisis por localidad. El caso más consecuente
-es la entidad «Argentina», que 255 jugadores tienen como lugar de nacimiento;
-su centroide cae en el departamento Presidente Roque Sáenz Peña de Córdoba y,
-sin este filtro, convertía a General Levalle —5.674 habitantes— en la tercera
-cuna de futbolistas del país.
-
-**CABA se trata como una unidad** y no como sus 15 comunas: asignar a un
-jugador la comuna donde cae el centroide de «Buenos Aires» no significa nada.
-
-### 2.3 Denominador poblacional
-
-El corazón del método: nadie está sobrerrepresentado sin comparar contra cuánta
-gente vive en cada lugar.
-
-**Fuente.** Microdatos tabulados por radio censal del Censo Nacional de
-Población, Hogares y Viviendas 2022 (INDEC), publicados en `datos.gob.ar`. El
-radio censal es la unidad atómica; de él se derivan departamento, localidad
-censal, aglomerado urbano y condición urbano/rural. Los totales reproducen las
-cifras oficiales publicadas.
-
-**Baseline principal: `census_cohort`.** Para la cohorte nacida en el año *Y*,
-el denominador es la población de edad (2022 − *Y*) en la unidad geográfica.
-Esto controla la estructura etaria, que difiere fuertemente entre el AMBA y el
-NOA y que un denominador de población total confundiría con producción de
-talento.
+La granularidad de cada entidad se clasifica antes de usarla: 20 lugares de
+nacimiento son provincias, 83 departamentos o partidos, dos regiones y cuatro
+países. El caso más consecuente es la entidad «Argentina», que 255 jugadores
+tienen como lugar de nacimiento: su centroide cae en el departamento Presidente
+Roque Sáenz Peña de Córdoba y, sin ese filtro, convertía a General Levalle
+—5.674 habitantes— en la tercera cuna de futbolistas del país.
 
 **«Tamaño de ciudad» = aglomerado urbano cuando existe.** Lanús no es una ciudad
-de 200.000 habitantes: es una porción de un conurbano de 16,2 millones, y para
-el *birthplace effect* eso es lo que importa. Se usa la definición de aglomerado
-del propio INDEC. Se reporta también la variante con la localidad censal aislada
-como control (§3.1).
+de 200.000 habitantes: es una porción de un conurbano de 16,2 millones. Se usa la
+definición de aglomerado del propio INDEC, y se reporta la variante con la
+localidad aislada como control.
 
-**Baselines alternativos.** Se reportan cuatro más, todos en
-`outputs/tables/`: población total en los censos 1991, 2001, 2010 y 2022, y
-—solo a nivel provincial— el conteo de personas censadas en 2022 que declararon
-haber **nacido** en cada provincia (variable `P14`). Este último es
-conceptualmente superior para H2 porque cuenta nacimientos y no residencia, de
-modo que la migración interna no lo distorsiona.
+### 2.5 Estadística
 
-### 2.4 Estadística
-
-Chi-cuadrado de bondad de ajuste contra la distribución poblacional real —nunca
-uniforme—, con Cohen's *w* y Cramér's *V*. Tasas por 100.000 habitantes con
-intervalo exacto de Poisson (Garwood), elegido porque muchos departamentos
-tienen cero, uno o dos jugadores y ahí la aproximación normal produce
-intervalos que incluyen valores negativos. Razones de tasas e *odds ratios* con
-IC 95% (Woolf, con corrección Haldane-Anscombe ante celdas vacías). Regresión
-binomial negativa con *offset* logarítmico de la población. Corrección de
+Chi-cuadrado de bondad de ajuste contra la distribución real de nacimientos
+—nunca uniforme—, con Cohen's *w* y Cramér's *V*. Tasas por 100.000 con intervalo
+exacto de Poisson (Garwood), elegido porque muchos departamentos tienen cero, uno
+o dos jugadores. Razones de tasas y *odds ratios* con IC 95%. Regresión binomial
+negativa con *offset* logarítmico de los nacimientos. Corrección de
 Benjamini-Hochberg en los cruces exploratorios.
 
-Regla transversal: ningún hallazgo se apoya solo en un p-valor.
+### 2.6 La limitación central: nacer ≠ formarse
 
-### 2.5 La limitación central: nacer ≠ formarse
-
-Wikidata da el lugar de **nacimiento**, no el de **desarrollo**. La literatura
-reciente sugiere que el lugar de nacimiento por sí solo es un predictor flojo y
-que lo que pesa es la transición entre dónde se nace y dónde se crece
-deportivamente. El análisis base (H1, H2) es la metodología clásica del campo y
-es válido, pero mide una cosa acotada.
-
-Para H3 se construyó un proxy del club formador: el vínculo jugador-club (`P54`)
-con la fecha de inicio (`P580`) más temprana registrada, excluyendo selecciones.
-**Es un proxy y así debe leerse.** Wikidata suele omitir las divisiones
-inferiores, con lo cual el primer club listado es muchas veces el de debut
-profesional y no el de formación; y la cobertura del dato es muy desigual por
-nivel: 99,4% entre los jugadores de selección mayor contra 14,4% en el resto de
-la muestra (tabla `qa_niveles_y_primer_club.csv`). Los resultados de H3 se
-apoyan en 2.088 jugadores con origen y club formador ubicados en Argentina.
+Wikidata da el lugar de **nacimiento**, no el de desarrollo. Para H3 se construyó
+un proxy del club formador: el vínculo jugador-club (`P54`) con la fecha de
+inicio (`P580`) más temprana, excluyendo selecciones. **Es un proxy.** Wikidata
+suele omitir las inferiores, con lo cual el primer club listado es muchas veces
+el de debut profesional; y su cobertura es muy desigual por nivel: 99,2% entre
+los jugadores de selección mayor contra 12,7% en el resto. H3 se apoya en 1.947
+jugadores con origen y club formador ubicados en Argentina.
 
 ---
 
@@ -212,186 +190,158 @@ apoyan en 2.088 jugadores con origen y club formador ubicados en Argentina.
 
 ### 3.1 H1 — El efecto aparece invertido
 
-**Figura 4** (`fig04_tasa_por_tramo`), **Figura 7** (`fig07_scatter_tamano_tasa`),
-tablas `h1_tramos_principal.csv` y `h1_tramos_cote2006.csv`.
+**Figuras 4 y 7.**
 
-| Tamaño de la ciudad | Futbolistas | Población de la cohorte | Tasa /100.000 | IC 95% | RR vs >500k |
+| Tamaño de la ciudad | Futbolistas | Nacidos | Tasa /100.000 | IC 95% | RR vs >500k |
 |---|---:|---:|---:|---|---|
-| <10k | 406 | 2.321.573 | 17,5 | 15,8–19,3 | 0,57 (0,52–0,63) |
-| 10–50k | 558 | 2.805.133 | 19,9 | 18,3–21,6 | 0,65 (0,60–0,71) |
-| 50–100k | 276 | 1.142.199 | 24,2 | 21,4–27,2 | 0,79 (0,70–0,90) |
-| 100–500k | 625 | 2.594.808 | 24,1 | 22,2–26,1 | 0,79 (0,72–0,86) |
-| **>500k** | **3.326** | **10.895.497** | **30,5** | **29,5–31,6** | 1,00 |
+| <10k | 431 | 3.339.078 | 12,9 | 11,7–14,2 | 0,42 (0,38–0,47) |
+| 10–50k | 568 | 3.418.174 | 16,6 | 15,3–18,0 | 0,55 (0,50–0,60) |
+| 50–100k | 275 | 1.280.832 | 21,5 | 19,0–24,2 | 0,70 (0,62–0,80) |
+| 100–500k | 631 | 2.934.614 | 21,5 | 19,9–23,3 | 0,71 (0,65–0,77) |
+| **>500k** | **3.343** | **10.975.566** | **30,5** | **29,4–31,5** | 1,00 |
 
-χ²(4) = 193,4; p < 10⁻⁴⁰; *w* = 0,19; n = 5.191.
+χ²(4) = 452,2; p < 10⁻⁹⁵; *w* = 0,29; n = 5.248.
 
-La tasa crece de forma monótona con el tamaño. **El tramo de 50.000 a 100.000
-habitantes —el óptimo que predice la literatura— no muestra ningún pico**: está
-por debajo del tramo mayor y no se distingue del de 100.000 a 500.000.
+El tramo de 50.000 a 100.000 habitantes —el óptimo que predice la literatura— no
+muestra ningún pico. Con los cortes de Côté et al. (2006) el resultado es el
+mismo: de 8,4 por 100.000 en localidades de menos de 1.000 habitantes a 30,5 en
+las de más de 500.000.
 
-Con los cortes de Côté et al. (2006), para poder comparar con la literatura, el
-resultado es el mismo: de 12,1 por 100.000 en localidades de menos de 1.000
-habitantes a 30,5 en las de más de 500.000, con un único quiebre menor en el
-tramo 250–500k (χ²(6) = 206,6; *w* = 0,20).
+**Regresión.** Modelo binomial negativo sobre 3.476 ciudades: cada *e-fold* de
+tamaño multiplica la tasa por 1,181 (IC 95% 1,120–1,246; p < 0,0001). Con el
+término cuadrático **ni el lineal ni el cuadrático resultan significativos**
+(p = 0,11 y p = 0,44) y el AIC empeora (3.654,3 contra 3.652,8). No hay curva en
+U invertida que ajustar.
 
-**Regresión** (`regresion_tamano_ciudad.csv`). Modelo binomial negativo sobre
-3.476 ciudades con *offset* logarítmico de la población de la cohorte: cada
-*e-fold* de tamaño multiplica la tasa por 1,118 (IC 95% 1,061–1,179; p < 0,0001).
-Al agregar el término cuadrático, **ni el término lineal ni el cuadrático
-resultan significativos y el AIC empeora** (3.656,9 contra 3.655,0). No hay
-curva en U invertida que ajustar.
-
-**Robustez.** El patrón se sostiene en las tres variantes probadas:
+**Robustez.** El patrón se sostiene en las dos variantes:
 
 | Variante | RR <10k vs >500k | IC 95% |
 |---|---|---|
-| Principal (aglomerado urbano) | 0,57 | 0,52–0,63 |
-| Unidad = localidad censal aislada | 0,39 | 0,35–0,44 |
-| Cohortes 1970–1984 | 0,53 | 0,44–0,64 |
-| Cohortes 1985–2000 | 0,59 | 0,52–0,67 |
+| Principal (aglomerado urbano) | 0,42 | 0,38–0,47 |
+| Unidad = localidad censal aislada | 0,39 | 0,35–0,43 |
+| Solo cohortes ≤ 2002 | 0,41 | 0,37–0,46 |
 
-La variante por localidad aislada acentúa el efecto, lo cual es esperable: al
-partir el conurbano en piezas, muchos nacidos en el AMBA pasan al tramo
-100–500k. La comparación entre cohortes muestra una atenuación leve en la más
-joven cuyo origen no podemos atribuir con los datos disponibles; el gradiente no
-se invierte en ninguna.
+Con el denominador anterior —población censada en 2022— este mismo RR daba 0,57.
+El denominador correcto **fortalece** el hallazgo, no lo debilita: la migración
+del interior a las ciudades estaba inflando artificialmente la tasa de los
+pueblos.
 
-### 3.2 H2 — Un corredor pampeano, no un interior
+### 3.2 H2 — AMBA y corredor pampeano
 
-**Figura 1** (`fig01_mapa_departamentos_tasa`), **Figura 3**
-(`fig03_mapa_provincias_obs_esp`), **Figura 5** (`fig05_tasa_por_region`),
-**Figura 6** (`fig06_cartograma_provincias`).
-
-Por región (χ²(5) = 762,4; *w* = 0,37):
+**Figuras 1, 3, 5 y 6.** Por región (χ²(5) = 1.050,7; *w* = 0,44):
 
 | Región | Futbolistas | Tasa /100.000 | IC 95% | RR vs AMBA |
 |---|---:|---:|---|---|
-| Pampeana | 2.612 | 36,2 | 34,8–37,6 | 1,13 |
-| AMBA | 1.862 | 31,9 | 30,5–33,4 | 1,00 |
-| Cuyo | 283 | 19,3 | 17,1–21,7 | 0,60 |
-| NEA | 262 | 14,2 | 12,6–16,1 | 0,45 |
-| Patagonia | 154 | 12,9 | 10,9–15,1 | 0,40 |
-| NOA | 278 | 10,7 | 9,5–12,1 | 0,34 |
+| AMBA | 1.859 | 35,0 | 33,5–36,7 | 1,00 |
+| Pampeana | 2.659 | 30,2 | 29,1–31,4 | 0,86 |
+| Cuyo | 280 | 16,1 | 14,3–18,1 | 0,46 |
+| Patagonia | 159 | 13,2 | 11,2–15,4 | 0,38 |
+| NEA | 269 | 10,1 | 8,9–11,4 | 0,29 |
+| NOA | 285 | 8,7 | 7,7–9,8 | 0,25 |
 
-**H2, tal como estaba formulada, no se sostiene.** Tomado en bloque, el interior
-produce *menos* que el AMBA: 25,1 contra 31,9 por 100.000 (RR 0,79; IC 95%
-0,74–0,83). Lo que sí ocurre es que **una parte del interior —la pampeana— supera
-al AMBA**, mientras el NOA, el NEA y la Patagonia producen entre un tercio y
-menos de la mitad de lo esperado.
-
-Por provincia, los extremos son nítidos:
+**H2 no se sostiene.** El interior no produce más que el AMBA: produce menos, y
+en el norte produce cuatro veces menos. Por provincia:
 
 | | Provincia | Futbolistas | Tasa /100.000 | Obs./Esp. |
 |---|---|---:|---:|---:|
-| 1 | CABA | 1.009 | 70,8 | 2,62 |
-| 2 | Santa Fe | 938 | 60,2 | 2,22 |
-| 3 | Córdoba | 565 | 33,6 | 1,24 |
-| 4 | La Pampa | 46 | 29,4 | 1,09 |
-| 5 | Entre Ríos | 180 | 29,2 | 1,08 |
+| 1 | CABA | 962 | 63,0 | 2,63 |
+| 2 | Santa Fe | 950 | 54,2 | 2,26 |
+| 3 | Córdoba | 577 | 31,6 | 1,32 |
+| 4 | La Pampa | 49 | 27,1 | 1,13 |
+| 5 | Entre Ríos | 181 | 23,8 | 0,99 |
 | … | | | | |
-| 22 | La Rioja | 14 | 7,9 | 0,29 |
-| 23 | Salta | 47 | 7,5 | 0,28 |
-| 24 | Catamarca | 14 | 7,2 | 0,27 |
+| 22 | La Rioja | 14 | 7,1 | 0,29 |
+| 23 | San Juan | 28 | 6,2 | 0,26 |
+| 24 | Salta | 46 | 5,5 | 0,23 |
 
-La estructura del mapa es un eje que va de Rosario a Santa Fe capital y se
-extiende hacia el sur de Córdoba y el norte de Buenos Aires. Los departamentos
-de mayor producción con al menos 30 jugadores lo confirman: Marcos Juárez
-(Córdoba) 102,2 por 100.000, Castellanos (Santa Fe) 90,0, Caseros (Santa Fe)
-89,9, La Capital (Santa Fe) 74,8, General López (Santa Fe) 74,4.
+El orden no depende del baseline: se probaron seis denominadores distintos y CABA
+y Santa Fe encabezan en todos.
 
-**El orden no depende del baseline.** Se probaron cinco denominadores distintos
-y CABA y Santa Fe encabezan en todos. Con el baseline de población *nacida* en
-cada provincia —el conceptualmente correcto, porque no lo afecta la migración—
-CABA marca 2,65 y Santa Fe 2,19. Con la población total del censo de 1991,
-próxima al momento de nacimiento de la cohorte, CABA 2,04 y Santa Fe 2,01.
+A nivel de ciudad (**Figura 11**), las cunas son **Rafaela** (98,0 cada 100.000
+nacidos), **Gran Santa Fe** (72,8), **Gran Rosario** (58,3) y **Tandil** (53,6).
+Rafaela, 102.000 habitantes, produce tres veces más que el Gran Buenos Aires por
+cada nacido. Es el único punto del mapa donde el folklore del pueblo chico
+acierta, y no alcanza para sostener el patrón general.
 
 ### 3.3 H3 — La formación está mucho más concentrada que el nacimiento
 
-**Figura 8** (`fig08_flujos_nacimiento_club`), **Figura 9**
-(`fig09_migracion_por_tamano`).
-
-Este es el resultado con más consecuencias.
+**Figuras 8, 9 y 10.** Es el resultado con más consecuencias.
 
 **Comparado con la población general, el futbolista migra cinco veces más.**
 
 | Grupo | n | Fuera de su provincia |
 |---|---:|---:|
-| Futbolistas (nacimiento → club formador) | 2.088 | **46,6%** |
+| Futbolistas (nacimiento → club formador) | 1.947 | **47,1%** |
 | Población general (nacimiento → residencia, Censo 2022) | 42.640.509 | 13,8% |
 
-OR 5,47 (IC 95% 5,02–5,96). El punto de comparación es lo que vuelve
-interpretable el número: sin saber que apenas el 13,8% de los argentinos vive
-fuera de su provincia de nacimiento, un 46,6% no dice nada.
+OR 5,58 (IC 95% 5,10–6,10). El punto de comparación es lo que vuelve
+interpretable el número.
 
-**El corte por origen no es un gradiente: es un escalón.**
+**El corte por origen es un escalón, no un gradiente:**
 
-| Tamaño de la ciudad de nacimiento | n | Cambia de departamento | Cambia de provincia | Distancia mediana al club |
+| Ciudad de nacimiento | n | Cambia de departamento | Cambia de provincia | Distancia mediana |
 |---|---:|---:|---:|---:|
-| <10k | 148 | 94,6% | 58,8% | 282 km |
-| 10–50k | 229 | 97,8% | 64,6% | 310 km |
-| 50–100k | 110 | 86,4% | 63,6% | 262 km |
-| 100–500k | 243 | 86,0% | 66,7% | 470 km |
-| >500k | 1.300 | 51,3% | 36,5% | **7 km** |
+| <10k | 150 | 94,0% | 61,3% | 307 km |
+| 10–50k | 209 | 97,6% | 64,1% | 312 km |
+| 50–100k | 107 | 86,0% | 65,4% | 256 km |
+| 100–500k | 225 | 86,7% | 67,6% | 470 km |
+| >500k | 1.197 | 52,0% | 36,7% | **7 km** |
 
-Entre los cuatro tramos menores no hay gradiente: todos migran masivamente, con
-distancias medianas del mismo orden y sin ordenamiento claro entre ellos. Lo que
-hay es un escalón entre los aglomerados de más de 500.000 habitantes y todo lo
-demás. Nacer en una ciudad grande significa formarse a siete kilómetros de casa;
-nacer en cualquier otro lado significa, en más de 19 casos de cada 20 hasta los
-50.000 habitantes, cambiar de departamento.
+Entre los cuatro tramos menores no hay gradiente: todos migran masivamente. El
+escalón está entre los aglomerados de más de 500.000 habitantes y todo lo demás.
+Nacer en una ciudad grande significa formarse a siete kilómetros de casa.
 
-**Por región de origen**, la asimetría es estructural:
+**Por región de origen la asimetría es estructural:**
 
-| Región | n | Cambia de provincia | Retención | Saldo neto |
+| Región | Nacidos | Formados allí | Saldo neto | Retención |
 |---|---:|---:|---:|---:|
-| AMBA | 740 | 35,7% | 91,9% | **+621** |
-| Pampeana | 1.021 | 44,6% | 50,9% | −408 |
-| Cuyo | 85 | 55,3% | 47,1% | −33 |
-| Patagonia | 66 | 77,3% | 28,8% | −43 |
-| NOA | 87 | 81,6% | 25,3% | −60 |
-| NEA | 89 | 95,5% | 11,2% | −77 |
+| AMBA | 676 | 1.273 | **+597** | 91,6% |
+| Pampeana | 963 | 563 | −400 | 49,4% |
+| Cuyo | 79 | 50 | −29 | 48,1% |
+| Patagonia | 66 | 24 | −42 | 28,8% |
+| NOA | 79 | 29 | −50 | 29,1% |
+| NEA | 84 | 8 | −76 | **8,3%** |
 
-El 70,8% de los futbolistas nacidos en el NEA se forma en el AMBA. Del NOA, el
-56,3%. De la Patagonia, el 60,6%. El AMBA retiene a nueve de cada diez de los
-suyos y absorbe el excedente de todas las demás regiones.
+El NEA retiene a uno de cada doce futbolistas que nacen en su territorio.
 
-### 3.4 H4 — El efecto no lo fabrica la cobertura de Wikidata
+**Los clubes** (**Figura 10**) muestran el mecanismo con nombre y apellido:
 
-**Tablas** `h4_tramos_por_nivel.csv`, `h4_regiones_por_nivel.csv`,
-`h4_contraste_elite.csv`.
+| Club | Formados | Distancia mediana | De otra provincia |
+|---|---:|---:|---:|
+| Boca Juniors | 143 | 277 km | 77% |
+| River Plate | 122 | 265 km | 76% |
+| Vélez Sarsfield | 98 | 18 km | 56% |
+| Newell's Old Boys | 98 | 37 km | 34% |
+| Rosario Central | 94 | **0 km** | 18% |
+| Estudiantes | 85 | 233 km | 41% |
 
-La objeción más seria contra todo lo anterior es el sesgo de cobertura: si
-Wikidata registra mejor a los jugadores de ciudades grandes, el patrón podría
-ser un artefacto del corpus y no del fútbol. La prueba está en los jugadores de
-selección mayor, donde la cobertura de Wikidata es prácticamente censal.
+Hay dos modelos distintos de club formador. Rosario Central y Newell's forman
+jugadores que nacieron en Rosario o al lado: son una salida local para un talento
+local. Boca y River funcionan como aspiradoras nacionales: la mitad de sus
+formados nació a más de 270 km. **Diez clubes concentran el 48% de toda la
+formación registrada del país; veinte concentran el 71%.**
 
-**El gradiente por tamaño de ciudad se sostiene en los cuatro niveles**, incluido
-el de selección (χ²(4) = 16,8; p = 0,002; *w* = 0,24; n = 303), con RR de 0,65
-(IC 95% 0,44–0,97) para el tramo <10k contra >500k. También se sostiene el
-gradiente regional en todos los niveles.
+### 3.4 H4 — No lo fabrica la cobertura de Wikidata
 
-En cambio, **H4 tal como estaba formulada no se sostiene**: no hay evidencia de
-que la elite provenga más de ciudades chicas. Entre T1 y T2 el 16,9% nació en
-ciudades de menos de 50.000 habitantes, contra el 18,8% del resto de la muestra
-(OR 0,88; IC 95% 0,70–1,09).
+**Figura 13.** La objeción más seria contra todo lo anterior es el sesgo de
+cobertura. La prueba está en los jugadores de selección mayor, donde el registro
+de Wikidata es prácticamente censal.
 
-### 3.5 Serie temporal
+**El gradiente por tamaño se sostiene en los cuatro niveles**, incluida la
+selección (χ²(4) = 13,8; p = 0,008; *w* = 0,23; n = 255): 15 seleccionados por
+millón de nacidos en aglomerados de más de 500.000 contra 7 en localidades de
+menos de 10.000. Por región, 17 por millón en el AMBA contra 2 en el NOA.
 
-Tabla `temporal_region_decada.csv`. El orden entre regiones se mantiene estable
-en las cohortes de 1970, 1980 y 1990. La cohorte de 2000 muestra tasas un orden
-de magnitud menores en todas las regiones por censura a derecha —esos jugadores
-todavía están debutando— y no debe leerse como caída.
+En cambio **H4 tal como estaba formulada no se sostiene**: no hay evidencia de
+que la elite provenga más de ciudades chicas (OR 0,89; IC 95% 0,71–1,13).
 
-### 3.6 Exploratorio: posición y región
+### 3.5 Exploratorio: posición y región
 
-Tabla `exploratorio_posicion_region.csv`. **Estrictamente exploratorio.** De 24
-contrastes, seis sobreviven a la corrección de Benjamini-Hochberg, y todos
-involucran a las dos regiones con más casos: el AMBA produce más defensores
-(OR 1,39; IC 95% 1,23–1,57) y menos mediocampistas (OR 0,69; 0,60–0,78) de lo
-esperado, y la región pampeana lo inverso. **El mito de «las delanteras del
-norte» no aparece**: ningún contraste que involucre al NOA o al NEA sobrevive a
-la corrección. Estos resultados no se presentan como hallazgo confirmatorio y
-requieren un diseño propio para ser tomados en serio.
+**Estrictamente exploratorio.** De 24 contrastes, seis sobreviven a la corrección
+de Benjamini-Hochberg, y todos involucran a las dos regiones con más casos: el
+AMBA produce más defensores y menos mediocampistas de lo esperado, y la región
+pampeana lo inverso. **El mito de «las delanteras del norte» no aparece**: ningún
+contraste que involucre al NOA o al NEA sobrevive a la corrección.
 
 ---
 
@@ -399,129 +349,97 @@ requieren un diseño propio para ser tomados en serio.
 
 ### 4.1 Por qué el efecto está invertido
 
-El *birthplace effect* clásico se sostiene sobre un supuesto implícito: que la
+El *birthplace effect* clásico se apoya en un supuesto implícito: que la
 infraestructura de desarrollo deportivo está razonablemente distribuida, de modo
-que lo que diferencia a los lugares es la calidad del entorno de juego informal
-y la accesibilidad de la competencia organizada. Bajo ese supuesto, la ciudad
-mediana gana: tiene espacio y tiene liga.
+que lo que diferencia a los lugares es la calidad del entorno de juego informal.
+Bajo ese supuesto la ciudad mediana gana: tiene espacio y tiene liga.
 
-En Argentina ese supuesto no se cumple, y los datos de H3 explican por qué el
-patrón se da vuelta. Las divisiones inferiores de los clubes que producen
-futbolistas profesionales están concentradas en el AMBA y en el corredor
-pampeano. Nacer cerca de una es una ventaja enorme y difícil de compensar: quien
-nace lejos necesita ser detectado, mudarse en la adolescencia y sostener esa
-mudanza. El 94,6% de migración departamental entre los nacidos en pueblos, con
-una mediana de 282 km, es la medida de ese costo.
+En Argentina ese supuesto no se cumple, y los datos de H3 muestran por qué el
+patrón se da vuelta. La formación está concentrada: diez clubes producen la mitad
+de los futbolistas del país, y están todos en el AMBA, Rosario o La Plata. Nacer
+cerca de uno es una ventaja difícil de compensar; quien nace lejos necesita ser
+detectado, mudarse en la adolescencia y sostener esa mudanza.
 
-Dicho de otro modo: en Argentina el lugar de nacimiento no mide la calidad del
-entorno formativo, mide la **distancia a la infraestructura formativa**. Y esa
+Dicho de otro modo: **en Argentina el lugar de nacimiento no mide la calidad del
+entorno formativo, mide la distancia a la infraestructura formativa.** Y esa
 distancia opera como un filtro, no como un entorno.
 
-Esto sugiere que el resultado no contradice a la literatura sino que identifica
-su condición de contorno. Sería informativo replicar este diseño en otros países
-con sistemas de formación igualmente centralizados.
+Esto no contradice a la literatura sino que identifica su condición de contorno.
+Sería informativo replicar este diseño en otros países con sistemas de formación
+igualmente centralizados.
 
-### 4.2 La dirección de los sesgos
+### 4.2 Qué cambió al corregir el denominador
 
-Los dos sesgos más grandes empujan **en contra** del hallazgo principal, lo que
-lo vuelve conservador.
+Vale registrarlo porque es el tipo de cosa que decide un resultado en silencio.
+Con la población censada en 2022 como denominador, el RR de las localidades de
+menos de 10.000 habitantes contra los grandes aglomerados daba 0,57; con los
+nacimientos reales da 0,42. La diferencia es la migración: los pueblos son
+exportadores netos de población, así que contar a sus residentes de 2022
+subestimaba cuánta gente había nacido ahí e inflaba su tasa.
 
-**Migración.** El denominador cuenta residentes en 2022, no nacimientos. Los
-pueblos y las provincias del norte son exportadores netos de población: sus
-denominadores están subestimados y por lo tanto sus tasas **sobre**estimadas. El
-censo permite cuantificarlo a nivel provincial: la razón entre residentes y
-nacidos es 0,83 en Chaco, 0,84 en Formosa y 0,85 en Corrientes, contra 1,20 en
-Buenos Aires. Corregir en esa dirección haría el gradiente más pronunciado, no
-menos.
-
-**Cobertura de Wikidata.** Si el corpus sobrerrepresenta a los jugadores
-notables y la notoriedad correlaciona con nacer en una ciudad grande, el efecto
-estaría inflado. El control de §3.4 aborda exactamente esto: entre los jugadores
-de selección mayor, donde la cobertura es prácticamente completa, el gradiente
-persiste.
+En la misma corrección, el AMBA pasó de estar por debajo de la región pampeana a
+estar por encima. Las áreas metropolitanas tienen menos hijos por habitante, de
+modo que un denominador de población las hacía parecer menos productivas de lo
+que son por nacido.
 
 ### 4.3 Limitaciones
 
 1. **Nacer ≠ formarse.** El análisis base mide nacimiento. H3 aborda la
-   transición con un proxy imperfecto: el vínculo `P54` más temprano con fecha,
-   que muchas veces es el club de debut y no el de formación, y cuya cobertura
-   es del 99,4% en la elite contra el 14,4% en el resto. La dirección de ese
-   sesgo no es obvia y los números de H3 deben leerse como orden de magnitud.
+   transición con un proxy imperfecto y de cobertura muy desigual (99,2% en la
+   elite contra 12,7% en el resto). La dirección de ese sesgo no es obvia y los
+   números de H3 deben leerse como orden de magnitud.
 2. **Cobertura de Wikidata.** Es un corpus de notabilidad, no un registro. El
-   análisis por nivel competitivo acota el problema pero no lo elimina.
-3. **Baseline temporal.** El tamaño de cada localidad se mide en el censo 2022,
-   no en la infancia del jugador. Las poblaciones históricas por departamento
-   (1991, 2001, 2010) permiten controlar a nivel provincial y no cambian el
-   orden; a nivel de localidad no hay serie histórica disponible y no se
-   interpoló.
-4. **Unidad geográfica en áreas metropolitanas fragmentadas.** Las tasas por
-   departamento se inflan en el núcleo de los aglomerados que cruzan límites
-   administrativos: Capital de Mendoza aparece con 181,8 por 100.000 porque
-   recibe a los nacidos en todo el Gran Mendoza contra el denominador de un solo
-   departamento. Por eso el análisis de tamaño de ciudad usa aglomerados, y por
-   eso los rankings departamentales deben leerse con esa salvedad.
-5. **Solo fútbol masculino.**
+   análisis por nivel competitivo acota el problema pero no lo elimina; la caída
+   de la cohorte 1975–1979 es probablemente cobertura y no fenómeno.
+3. **El reparto intraprovincial es un supuesto.** Validado (r = 0,993, error
+   mediano 9%) pero supuesto al fin: a nivel provincial el dato es real, a nivel
+   departamental es estimado.
+4. **Censura a derecha.** Las cohortes 2003–2008 están incompletas por
+   construcción. Se incluyen, se marcan y el análisis se repite sin ellas.
+5. **Unidad geográfica en metrópolis fragmentadas.** Las tasas por departamento
+   se inflan en el núcleo de los aglomerados que cruzan límites administrativos
+   (Capital de Mendoza, 114,9 por 100.000, recibe a los nacidos en todo el Gran
+   Mendoza contra el denominador de un solo departamento). Por eso el análisis de
+   tamaño usa aglomerados.
+6. **Solo fútbol masculino.**
 
-### 4.4 Implicancias para la detección de talento
+### 4.4 Implicancias
 
-Si el patrón geográfico refleja acceso a infraestructura y no distribución de
-talento, entonces las regiones que hoy producen un tercio de lo esperado son
-reservas desaprovechadas y no zonas pobres en jugadores. La retención del 11,2%
-en el NEA no describe una región sin futbolistas: describe una región sin lugar
-donde formarlos.
+Si el patrón refleja acceso a infraestructura y no distribución de talento, las
+regiones que hoy producen un cuarto de lo esperado son reservas desaprovechadas.
+La retención del 8,3% en el NEA no describe una región sin futbolistas: describe
+una región sin lugar donde formarlos.
 
-Dos consecuencias prácticas. La primera es que la inversión en infraestructura
-formativa fuera del corredor pampeano tiene, a priori, un retorno esperado alto.
-La segunda es metodológica y vale para cualquier sistema de captación: una
-métrica de producción basada en el lugar de nacimiento le atribuye al AMBA
-talento que el AMBA no produjo sino que absorbió a los quince años.
+Dos consecuencias prácticas. La inversión en infraestructura formativa fuera del
+corredor central tiene, a priori, un retorno esperado alto. Y, metodológicamente:
+cualquier métrica de producción basada en el lugar de nacimiento le atribuye al
+AMBA talento que el AMBA no produjo sino que absorbió a los quince años.
 
 ---
 
 ## 5. Reproducibilidad
 
 Todo el pipeline es código; `data/raw/` no se edita y cada descarga deja un
-manifiesto fechado con URL y SHA-256. El snapshot de Wikidata está fechado
-porque el corpus cambia a diario. Las decisiones de diseño —cohortes, cortes de
-tamaño, regla de desambiguación, baseline— están en `config.yaml` con su
-justificación, y las funciones que comparten numerador y denominador tienen
-tests.
-
-```powershell
-python -m src.ingest.wikidata_players
-python -m src.ingest.wikidata_places
-python -m src.ingest.wikidata_careers
-python -m src.ingest.wikidata_clubs
-python -m src.ingest.indec_census
-python -m src.ingest.georef
-python -m src.ingest.ign_boundaries
-python -m src.clean.build_players
-python -m src.clean.build_population
-python -m src.clean.crosswalk_localidades
-python -m src.clean.geocode_places
-python -m src.clean.build_analysis_dataset
-python -m src.clean.build_careers
-python -m src.clean.geocode_clubs
-python -m src.analysis.run_all
-python -m src.analysis.run_levels_and_flow
-python -m src.viz.make_figures
-```
+manifiesto fechado con URL y SHA-256. Las decisiones de diseño están en
+`config.yaml` con su justificación, y las funciones que comparten numerador y
+denominador tienen tests. El orden de ejecución está en el README.
 
 ### Fuentes
 
-- **Wikidata**, consultada vía SPARQL. Licencia CC0. Snapshot 2026-07-30.
-- **INDEC**, Censo Nacional de Población, Hogares y Viviendas 2022, microdatos
-  tabulados por radio censal; y radios censales de 1991, 2001, 2010 y 2022.
-- **API Georef**, Servicio de Normalización de Datos Geográficos de la
-  Administración Pública Nacional.
-- **IGN**, capas SIG de unidades territoriales.
+- **Wikidata**, vía SPARQL. CC0. Snapshot 2026-07-30.
+- **DEIS** (Dirección de Estadística e Información en Salud), serie histórica de
+  nacidos vivos por jurisdicción, 1914–2024.
+- **RENAPER**, nacimientos por departamento 2012–2022 (validación).
+- **INDEC**, Censo 2022 (tabulados por radio censal) y radios censales
+  1991–2022.
+- **API Georef** y **IGN**.
 
 Transfermarkt no se utilizó: sus términos prohíben el scraping automatizado.
 
 ### Lecturas de fondo
 
-Se listan como punto de partida bibliográfico; las afirmaciones de §1.1 deben
-verificarse contra estas fuentes antes de cualquier publicación formal.
+Punto de partida bibliográfico; las afirmaciones de §1.1 deben verificarse contra
+estas fuentes antes de cualquier publicación formal.
 
 - Revisión sistemática del *birthplace effect* en fútbol:
   https://pmc.ncbi.nlm.nih.gov/articles/PMC11571467/
