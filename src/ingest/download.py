@@ -8,6 +8,7 @@ from __future__ import annotations
 
 import csv
 import gzip
+import subprocess
 from pathlib import Path
 
 import requests
@@ -24,6 +25,25 @@ csv.field_size_limit(2**31 - 1)
 UA = "futbol-geografia-arg/0.1 (investigación académica; contacto: aviullet@gmail.com)"
 
 
+def _fetch_con_curl(url: str, dest: Path, timeout: int) -> None:
+    """Fallback para servidores con cadena de certificados incompleta.
+
+    Algunos portales del Estado (datos.salud.gob.ar, entre otros) no envían el
+    certificado intermedio, y el almacén de CA que trae `certifi` no puede
+    completar la cadena. `curl` usa el almacén del sistema y sí puede.
+    **Sigue verificando el certificado**: no se desactiva la validación.
+    """
+    tmp = dest.with_suffix(dest.suffix + ".part")
+    res = subprocess.run(
+        ["curl", "-sS", "--fail", "--location", "--max-time", str(timeout),
+         "--user-agent", UA, "-o", str(tmp), url],
+        capture_output=True, text=True)
+    if res.returncode != 0:
+        tmp.unlink(missing_ok=True)
+        raise RuntimeError(f"curl falló ({res.returncode}): {res.stderr.strip()[:300]}")
+    tmp.replace(dest)
+
+
 def fetch(url: str, dest: Path, force: bool = False, timeout: int = 600) -> dict:
     """Descarga `url` a `dest`. Devuelve el registro de procedencia."""
     dest.parent.mkdir(parents=True, exist_ok=True)
@@ -31,13 +51,19 @@ def fetch(url: str, dest: Path, force: bool = False, timeout: int = 600) -> dict
         log.info("ya está: %s", dest.name)
     else:
         log.info("bajando %s", dest.name)
-        with requests.get(url, headers={"User-Agent": UA}, timeout=timeout, stream=True) as r:
-            r.raise_for_status()
-            tmp = dest.with_suffix(dest.suffix + ".part")
-            with open(tmp, "wb") as fh:
-                for chunk in r.iter_content(1 << 20):
-                    fh.write(chunk)
-            tmp.replace(dest)
+        try:
+            with requests.get(url, headers={"User-Agent": UA},
+                              timeout=timeout, stream=True) as r:
+                r.raise_for_status()
+                tmp = dest.with_suffix(dest.suffix + ".part")
+                with open(tmp, "wb") as fh:
+                    for chunk in r.iter_content(1 << 20):
+                        fh.write(chunk)
+                tmp.replace(dest)
+        except requests.exceptions.SSLError:
+            log.warning("cadena TLS incompleta en %s; se reintenta con curl",
+                        url.split("/")[2])
+            _fetch_con_curl(url, dest, timeout)
     return {"url": url, "file": dest.name, "bytes": dest.stat().st_size, "sha256": sha256(dest)}
 
 

@@ -80,28 +80,37 @@ competitive_level:
 # -----------------------------------------------------------------------------
 # DECISIÓN 2 — Cohortes / período de nacimiento
 # -----------------------------------------------------------------------------
-# El límite real lo pone el baseline poblacional, no Wikidata.
+# El denominador es el número de NACIDOS VIVOS de cada cohorte en cada lugar
+# (DEIS, serie 1914–2024), no la población censada después. Eso libera la
+# ventana hacia atrás: ya no hace falta que la cohorte siga viva y en el país
+# en 2022.
 #
-# El denominador principal sale del Censo 2022 (INDEC), que permite contar
-# población POR EDAD: para la cohorte nacida en el año Y, el denominador son las
-# personas de edad (2022 - Y) en ese lugar. Eso exige que la cohorte esté viva y
-# residiendo en el país en 2022 → hacia atrás, la mortalidad y la emigración
-# erosionan el denominador.
-#
-#   1970–2000  → 22 a 52 años en 2022. Mortalidad acumulada baja, carrera
-#                profesional completa o en curso. Es la ventana principal.
-#   <1970      → sesgo de supervivencia creciente; solo análisis temporal.
-#   >2000      → carrera incompleta; muchos aún no debutaron (censura a derecha).
+# Dos cosas siguen limitando la ventana:
+#   · Hacia atrás, la serie del DEIS NO trae 1971–1974 (único hueco en 110 años).
+#     Empezar en 1970 dejaba a esa cohorte con el denominador de un solo año y
+#     su tasa salía 5 veces más alta. `build_denominators` falla si se intenta.
+#   · Hacia adelante, la carrera: quien nació en 2008 tenía 14 años en 2022 y
+#     todavía no puede haber debutado. Se incluye y la censura se cuantifica
+#     cohorte por cohorte en `diagnostico_censura_cohortes.csv`.
+#   1975–2002  → carrera plausiblemente iniciada. Ventana de robustez.
+#   2003–2008  → censura a derecha creciente.
 cohorts:
   # Ventana que se ingesta en crudo (barata, se hace una sola vez).
   ingest_min_year: 1900
   ingest_max_year: 2010
   # Ventana del análisis principal (H1, H2, H3, H4).
-  analysis_min_year: 1970
-  analysis_max_year: 2000
+  # El denominador ya no es la población censada en 2022 sino los nacidos vivos
+  # de cada cohorte (DEIS, 1914-2024), así que la ventana dejó de estar limitada
+  # por la supervivencia hasta el censo. El límite ahora es la carrera: quien
+  # nació en 2008 tenía 14 años en 2022 y todavía no puede haber debutado.
+  # Por eso se reporta también la ventana restringida (ver `career_complete_max`).
+  analysis_min_year: 1975
+  analysis_max_year: 2008
+  # Ventana con carrera plausiblemente iniciada, para el análisis de robustez.
+  career_complete_max: 2002
   # Ventana ampliada para el análisis temporal, agrupada en bins.
   temporal_min_year: 1930
-  temporal_max_year: 2004
+  temporal_max_year: 2008
   temporal_bin_years: 10
   # Mínimo de jugadores para reportar un subgrupo (evita tasas y OR inestables).
   min_n_subgroup: 30
