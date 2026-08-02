@@ -268,10 +268,27 @@ def main() -> None:
     df.loc[demasiado_grueso,
            ["dept_id", "dept_nombre", "dept_id_raw", "dept_nombre_raw"]] = None
 
+    # Una provincia SÍ ubica bien la provincia —su centroide cae dentro de ella—
+    # pero no el departamento. El centroide de Buenos Aires cae en Azul, el de
+    # Córdoba en Tercero Arriba y el de San Juan en Ullum. Sin este corte, los
+    # jugadores cuyo `P19` es una provincia entera se clavaban en un departamento
+    # arbitrario y lo convertían en cuna: Ullum y Tumbaya entraban al top-12
+    # nacional de tasa con jugadores que no nacieron ahí, y Azul quedaba inflado
+    # un 222%. Es la misma trampa que «Argentina» → General Levalle, un nivel más
+    # arriba.
+    #
+    # No se descartan: la provincia es dato válido y el análisis provincial los
+    # usa. Se los deja sin departamento y sin localidad, y eso solo los excluye
+    # del análisis departamental y del de tamaño de ciudad.
+    solo_provincia = df["granularity"].eq("provincia")
+    df.loc[solo_provincia,
+           ["dept_id", "dept_nombre", "dept_id_raw", "dept_nombre_raw"]] = None
+
     df["geo_status"] = np.select(
-        [df["lat"].isna(), ~df["en_argentina"], demasiado_grueso, df["dept_id"].isna()],
+        [df["lat"].isna(), ~df["en_argentina"], demasiado_grueso,
+         solo_provincia, df["dept_id"].isna()],
         ["sin_coordenada", "fuera_de_argentina", "lugar_demasiado_generico",
-         "sin_departamento"],
+         "ok", "sin_departamento"],
         default="ok")
 
     df.to_parquet(out_path, index=False)

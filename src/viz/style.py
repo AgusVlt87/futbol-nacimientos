@@ -200,6 +200,25 @@ class Figura:
         return [self.fig.add_axes([x0 + i * (ancho + separacion), y0, ancho, y1 - y0])
                 for i in range(n)]
 
+    def banda_leyenda(self, alto_pt: float = 24.0) -> plt.Axes:
+        """Reserva una franja propia para la leyenda, arriba del área de dibujo.
+
+        Una leyenda dibujada *dentro* del eje compite con los datos por el mismo
+        espacio, y en un mapa no hay forma de saber de antemano dónde va a haber
+        lugar: en el mapa de flujos las curvas que salen de la Patagonia le
+        pasaban por encima al recuadro. Acá la leyenda tiene su propia banda y el
+        gráfico arranca abajo de ella, con la misma lógica de bandas reservadas
+        que el título y el pie.
+
+        Devuelve un eje invisible; hay que llamarla **antes** de `eje()`.
+        """
+        alto = alto_pt / (72.0 * self.alto)
+        ax = self.fig.add_axes([self.MARGEN_IZQ, self.tope - alto,
+                                1 - self.MARGEN_IZQ - self.MARGEN_DER, alto])
+        ax.set_axis_off()
+        self.tope -= alto + 0.008
+        return ax
+
     def nota(self, ax, texto: str, x: float, y: float, **kw) -> None:
         kw.setdefault("fontsize", PT_BASE - 1.5)
         kw.setdefault("color", INK_2)

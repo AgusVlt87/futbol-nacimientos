@@ -29,7 +29,34 @@ from src.viz import style
 log = get_logger("viz.maps")
 
 FUERA_DE_ENCUADRE = {"94021", "94028"}
-NOMBRE_CORTO = {"Ciudad Autónoma de Buenos Aires": "CABA"}
+NOMBRE_CORTO = {
+    "Ciudad Autónoma de Buenos Aires": "CABA",
+    # 52 caracteres: sin abreviar se sale del margen en cualquier eje vertical.
+    "Tierra del Fuego, Antártida e Islas del Atlántico Sur": "Tierra del Fuego",
+}
+
+# Wikidata guarda la razón social completa («Club Atlético San Lorenzo de
+# Almagro»). En un eje vertical eso son 36 caracteres de los cuales los primeros
+# 14 no distinguen nada: todos los clubes empiezan igual. Se recortan los
+# prefijos institucionales, de más largo a más corto para que no se pisen.
+PREFIJOS_CLUB = ("Asociación Atlética ", "Club Atlético ", "Club Social y Deportivo ",
+                 "Club Deportivo ", "Club de Gimnasia y Esgrima ", "Club de Fútbol ",
+                 "Club Sportivo ", "Asociación ", "Club ")
+CLUB_ESPECIAL = {
+    "Club de Gimnasia y Esgrima La Plata": "Gimnasia (La Plata)",
+    "Club Estudiantes de La Plata": "Estudiantes (La Plata)",
+    "Racing Club": "Racing",
+}
+
+
+def nombre_club(nombre: str) -> str:
+    """Nombre de club en la forma en que lo diría un hincha."""
+    if nombre in CLUB_ESPECIAL:
+        return CLUB_ESPECIAL[nombre]
+    for prefijo in PREFIJOS_CLUB:
+        if nombre.startswith(prefijo):
+            return nombre[len(prefijo):]
+    return nombre
 
 
 def departamentos(cfg) -> gpd.GeoDataFrame:

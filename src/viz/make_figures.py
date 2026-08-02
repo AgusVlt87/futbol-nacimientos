@@ -179,6 +179,9 @@ def fig08_flujos(cfg, p):
                "vínculo jugador-club más temprano con fecha en Wikidata; es un "
                "proxy y suele ser el club de debut, no el de inferiores.\n" + FUENTE,
                cfg)
+    # La leyenda va en su propia banda: dentro del mapa, las curvas de flujo de
+    # la Patagonia le pasaban por encima.
+    ax_leg = f.banda_leyenda(alto_pt=22)
     ax = f.eje()
     g.plot(ax=ax, color="#eceae4", edgecolor=style.SURFACE, linewidth=0.5, zorder=1)
 
@@ -218,8 +221,9 @@ def fig08_flujos(cfg, p):
                   markeredgecolor=style.INK_2, ms=9, label="recibe más de los que pierde"),
            Line2D([], [], marker="o", ls="", markerfacecolor="#ffffff",
                   markeredgecolor=style.INK_2, ms=9, label="pierde más de los que recibe")]
-    lg = ax.legend(handles=leg, loc="upper left", fontsize=6.8,
-                   bbox_to_anchor=(-0.02, 0.90))
+    lg = ax_leg.legend(handles=leg, loc="center left", fontsize=6.8, ncols=1,
+                       bbox_to_anchor=(0.0, 0.5), handletextpad=0.7,
+                       labelspacing=0.55, borderpad=0.0)
     for t_ in lg.get_texts():
         t_.set_color(style.INK_2)
     f.guardar("fig08_flujos_nacimiento_club", p.figures)
@@ -324,16 +328,24 @@ def fig07_scatter(cfg, p):
     d["tasa"] = 1e5 * d["jugadores"] / d["nacimientos_cohorte"]
 
     f = Figura(6.8, 4.2,
-               "No hay pico en las ciudades medianas",
+               "El tamaño de la ciudad explica el 1% de la variación",
                "Tamaño de la ciudad de nacimiento contra futbolistas cada 100.000 "
-               "nacidos.\nLa curva sube de forma monótona: el patrón clásico del "
-               "birthplace effect no aparece",
-               "El scatter excluye ciudades con menos de 5.000 nacidos en la cohorte, "
-               "donde un solo jugador ya da tasas de tres dígitos; el ajuste y los "
-               "deciles usan todas.\n" + FUENTE, cfg)
+               "nacidos.\nLa tendencia sube, pero la dispersión a cada tamaño es "
+               "mucho mayor que el efecto",
+               "Se dibujan TODAS las ciudades del ajuste. Las que tienen menos de "
+               "5.000 nacidos en la cohorte van en tono claro: con esa base un solo "
+               "jugador ya da tasas de tres dígitos.\n" + FUENTE, cfg)
     ax = f.eje(izq=0.02, abajo=0.10)
 
-    grandes = d[(d["nacimientos_cohorte"] >= 5000) & (d["jugadores"] > 0)]
+    # Antes el scatter excluía las ciudades chicas y el ajuste las usaba: la nube
+    # que se veía y el modelo cuya recta se le superponía no eran la misma
+    # muestra. Ahora se dibujan todas y las de poca base se distinguen por tono.
+    con_jugadores = d[d["jugadores"] > 0]
+    chicas = con_jugadores[con_jugadores["nacimientos_cohorte"] < 5000]
+    grandes = con_jugadores[con_jugadores["nacimientos_cohorte"] >= 5000]
+    ax.scatter(chicas["pob_ciudad"], chicas["tasa"], s=5, color=style.MUTED,
+               alpha=0.30, linewidths=0, zorder=2,
+               label="ciudad con menos de 5.000 nacidos (tasa muy imprecisa)")
     ax.scatter(grandes["pob_ciudad"], grandes["tasa"],
                s=np.clip(grandes["pob_ciudad"] / 6000, 5, 70), color=style.PRIMARY,
                alpha=0.28, linewidths=0, zorder=3,
@@ -350,8 +362,11 @@ def fig07_scatter(cfg, p):
                 label="tasa agregada por decil de tamaño (IC 95%)")
 
     X = sm.add_constant(np.log(d["pob_ciudad"]))
-    fit = sm.GLM(d["jugadores"], X, family=sm.families.NegativeBinomial(alpha=1.0),
-                 offset=np.log(d["nacimientos_cohorte"])).fit()
+    fam = sm.families.NegativeBinomial(alpha=1.0)
+    off = np.log(d["nacimientos_cohorte"])
+    fit = sm.GLM(d["jugadores"], X, family=fam, offset=off).fit()
+    nulo = sm.GLM(d["jugadores"], np.ones((len(d), 1)), family=fam, offset=off).fit()
+    pseudo_r2 = 1 - fit.llf / nulo.llf
     xs = np.linspace(np.log(d["pob_ciudad"].min()), np.log(d["pob_ciudad"].max()), 120)
     ax.plot(np.exp(xs), 1e5 * np.exp(fit.params.iloc[0] + fit.params.iloc[1] * xs),
             color=style.INK, lw=1.7, zorder=7, label="ajuste binomial negativo")
@@ -359,10 +374,17 @@ def fig07_scatter(cfg, p):
     ax.set_xscale("log")
     ax.set_yscale("log")
     ax.set_ylim(2, 400)
+    fuera = int((con_jugadores["tasa"] > 400).sum())
     ax.grid(True, which="major")
     style.despine(ax)
     ax.set_xlabel("Población de la ciudad de nacimiento (escala logarítmica)")
     ax.set_ylabel("Futbolistas cada 100.000 nacidos")
+    # El tamaño de efecto va en la figura: la pendiente es real y es chica, y sin
+    # este número la recta negra sugiere una capacidad predictiva que no tiene.
+    f.nota(ax, f"pseudo-R² de McFadden = {pseudo_r2:.3f}\n"
+               f"IRR por e-fold de tamaño = {np.exp(fit.params.iloc[1]):.3f}\n"
+               f"{fuera} ciudades quedan arriba del eje",
+           0.015, 0.045, fontsize=6.8)
     lg = ax.legend(loc="lower right", fontsize=6.8, borderpad=0.6)
     for t_ in lg.get_texts():
         t_.set_color(style.INK_2)

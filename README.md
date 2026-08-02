@@ -19,11 +19,21 @@ Sobre 5.511 futbolistas argentinos nacidos entre 1975 y 2008, con los **nacidos
 vivos** de cada cohorte como denominador. La tasa se lee directo: de cada 100.000
 bebés nacidos en un lugar, cuántos llegaron a futbolistas profesionales.
 
-**El *birthplace effect* clásico no aparece: aparece invertido.** La tasa crece
-de forma monótona con el tamaño de la ciudad, de 12,9 por 100.000 nacidos en
-localidades de menos de 10.000 habitantes a 30,5 en aglomerados de más de 500.000
-(RR 0,42; IC 95% 0,38–0,47). No hay pico en las ciudades medianas: el término
-cuadrático de la regresión no aporta ajuste.
+**Al pibe del interior le cuesta mucho más entrar, pero el que entra rinde más.**
+Entre los futbolistas que ya llegaron a un juvenil de la selección, los nacidos
+fuera de un gran aglomerado llegan a la Mayor en el 41,9% de los casos contra el
+28,1% de los nacidos en una ciudad grande (OR 1,85; IC 95% 1,14–2,98; p = 0,013;
+igual al controlar por cohorte). **Es el resultado más sólido del trabajo porque
+no usa denominador poblacional**: no lo afectan ni el reparto estimado de
+nacimientos, ni el hecho de que el parto se registre en la ciudad cabecera, ni la
+cobertura de Wikidata.
+
+**El *birthplace effect* clásico no aparece: aparece invertido.** La tasa va de
+12,9 por 100.000 nacidos en localidades de menos de 10.000 habitantes a 30,5 en
+aglomerados de más de 500.000 (RR 0,42; IC 95% 0,38–0,47). No hay pico en las
+ciudades medianas. Pero **es un escalón, no un gradiente**: los nueve deciles de
+tamaño por debajo de ~10.000 habitantes no tienen tendencia, y el tamaño de la
+ciudad explica el 1% de la variación entre ciudades (pseudo-R² = 0,011).
 
 **La producción se concentra en el AMBA y el corredor pampeano.** CABA produce
 2,6 veces lo que le tocaría por sus nacimientos y Santa Fe 2,3; Salta 0,23. Las
@@ -41,11 +51,19 @@ concentran el 48% de toda la formación del país.**
 de mediana de su lugar de nacimiento y con el 18% venido de otra provincia;
 Boca forma 143 a 277 km y con el 77% de afuera.
 
-**No es un artefacto de Wikidata.** El gradiente se sostiene en los cuatro
+**No lo fabrica la cobertura de Wikidata.** El patrón se sostiene en los cuatro
 niveles competitivos, incluida la selección mayor, donde la cobertura del corpus
-es prácticamente censal.
+es prácticamente censal. Eso acota la amenaza de cobertura; **no** acota la otra
+—que el parto se registre en la ciudad cabecera—, que sigue abierta y es la
+limitación central del trabajo.
 
-Detalle en [reports/paper.md](reports/paper.md).
+**El paper completo es [paper/paper.pdf](paper/paper.pdf)** — 18 páginas, con las
+16 figuras que sostienen el argumento intercaladas en el texto. Se compila con
+`paper/compilar.ps1` desde la fuente [paper/paper.tex](paper/paper.tex).
+
+También está la versión en markdown ([reports/paper.md](reports/paper.md)), las 26
+figuras sueltas en [outputs/figures/](outputs/figures/) y la revisión crítica del
+propio diseño en [docs/roast.md](docs/roast.md).
 
 ---
 
@@ -87,11 +105,13 @@ python -m src.clean.build_analysis_dataset
 python -m src.clean.build_careers
 python -m src.clean.geocode_clubs
 
-# Fases 5 a 7 — análisis y figuras
+# Fases 5 a 9 — análisis y figuras
 python -m src.analysis.run_all
 python -m src.analysis.run_levels_and_flow
 python -m src.analysis.run_futbol
-python -m src.viz.make_figures
+python -m src.analysis.run_seleccion      # selección: Mayor, juveniles y conversión
+python -m src.viz.make_figures            # figuras 1 a 13
+python -m src.viz.make_figures_extra      # figuras 14 a 26
 ```
 
 Cada script es idempotente: si el crudo ya está descargado no lo vuelve a pedir

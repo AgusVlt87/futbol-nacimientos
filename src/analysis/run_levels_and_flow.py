@@ -36,8 +36,13 @@ PER = 100_000
 def h4_por_nivel(cfg, players, ciudades, denom_dept) -> dict[str, pd.DataFrame]:
     level = cfg["stats"]["ci_level"]
     col = f"tramo_{cfg['city_size']['default_scheme']}"
-    pob_tramo = ciudades.groupby(col, observed=False)["pob_cohorte_ciudad"].sum()
-    pob_region = denom_dept.groupby("region")["pob_cohorte"].sum()
+    # Denominador: NACIDOS VIVOS de la cohorte, igual que H1 y H2. Antes esta
+    # función usaba `pob_cohorte_ciudad` (población censada en 2022), que es
+    # justamente el denominador que el estudio descartó: dejaba el tramo <10k un
+    # 18% más chico y el >500k un 13% más grande, de modo que las tablas de H4
+    # favorecían a los pueblos más que las de H1 y las dos no eran comparables.
+    pob_tramo = ciudades.groupby(col, observed=False)["nacimientos_cohorte"].sum()
+    pob_region = denom_dept.groupby("region")["nacimientos_cohorte"].sum()
 
     filas_tramo, filas_region, tests = [], [], []
     orden = ["T1_seleccion", "T2_europa_top", "T3_primera_ar", "T4_resto"]
@@ -191,9 +196,21 @@ def main() -> None:
     cfg = load_config()
     p = paths()
     players = pd.read_parquet(p.processed / "player_level.parquet")
-    ciudades = pd.read_parquet(p.processed / "denom_ciudad_unica.parquet")
-    denom_dept = pd.read_parquet(p.processed / "denom_departamento.parquet")
     clubs = pd.read_parquet(p.interim / "clubs_resolved.parquet")
+
+    # Los denominadores de nacidos vivos viven en tablas aparte; se pegan acá
+    # para que H4 use exactamente los mismos números que H1 y H2.
+    ciudades = (pd.read_parquet(p.processed / "denom_ciudad_unica.parquet")
+                  .merge(pd.read_parquet(p.processed / "denom_cohorte_ciudad.parquet"),
+                         on="ciudad_id", how="left"))
+    denom_dept = (pd.read_parquet(p.processed / "denom_departamento.parquet")
+                    .merge(pd.read_parquet(p.processed / "denom_cohorte_departamento.parquet")
+                             [["dept_id", "nacimientos_cohorte"]],
+                           on="dept_id", how="left"))
+    for tabla, nombre in ((ciudades, "ciudad"), (denom_dept, "departamento")):
+        if tabla["nacimientos_cohorte"].isna().any():
+            log.warning("%s: %d unidades sin denominador de nacidos vivos",
+                        nombre, int(tabla["nacimientos_cohorte"].isna().sum()))
 
     salidas = {}
     salidas |= h4_por_nivel(cfg, players[players["ciudad_id"].notna()], ciudades, denom_dept)

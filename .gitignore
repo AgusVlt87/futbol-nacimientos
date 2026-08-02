@@ -24,3 +24,10 @@ outputs/tables/*
 Thumbs.db
 desktop.ini
 .DS_Store
+
+# LaTeX: auxiliares de compilacion (el .tex y el .pdf si se versionan)
+paper/*.aux
+paper/*.log
+paper/*.out
+paper/*.toc
+paper/*.synctex.gz
