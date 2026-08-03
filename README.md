@@ -110,8 +110,9 @@ python -m src.analysis.run_all
 python -m src.analysis.run_levels_and_flow
 python -m src.analysis.run_futbol
 python -m src.analysis.run_seleccion      # selección: Mayor, juveniles y conversión
+python -m src.analysis.run_criterio_denominador   # qué criterio usan las dos puntas del cociente
 python -m src.viz.make_figures            # figuras 1 a 13
-python -m src.viz.make_figures_extra      # figuras 14 a 26
+python -m src.viz.make_figures_extra      # figuras 14 a 27
 ```
 
 Cada script es idempotente: si el crudo ya está descargado no lo vuelve a pedir

@@ -50,14 +50,45 @@ gráfico. Los títulos viven hardcodeados en `src/viz/make_figures.py`.
 
 Es decisión de narrativa, no de código: queda para quien decida el encuadre.
 
-### P5 — El reparto de los partidos divididos es un supuesto nuevo, sin declarar en el paper
+### P5 — ~~El reparto de los partidos divididos es un supuesto nuevo, sin declarar~~ ✅ cerrado en el lote 2
 
-Para bajar de un partido que ya no existe (General Sarmiento, Morón viejo,
-Esteban Echeverría viejo) a los partidos actuales, el crosswalk reparte su
-población según la proporción que tienen los sucesores en el primer censo en que
-aparecen separados. **Supone que esa proporción describe la que tenían antes de
-dividirse.**
+Quedó declarado como limitación 3 de §4.3 del paper. Detalle y criterio por
+componente en `data/reference/crosswalk_departamentos.csv`.
 
-Es más débil que el resto de la cadena y hay que declararlo en §4.3 del paper,
-junto con el reparto intraprovincial. Detalle y criterio por componente en
-`data/reference/crosswalk_departamentos.csv`.
+---
+
+## Del lote 2 (`fix/artefacto-maternidad`, 2026-08-02)
+
+### P6 — BDFA bloquea el acceso automatizado; BL4 necesita gestión, no código
+
+El `robots.txt` de `bdfa.com.ar` (actualizado 2025-12-29) tiene
+`User-agent: ClaudeBot` / `Disallow: /`, bajo un encabezado de «bloqueo de
+scrapers detectados en ataque». No se scrapeó ni se evadió cambiando el
+`User-Agent`.
+
+La validación del `P19` contra un padrón independiente sigue pendiente y ahora
+depende de una de estas tres: consulta manual de 150–200 fichas, autorización del
+sitio, u otra fuente cuyos términos habría que verificar antes de asumir nada.
+
+### P7 — El título de un recurso oficial no es su metodología
+
+La serie del DEIS se publica como «nacimientos **ocurridos** por jurisdicción» y
+es, dato por dato, la tabulación por **residencia de la madre**. Tres revisiones
+del proyecto —el paper, `roast.md` y `re-analisis.md`— dieron por buena la
+etiqueta del portal y construyeron argumentos encima.
+
+Vale como regla general para este repo: **de una fuente oficial se verifica el
+criterio contra el dato, no contra el título.** Barato de hacer cuando existe una
+serie contrafáctica; caro de no hacer.
+
+### P8 — La forma de escalón de H1 quedó sin explicación
+
+El paper explicaba el escalón —tasa plana por debajo de ~10.000 habitantes y
+salto en el decil superior— como la firma esperada del artefacto de maternidad.
+Descartado ese mecanismo (§2.1.1), la forma sigue ahí y ya no tiene explicación
+propuesta.
+
+Es una pregunta abierta y probablemente interesante: un escalón único sugiere un
+umbral (¿existencia de un club afiliado? ¿de una liga local?) más que un gradiente
+de entorno. La expansión B5 de `re-analisis.md` —distancia al club afiliado más
+cercano— es la que lo atacaría.

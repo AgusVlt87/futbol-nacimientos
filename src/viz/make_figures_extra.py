@@ -595,11 +595,80 @@ def fig26_retencion(cfg, p):
     f.guardar("fig26_retencion_por_region", p.figures)
 
 
+def fig27_criterio_del_registro(cfg, p):
+    """La prueba de que ninguna de las dos puntas registra el lugar del parto.
+
+    Es la figura que contesta la pregunta de la que dependía todo el trabajo, y
+    que el paper declaraba sin resolver.
+    """
+    prov = pd.read_csv(p.tables / "criterio_denominador_provincias.csv",
+                       dtype={"prov_id": str})
+    tam = pd.read_csv(p.tables / "criterio_p19_por_tamano_localidad.csv")
+
+    f = Figura(7.2, 4.0,
+               "Ni el denominador ni el numerador registran dónde ocurrió el parto",
+               "Las dos pruebas que descartan el artefacto de las maternidades, "
+               "que era la amenaza principal\ncontra todo el trabajo",
+               "Izquierda: la serie histórica del DEIS se publica como «nacimientos "
+               "ocurridos», pero coincide con la tabulación por residencia de la madre "
+               "en las 432 celdas provincia×año de su solapamiento (2005–2022), con "
+               "diferencia máxima cero. Si contara partos, CABA —cuyas maternidades "
+               "atienden al conurbano— caería muy por encima de la diagonal.\n"
+               "Derecha: si el P19 de Wikidata registrara el parto, las localidades sin "
+               "maternidad tendrían cero futbolistas. Hay 76 en localidades de menos de "
+               "2.000 habitantes, repartidos en 63 localidades distintas.\n" + FUENTE,
+               cfg)
+    izq, der = f.ejes_lado_a_lado(2, separacion=0.085, sangria_izq=0.012, abajo=0.11,
+                                 titulos=["Denominador: ¿ocurrencia o residencia?",
+                                          "Numerador: ¿el parto o el pueblo?"])
+
+    # --- panel izquierdo: las dos series, provincia por provincia ------------
+    x, y = prov["por_residencia"], prov["serie_historica"]
+    lim = [x.min() * 0.7, x.max() * 1.4]
+    izq.plot(lim, lim, color=style.INK_2, lw=1.0, ls="--", zorder=2)
+    izq.scatter(x, y, s=34, color=style.PRIMARY, zorder=4,
+                edgecolor="white", linewidth=0.6)
+    caba = prov[prov["prov_id"] == "02"].iloc[0]
+    izq.annotate("CABA", (caba["por_residencia"], caba["serie_historica"]),
+                 textcoords="offset points", xytext=(14, -20),
+                 fontsize=style.PT_BASE - 1.5, color=style.INK,
+                 arrowprops=dict(arrowstyle="-", color=style.INK_2, lw=0.8,
+                                 shrinkA=0, shrinkB=3))
+    izq.set_xscale("log"); izq.set_yscale("log")
+    izq.set_xlim(lim); izq.set_ylim(lim)
+    izq.set_xlabel("Nacimientos por residencia de la madre")
+    izq.set_ylabel("Serie histórica («ocurridos»)")
+    f.nota(izq, "las 24 jurisdicciones\nsobre la diagonal", 0.05, 0.80)
+    style.despine(izq)
+
+    # --- panel derecho: tasa por tamaño de localidad -------------------------
+    orden = ["<500", "500–1k", "1–2k", "2–5k", "5–10k", "10–20k", "20–50k", ">50k"]
+    t = tam.set_index("tamano_localidad").loc[orden]
+    xs = np.arange(len(t))
+    sin_maternidad = [c in {"<500", "500–1k", "1–2k"} for c in orden]
+    colores = [style.ACCENT if s else style.MUTED for s in sin_maternidad]
+    colores[-1] = style.PRIMARY
+    der.bar(xs, t["tasa"], width=0.7, color=colores, zorder=3)
+    for xi, (v, n) in enumerate(zip(t["tasa"], t["futbolistas"])):
+        der.text(xi, v + 0.7, f"{int(n)}", ha="center", va="bottom",
+                 fontsize=style.PT_BASE - 2, color=style.INK)
+    der.axhline(0, color=style.AXIS, lw=0.8)
+    der.set_xticks(xs); der.set_xticklabels(orden, rotation=45, ha="right")
+    der.set_ylabel("Futbolistas cada 100.000 nacidos")
+    der.set_xlabel("Habitantes de la localidad de nacimiento")
+    der.set_ylim(0, float(t["tasa"].max()) * 1.28)
+    f.nota(der, "naranja = sin maternidad posible.\nLa hipótesis del parto predice "
+                "cero acá,\ny predice un escalón, no una pendiente.", 0.04, 0.80)
+    style.despine(der)
+    f.guardar("fig27_criterio_del_registro", p.figures)
+
+
 FIGURAS = [fig14_conversion_tramo, fig15_conversion_region, fig16_embudo,
            fig17_seleccion_clubes, fig18_seleccion_migracion,
            fig19_sesgo_denominador, fig20_deciles_sin_gradiente, fig21_funnel,
            fig22_efecto_por_cohorte, fig23_ranking_provincias,
-           fig24_sensibilidad_denominador, fig25_matriz_flujo, fig26_retencion]
+           fig24_sensibilidad_denominador, fig25_matriz_flujo, fig26_retencion,
+           fig27_criterio_del_registro]
 
 
 def main() -> None:

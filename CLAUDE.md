@@ -72,6 +72,37 @@ sistema de layout propio (`src/viz/style.Figura`). Se agregó el módulo de fút
     decidiendo el mismo espacio. `style.Figura` reserva bandas en coordenadas de
     figura y guarda sin recorte automático. **No volver a usar `ax.set_title`
     para títulos de panel**: usar el parámetro `titulos` de `ejes_lado_a_lado`.
+11. **Los códigos de departamento del INDEC NO son estables entre censos.** 44 de
+    532 cambiaron entre 1991 y 2022, casi todos por las divisiones de partidos
+    bonaerenses de 1994 (General Sarmiento, Morón, Esteban Echeverría). Como los
+    nacimientos se reparten con el censo más cercano y los jugadores se
+    geocodifican contra geografía 2022, un `merge(how="left")` descartaba en
+    silencio los partidos disueltos: **1.049.301 nacimientos, el 70% del Gran
+    Buenos Aires**. El total provincial cuadraba, por eso era invisible. Toda
+    geografía histórica pasa ahora por
+    `padron_departamentos.a_geografia_2022()` y el crosswalk está en
+    `data/reference/crosswalk_departamentos.csv`.
+12. **Nunca escribir códigos geográficos a mano.** La lista de los 24 partidos del
+    GBA en `config.yaml` estaba **corrida un lugar** a partir de Lomas de Zamora:
+    doce de veinticuatro apuntaban a otro partido (`06441 # Lomas de Zamora` era
+    La Plata). El AMBA excluía Quilmes, Merlo, San Miguel, Tres de Febrero y
+    Vicente López. Se declaran por **nombre** y se resuelven contra
+    `c2022_codigos_departamentos.xlsx`. El test que había verificaba **un** partido
+    —La Matanza, de los que estaban bien— y por eso pasaba: verificar un caso no
+    verifica una lista.
+13. **Verificar conservación de masa grupo por grupo, no por totales.** Los dos
+    errores de arriba conservaban el total nacional y rompían el reparto interno.
+    `padron_departamentos.verificar_conservacion` compara por grupo y corta el
+    pipeline.
+14. **El título de un recurso oficial no es su metodología.** La serie del DEIS se
+    publica como «nacimientos **ocurridos** por jurisdicción» y es, dato por dato,
+    la tabulación por **residencia de la madre**: 432 de 432 celdas provincia×año
+    idénticas, diferencia máxima cero. El paper y dos revisiones construyeron
+    argumentos sobre la etiqueta del portal sin probarla. **Verificar el criterio
+    contra el dato.**
+15. **`outputs/` está en `.gitignore`**, así que `git diff outputs/` **siempre**
+    sale vacío. No sirve para verificar que el pipeline reproduce: hay que
+    congelar una copia y comparar archivos.
 
 ---
 

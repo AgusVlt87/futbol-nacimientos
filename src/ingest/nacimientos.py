@@ -38,6 +38,11 @@ DEIS_SERIE = ("https://datos.salud.gob.ar/dataset/01ede118-2c3e-4f92-b943-cec577
               "nacidos-vivos-jurisdiccion-2022-1914.csv")
 RENAPER_DEP = ("https://datosabiertos.renaper.gob.ar/"
                "nacimientos_por_departamento_y_anio_2012_2022.csv")
+# Serie por RESIDENCIA DE LA MADRE, 2005-2022. Es la contrafáctica que permite
+# saber qué criterio usa realmente la serie histórica. Ver `src.analysis.run_criterio_denominador`.
+DEIS_RESIDENCIA = ("https://datos.salud.gob.ar/dataset/d1350588-d8bb-4892-b21c-48738311e218/"
+                   "resource/5a68ea36-03fe-4b38-b590-d7cf2a13b821/download/"
+                   "nacidos-vivos-registrados-en-la-republica-argentina-entre-los-anos-2005-2022.csv")
 
 
 def main() -> None:
@@ -55,6 +60,8 @@ def main() -> None:
               force=args.force),
         fetch(RENAPER_DEP, base / "renaper_nacimientos_departamento_2012_2022.csv",
               force=args.force),
+        fetch(DEIS_RESIDENCIA, base / "deis_nacidos_vivos_residencia_madre_2005_2022.csv",
+              force=args.force),
     ]
 
     write_manifest(base, {
@@ -69,6 +76,15 @@ def main() -> None:
              "portal": "https://datos.gob.ar/dataset/nacimientos-en-argentina",
              "uso": ("validación del supuesto de reparto intraprovincial; no entra "
                      "como denominador porque no cubre las cohortes de la muestra")},
+            {"nombre": ("DEIS — Nacidos vivos registrados por jurisdicción de "
+                        "RESIDENCIA DE LA MADRE, 2005–2022"),
+             "portal": ("https://datos.gob.ar/dataset/nacidos-vivos-registrados-por-"
+                        "jurisdiccion-de-residencia-de-la-madre-republica-argentina"),
+             "licencia": "CC-BY 4.0",
+             "uso": ("serie contrafáctica: permite determinar qué criterio usa "
+                     "realmente la serie histórica, que se publica como «ocurridos». "
+                     "Resultado: son el mismo dato (432 de 432 celdas "
+                     "provincia×año idénticas). Ver run_criterio_denominador.")},
         ],
         "files": registros,
     })
