@@ -25,6 +25,7 @@ import pandas as pd
 from src.analysis.stats import poisson_rate_ci
 from src.clean.geo_units import haversine_km
 from src.common import get_logger, load_config, paths
+from src.denominadores import cargar_ciudades
 
 log = get_logger("analysis.futbol")
 PER = 100_000
@@ -146,9 +147,7 @@ def main() -> None:
     players = pd.read_parquet(p.processed / "player_level.parquet")
     clubs = pd.read_parquet(p.interim / "clubs_resolved.parquet")
     denom_dept = pd.read_parquet(p.processed / "denom_cohorte_departamento.parquet")
-    ciudades = (pd.read_parquet(p.processed / "denom_ciudad_unica.parquet")
-                .merge(pd.read_parquet(p.processed / "denom_cohorte_ciudad.parquet"),
-                       on="ciudad_id", how="left"))
+    ciudades = cargar_ciudades(p)
 
     salidas = {}
     salidas |= clubes_formadores(cfg, players, clubs)

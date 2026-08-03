@@ -137,35 +137,47 @@ geography:
     fallback: name_match_within_province
     max_results_per_query: 10
 
-  # AMBA para H2: CABA + los partidos del Gran Buenos Aires.
-  # Códigos INDEC de departamento (5 dígitos: 2 provincia + 3 departamento).
+  # AMBA para H2: CABA + los 24 partidos del Gran Buenos Aires.
+  #
+  # Se declaran POR NOMBRE, no por código. Los códigos se resuelven contra
+  # `c2022_codigos_departamentos.xlsx` —el padrón oficial que el pipeline ya
+  # descarga— en `src/clean/padron_departamentos.py`, y un nombre que no resuelve
+  # a exactamente un código levanta una excepción.
+  #
+  # Por qué: esta lista estuvo escrita a mano y **corrida un lugar** a partir de
+  # Lomas de Zamora. Doce de los veinticuatro códigos apuntaban a otro partido
+  # que el que decía su comentario ("06441  # Lomas de Zamora" era La Plata), de
+  # modo que el AMBA del estudio excluía Quilmes, Merlo, San Miguel, Tres de
+  # Febrero y Vicente López e incluía La Plata, Marcos Paz, Pilar y Presidente
+  # Perón. Nada lo detectó porque nada contrastaba la lista contra el padrón.
   amba:
     caba_province_code: "02"
-    gba_department_codes:
-      - "06028"  # Almirante Brown
-      - "06035"  # Avellaneda
-      - "06091"  # Berazategui
-      - "06260"  # Esteban Echeverría
-      - "06270"  # Ezeiza
-      - "06274"  # Florencio Varela
-      - "06371"  # General San Martín
-      - "06408"  # Hurlingham
-      - "06410"  # Ituzaingó
-      - "06412"  # José C. Paz
-      - "06427"  # La Matanza
-      - "06434"  # Lanús
-      - "06441"  # Lomas de Zamora
-      - "06490"  # Malvinas Argentinas
-      - "06515"  # Merlo
-      - "06525"  # Moreno
-      - "06529"  # Morón
-      - "06560"  # Quilmes
-      - "06568"  # San Fernando
-      - "06638"  # San Isidro
-      - "06648"  # San Miguel
-      - "06749"  # Tigre
-      - "06756"  # Tres de Febrero
-      - "06805"  # Vicente López
+    gba_province_code: "06"
+    gba_department_names:
+      - Almirante Brown
+      - Avellaneda
+      - Berazategui
+      - Esteban Echeverría
+      - Ezeiza
+      - Florencio Varela
+      - General San Martín
+      - Hurlingham
+      - Ituzaingó
+      - José C. Paz
+      - La Matanza
+      - Lanús
+      - Lomas de Zamora
+      - Malvinas Argentinas
+      - Merlo
+      - Moreno
+      - Morón
+      - Quilmes
+      - San Fernando
+      - San Isidro
+      - San Miguel
+      - Tigre
+      - Tres de Febrero
+      - Vicente López
     # Definición ampliada (40 partidos) para análisis de sensibilidad.
     include_extended_gba: false
 

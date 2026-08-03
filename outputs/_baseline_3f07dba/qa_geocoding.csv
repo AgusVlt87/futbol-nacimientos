@@ -1,0 +1,13 @@
+geo_status,granularity,localidad_match,n_lugares
+ok,localidad,nombre_y_cercania,624
+ok,localidad,solo_cercania,167
+fuera_de_argentina,localidad,sin_departamento,143
+ok,departamento,no_aplica_por_granularidad,83
+ok,provincia,no_aplica_por_granularidad,20
+ok,localidad,sin_localidad_censal_2022,19
+ok,localidad,caba_unidad_unica,19
+fuera_de_argentina,pais,no_aplica_por_granularidad,3
+lugar_demasiado_generico,region,no_aplica_por_granularidad,2
+sin_coordenada,localidad,sin_departamento,2
+lugar_demasiado_generico,pais,no_aplica_por_granularidad,1
+fuera_de_argentina,region,no_aplica_por_granularidad,1

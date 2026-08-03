@@ -1,0 +1,4 @@
+grupo,n,pct_fuera_de_su_provincia,OR,OR_ic_lo,OR_ic_hi
+Futbolistas (nacimiento → club formador),1923.0,47.00988039521581,,,
+"Población general (nacimiento → residencia, Censo 2022)",42640509.0,13.761064625190098,,,
+Odds ratio futbolistas vs población general,,,5.5596262724232055,5.083380423576686,6.080490089952847

@@ -1,0 +1,2 @@
+departamentos_comparados,correlacion_pearson,error_relativo_mediano_abs,pct_dentro_del_20,cohortes_usadas,lectura
+511,0.9930645168951981,0.09090664695482831,83.75733855185909,2012–2022 (RENAPER),"mide el error del supuesto de reparto intraprovincial, que es lo único que se asume para bajar de provincia a departamento; los totales por provincia son dato real"

@@ -43,6 +43,7 @@ from scipy import stats
 from src.analysis.stats import odds_ratio_ci, poisson_rate_ci
 from src.clean.geo_units import haversine_km
 from src.common import get_logger, load_config, paths
+from src.denominadores import cargar_ciudades, cargar_departamentos
 
 log = get_logger("analysis.seleccion")
 
@@ -219,12 +220,8 @@ def main() -> None:
     p = paths()
     d = cargar(cfg, p)
 
-    ciudades = (pd.read_parquet(p.processed / "denom_ciudad_unica.parquet")
-                  .merge(pd.read_parquet(p.processed / "denom_cohorte_ciudad.parquet"),
-                         on="ciudad_id", how="left"))
-    denom_dept = (pd.read_parquet(p.processed / "denom_departamento.parquet")
-                    .merge(pd.read_parquet(p.processed / "denom_cohorte_departamento.parquet")
-                             [["dept_id", "nacimientos_cohorte"]], on="dept_id", how="left"))
+    ciudades = cargar_ciudades(p)
+    denom_dept = cargar_departamentos(p, ["nacimientos_cohorte"])
 
     log.info("muestra: %d jugadores | Mayor: %d | juveniles: %d | juvenil y Mayor: %d",
              len(d), int(d["seleccion_mayor"].sum()), int(d["seleccion_juvenil"].sum()),

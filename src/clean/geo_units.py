@@ -94,14 +94,22 @@ def region_of(dept_id: str | None, cfg: dict) -> str | float:
 
     AMBA gana sobre la región de la provincia: un partido del Gran Buenos Aires
     es AMBA, no Pampeana. Es justamente el contraste que plantea H2.
+
+    Los partidos del GBA se declaran por nombre en `config.yaml` y se resuelven
+    contra el padrón del INDEC. Ver `padron_departamentos.codigos_amba`: la lista
+    de códigos escrita a mano que había acá estaba doce códigos mal.
     """
+    # Import diferido: `padron_departamentos` importa de este módulo, así que
+    # traerlo arriba cerraría el ciclo. `codigos_amba` está cacheada.
+    from src.clean.padron_departamentos import codigos_amba
+
     if dept_id is None or (isinstance(dept_id, float) and math.isnan(dept_id)):
         return np.nan
     dept_id = str(dept_id)
     amba = cfg["geography"]["amba"]
     if dept_id.startswith(amba["caba_province_code"]):
         return "AMBA"
-    if dept_id in set(amba["gba_department_codes"]):
+    if dept_id in codigos_amba(cfg):
         return "AMBA"
     prov = dept_id[:2]
     for region, provs in cfg["geography"]["regiones"].items():

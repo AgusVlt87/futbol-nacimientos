@@ -30,6 +30,7 @@ from src.analysis.stats import (
 )
 from src.clean.geo_units import city_size_series
 from src.common import get_logger, load_config, paths
+from src.denominadores import cargar_ciudades
 
 log = get_logger("analysis")
 
@@ -335,9 +336,7 @@ def main() -> None:
     denom_prov = pd.read_parquet(p.processed / "denom_cohorte_provincia.parquet")
     nac_prov = pd.read_parquet(p.processed / "nacimientos_provincia_anio.parquet")
 
-    ciudades = (pd.read_parquet(p.processed / "denom_ciudad_unica.parquet")
-                .merge(pd.read_parquet(p.processed / "denom_cohorte_ciudad.parquet"),
-                       on="ciudad_id", how="left"))
+    ciudades = cargar_ciudades(p)
 
     con_ciudad = players[players["ciudad_id"].notna()]
     log.info("muestra: %d jugadores (%d con ciudad asignada), cohortes %d–%d",

@@ -30,6 +30,7 @@ from src.analysis.stats import poisson_rate_ci
 from src.common import get_logger, load_config, paths
 from src.viz import maps, style
 from src.viz.style import Figura, miles
+from src.denominadores import cargar_ciudades
 
 log = get_logger("viz.extra")
 
@@ -277,9 +278,7 @@ def fig19_sesgo_denominador(cfg, p):
 def fig20_deciles_sin_gradiente(cfg, p):
     """Lo que el binning de cinco tramos esconde."""
     players = pd.read_parquet(p.processed / "analysis_players.parquet")
-    ciudades = (pd.read_parquet(p.processed / "denom_ciudad_unica.parquet")
-                .merge(pd.read_parquet(p.processed / "denom_cohorte_ciudad.parquet"),
-                       on="ciudad_id", how="left"))
+    ciudades = cargar_ciudades(p)
     conteo = players.groupby("ciudad_id").size().rename("jugadores")
     d = ciudades.set_index("ciudad_id").join(conteo).fillna({"jugadores": 0})
     d = d[(d["nacimientos_cohorte"] > 0) & (d["pob_ciudad"] > 0)].copy()

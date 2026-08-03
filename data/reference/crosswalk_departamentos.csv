@@ -1,0 +1,44 @@
+componente,rol,dept_id,nombre_2022,tipo,criterio
+BA-CANUELAS,historico,06133,,renumeracion,"06134 (Cañuelas) es nuevo en 2001 y su codigo-1 existia en 1991; hueco alfabetico en el padron 2022; continuidad poblacional 30.900->42.575 (x1,378, partido periurbano de crecimiento rapido)"
+BA-CANUELAS,2022,06134,Cañuelas,renumeracion,
+BA-FLORENCIO-VARELA,historico,06273,,renumeracion,"06274 (Florencio Varela) es nuevo en 2001 y su codigo-1 existia en 1991; hueco alfabetico; continuidad 254.997->348.970 (x1,369)"
+BA-FLORENCIO-VARELA,2022,06274,Florencio Varela,renumeracion,
+BA-PILAR,historico,06637,,renumeracion,"06638 (Pilar) es nuevo en 2001 y su codigo-1 existia en 1991; hueco alfabetico; continuidad 130.187->232.463 (x1,786; Pilar es el partido de mayor crecimiento relativo de los 90)"
+BA-PILAR,2022,06638,Pilar,renumeracion,
+BA-CHASCOMUS,historico,06217,,division,"06217 llega hasta el censo 2010 y desaparece en 2022; Lezama se separo de Chascomus en 2009; continuidad 42.277 (2010) -> 48.361 (2022) = x1,144 contra mediana de estables x1,122"
+BA-CHASCOMUS,2022,06218,Chascomús,division,
+BA-CHASCOMUS,2022,06466,Lezama,division,
+BA-ESTEBAN-ECHEVERRIA,historico,06259,,division,"Ezeiza (06270) se separo de Esteban Echeverria en 1994; continuidad 275.793->362.781 (x1,315), dentro del rango de los partidos del segundo cordon"
+BA-ESTEBAN-ECHEVERRIA,2022,06260,Esteban Echeverría,division,
+BA-ESTEBAN-ECHEVERRIA,2022,06270,Ezeiza,division,
+BA-MAGDALENA,historico,06504,,division,"Punta Indio (06655) se separo de Magdalena en 1994; continuidad 21.927->25.965 (x1,184)"
+BA-MAGDALENA,2022,06505,Magdalena,division,
+BA-MAGDALENA,2022,06655,Punta Indio,division,
+BA-MORON,historico,06567,,division,"Hurlingham (06408) e Ituzaingo (06410) se separaron de Moron en 1994; continuidad 643.551->639.746 = x0,994, la coincidencia mas exacta del crosswalk"
+BA-MORON,2022,06568,Morón,division,
+BA-MORON,2022,06408,Hurlingham,division,
+BA-MORON,2022,06410,Ituzaingó,division,
+BA-SAN-VICENTE,historico,06777,,division,"Presidente Peron (06648) se separo de San Vicente en 1994; continuidad 74.851->104.720 (x1,399)"
+BA-SAN-VICENTE,2022,06778,San Vicente,division,
+BA-SAN-VICENTE,2022,06648,Presidente Perón,division,
+BA-GENERAL-SARMIENTO,historico,06378,,division,"General Sarmiento se disolvio en 1994 en Jose C. Paz, Malvinas Argentinas y San Miguel; el codigo 06378 queda como hueco alfabetico entre General San Martin (06371) y General Viamonte (06385) en el padron 2022; continuidad 651.017->773.985 (x1,189)"
+BA-GENERAL-SARMIENTO,2022,06412,José C. Paz,division,
+BA-GENERAL-SARMIENTO,2022,06515,Malvinas Argentinas,division,
+BA-GENERAL-SARMIENTO,2022,06760,San Miguel,division,
+CHACO-SUDOESTE,historico,22035,,componente,"2 de Abril (22039) se formo con territorio de 12 de Octubre y de Fray Justo Santa Maria de Oro: por separado los dos padres quedan anomalos (x0,920 y x0,771 contra un crecimiento provincial de x1,172), en conjunto dan x1,072. Se resuelve como componente y no como dos divisiones porque el dato no permite atribuir 2 de Abril a un solo padre"
+CHACO-SUDOESTE,historico,22042,,componente,
+CHACO-SUDOESTE,2022,22036,12 de Octubre,componente,
+CHACO-SUDOESTE,2022,22039,2 de Abril,componente,
+CHACO-SUDOESTE,2022,22043,Fray Justo Santa María de Oro,componente,
+ER-COLON,historico,30007,,division,"San Salvador (30088) se creo en 1995 con territorio de Colon; sin el, Colon queda en x0,956 contra un crecimiento provincial de x1,135 (anomalo); Concordia (x1,133) y Villaguay (x1,105) son normales sin San Salvador, de modo que no cedieron territorio"
+ER-COLON,2022,30008,Colón,division,
+ER-COLON,2022,30088,San Salvador,division,
+ER-CONCORDIA,historico,30014,,renumeracion,"hueco alfabetico: 30015 (Concordia) es nuevo en 2001 y su codigo-1 existia en 1991; continuidad 138.833->157.291 (x1,133), igual al crecimiento provincial"
+ER-CONCORDIA,2022,30015,Concordia,renumeracion,
+ER-VILLAGUAY,historico,30112,,renumeracion,"hueco alfabetico: 30113 (Villaguay) es nuevo en 2001 y su codigo-1 existia en 1991; continuidad 43.829->48.416 (x1,105)"
+ER-VILLAGUAY,2022,30113,Villaguay,renumeracion,
+TDF-RIO-GRANDE,historico,94007,,division,"Emparejamiento por continuidad: 94007->Rio Grande da x1,412 y 94014->Ushuaia x1,405 (consistentes); el emparejamiento cruzado da x1,142 y x1,737 (inconsistente). Tolhuin (94011) se creo en 1995 con territorio de Rio Grande; la poblacion no discrimina el padre (6.027 hab, 3% de la provincia): asignacion de baja sensibilidad"
+TDF-RIO-GRANDE,2022,94008,Río Grande,division,
+TDF-RIO-GRANDE,2022,94011,Tolhuin,division,
+TDF-USHUAIA,historico,94014,,renumeracion,"ver TDF-RIO-GRANDE: emparejamiento por continuidad poblacional, x1,405"
+TDF-USHUAIA,2022,94015,Ushuaia,renumeracion,

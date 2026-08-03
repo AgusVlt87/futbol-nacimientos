@@ -24,6 +24,7 @@ import pandas as pd
 from src.analysis.stats import chi2_gof, odds_ratio_ci, poisson_rate_ci, rate_ratio_ci
 from src.clean.geo_units import haversine_km
 from src.common import get_logger, load_config, paths
+from src.denominadores import cargar_ciudades, cargar_departamentos
 
 log = get_logger("analysis.h3h4")
 
@@ -200,13 +201,8 @@ def main() -> None:
 
     # Los denominadores de nacidos vivos viven en tablas aparte; se pegan acá
     # para que H4 use exactamente los mismos números que H1 y H2.
-    ciudades = (pd.read_parquet(p.processed / "denom_ciudad_unica.parquet")
-                  .merge(pd.read_parquet(p.processed / "denom_cohorte_ciudad.parquet"),
-                         on="ciudad_id", how="left"))
-    denom_dept = (pd.read_parquet(p.processed / "denom_departamento.parquet")
-                    .merge(pd.read_parquet(p.processed / "denom_cohorte_departamento.parquet")
-                             [["dept_id", "nacimientos_cohorte"]],
-                           on="dept_id", how="left"))
+    ciudades = cargar_ciudades(p)
+    denom_dept = cargar_departamentos(p, ["nacimientos_cohorte"])
     for tabla, nombre in ((ciudades, "ciudad"), (denom_dept, "departamento")):
         if tabla["nacimientos_cohorte"].isna().any():
             log.warning("%s: %d unidades sin denominador de nacidos vivos",

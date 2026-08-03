@@ -177,14 +177,17 @@ restringido a cohortes ≤ 2002 como robustez.
 Wikidata vía SPARQL, paginado por año de nacimiento, snapshot fechado en
 `data/raw/wikidata/_snapshot.json`.
 
+<!-- TABLA:muestra INICIO -->
+<!-- generado por `python -m src.report.sync_tablas_paper`; no editar a mano -->
 | Paso | n |
 |---|---:|
-| Futbolistas argentinos en Wikidata | 9.115 |
-| Con precisión de fecha ≥ año | 8.976 |
-| Muestra masculina | 8.649 |
-| Con lugar de nacimiento (`P19`) | 8.290 |
-| Con lugar resuelto dentro de Argentina | 7.711 |
-| **Cohortes 1975–2008** | **5.511** |
+| Jugadores en wikidata | 9.115 |
+| Precisión de fecha ≥ año (timeprecision ≥ 9) | 8.976 |
+| Género = male | 8.649 |
+| Con lugar de nacimiento (p19) | 8.290 |
+| Lugar resuelto dentro de argentina | 7.711 |
+| **Cohorte 1975–2008** | **5.511** |
+<!-- TABLA:muestra FIN -->
 
 ### 2.4 Resolución geográfica
 
@@ -243,13 +246,16 @@ jugadores con origen y club formador ubicados en Argentina.
 
 **Figuras 4 y 7.**
 
+<!-- TABLA:h1_tramos INICIO -->
+<!-- generado por `python -m src.report.sync_tablas_paper`; no editar a mano -->
 | Tamaño de la ciudad | Futbolistas | Nacidos | Tasa /100.000 | IC 95% | RR vs >500k |
 |---|---:|---:|---:|---|---|
-| <10k | 431 | 3.339.078 | 12,9 | 11,7–14,2 | 0,42 (0,38–0,47) |
-| 10–50k | 568 | 3.418.174 | 16,6 | 15,3–18,0 | 0,55 (0,50–0,60) |
-| 50–100k | 275 | 1.280.832 | 21,5 | 19,0–24,2 | 0,70 (0,62–0,80) |
-| 100–500k | 631 | 2.934.614 | 21,5 | 19,9–23,3 | 0,71 (0,65–0,77) |
-| **>500k** | **3.343** | **10.975.566** | **30,5** | **29,4–31,5** | 1,00 |
+| <10k | 431 | 3.385.077 | 12,7 | 11,6–14,0 | 0,45 (0,41–0,50) |
+| 10–50k | 568 | 3.491.322 | 16,3 | 15,0–17,7 | 0,57 (0,52–0,63) |
+| 50–100k | 275 | 1.338.281 | 20,5 | 18,2–23,1 | 0,72 (0,64–0,82) |
+| 100–500k | 631 | 2.994.490 | 21,1 | 19,5–22,8 | 0,74 (0,68–0,81) |
+| **>500k** | **3.343** | **11.788.344** | **28,4** | **27,4–29,3** | **1,00** |
+<!-- TABLA:h1_tramos FIN -->
 
 χ²(4) = 452,2; p < 10⁻⁹⁵; *w* = 0,29; n = 5.248.
 
@@ -283,11 +289,14 @@ ciudad determinada es casi nula. A 100.000 habitantes las ciudades reales van de
 
 **Robustez.** El patrón se sostiene en las dos variantes:
 
+<!-- TABLA:h1_robustez INICIO -->
+<!-- generado por `python -m src.report.sync_tablas_paper`; no editar a mano -->
 | Variante | RR <10k vs >500k | IC 95% |
-|---|---|---|
-| Principal (aglomerado urbano) | 0,42 | 0,38–0,47 |
-| Unidad = localidad censal aislada | 0,39 | 0,35–0,43 |
-| Solo cohortes ≤ 2002 | 0,41 | 0,37–0,46 |
+|---|---:|---|
+| Principal (aglomerado urbano) | 0,45 | 0,41–0,50 |
+| Unidad = localidad censal aislada | 0,36 | 0,32–0,40 |
+| Solo cohortes ≤ 2002 | 0,44 | 0,39–0,49 |
+<!-- TABLA:h1_robustez FIN -->
 
 Con el denominador anterior —población censada en 2022— este mismo RR daba 0,57.
 El denominador correcto **fortalece** el hallazgo, no lo debilita: la migración
@@ -298,29 +307,35 @@ pueblos.
 
 **Figuras 1, 3, 5 y 6.** Por región (χ²(5) = 1.050,7; *w* = 0,44):
 
+<!-- TABLA:h2_regiones INICIO -->
+<!-- generado por `python -m src.report.sync_tablas_paper`; no editar a mano -->
 | Región | Futbolistas | Tasa /100.000 | IC 95% | RR vs AMBA |
-|---|---:|---:|---|---|
-| AMBA | 1.859 | 35,0 | 33,5–36,7 | 1,00 |
-| Pampeana | 2.659 | 30,2 | 29,1–31,4 | 0,86 |
-| Cuyo | 280 | 16,1 | 14,3–18,1 | 0,46 |
-| Patagonia | 159 | 13,2 | 11,2–15,4 | 0,38 |
-| NEA | 269 | 10,1 | 8,9–11,4 | 0,29 |
-| NOA | 285 | 8,7 | 7,7–9,8 | 0,25 |
+|---|---:|---:|---|---:|
+| Pampeana | 2.587 | 34,5 | 33,2–35,9 | 1,22 |
+| AMBA | 1.872 | 28,3 | 27,0–29,6 | 1,00 |
+| Cuyo | 265 | 15,2 | 13,4–17,2 | 0,54 |
+| Patagonia | 153 | 12,7 | 10,8–14,9 | 0,45 |
+| NEA | 255 | 9,6 | 8,4–10,8 | 0,34 |
+| NOA | 269 | 8,2 | 7,2–9,2 | 0,29 |
+<!-- TABLA:h2_regiones FIN -->
 
 **H2 no se sostiene.** El interior no produce más que el AMBA: produce menos, y
 en el norte produce cuatro veces menos. Por provincia:
 
-| | Provincia | Futbolistas | Tasa /100.000 | Obs./Esp. |
-|---|---|---:|---:|---:|
-| 1 | CABA | 962 | 63,0 | 2,63 |
+<!-- TABLA:h2_provincias INICIO -->
+<!-- generado por `python -m src.report.sync_tablas_paper`; no editar a mano -->
+|  | Provincia | Futbolistas | Tasa /100.000 | Obs./Esp. |
+|---:|---|---:|---:|---:|
+| 1 | Ciudad Autónoma de Buenos Aires | 962 | 63,0 | 2,63 |
 | 2 | Santa Fe | 950 | 54,2 | 2,26 |
 | 3 | Córdoba | 577 | 31,6 | 1,32 |
 | 4 | La Pampa | 49 | 27,1 | 1,13 |
-| 5 | Entre Ríos | 181 | 23,8 | 0,99 |
-| … | | | | |
-| 22 | La Rioja | 14 | 7,1 | 0,29 |
+| 5 | Entre Ríos | 181 | 23,7 | 0,99 |
+| … |  |  |  |  |
+| 22 | Catamarca | 15 | 6,5 | 0,27 |
 | 23 | San Juan | 28 | 6,2 | 0,26 |
 | 24 | Salta | 46 | 5,5 | 0,23 |
+<!-- TABLA:h2_provincias FIN -->
 
 El orden no depende del baseline: se probaron seis denominadores distintos y CABA
 y Santa Fe encabezan en todos.
@@ -337,23 +352,29 @@ acierta, y no alcanza para sostener el patrón general.
 
 **Comparado con la población general, el futbolista migra cinco veces más.**
 
+<!-- TABLA:h3_poblacion INICIO -->
+<!-- generado por `python -m src.report.sync_tablas_paper`; no editar a mano -->
 | Grupo | n | Fuera de su provincia |
 |---|---:|---:|
-| Futbolistas (nacimiento → club formador) | 1.923 | **47,1%** |
+| Futbolistas (nacimiento → club formador) | 1.923 | **47,0%** |
 | Población general (nacimiento → residencia, Censo 2022) | 42.640.509 | 13,8% |
+<!-- TABLA:h3_poblacion FIN -->
 
 OR 5,58 (IC 95% 5,10–6,10). El punto de comparación es lo que vuelve
 interpretable el número.
 
 **El corte por origen es un escalón, no un gradiente:**
 
+<!-- TABLA:h3_tamano INICIO -->
+<!-- generado por `python -m src.report.sync_tablas_paper`; no editar a mano -->
 | Ciudad de nacimiento | n | Cambia de departamento | Cambia de provincia | Distancia mediana |
 |---|---:|---:|---:|---:|
 | <10k | 150 | 94,0% | 61,3% | 307 km |
 | 10–50k | 209 | 97,6% | 64,1% | 312 km |
 | 50–100k | 107 | 86,0% | 65,4% | 256 km |
 | 100–500k | 225 | 86,7% | 67,6% | 470 km |
-| >500k | 1.197 | 52,0% | 36,7% | **7 km** |
+| >500k | 1.197 | 52,0% | 36,7% | 7 km |
+<!-- TABLA:h3_tamano FIN -->
 
 Entre los cuatro tramos menores no hay gradiente: todos migran masivamente. El
 escalón está entre los aglomerados de más de 500.000 habitantes y todo lo demás.
@@ -361,27 +382,33 @@ Nacer en una ciudad grande significa formarse a siete kilómetros de casa.
 
 **Por región de origen la asimetría es estructural:**
 
+<!-- TABLA:h3_regiones INICIO -->
+<!-- generado por `python -m src.report.sync_tablas_paper`; no editar a mano -->
 | Región | Nacidos | Formados allí | Saldo neto | Retención |
 |---|---:|---:|---:|---:|
-| AMBA | 676 | 1.273 | **+597** | 91,6% |
-| Pampeana | 963 | 563 | −400 | 49,4% |
-| Cuyo | 79 | 50 | −29 | 48,1% |
-| Patagonia | 66 | 24 | −42 | 28,8% |
-| NOA | 79 | 29 | −50 | 29,1% |
-| NEA | 84 | 8 | −76 | **8,3%** |
+| AMBA | 677 | 1.260 | +583 | 90,8% |
+| Cuyo | 75 | 46 | -29 | 45,3% |
+| Patagonia | 65 | 23 | -42 | 27,7% |
+| NOA | 76 | 28 | -48 | 28,9% |
+| NEA | 81 | 8 | -73 | 8,6% |
+| Pampeana | 949 | 558 | -391 | 48,9% |
+<!-- TABLA:h3_regiones FIN -->
 
 El NEA retiene a uno de cada doce futbolistas que nacen en su territorio.
 
 **Los clubes** (**Figura 10**) muestran el mecanismo con nombre y apellido:
 
+<!-- TABLA:clubes INICIO -->
+<!-- generado por `python -m src.report.sync_tablas_paper`; no editar a mano -->
 | Club | Formados | Distancia mediana | De otra provincia |
 |---|---:|---:|---:|
 | Boca Juniors | 143 | 277 km | 77% |
-| River Plate | 122 | 265 km | 76% |
-| Vélez Sarsfield | 98 | 18 km | 56% |
-| Newell's Old Boys | 98 | 37 km | 34% |
-| Rosario Central | 94 | **0 km** | 18% |
-| Estudiantes | 85 | 233 km | 41% |
+| Club Atlético River Plate | 122 | 265 km | 76% |
+| Club Atlético Vélez Sarsfield | 98 | 18 km | 56% |
+| Club Atlético Newell’s Old Boys | 98 | 37 km | 34% |
+| Club Atlético Rosario Central | 94 | 0 km | 18% |
+| Club Estudiantes de La Plata | 85 | 233 km | 41% |
+<!-- TABLA:clubes FIN -->
 
 Hay dos modelos distintos de club formador. Rosario Central y Newell's forman
 jugadores que nacieron en Rosario o al lado: son una salida local para un talento
@@ -425,13 +452,16 @@ selección (sub-17 o sub-20), ¿qué proporción llega después a la Mayor, seg�
 dónde nacieron?** El denominador acá no es una estimación de nacimientos: son los
 347 juveniles observados.
 
+<!-- TABLA:conversion INICIO -->
+<!-- generado por `python -m src.report.sync_tablas_paper`; no editar a mano -->
 | Ciudad de nacimiento | Juveniles | Llegan a la Mayor | % | IC 95% |
 |---|---:|---:|---:|---|
 | <10k | 19 | 7 | 36,8 | 16,3–61,6 |
 | 10–50k | 25 | 14 | 56,0 | 34,9–75,6 |
 | 50–100k | 20 | 6 | 30,0 | 11,9–54,3 |
 | 100–500k | 31 | 12 | 38,7 | 21,8–57,8 |
-| **>500k** | **242** | **68** | **28,1** | 22,5–34,2 |
+| **>500k** | **242** | **68** | **28,1** | **22,5–34,2** |
+<!-- TABLA:conversion FIN -->
 
 Agrupando en el contraste que tiene potencia —fuera de un gran aglomerado contra
 adentro—: **41,9% (44 de 105) contra 28,1% (68 de 242)**. OR 1,85 (IC 95%

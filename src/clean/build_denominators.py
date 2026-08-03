@@ -44,6 +44,12 @@ import numpy as np
 import pandas as pd
 
 from src.clean.geo_units import collapse_caba, region_of
+from src.clean.padron_departamentos import (
+    SIN_LOCALIDAD_CENSAL,
+    a_geografia_2022,
+    verificar_conservacion,
+    verificar_geografia_2022,
+)
 from src.common import get_logger, load_config, paths
 
 log = get_logger("clean.denominadores")
@@ -107,8 +113,17 @@ def verificar_cobertura(nac: pd.DataFrame, y0: int, y1: int) -> None:
 
 
 def participacion_departamental(p) -> pd.DataFrame:
-    """Participación de cada departamento en la población de su provincia, por censo."""
+    """Participación de cada departamento en la población de su provincia, por censo.
+
+    La población histórica se reexpresa antes en **geografía 2022**. Los códigos
+    de departamento del INDEC no son estables: 44 de 532 cambiaron entre 1991 y
+    2022, casi todos por las divisiones de partidos bonaerenses de 1994. Sin
+    reexpresarlos, los nacimientos de un partido dividido quedaban repartidos
+    entre dos códigos —uno viejo, uno nuevo— y el viejo no existía río abajo.
+    """
     hist = pd.read_parquet(p.processed / "pop_dept_historica.parquet")
+    hist = a_geografia_2022(hist)
+    verificar_geografia_2022(hist["dept_id"], "población histórica por departamento")
     hist["prov_id"] = hist["dept_id"].str[:2]
     total_prov = hist.groupby(["censo", "prov_id"])["pob"].transform("sum")
     hist["share"] = hist["pob"] / total_prov
@@ -122,9 +137,22 @@ def estimar_por_departamento(nac: pd.DataFrame, shares: pd.DataFrame,
     ventana["censo"] = ventana["anio"].map(censo_mas_cercano)
     por_censo = ventana.groupby(["prov_id", "censo"], as_index=False)["nacimientos"].sum()
     est = por_censo.merge(shares, on=["prov_id", "censo"], how="left")
+    if est["share"].isna().any():
+        faltan = sorted(est[est["share"].isna()][["prov_id", "censo"]]
+                        .drop_duplicates().itertuples(index=False, name=None))
+        raise ValueError(f"no hay participación departamental para {faltan}")
     est["nacimientos_est"] = est["nacimientos"] * est["share"]
-    return (est.groupby("dept_id", as_index=False)["nacimientos_est"].sum()
-               .rename(columns={"nacimientos_est": "nacimientos_cohorte"}))
+    out = (est.groupby("dept_id", as_index=False)["nacimientos_est"].sum()
+              .rename(columns={"nacimientos_est": "nacimientos_cohorte"}))
+    # El reparto no puede perder nacimientos: los shares suman 1 por provincia y
+    # censo, así que el total departamental tiene que ser el provincial. Se
+    # compara **provincia por provincia**, no el gran total: los dos errores que
+    # motivaron esta verificación conservaban el total nacional.
+    verificar_conservacion(
+        por_censo.groupby("prov_id")["nacimientos"].sum(),
+        out.assign(prov_id=out["dept_id"].str[:2]).groupby("prov_id")["nacimientos_cohorte"].sum(),
+        contexto=f"reparto provincia -> departamento ({y0}–{y1})")
+    return out
 
 
 def validar_contra_renaper(p, nac: pd.DataFrame, shares: pd.DataFrame) -> pd.DataFrame:
@@ -189,6 +217,10 @@ def main() -> None:
     dept = estimar_por_departamento(nac, shares, y0, y1)
     dept["prov_id"] = dept["dept_id"].str[:2]
     dept["region"] = dept["dept_id"].map(lambda d: region_of(d, cfg))
+    verificar_geografia_2022(dept["dept_id"], "denominador por departamento")
+    verificar_conservacion(prov.set_index("prov_id")["nacimientos_cohorte"],
+                           dept.groupby("prov_id")["nacimientos_cohorte"].sum(),
+                           contexto="provincia -> departamento")
     dept.to_parquet(p.processed / "denom_cohorte_departamento.parquet", index=False)
 
     # --- ciudad: estimado, repartiendo el departamento por localidad --------
@@ -196,6 +228,23 @@ def main() -> None:
     # del censo 2022. Se declara: es el eslabón más débil de la cadena.
     tamano = pd.read_parquet(p.processed / "tamano_localidad.parquet")
     tamano["dept_id"] = tamano["dept_id"].astype(str)
+    verificar_geografia_2022(tamano["dept_id"], "padrón de localidades censales")
+
+    # Este merge es el que perdía 1.049.301 nacimientos. `how="left"` sobre
+    # `share_loc` descarta cualquier departamento que tenga nacimientos pero no
+    # figure en el padrón de localidades, y eso incluía a todos los partidos
+    # disueltos en 1994 —General Sarmiento, Morón, Esteban Echeverría—, cuyos
+    # nacimientos de 1975–1996 se iban sin dejar rastro. Ahora los códigos ya
+    # están en geografía 2022 y lo único que puede faltar son los departamentos
+    # sin ninguna localidad censal, que se declaran explícitamente.
+    sin_localidad = set(dept["dept_id"]) - set(tamano["dept_id"])
+    inesperados = sin_localidad - set(SIN_LOCALIDAD_CENSAL)
+    if inesperados:
+        raise ValueError(
+            f"{len(inesperados)} departamento(s) con nacimientos pero sin ninguna "
+            f"localidad censal: {sorted(inesperados)}. Sus nacimientos "
+            "desaparecerían del denominador por ciudad.")
+
     share_loc = tamano.copy()
     share_loc["share_loc"] = share_loc["pob_localidad"] / \
         share_loc.groupby("dept_id")["pob_localidad"].transform("sum")
@@ -206,6 +255,19 @@ def main() -> None:
                                    "LOC_" + ciudad["localidad_id"].astype(str))
     por_ciudad = (ciudad.groupby("ciudad_id", as_index=False)["nac_localidad"].sum()
                         .rename(columns={"nac_localidad": "nacimientos_cohorte"}))
+
+    # Acá solo se puede comparar el total: un aglomerado puede cruzar límites de
+    # departamento (el Gran Buenos Aires cruza veinticuatro), así que no hay
+    # correspondencia grupo a grupo entre departamentos y ciudades.
+    esperado_ciudad = float(dept.loc[~dept["dept_id"].isin(SIN_LOCALIDAD_CENSAL),
+                                     "nacimientos_cohorte"].sum())
+    verificar_conservacion(esperado_ciudad, float(por_ciudad["nacimientos_cohorte"].sum()),
+                           contexto="departamento -> ciudad")
+    if sin_localidad:
+        log.info("sin localidad censal (excluidos del denominador por ciudad): %s",
+                 ", ".join(f"{d} {SIN_LOCALIDAD_CENSAL[d]} "
+                           f"({dept.loc[dept.dept_id == d, 'nacimientos_cohorte'].iloc[0]:,.0f} nac.)"
+                           for d in sorted(sin_localidad)))
     por_ciudad.to_parquet(p.processed / "denom_cohorte_ciudad.parquet", index=False)
 
     # La misma estimación sin agrupar por aglomerado: la necesita el análisis de

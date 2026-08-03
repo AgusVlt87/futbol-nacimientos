@@ -1,0 +1,2 @@
+contraste,elite_chicas,elite_grandes,resto_chicas,resto_grandes,pct_chicas_elite,pct_chicas_resto,OR,OR_ic_lo,OR_ic_hi,lectura
+nacidos en ciudades <50k: elite (T1+T2) vs resto (T3+T4),95,448,904,3801,17.495395948434624,19.213602550478214,0.8916102046460177,0.7063192833726156,1.1255090661449934,OR > 1 querría decir que la elite viene más de ciudades chicas; un IC que cruza el 1 quiere decir que no hay evidencia de eso
