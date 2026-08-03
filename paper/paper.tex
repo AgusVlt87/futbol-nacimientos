@@ -33,7 +33,7 @@
 \large Geografía del nacimiento y de la formación en el fútbol argentino,\\
 cohortes 1975--2008}
 \author{Agustín Viullet}
-\date{1 de agosto de 2026\\[0.4em]
+\date{2 de agosto de 2026\\[0.4em]
 \footnotesize Análisis reproducible sobre Wikidata, la serie histórica de nacidos
 vivos del DEIS\\ y el Censo Nacional 2022 del INDEC. Snapshot de Wikidata:
 30 de julio de 2026.}
@@ -51,12 +51,28 @@ nacidos en un lugar, cuántos llegaron a futbolistas profesionales.
 \textbf{El \emph{birthplace effect} clásico no aparece en Argentina y lo que
 aparece es su inverso}, pero con dos matices que la literatura previa no
 registra. La producción va de 12,9 futbolistas cada \num{100000} nacidos en
-localidades de menos de \num{10000} habitantes a 30,5 en aglomerados de más de
-\num{500000} (RR 0,42; \ic{0,38}{0,47}); no hay pico en las ciudades medianas.
+localidades de menos de \num{10000} habitantes a 28,4 en aglomerados de más de
+\num{500000} (RR 0,45; \ic{0,41}{0,50}); no hay pico en las ciudades medianas.
 Sin embargo el efecto \textbf{no es un gradiente sino un escalón} —los nueve
 deciles de tamaño por debajo de \num{10000} habitantes no muestran tendencia
 alguna— y el tamaño de la ciudad explica apenas el 1\,\% de la variación entre
 ciudades (pseudo-$R^2 = 0{,}011$).
+
+\textbf{El artefacto de las maternidades no está operando}, que es lo que vuelve
+interpretable a todo lo demás. Las dos puntas del cociente registran
+\textbf{residencia}, no parto: la serie del DEIS titulada «nacimientos ocurridos»
+es idéntica a la tabulación por residencia de la madre en las 432 celdas
+provincia\,$\times$\,año en que se solapan, y hay 76 futbolistas cuyo
+\texttt{P19} apunta a localidades de menos de \num{2000} habitantes, en 63
+localidades distintas, donde ninguna maternidad puede existir.
+
+\textbf{Y el patrón es del fútbol, no del país.} Corrido el mismo análisis sobre
+otros deportes, la geografía cambia por completo: en el contraste que define el
+\emph{birthplace effect}, el básquet da RR 1,95 (\ic{1,38}{2,76}) y el fútbol 0,72
+(\ic{0,64}{0,82}), con intervalos que no se tocan. El básquet argentino tiene el
+efecto clásico; el rugby está aún más concentrado que el fútbol. Ningún artefacto
+de medición compartido puede producir mapas opuestos para deportes distintos
+medidos con el mismo instrumento.
 
 \textbf{El resultado más robusto del trabajo es condicional y no usa denominador
 poblacional}: entre los futbolistas que ya llegaron a un juvenil de la selección,
@@ -167,8 +183,8 @@ chicos el estimador le asigna un \textbf{17\,\% más} de nacimientos de los
 reales, mientras que en el decil más grande no se equivoca (Spearman entre tamaño
 y ratio estimado/real $= -0{,}355$; $p < 10^{-15}$). Un denominador inflado
 deprime la tasa, de modo que \textbf{el sesgo empuja en la misma dirección que el
-hallazgo principal}: corregirlo llevaría el RR de las localidades chicas de 0,42
-a aproximadamente 0,49. El efecto sobreviviría, pero es un 17\,\% más chico de lo
+hallazgo principal}: corregirlo llevaría el RR de las localidades chicas de 0,45
+a aproximadamente 0,52. El efecto sobreviviría, pero es un 17\,\% más chico de lo
 que la tabla sugiere.
 
 \begin{figure}[!htb]
@@ -187,20 +203,61 @@ ocurrencia: su tasa bruta de natalidad departamental tiene media 15,5 por mil y
 el 97\,\% de los casos entre 8 y 30, valores incompatibles con un conteo por
 lugar del parto. Validar un reparto por población residente contra una fuente por
 residencia es en parte circular. A nivel provincial las dos series coinciden
-dentro del 1,3\,\% (CABA: DEIS \num{397191}, RENAPER \num{402492}), de modo que
-con los datos disponibles \textbf{no se puede verificar} la afirmación de que
-ambas puntas del cociente usan la misma definición.
+dentro del 1,3\,\% (CABA: DEIS \num{397191}, RENAPER \num{402492}). Eso hacía
+sospechar que la validación era circular. Resulta que no lo es, pero por una
+razón que obligó a rehacer el argumento entero de esta sección.
 
-Esto importa porque el portal del DEIS publica la serie como nacimientos
-\emph{ocurridos}, por lugar del parto, que sería la misma definición que usa el
-\texttt{P19} de Wikidata: quien nació en una maternidad de la Capital figuraría
-en la Capital en las dos puntas del cociente y el cociente sería válido. Pero esa
-simetría, aun si se cumpliera, \textbf{solo vale a nivel provincial}, que es donde
-el DEIS es dato real. Por debajo de la provincia el denominador ya no es por
-ocurrencia: es población residente repartida. Y es justamente ahí —departamento,
-ciudad, tamaño de localidad— donde vive H1. La defensa metodológica más fuerte del
-estudio no aplica en el nivel donde se mide el efecto principal; se declara como
-la limitación central (§\ref{sec:limitaciones}).
+\subsubsection*{Qué criterio usan realmente las dos puntas del cociente}
+\label{sec:criterio-registro}
+
+Es la pregunta de la que depende todo el trabajo, y en versiones anteriores
+quedaba explícitamente sin contestar. Se contesta con dos pruebas
+(figura~\ref{fig:criterio}).
+
+\textbf{El denominador no cuenta partos: cuenta residencias.} El DEIS publica dos
+series de nacidos vivos por jurisdicción. La histórica 1914--2024 —la que usa este
+trabajo— se titula «nacimientos \emph{ocurridos}». La otra, 2005--2022, es
+explícitamente por \textbf{residencia de la madre}. En las \textbf{432 celdas
+provincia\,$\times$\,año} en que se solapan, las dos series son \textbf{idénticas}:
+cero celdas con diferencia, diferencia absoluta máxima cero. CABA, cuyas
+maternidades atienden partos de todo el conurbano y que por ocurrencia debería
+mostrar un exceso grande, coincide año por año al dígito. Cualquiera sea su
+título, el dato es la tabulación por residencia. La afirmación que versiones
+anteriores de este trabajo hacían —que la serie cuenta partos y que por eso
+comparte definición con el \texttt{P19}— \textbf{era falsa}, y se sostenía sobre
+el título del recurso en el portal, no sobre el dato.
+
+\textbf{El numerador tampoco: registra el pueblo.} Si el \texttt{P19} anotara el
+lugar del parto, las localidades sin maternidad tendrían cero futbolistas —nadie
+nace materialmente en un paraje de cien habitantes— y la tasa por tamaño de
+localidad mostraría un \emph{escalón} en el umbral en que una localidad puede
+sostener una maternidad. No es lo que se observa: hay \textbf{76 futbolistas cuyo
+\texttt{P19} apunta a localidades de menos de \num{2000} habitantes, repartidos en
+63 localidades distintas}. Emiliano Sala figura nacido en Cululú, Santa Fe, 106
+habitantes; José Basanta en Tres Sargentos, Buenos Aires, 456. Y la tasa no tiene
+forma de escalón sino que sube irregularmente desde el tramo más chico
+(10,8 $\cdot$ 6,3 $\cdot$ 9,6 $\cdot$ 12,7 $\cdot$ 15,0 por \num{100000}), sin
+ningún umbral.
+
+\textbf{Consecuencia.} Las dos puntas del cociente registran, predominantemente,
+el lugar de \textbf{residencia}, no el del parto. El artefacto de las maternidades
+—la amenaza que este trabajo declaraba como su limitación central— \textbf{no está
+operando en la dirección que se temía}, y el cociente es definicionalmente
+coherente en todos sus niveles, no solo en el provincial. Queda una versión débil:
+que una fracción de los registros de Wikidata sí anote la ciudad cabecera. Su cota
+superior es \textbf{44,5\,\%}, calculada del peor modo posible —atribuyendo
+\emph{todo} el déficit de las localidades chicas a mala atribución y \emph{nada} a
+un efecto real—. No es una estimación: es un techo.
+
+\begin{figure}[!htb]
+  \centering
+  \includegraphics[width=\textwidth]{fig27_criterio_del_registro.pdf}
+  \caption{Las dos pruebas del criterio del registro. Izquierda: la serie
+  histórica del DEIS contra la tabulación por residencia de la madre, jurisdicción
+  por jurisdicción. Derecha: futbolistas por tamaño de la localidad de nacimiento;
+  la hipótesis del parto predice cero en los tres tramos naranjas.}
+  \label{fig:criterio}
+\end{figure}
 
 Como control se reportan además cinco denominadores alternativos: población total
 en los censos 1991, 2001, 2010 y 2022, y personas que en 2022 declararon haber
@@ -245,18 +302,21 @@ restringido a cohortes $\leq 2002$ como robustez.
 Wikidata vía SPARQL, paginado por año de nacimiento, con snapshot fechado.
 
 \begin{center}\small
+% TABLA:muestra INICIO
+% generado por `python -m src.report.sync_tablas_paper`; no editar a mano
 \begin{tabular}{@{}lr@{}}
 \toprule
-\textbf{Paso} & \textbf{$n$}\\
+\textbf{Paso} & \textbf{n}\\
 \midrule
-Futbolistas argentinos en Wikidata & \num{9115}\\
-Con precisión de fecha $\geq$ año & \num{8976}\\
-Muestra masculina & \num{8649}\\
-Con lugar de nacimiento (\texttt{P19}) & \num{8290}\\
-Con lugar resuelto dentro de Argentina & \num{7711}\\
-\textbf{Cohortes 1975--2008} & \textbf{\num{5511}}\\
+Jugadores en wikidata & 9.115\\
+Precisión de fecha $\geq$ año (timeprecision $\geq$ 9) & 8.976\\
+Género = male & 8.649\\
+Con lugar de nacimiento (p19) & 8.290\\
+Lugar resuelto dentro de argentina & 7.711\\
+\textbf{Cohorte 1975--2008} & \textbf{5.511}\\
 \bottomrule
 \end{tabular}
+% TABLA:muestra FIN
 \end{center}
 
 \subsection{Resolución geográfica}
@@ -315,25 +375,27 @@ jugadores de selección mayor contra 12,7\,\% en el resto. H3 se apoya en
 
 \begin{table}[!htb]\centering\small
 \caption{Producción por tramo de tamaño de la ciudad de nacimiento.
-$\chi^2(4) = 452{,}2$; $p < 10^{-95}$; $w = 0{,}29$; $n = \num{5248}$.}
+$\chi^2(4) = 382{,}1$; $p < 10^{-80}$; $w = 0{,}27$; $n = \num{5248}$.}
+% TABLA:h1_tramos INICIO
+% generado por `python -m src.report.sync_tablas_paper`; no editar a mano
 \begin{tabular}{@{}lrrrll@{}}
 \toprule
-\textbf{Tamaño} & \textbf{Futbolistas} & \textbf{Nacidos} & \textbf{Tasa} &
-\textbf{IC 95\,\%} & \textbf{RR vs $>$500k}\\
+\textbf{Tamaño de la ciudad} & \textbf{Futbolistas} & \textbf{Nacidos} & \textbf{Tasa /100.000} & \textbf{IC 95\%} & \textbf{RR vs $>$500k}\\
 \midrule
-$<$10k    & 431 & \num{3339078}  & 12,9 & 11,7--14,2 & 0,42 (0,38--0,47)\\
-10--50k   & 568 & \num{3418174}  & 16,6 & 15,3--18,0 & 0,55 (0,50--0,60)\\
-50--100k  & 275 & \num{1280832}  & 21,5 & 19,0--24,2 & 0,70 (0,62--0,80)\\
-100--500k & 631 & \num{2934614}  & 21,5 & 19,9--23,3 & 0,71 (0,65--0,77)\\
-\textbf{$>$500k} & \textbf{3343} & \num{10975566} & \textbf{30,5} & 29,4--31,5 & 1,00\\
+$<$10k & 431 & 3.385.077 & 12,7 & 11,6--14,0 & 0,45 (0,41--0,50)\\
+10--50k & 568 & 3.491.322 & 16,3 & 15,0--17,7 & 0,57 (0,52--0,63)\\
+50--100k & 275 & 1.338.281 & 20,5 & 18,2--23,1 & 0,72 (0,64--0,82)\\
+100--500k & 631 & 2.994.490 & 21,1 & 19,5--22,8 & 0,74 (0,68--0,81)\\
+\textbf{$>$500k} & \textbf{3.343} & \textbf{11.788.344} & \textbf{28,4} & \textbf{27,4--29,3} & \textbf{1,00}\\
 \bottomrule
 \end{tabular}
+% TABLA:h1_tramos FIN
 \end{table}
 
 El tramo de \num{50000} a \num{100000} habitantes —el óptimo que predice la
 literatura— no muestra ningún pico (figura~\ref{fig:tramos}). Con los cortes de
 Côté et al.\ el resultado es el mismo: de 8,4 por \num{100000} en localidades de
-menos de \num{1000} habitantes a 30,5 en las de más de \num{500000}.
+menos de \num{1000} habitantes a 28,4 en las de más de \num{500000}.
 
 \begin{figure}[!htb]
   \centering
@@ -365,8 +427,8 @@ produciría el registro del parto en la ciudad cabecera}
   \label{fig:deciles}
 \end{figure}
 
-\textbf{Regresión.} Modelo binomial negativo sobre \num{3459} ciudades: cada
-\emph{e-fold} de tamaño multiplica la tasa por 1,181 (\ic{1,120}{1,246};
+\textbf{Regresión.} Modelo binomial negativo sobre \num{3477} ciudades: cada
+\emph{e-fold} de tamaño multiplica la tasa por 1,175 (\ic{1,114}{1,240};
 $p < 0{,}0001$). Con el término cuadrático ni el lineal ni el cuadrático resultan
 significativos ($p = 0{,}11$ y $p = 0{,}44$) y el AIC empeora (3654,3 contra
 3652,8). No hay curva en U invertida que ajustar.
@@ -388,31 +450,36 @@ casi nula. A \num{100000} habitantes las ciudades reales van de 3 a 100 por cada
 \end{figure}
 
 \textbf{Robustez.} El patrón se sostiene al cambiar la unidad de agregación y la
-ventana de cohortes: RR 0,42 con aglomerado urbano, 0,39 con localidad censal
-aislada, 0,41 restringido a cohortes $\leq 2002$. El hallazgo no es una decisión
+ventana de cohortes: RR 0,45 con aglomerado urbano, 0,36 con localidad censal
+aislada, 0,44 restringido a cohortes $\leq 2002$. El hallazgo no es una decisión
 de agregación.
 
 \subsection{H2 — AMBA y corredor pampeano}
 
 \begin{table}[!htb]\centering\small
-\caption{Producción por región. $\chi^2(5) = 1050{,}7$; $w = 0{,}44$.}
-\begin{tabular}{@{}lrrll@{}}
+\caption{Producción por región. $\chi^2(5) = 1110{,}8$; $w = 0{,}45$.}
+% TABLA:h2_regiones INICIO
+% generado por `python -m src.report.sync_tablas_paper`; no editar a mano
+\begin{tabular}{@{}lrrlr@{}}
 \toprule
-\textbf{Región} & \textbf{Futbolistas} & \textbf{Tasa} & \textbf{IC 95\,\%} &
-\textbf{RR vs AMBA}\\
+\textbf{Región} & \textbf{Futbolistas} & \textbf{Tasa /100.000} & \textbf{IC 95\%} & \textbf{RR vs AMBA}\\
 \midrule
-AMBA      & 1859 & 35,0 & 33,5--36,7 & 1,00\\
-Pampeana  & 2600 & 29,5 & 28,4--30,7 & 0,84\\
-Cuyo      &  265 & 15,2 & 13,4--17,2 & 0,43\\
-Patagonia &  153 & 12,7 & 10,8--14,9 & 0,36\\
-NEA       &  255 &  9,6 &  8,4--10,8 & 0,27\\
-NOA       &  269 &  8,2 &  7,2-- 9,2 & 0,23\\
+Pampeana & 2.587 & 34,5 & 33,2--35,9 & 1,22\\
+AMBA & 1.872 & 28,3 & 27,0--29,6 & 1,00\\
+Cuyo & 265 & 15,2 & 13,4--17,2 & 0,54\\
+Patagonia & 153 & 12,7 & 10,8--14,9 & 0,45\\
+NEA & 255 & 9,6 & 8,4--10,8 & 0,34\\
+NOA & 269 & 8,2 & 7,2--9,2 & 0,29\\
 \bottomrule
 \end{tabular}
+% TABLA:h2_regiones FIN
 \end{table}
 
-\textbf{H2 no se sostiene.} El interior no produce más que el AMBA: produce
-menos, y en el norte produce cuatro veces menos. El mapa departamental
+\textbf{H2 no se sostiene, aunque no del modo en que se creyó al principio.}
+El interior no produce más que el centro: el norte produce cuatro veces menos.
+Pero el AMBA \textbf{no} encabeza: la región pampeana produce un 22\,\% más por
+nacido (34,5 contra 28,3). La producción se concentra en un corredor pampeano
+—Santa Fe, Córdoba, el centro bonaerense— y el AMBA viene después. El mapa departamental
 (figura~\ref{fig:mapa}) muestra el corredor con nitidez, y el orden provincial
 (figura~\ref{fig:ranking}) es estable con cualquiera de los seis denominadores
 probados.
@@ -420,8 +487,11 @@ probados.
 \begin{figure}[!htb]
   \centering
   \includegraphics[height=0.83\textheight]{fig01_mapa_departamentos_tasa.pdf}
-  \caption{Producción per cápita por departamento. El patrón dominante es un
-  corredor AMBA--Rosario--Santa Fe, no una dispersión federal.}
+  \caption{Producción per cápita por departamento, con tasas contraídas hacia la
+  media nacional (\emph{empirical Bayes} gamma-Poisson): sin contraer, el mapa lo
+  encabeza el ruido de Poisson de los departamentos chicos. El patrón dominante es
+  un corredor Santa Fe--Rosario--Córdoba con el AMBA al lado, no una dispersión
+  federal.}
   \label{fig:mapa}
 \end{figure}
 
@@ -489,7 +559,7 @@ está en los jugadores de selección mayor, donde el registro de Wikidata es
 prácticamente censal.
 
 El patrón por tamaño se sostiene en los cuatro niveles competitivos, incluida la
-selección ($\chi^2(4) = 26{,}5$; $p < 0{,}0001$; $w = 0{,}32$; $n = 255$): 15,3
+selección: 14,3
 seleccionados por millón de nacidos en aglomerados de más de \num{500000} contra
 7,5 en localidades de menos de \num{10000} (figura~\ref{fig:seleccion}). Por
 región, 17 por millón en el AMBA contra 2 en el NOA. En cambio \textbf{H4 tal
@@ -528,18 +598,20 @@ dónde nacieron? El denominador acá no es una estimación de nacimientos: son l
 \begin{table}[!htb]\centering\small
 \caption{Conversión de juvenil a Selección Mayor según el tamaño de la ciudad de
 nacimiento. Intervalos binomiales exactos.}
+% TABLA:conversion INICIO
+% generado por `python -m src.report.sync_tablas_paper`; no editar a mano
 \begin{tabular}{@{}lrrrl@{}}
 \toprule
-\textbf{Ciudad de nacimiento} & \textbf{Juveniles} & \textbf{Llegan a la Mayor} &
-\textbf{\%} & \textbf{IC 95\,\%}\\
+\textbf{Ciudad de nacimiento} & \textbf{Juveniles} & \textbf{Llegan a la Mayor} & \textbf{\%} & \textbf{IC 95\%}\\
 \midrule
-$<$10k    &  19 &  7 & 36,8 & 16,3--61,6\\
-10--50k   &  25 & 14 & 56,0 & 34,9--75,6\\
-50--100k  &  20 &  6 & 30,0 & 11,9--54,3\\
-100--500k &  31 & 12 & 38,7 & 21,8--57,8\\
-\textbf{$>$500k} & \textbf{242} & \textbf{68} & \textbf{28,1} & 22,5--34,2\\
+$<$10k & 19 & 7 & 36,8 & 16,3--61,6\\
+10--50k & 25 & 14 & 56,0 & 34,9--75,6\\
+50--100k & 20 & 6 & 30,0 & 11,9--54,3\\
+100--500k & 31 & 12 & 38,7 & 21,8--57,8\\
+\textbf{$>$500k} & \textbf{242} & \textbf{68} & \textbf{28,1} & \textbf{22,5--34,2}\\
 \bottomrule
 \end{tabular}
+% TABLA:conversion FIN
 \end{table}
 
 Agrupando en el contraste que tiene potencia —fuera de un gran aglomerado contra
@@ -597,6 +669,78 @@ aparece}: ningún contraste que involucre al NOA o al NEA sobrevive a la
 corrección.
 
 % =============================================================================
+\subsection{Placebo: el mismo análisis en otros deportes}
+\label{sec:placebo}
+
+La objeción más difícil de contestar contra todo lo anterior no es metodológica
+sino de interpretación: que lo que se mide no sea la geografía del fútbol sino la
+del país —dónde hay clase media, dónde hay infraestructura deportiva de cualquier
+tipo, dónde Wikipedia tiene editores—. Esa objeción se contesta corriendo el mismo
+análisis sobre otro deporte.
+
+Se repitió todo el pipeline sobre deportistas argentinos de básquet, rugby, vóley
+y hockey: misma ventana de cohortes, mismos filtros de sexo y precisión de fecha,
+misma cadena de geocoding, mismo denominador de nacidos vivos y mismos tramos. Lo
+único que cambia es el deporte. Las tasas no son comparables entre deportes —la
+cobertura de Wikidata es muy distinta— pero la \textbf{forma} sí lo es.
+
+\begin{table}[!htb]\centering\small
+\caption{El contraste que define el \emph{birthplace effect}: ciudades de
+\num{50000} a \num{100000} habitantes contra grandes aglomerados. RR $>$ 1 es el
+efecto clásico; RR $<$ 1, su inverso.}
+\begin{tabular}{@{}lrrrl@{}}
+\toprule
+\textbf{Deporte} & \textbf{$n$ (50--100k)} & \textbf{$n$ ($>$500k)} &
+\textbf{RR} & \textbf{IC 95\,\%}\\
+\midrule
+\textbf{Básquet} &  39 &  176 & \textbf{1,95} & 1,38--2,76\\
+\textbf{Fútbol}  & 275 & 3343 & \textbf{0,72} & 0,64--0,82\\
+Vóley            &   2 &   52 & 0,34 & 0,08--1,39\\
+Hockey           &   2 &   33 & 0,53 & 0,13--2,22\\
+\textbf{Rugby}   &   2 &  210 & \textbf{0,08} & 0,02--0,34\\
+\addlinespace
+\emph{Fútbol femenino} & 12 & 144 & \emph{0,73} & 0,41--1,32\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\textbf{El básquet argentino tiene el \emph{birthplace effect} clásico, con el
+pico exactamente donde Côté et al.\ lo sitúan}, y sus intervalos no se tocan con
+los del fútbol. Por observado sobre esperado, el básquet va
+0,40 $\cdot$ 0,85 $\cdot$ \textbf{1,88} $\cdot$ 1,60 $\cdot$ 0,96 a lo largo de
+los cinco tramos: una U invertida de manual. El fútbol va
+0,56 $\cdot$ 0,71 $\cdot$ 0,90 $\cdot$ 0,92 $\cdot$ 1,24, creciendo hacia la
+metrópoli. El rugby está aún más concentrado que el fútbol y el hockey más todavía
+—el 83\,\% de los jugadores de hockey nace en el AMBA—, coherente con que sean
+deportes de colegio privado metropolitano. Por región el contraste es igual de
+nítido: el básquet produce 2,01 veces lo esperado en la región pampeana y
+\textbf{0,56 en el AMBA}; el fútbol, 1,47 y 1,20.
+
+\textbf{El fútbol femenino es el control interno del control.} No es un placebo
+—es el mismo deporte— pero su infraestructura es otra: se profesionalizó en 2019 y
+su cobertura en Wikidata es mucho más reciente. Su geografía es
+\textbf{indistinguible} de la del masculino: RR 0,73 (\ic{0,41}{1,32}) contra
+0,72, y tests de homogeneidad que no rechazan ($p = 0{,}76$ por tramo,
+$p = 0{,}74$ por región; $V = 0{,}018$ y $0{,}022$, tamaños de efecto que hacen
+informativo el no rechazo pese a $n = 213$).
+
+\textbf{Ningún artefacto de medición compartido —el registro de nacimientos, la
+imputación del denominador, la cobertura de Wikipedia, el nivel socioeconómico del
+departamento— puede producir mapas opuestos para deportes distintos medidos con el
+mismo instrumento.} El patrón del fútbol es del fútbol.
+
+\emph{Limitación:} vóley ($n = 70$) y hockey ($n = 36$) tienen muestras demasiado
+chicas para leer sus tramos por separado; entran en el contraste binario y en las
+tablas, no en la lectura de la forma. Básquet (356) y rugby (243) sí la sostienen.
+
+\begin{figure}[!htb]
+  \centering
+  \includegraphics[width=\textwidth]{fig28_placebo_otros_deportes.pdf}
+  \caption{Izquierda: observado sobre esperado por nacimientos, tramo por tramo.
+  Derecha: el contraste que define el \emph{birthplace effect}, con IC 95\,\%.}
+  \label{fig:placebo}
+\end{figure}
+
 \section{Discusión}
 
 \subsection{Por qué el efecto está invertido}
@@ -655,27 +799,60 @@ centros de rendimiento como uno de sus tres ejes explicativos. Este trabajo
 cohorte que es mejor que el de buena parte de la literatura, y un diseño
 condicional que no necesita denominador.
 
-\subsection{Qué cambió al corregir el denominador}
+\subsection{Qué cambió al corregir el denominador, y qué al corregir la geografía}
 
-Vale registrarlo porque es el tipo de cosa que decide un resultado en silencio.
-Con la población censada en 2022 como denominador, el RR de las localidades de
-menos de \num{10000} habitantes contra los grandes aglomerados daba 0,57; con los
-nacimientos reales da 0,42. La diferencia es la migración: los pueblos son
-exportadores netos de población, así que contar a sus residentes de 2022
-subestimaba cuánta gente había nacido ahí e inflaba su tasa. En la misma
-corrección, el AMBA pasó de estar por debajo de la región pampeana a estar por
-encima: las áreas metropolitanas tienen menos hijos por habitante.
+Vale registrar las dos cosas porque son del tipo que decide un resultado en
+silencio.
+
+\textbf{El denominador.} Con la población censada en 2022, el RR de las
+localidades de menos de \num{10000} habitantes contra los grandes aglomerados daba
+0,57; con los nacimientos reales da 0,45. La diferencia es la migración: los
+pueblos son exportadores netos de población, así que contar a sus residentes de
+2022 subestimaba cuánta gente había nacido ahí e inflaba su tasa.
+
+\textbf{La geografía.} Dos errores de códigos de departamento, ninguno de los
+cuales fallaba ruidosamente porque los dos conservaban los totales provinciales y
+rompían el reparto interno:
+
+\begin{itemize}[leftmargin=1.4em,itemsep=0.25em]
+  \item Los códigos del INDEC \textbf{no son estables entre censos}: 44 de 532
+    cambiaron entre 1991 y 2022, casi todos por las divisiones de partidos
+    bonaerenses de 1994. Como los nacimientos se reparten con el censo más cercano
+    y los jugadores se geocodifican contra la geografía 2022, los nacimientos de un
+    partido dividido quedaban partidos entre un código viejo y uno nuevo, y el
+    viejo se perdía río abajo: \textbf{\num{1049301} nacimientos, el 4,6\,\% del
+    total y el 70\,\% de ellos del Gran Buenos Aires}, desaparecían del denominador
+    por ciudad. Magdalena encabezaba el ranking departamental con 163 futbolistas
+    por \num{100000} y era enteramente un artefacto (su valor real es 65).
+  \item La lista de los 24 partidos del Gran Buenos Aires estaba \textbf{corrida un
+    lugar}: doce de los veinticuatro códigos apuntaban a otro partido. El «AMBA»
+    del estudio excluía Quilmes, Merlo, San Miguel, Tres de Febrero y Vicente
+    López, e incluía La Plata, Marcos Paz, Pilar y Presidente Perón.
+\end{itemize}
+
+Corregidos los dos, \textbf{la región pampeana pasa a producir más que el AMBA}
+(34,5 contra 28,3) y la razón interior/AMBA pasa de 0,59 a 0,79. Versiones
+anteriores de este trabajo afirmaban lo contrario, y afirmaban además —como
+lección metodológica— que el cambio de denominador había puesto al AMBA por encima
+de la pampeana. Esa inversión era el error, no un hallazgo.
+
+Ahora los códigos se resuelven contra el padrón oficial del INDEC en lugar de
+escribirse a mano, hay un crosswalk histórico versionado con el criterio de cada
+equivalencia, y una verificación de conservación de masa corta el pipeline si
+alguna transformación pierde nacimientos.
 
 \subsection{Limitaciones}
 \label{sec:limitaciones}
 
 \begin{enumerate}[leftmargin=1.6em,itemsep=0.3em]
-  \item \textbf{Nacer no es criarse, y en Argentina el parto ocurre donde hay
-    maternidad.} Es la limitación más seria y no está acotada. Un chico de un
-    pueblo de \num{3000} habitantes nace en la cabecera departamental y queda
-    registrado ahí, en el DEIS y en Wikidata. Eso vacía sistemáticamente a las
-    localidades chicas y llena a las cabeceras. Dos señales de que el problema es
-    real: el tramo $<$10k se construye sobre un padrón que incluye 264
+  \item \textbf{Nacer no es criarse.} Sigue siendo la limitación conceptual de
+    fondo: el lugar de nacimiento no es el de crianza, y el pipeline no tiene
+    lugar de crianza en ninguna parte. Lo que \textbf{sí} quedó acotado es su
+    versión mecánica —que el parto ocurre donde hay maternidad—: las dos puntas
+    del cociente registran residencia y no parto (§\ref{sec:criterio-registro}),
+    de modo que el artefacto no opera como se temía. Queda su versión débil, con
+    cota superior de 44,5\,\% calculada del peor modo posible. Una advertencia que
+    sobrevive intacta: el tramo $<$10k se construye sobre un padrón que incluye 264
     «localidades» de menos de 100 habitantes —entre ellas parajes de seis
     personas, donde materialmente no nace nadie— y la forma del efecto es un
     escalón único, que es exactamente lo que este artefacto produciría.
@@ -768,7 +945,10 @@ Todo el pipeline es código; \texttt{data/raw/} no se edita y cada descarga deja
 manifiesto fechado con URL y SHA-256. Las decisiones de diseño están en
 \texttt{config.yaml} con su justificación, y las funciones que comparten
 numerador y denominador tienen tests. El orden de ejecución está en el README.
-Las 26 figuras se generan con dos módulos y se exportan en PDF, SVG y PNG.
+Las 28 figuras se generan con dos módulos y se exportan en PDF, SVG y PNG.
+Las tablas de este documento no se escriben a mano: se generan desde
+\texttt{outputs/tables/} con \texttt{src.report.sync\_tablas\_paper}, que en modo
+\texttt{-{}-check} falla si el texto quedó desfasado del pipeline.
 
 \paragraph{Fuentes.}
 Wikidata vía SPARQL (CC0, snapshot 2026-07-30);

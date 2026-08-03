@@ -23,10 +23,21 @@ requiere_salidas = pytest.mark.skipif(
 
 
 @requiere_salidas
-def test_las_tablas_del_paper_coinciden_con_las_salidas():
-    original = (P.reports / "paper.md").read_text(encoding="utf-8")
-    nuevo, vistos = sincronizar(original, P)
-    assert vistos, "el paper no tiene ninguna marca <!-- TABLA:… -->"
+@pytest.mark.parametrize("ruta, formato", [
+    (P.reports / "paper.md", "md"),
+    (P.root / "paper" / "paper.tex", "tex"),
+])
+def test_las_tablas_del_paper_coinciden_con_las_salidas(ruta, formato):
+    """Vale para las dos versiones del paper.
+
+    El `.tex` quedó cuatro lotes atrasado respecto del `.md` justamente porque
+    tenía números propios y nada los comparaba con nada.
+    """
+    if not ruta.exists():
+        pytest.skip(f"no existe {ruta.name}")
+    original = ruta.read_text(encoding="utf-8")
+    nuevo, vistos = sincronizar(original, P, formato)
+    assert vistos, f"{ruta.name} no tiene ninguna marca de tabla"
     assert nuevo == original, (
-        "las tablas del paper están desfasadas respecto de outputs/tables/. "
+        f"las tablas de {ruta.name} están desfasadas respecto de outputs/tables/. "
         "Correr `python -m src.report.sync_tablas_paper`.")

@@ -125,3 +125,26 @@ la formación de cada uno: el básquet con ligas federales y clubes formadores
 repartidos, el fútbol con la mitad de su formación registrada en diez clubes.
 **Es plausible y no está medido.** Comparar las dos estructuras formativas es un
 trabajo propio, no un lote.
+
+
+---
+
+## Del cierre (`feat/cierre`, 2026-08-02)
+
+### P12 — El `.tex` había quedado cuatro lotes atrasado
+
+`paper/paper.tex` tenía sus propios números escritos a mano y nadie los comparaba
+con nada, así que quedó con las cifras de antes de los tres lotes de revisión —el
+mismo modo de falla que el §3.2 del markdown, que ya se había arreglado—.
+
+Resuelto de la misma forma: las cuatro tablas del `.tex` se generan desde
+`outputs/tables/` con los mismos constructores que las del `.md`, y el test
+`test_las_tablas_del_paper_coinciden_con_las_salidas` corre ahora sobre las dos
+versiones.
+
+Lo que **no** está generado es la prosa: los números que viven en el texto
+corrido (χ², IRR, tasas citadas al pasar) siguen escritos a mano en los dos
+documentos. Es el mismo riesgo, un nivel más abajo. Generarlos requeriría macros
+tipo `
+um{}` alimentadas desde un `.tex` de definiciones, que es un trabajo
+propio.

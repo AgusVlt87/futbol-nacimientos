@@ -70,10 +70,15 @@ el AMBA al 90,8%. Hay dos modelos de club formador: Rosario Central forma 94
 jugadores a 0 km de mediana y con el 18% venido de otra provincia; Boca forma 143
 a 277 km y con el 77% de afuera.
 
-**El paper completo es [reports/paper.md](reports/paper.md)**, con las 28 figuras
-en [outputs/figures/](outputs/figures/). También está la versión LaTeX en
-[paper/paper.pdf](paper/paper.pdf) (`paper/compilar.ps1` la recompila desde
-[paper/paper.tex](paper/paper.tex); **está desactualizada respecto del markdown**).
+**El paper completo es [paper/paper.pdf](paper/paper.pdf)** — 21 páginas, con las
+figuras que sostienen el argumento intercaladas en el texto. Se compila con
+`paper/compilar.ps1` desde [paper/paper.tex](paper/paper.tex). La misma cosa en
+markdown está en [reports/paper.md](reports/paper.md), y las 28 figuras sueltas en
+[outputs/figures/](outputs/figures/).
+
+Las tablas de las dos versiones **se generan desde `outputs/tables/`**, no se
+escriben a mano: `python -m src.report.sync_tablas_paper` las reescribe y
+`--check` falla si quedaron desfasadas del pipeline. Hay un test que lo verifica.
 
 ---
 
