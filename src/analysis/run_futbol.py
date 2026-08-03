@@ -24,7 +24,7 @@ import pandas as pd
 
 from src.analysis.stats import poisson_rate_ci
 from src.clean.geo_units import haversine_km
-from src.common import get_logger, load_config, paths
+from src.common import get_logger, load_config, paths, write_run_manifest
 from src.denominadores import cargar_ciudades
 
 log = get_logger("analysis.futbol")
@@ -157,6 +157,9 @@ def main() -> None:
     for nombre, tabla in salidas.items():
         tabla.to_csv(p.tables / f"{nombre}.csv", index=False, encoding="utf-8")
         log.info("  %-38s %4d filas", nombre + ".csv", len(tabla))
+
+    write_run_manifest(p.tables, "run_futbol",
+                       {k: len(v) for k, v in salidas.items()})
 
     top = salidas["futbol_clubes_formadores"].head(10)
     log.info("\nclubes que más forman:\n%s",

@@ -36,7 +36,7 @@ from __future__ import annotations
 import numpy as np
 import pandas as pd
 
-from src.common import get_logger, load_config, paths
+from src.common import get_logger, load_config, paths, write_run_manifest
 
 log = get_logger("analysis.criterio")
 
@@ -176,6 +176,9 @@ def main() -> None:
     for nombre, tabla in salidas.items():
         tabla.to_csv(p.tables / f"{nombre}.csv", index=False, encoding="utf-8")
         log.info("%-42s %3d filas", nombre + ".csv", len(tabla))
+
+    write_run_manifest(p.tables, "run_criterio_denominador",
+                       {k: len(v) for k, v in salidas.items()})
 
     r = resumen.iloc[0]
     log.info("PRUEBA 1 — denominador: %d de %d celdas provincia×año difieren "

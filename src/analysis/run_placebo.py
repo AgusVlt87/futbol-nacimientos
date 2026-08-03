@@ -49,12 +49,13 @@ from src.clean.geocode_places import (
     granularity,
     reverse_geocode,
 )
-from src.common import get_logger, load_config, paths
+from src.common import get_logger, load_config, paths, write_run_manifest
 from src.denominadores import cargar_ciudades
 
 log = get_logger("analysis.placebo")
 
 GENERO_MASCULINO = "Q6581097"
+GENERO_FEMENINO = "Q6581072"
 ORDEN_TRAMOS = ["<10k", "10–50k", "50–100k", "100–500k", ">500k"]
 
 
@@ -97,12 +98,35 @@ def lugares_resueltos(cfg, p) -> pd.DataFrame:
     return pd.concat([base[comunes], nuevos[comunes]], ignore_index=True)
 
 
+def bindings_futbol_femenino(p, cfg) -> list[dict]:
+    """Futbolistas mujeres, desde el crudo del fútbol.
+
+    `players.parquet` viene filtrado a varones (`sample.gender_filter`), así que
+    la muestra femenina hay que sacarla del JSON crudo. Es el mismo corpus y la
+    misma consulta: el único filtro que cambia es el sexo.
+    """
+    c = cfg["cohorts"]
+    y0, y1 = c["analysis_min_year"], c["analysis_max_year"]
+    out = []
+    for f in sorted((p.raw / "wikidata" / "players").glob("*.json")):
+        if not (y0 <= int(f.stem) <= y1):
+            continue
+        out += json.loads(f.read_text(encoding="utf-8"))["bindings"]
+    return out
+
+
 def cargar_deporte(deporte: str, p, cfg, places: pd.DataFrame,
-                   tamano: pd.DataFrame) -> pd.DataFrame:
-    ruta = p.raw / "wikidata" / "placebo" / f"{deporte}.json"
-    bindings = json.loads(ruta.read_text(encoding="utf-8"))["bindings"]
+                   tamano: pd.DataFrame, genero: str | None = None,
+                   bindings: list[dict] | None = None) -> pd.DataFrame:
+    if bindings is None:
+        ruta = p.raw / "wikidata" / "placebo" / f"{deporte}.json"
+        bindings = json.loads(ruta.read_text(encoding="utf-8"))["bindings"]
     filas = {}
     for b in bindings:
+        # En el crudo del fútbol el P19 es OPTIONAL: sin lugar de nacimiento el
+        # jugador no entra al análisis geográfico.
+        if "birthplace" not in b:
+            continue
         q = b["player"]["value"].rsplit("/", 1)[-1]
         filas.setdefault(q, {
             "player_qid": q,
@@ -116,8 +140,12 @@ def cargar_deporte(deporte: str, p, cfg, places: pd.DataFrame,
     d = pd.DataFrame(filas.values())
     # Mismos filtros que la muestra de fútbol: precisión de fecha y sexo.
     d = d[d["dob_precision"] >= 9]
-    if cfg["sample"]["gender_filter"] == "male":
-        d = d[d["gender_qid"] == GENERO_MASCULINO]
+    d = d[d["birth_year"].between(cfg["cohorts"]["analysis_min_year"],
+                                  cfg["cohorts"]["analysis_max_year"])]
+    objetivo = genero or (GENERO_MASCULINO if cfg["sample"]["gender_filter"] == "male"
+                          else None)
+    if objetivo:
+        d = d[d["gender_qid"] == objetivo]
 
     d = d.merge(places[["place_qid", "granularity", "geo_status", "prov_id",
                         "dept_id", "localidad_id"]],
@@ -219,6 +247,13 @@ def main() -> None:
     muestras = {"futbol": futbol}
     for dep in deportes:
         muestras[dep] = cargar_deporte(dep, p, cfg, places, tamano)
+    # Fútbol femenino: mismo corpus y misma consulta que la muestra principal,
+    # con el único filtro de sexo cambiado. Es un contraste de infraestructura
+    # —el fútbol femenino argentino se profesionalizó recién en 2019— dentro del
+    # mismo deporte, no un placebo.
+    muestras["futbol_femenino"] = cargar_deporte(
+        "futbol_femenino", p, cfg, places, tamano, genero=GENERO_FEMENINO,
+        bindings=bindings_futbol_femenino(p, cfg))
 
     resumen, formas_t, formas_r, tests, optimos = [], [], [], [], []
     ref_t = futbol.groupby("tramo", observed=False).size().reindex(ORDEN_TRAMOS).fillna(0)
@@ -257,6 +292,9 @@ def main() -> None:
     for nombre, tabla in salidas.items():
         tabla.to_csv(p.tables / f"{nombre}.csv", index=False, encoding="utf-8")
         log.info("%-34s %3d filas", nombre + ".csv", len(tabla))
+
+    write_run_manifest(p.tables, "run_placebo",
+                       {k: len(v) for k, v in salidas.items()})
 
     log.info("\n%s", salidas["placebo_muestras"].round(1).to_string(index=False))
     log.info("\n%s", salidas["placebo_tests_homogeneidad"]

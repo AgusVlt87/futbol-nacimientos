@@ -96,3 +96,41 @@ def write_manifest(directory: Path, payload: dict[str, Any], name: str = "_manif
     with open(out, "w", encoding="utf-8") as fh:
         json.dump(payload, fh, ensure_ascii=False, indent=2)
     return out
+
+
+# --------------------------------------------------------------------------- #
+# Procedencia de cada corrida
+# --------------------------------------------------------------------------- #
+def write_run_manifest(directory: Path, modulo: str, salidas: dict[str, int]) -> Path:
+    """Deja constancia de qué produjo esta corrida y con qué configuración.
+
+    `outputs/` está en `.gitignore`, así que git no puede decir si las tablas de
+    disco corresponden al código de disco. Sin esto, «el pipeline reproduce» no
+    es verificable: `git diff outputs/` sale vacío siempre, incluso cuando las
+    salidas quedaron viejas.
+    """
+    ROOT_CFG = ROOT / "config.yaml"
+    try:
+        import subprocess
+        commit = subprocess.run(["git", "rev-parse", "--short", "HEAD"], cwd=ROOT,
+                                capture_output=True, text=True, timeout=15).stdout.strip()
+    except Exception:                                     # noqa: BLE001
+        commit = None
+    payload = {
+        "modulo": modulo,
+        "generado_utc": utc_now(),
+        "commit": commit or "desconocido",
+        "config_sha256": sha256(ROOT_CFG) if ROOT_CFG.exists() else None,
+        "salidas": salidas,
+    }
+    directory.mkdir(parents=True, exist_ok=True)
+    out = directory / "_run.json"
+    previo = {}
+    if out.exists():
+        try:
+            previo = json.loads(out.read_text(encoding="utf-8"))
+        except Exception:                                 # noqa: BLE001
+            previo = {}
+    previo[modulo] = payload
+    out.write_text(json.dumps(previo, ensure_ascii=False, indent=2), encoding="utf-8")
+    return out

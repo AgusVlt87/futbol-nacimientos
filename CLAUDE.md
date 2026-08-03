@@ -34,6 +34,21 @@ en 2022 y pasó a ser el número de **nacidos vivos** de cada cohorte (DEIS,
 sistema de layout propio (`src/viz/style.Figura`). Se agregó el módulo de fútbol
 (`src/analysis/run_futbol.py`): clubes formadores, cunas y selección.
 
+**Tres lotes de revisión (2026-08-02).** Diagnóstico en [docs/re-analisis.md](docs/re-analisis.md),
+impacto de cada uno en `docs/impacto-lote-{1,2,3}.md`.
+
+| Lote | Qué | Efecto |
+|---|---|---|
+| 1 · `fix/geografia-departamental` | Padrón oficial del INDEC y crosswalk histórico de departamentos | 27 de 50 tablas cambian. **La región pampeana pasa a producir más que el AMBA.** |
+| 2 · `fix/artefacto-maternidad` | Qué criterio usan realmente las dos puntas del cociente | Ninguna tabla cambia. **El artefacto de maternidad no opera**: las dos puntas registran residencia. |
+| 3 · `feat/placebo-y-robustez` | Test placebo con otros deportes, contracción bayesiana, FDR en confirmatorios | 2 tablas. **El básquet tiene el efecto clásico y el fútbol el inverso**: el patrón es del deporte. |
+
+**Estado de los bloqueantes:** de los siete que listó el re-análisis queda uno
+—H3 medida sobre muestra seleccionada por el desenlace, declarada como tal— más
+BL4 (tasa de error del `P19`), bloqueado por los términos de uso de BDFA y con el
+alcance muy reducido por el placebo. Lo abierto está en
+[docs/hallazgos-pendientes.md](docs/hallazgos-pendientes.md).
+
 ### Trampas encontradas (no volver a pisarlas)
 
 1. **`P19` = «Argentina».** 255 jugadores tienen el país como lugar de

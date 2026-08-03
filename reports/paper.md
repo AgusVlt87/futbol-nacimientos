@@ -43,7 +43,11 @@ grandes aglomerados: **el básquet da RR 1,95 (IC 95% 1,38–2,76) y el fútbol 
 efecto clásico, con su pico exactamente donde la literatura lo predice; el rugby
 está aún más concentrado que el fútbol (RR 0,08). Si lo que se midiera fuera
 infraestructura general, nivel socioeconómico o cobertura de Wikipedia, los tres
-deportes darían el mismo mapa (**Figura 28**).
+deportes darían el mismo mapa (**Figura 28**). El **fútbol femenino**, en cambio,
+es indistinguible del masculino (RR 0,73; p = 0,76 en el test de homogeneidad por
+tramo) pese a tener una infraestructura completamente distinta y haberse
+profesionalizado recién en 2019: lo que separa los mapas es el deporte, no la
+estructura profesional que lo sostiene.
 
 **Cuarto, y es el resultado más robusto del trabajo: entre los que ya llegaron a
 un juvenil de la selección, los nacidos fuera de un gran aglomerado llegan a la
@@ -59,12 +63,15 @@ AMBA 28,3, contra 8,2 del NOA y 9,6 del NEA. Por provincia, CABA produce 2,6 vec
 lo que le correspondería por sus nacimientos y Santa Fe 2,3; Salta, Catamarca y
 San Juan producen menos de un cuarto.
 
-**Sexto: la formación está mucho más concentrada que el nacimiento.** El 47,1%
-de los futbolistas se forma en una provincia distinta de aquella en la que nació,
-contra el 13,8% de la población general que reside fuera de su provincia de
-nacimiento (OR 5,58; IC 95% 5,10–6,10). El NEA retiene al 8,6% de los futbolistas
-que nacen en su territorio; el AMBA, al 90,8%. Diez clubes concentran el 48% de
-toda la formación del país.
+**Sexto, y con una advertencia que hay que leer antes que el número: entre los
+futbolistas que llegaron lejos, la formación está mucho más concentrada que el
+nacimiento.** El 47,1% se forma en una provincia distinta de aquella en la que
+nació y el NEA retiene al 8,6% de los suyos. **Pero esta submuestra está
+seleccionada por el desenlace**: la cobertura del club formador en Wikidata va
+del 99,2% entre jugadores de selección al 12,7% en el resto, de modo que describe
+a los que llegaron a la elite y no a la población de futbolistas. Son órdenes de
+magnitud, no estimaciones, y no se usan para sostener ninguna otra conclusión
+(§3.3, §4.3 limitación 5).
 
 El patrón se sostiene entre los jugadores de la selección mayor, donde la
 cobertura de Wikidata es prácticamente censal: no lo fabrica el corpus.
@@ -405,7 +412,16 @@ acierta, y no alcanza para sostener el patrón general.
 
 ### 3.3 H3 — La formación está mucho más concentrada que el nacimiento
 
-**Figuras 8, 9 y 10.** Es el resultado con más consecuencias.
+**Figuras 8, 9 y 10.**
+
+> **Advertencia que condiciona toda la sección.** La submuestra de H3 —los 1.923
+> jugadores con club formador identificable— está **seleccionada por el
+> desenlace**. La cobertura del club formador en Wikidata va del 99,2% entre
+> jugadores de selección al 12,7% en el resto: la submuestra está enriquecida al
+> doble en jugadores de elite y vaciada cinco veces del resto. Todo lo que sigue
+> describe **a los futbolistas que llegaron lejos**, no a la población de
+> futbolistas argentinos. Los números son órdenes de magnitud, no estimaciones
+> poblacionales, y **no se usan para sostener H1, H2 ni el resultado de §3.5**.
 
 **Comparado con la población general, el futbolista migra cinco veces más.**
 
@@ -579,6 +595,7 @@ effect*, ciudades de 50.000 a 100.000 habitantes contra grandes aglomerados:
 | Vóley | 2 | 52 | 0,34 | 0,08–1,39 |
 | Hockey | 2 | 33 | 0,53 | 0,13–2,22 |
 | **Rugby** | 2 | 210 | **0,08** | 0,02–0,34 |
+| *Fútbol femenino* | 12 | 144 | *0,73* | 0,41–1,32 |
 
 **El básquet argentino tiene el *birthplace effect* clásico, con el pico
 exactamente donde Côté et al. (2006) lo sitúan**, y sus intervalos no se tocan con
@@ -591,6 +608,16 @@ deportes de colegio privado metropolitano.
 
 Por región el contraste es igual de nítido: el básquet produce 2,01 veces lo
 esperado en la región pampeana y **0,56 en el AMBA**; el fútbol, 1,47 y 1,20.
+
+**El fútbol femenino es el control interno del control.** No es un placebo —es el
+mismo deporte— pero su infraestructura es otra: se profesionalizó en 2019, sus
+clubes formadores son otros y su cobertura en Wikidata es mucho más reciente. Su
+geografía es **indistinguible** de la del fútbol masculino: RR 0,73 (0,41–1,32)
+contra 0,72, forma 0,51 · 0,59 · 0,97 · 0,79 · 1,32 contra 0,56 · 0,71 · 0,90 ·
+0,92 · 1,24, y tests de homogeneidad que no rechazan (p = 0,76 por tramo, p = 0,74
+por región; V = 0,018 y 0,022, tamaños de efecto que hacen informativo el no
+rechazo pese a n = 213). Lo que separa los mapas es el deporte, no la estructura
+profesional que lo sostiene ni la época en que se construyó.
 
 Los cuatro placebos difieren significativamente del fútbol en su distribución
 regional (χ² de homogeneidad, p < 0,001 en tres de cuatro). **Ningún artefacto de
@@ -745,7 +772,9 @@ alguna transformación pierde nacimientos.
    de modo que la submuestra de H3 está enriquecida al doble en jugadores de
    elite y vaciada cinco veces del resto. El 47,1% de migración y el «diez clubes
    concentran el 48%» describen a los que llegaron lejos, no a la población de
-   futbolistas. Deben leerse como orden de magnitud y no como estimación.
+   futbolistas. Deben leerse como orden de magnitud y no como estimación. En esta
+   versión se degradó su alcance: la sección abre con la advertencia, el resumen
+   la lleva incorporada y ninguna otra conclusión del trabajo se apoya en H3.
 6. **La comparación de H3 con la población general no es estrictamente
    comparable**: 47,1% (futbolistas, nacimiento → primer club, alrededor de los
    18 años) contra 13,8% (toda la población, todas las edades, nacimiento →

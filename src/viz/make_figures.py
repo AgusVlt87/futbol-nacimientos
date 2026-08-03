@@ -286,7 +286,7 @@ def fig04_tramos(cfg, p):
 def fig05_regiones(cfg, p):
     t = _cargar(p, "h2_regiones").sort_values("tasa", ascending=False)
     f = Figura(6.4, 3.6,
-               "El AMBA y la Pampa producen tres veces más que el norte",
+               "La Pampa y el AMBA producen tres veces más que el norte",
                f"Futbolistas cada 100.000 nacidos, por región · {VENTANA}",
                "AMBA = CABA + 24 partidos del Gran Buenos Aires. Barras de error: "
                f"IC 95% exacto de Poisson.\n{DENOM}\n{FUENTE}", cfg)

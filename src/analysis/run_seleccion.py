@@ -42,7 +42,7 @@ from scipy import stats
 
 from src.analysis.stats import odds_ratio_ci, poisson_rate_ci
 from src.clean.geo_units import haversine_km
-from src.common import get_logger, load_config, paths
+from src.common import get_logger, load_config, paths, write_run_manifest
 from src.denominadores import cargar_ciudades, cargar_departamentos
 
 log = get_logger("analysis.seleccion")
@@ -235,6 +235,9 @@ def main() -> None:
     for nombre, tabla in salidas.items():
         tabla.to_csv(p.tables / f"{nombre}.csv", index=False, encoding="utf-8")
         log.info("  %-40s %3d filas", nombre + ".csv", len(tabla))
+
+    write_run_manifest(p.tables, "run_seleccion",
+                       {k: len(v) for k, v in salidas.items()})
 
     t = salidas["seleccion_conversion_tests"].iloc[0]
     # La consola de Windows es cp1252 y no puede escribir «→».

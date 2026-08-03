@@ -30,7 +30,7 @@ from src.analysis.stats import (
     standardized_residuals,
 )
 from src.clean.geo_units import city_size_series
-from src.common import get_logger, load_config, paths
+from src.common import get_logger, load_config, paths, write_run_manifest
 from src.denominadores import cargar_ciudades
 
 log = get_logger("analysis")
@@ -377,6 +377,9 @@ def main() -> None:
     for nombre, tabla in salidas.items():
         tabla.to_csv(p.tables / f"{nombre}.csv", index=False, encoding="utf-8")
         log.info("  %-42s %4d filas", nombre + ".csv", len(tabla))
+
+    write_run_manifest(p.tables, "run_all",
+                       {k: len(v) for k, v in salidas.items()})
 
     log.info("\n%s", salidas["diagnostico_censura_cohortes"]
              [["quinquenio", "jugadores", "tasa", "pct_del_pico", "lectura"]]
