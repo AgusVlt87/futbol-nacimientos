@@ -92,3 +92,36 @@ Es una pregunta abierta y probablemente interesante: un escalón único sugiere 
 umbral (¿existencia de un club afiliado? ¿de una liga local?) más que un gradiente
 de entorno. La expansión B5 de `re-analisis.md` —distancia al club afiliado más
 cercano— es la que lo atacaría.
+
+
+---
+
+## Del lote 3 (`feat/placebo-y-robustez`, 2026-08-02)
+
+### P9 — El fútbol femenino quedó sin correr
+
+El pipeline del placebo (`src/analysis/run_placebo.py`) ya soporta el corte por
+sexo: basta cambiar `cfg["sample"]["gender_filter"]`. Son 252 casos verificados en
+la ventana. Es el contraste de infraestructura que propone `re-analisis.md` (B3) y
+cuesta una tarde.
+
+### P10 — El escalón de H1 ahora tiene forma de pregunta
+
+El básquet **no** tiene escalón: tiene una U invertida limpia. El fútbol tiene un
+escalón plano por debajo de ~10.000 habitantes y un salto en el decil superior.
+Descartado el artefacto de maternidad (lote 2) y descartadas las explicaciones
+genéricas (lote 3), la forma sigue sin explicación y ahora es específicamente
+futbolística.
+
+La hipótesis natural es un umbral: por debajo de cierto tamaño una localidad no
+sostiene un club afiliado, y sin club afiliado no hay puerta de entrada. La
+variable que lo probaría es distancia al club afiliado más cercano, que no existe
+en el pipeline.
+
+### P11 — La explicación del §4.1 sigue sin medirse
+
+El §4.1 propone que la diferencia entre fútbol y básquet está en cómo se organiza
+la formación de cada uno: el básquet con ligas federales y clubes formadores
+repartidos, el fútbol con la mitad de su formación registrada en diez clubes.
+**Es plausible y no está medido.** Comparar las dos estructuras formativas es un
+trabajo propio, no un lote.

@@ -48,15 +48,23 @@ def fig01_mapa_tasa(cfg, p):
                "Dónde nace un futbolista argentino",
                f"Futbolistas cada 100.000 nacidos en el mismo departamento\n"
                f"{VENTANA} · {miles(n)} jugadores",
+               "Tasas contraídas hacia la media nacional (empirical Bayes "
+               "gamma-Poisson): sin contraer, el mapa lo encabeza el ruido de "
+               "Poisson de los departamentos chicos.\n"
                f"{DENOM}\n{FUENTE}", cfg)
+    # La leyenda va en su propia banda, no dentro del mapa. Dentro competía por
+    # el hueco del Pacífico, cuyo ancho depende de la relación de aspecto del
+    # área de dibujo, y esa cambia cada vez que crece el pie: terminaba tapando
+    # Jujuy y Salta. Es la misma lógica de bandas reservadas del título.
+    ax_leg = f.banda_leyenda(alto_pt=20)
     ax = f.eje()
-    cortes = maps.cortes_cuantiles(g["tasa"], cfg["viz"]["n_classes"])
-    maps.pintar(ax, g, "tasa", cortes, style.SEQ)
+    # Se mapea la tasa contraída, no la cruda: el color tiene que reflejar lo
+    # que el dato sostiene, no la varianza de los departamentos chicos.
+    cortes = maps.cortes_cuantiles(g["tasa_eb"], cfg["viz"]["n_classes"])
+    maps.pintar(ax, g, "tasa_eb", cortes, style.SEQ)
     maps.contorno_provincias(ax, cfg, lw=0.45)
-    # Arriba a la izquierda: el hueco del Pacífico. Abajo se montaba sobre la
-    # Patagonia.
-    maps.leyenda_clases(ax, cortes, style.SEQ, "cada 100.000 nacidos",
-                        loc="upper left", anchor=(-0.01, 1.0))
+    maps.leyenda_clases(ax_leg, cortes, style.SEQ, "cada 100.000 nacidos",
+                        loc="upper left", anchor=(0.0, 1.55), ncol=7)
     f.guardar("fig01_mapa_departamentos_tasa", p.figures)
 
 
@@ -71,12 +79,13 @@ def fig02_mapa_conteo(cfg, p):
                "Este mapa dibuja sobre todo dónde vive la gente. El de la Figura 1, "
                "corregido por nacimientos, es el que muestra el patrón.\n" + FUENTE,
                cfg)
+    ax_leg = f.banda_leyenda(alto_pt=20)
     ax = f.eje()
     cortes = maps.cortes_cuantiles(g["jugadores"], cfg["viz"]["n_classes"])
     maps.pintar(ax, g, "jugadores", cortes, style.SEQ)
     maps.contorno_provincias(ax, cfg, lw=0.45)
-    maps.leyenda_clases(ax, cortes, style.SEQ, "futbolistas",
-                        loc="upper left", anchor=(-0.01, 1.0))
+    maps.leyenda_clases(ax_leg, cortes, style.SEQ, "futbolistas",
+                        loc="upper left", anchor=(0.0, 1.55), ncol=7)
     f.guardar("fig02_mapa_departamentos_conteo", p.figures)
 
 

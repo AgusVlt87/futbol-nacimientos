@@ -111,8 +111,10 @@ python -m src.analysis.run_levels_and_flow
 python -m src.analysis.run_futbol
 python -m src.analysis.run_seleccion      # selección: Mayor, juveniles y conversión
 python -m src.analysis.run_criterio_denominador   # qué criterio usan las dos puntas del cociente
+python -m src.ingest.wikidata_placebo     # deportistas de otros deportes
+python -m src.analysis.run_placebo        # test placebo: ¿la geografía es del fútbol?
 python -m src.viz.make_figures            # figuras 1 a 13
-python -m src.viz.make_figures_extra      # figuras 14 a 27
+python -m src.viz.make_figures_extra      # figuras 14 a 28
 ```
 
 Cada script es idempotente: si el crudo ya está descargado no lo vuelve a pedir

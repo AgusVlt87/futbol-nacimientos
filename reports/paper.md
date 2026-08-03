@@ -34,7 +34,18 @@ las 432 celdas provincia×año en que se solapan (diferencia máxima: cero), y h
 futbolistas cuyo `P19` apunta a localidades de menos de 2.000 habitantes, en 63
 localidades distintas, donde ninguna maternidad puede existir (**Figura 27**).
 
-**Tercero, y es el resultado más robusto del trabajo: entre los que ya llegaron a
+**Tercero: el patrón es del fútbol, no del país.** Corrido el mismo análisis
+sobre otros deportes —misma ventana, mismo denominador, misma cadena de
+geocoding—, la geografía cambia por completo. En el contraste que define el
+*birthplace effect*, las ciudades de 50.000 a 100.000 habitantes contra los
+grandes aglomerados: **el básquet da RR 1,95 (IC 95% 1,38–2,76) y el fútbol 0,72
+(0,64–0,82)**, con intervalos que no se tocan. El básquet argentino tiene el
+efecto clásico, con su pico exactamente donde la literatura lo predice; el rugby
+está aún más concentrado que el fútbol (RR 0,08). Si lo que se midiera fuera
+infraestructura general, nivel socioeconómico o cobertura de Wikipedia, los tres
+deportes darían el mismo mapa (**Figura 28**).
+
+**Cuarto, y es el resultado más robusto del trabajo: entre los que ya llegaron a
 un juvenil de la selección, los nacidos fuera de un gran aglomerado llegan a la
 Mayor con más frecuencia** —41,9% contra 28,1%; OR 1,85 (IC 95% 1,14–2,98),
 p = 0,013, y 1,85 ajustando por cohorte de nacimiento. Este análisis **no usa
@@ -42,13 +53,13 @@ denominador poblacional**, de modo que no lo afectan ni el sesgo de imputación 
 nacimientos ni la cobertura de Wikidata. Dicho en criollo: al pibe del interior le
 cuesta mucho más entrar, pero el que entra rinde más.
 
-**Cuarto: la producción se concentra en el corredor pampeano y en el AMBA, en ese
+**Quinto: la producción se concentra en el corredor pampeano y en el AMBA, en ese
 orden.** La región pampeana produce 34,5 futbolistas cada 100.000 nacidos y el
 AMBA 28,3, contra 8,2 del NOA y 9,6 del NEA. Por provincia, CABA produce 2,6 veces
 lo que le correspondería por sus nacimientos y Santa Fe 2,3; Salta, Catamarca y
 San Juan producen menos de un cuarto.
 
-**Quinto: la formación está mucho más concentrada que el nacimiento.** El 47,1%
+**Sexto: la formación está mucho más concentrada que el nacimiento.** El 47,1%
 de los futbolistas se forma en una provincia distinta de aquella en la que nació,
 contra el 13,8% de la población general que reside fuera de su provincia de
 nacimiento (OR 5,58; IC 95% 5,10–6,10). El NEA retiene al 8,6% de los futbolistas
@@ -544,6 +555,54 @@ contraste que involucre al NOA o al NEA sobrevive a la corrección.
 
 ---
 
+### 3.7 Placebo: el mismo análisis en otros deportes
+
+**Figura 28.** La objeción más difícil de contestar contra todo lo anterior no es
+metodológica sino de interpretación: que lo que se mide no sea la geografía del
+fútbol sino la del país —dónde hay clase media, dónde hay infraestructura
+deportiva de cualquier tipo, dónde Wikipedia tiene editores—. Esa objeción se
+contesta corriendo el mismo análisis sobre otro deporte.
+
+Se repitió todo el pipeline sobre deportistas argentinos de básquet, rugby, vóley
+y hockey: misma ventana de cohortes, mismos filtros de sexo y precisión de fecha,
+misma cadena de geocoding, mismo denominador de nacidos vivos y mismos tramos.
+Lo único que cambia es el deporte.
+
+Las tasas no son comparables entre deportes —la cobertura de Wikidata es muy
+distinta— pero la **forma** sí lo es. En el contraste que define el *birthplace
+effect*, ciudades de 50.000 a 100.000 habitantes contra grandes aglomerados:
+
+| Deporte | n (50–100k) | n (>500k) | RR | IC 95% |
+|---|---:|---:|---:|---|
+| **Básquet** | 39 | 176 | **1,95** | 1,38–2,76 |
+| **Fútbol** | 275 | 3.343 | **0,72** | 0,64–0,82 |
+| Vóley | 2 | 52 | 0,34 | 0,08–1,39 |
+| Hockey | 2 | 33 | 0,53 | 0,13–2,22 |
+| **Rugby** | 2 | 210 | **0,08** | 0,02–0,34 |
+
+**El básquet argentino tiene el *birthplace effect* clásico, con el pico
+exactamente donde Côté et al. (2006) lo sitúan**, y sus intervalos no se tocan con
+los del fútbol. Por observado sobre esperado, el básquet va 0,40 · 0,85 · **1,88**
+· 1,60 · 0,96 a lo largo de los cinco tramos: una U invertida de manual. El
+fútbol va 0,56 · 0,71 · 0,90 · 0,92 · 1,24, creciendo hacia la metrópoli. El
+rugby está aún más concentrado que el fútbol y el hockey más todavía —el 83% de
+los jugadores de hockey nace en el AMBA—, lo que es coherente con que sean
+deportes de colegio privado metropolitano.
+
+Por región el contraste es igual de nítido: el básquet produce 2,01 veces lo
+esperado en la región pampeana y **0,56 en el AMBA**; el fútbol, 1,47 y 1,20.
+
+Los cuatro placebos difieren significativamente del fútbol en su distribución
+regional (χ² de homogeneidad, p < 0,001 en tres de cuatro). **Ningún artefacto de
+medición compartido —el registro de nacimientos, la imputación del denominador,
+la cobertura de Wikipedia, el nivel socioeconómico del departamento— puede
+producir mapas opuestos para deportes distintos medidos con el mismo
+instrumento.** El patrón del fútbol es del fútbol.
+
+*Limitación:* vóley (n=70) y hockey (n=36) tienen muestras demasiado chicas para
+leer sus tramos por separado; entran en el contraste binario y en las tablas, no
+en la lectura de la forma. Básquet (356) y rugby (243) sí la sostienen.
+
 ## 4. Discusión
 
 ### 4.1 Por qué el efecto está invertido
@@ -564,6 +623,19 @@ estudio **no mide distancia a un club con inferiores**: ninguna regresión inclu
 esa variable, ni nivel socioeconómico, ni densidad de ligas locales, ni existencia
 de pensión. Todo el análisis es descriptivo y las asociaciones no están
 controladas por nada.
+
+**El placebo acota qué clase de explicación puede servir (§3.7).** Cualquier
+mecanismo que se proponga tiene que explicar por qué el básquet argentino, en el
+mismo país y las mismas cohortes, tiene el efecto clásico y el fútbol su inverso.
+Eso descarta de entrada las explicaciones que no distinguen deportes —el registro
+de nacimientos, la estructura urbana, el nivel socioeconómico, la cobertura de
+Wikipedia— y deja en pie solo las que dependen de cómo está organizado cada
+deporte. La centralización de la formación es una de esas: el básquet argentino
+tiene ligas federales fuertes y clubes formadores repartidos por el interior,
+mientras que la mitad de la formación futbolística registrada está en diez clubes
+del AMBA, Rosario y La Plata. **Sigue siendo una interpretación** —la
+organización comparada de las dos estructuras formativas no se mide acá— pero ya
+no compite con las explicaciones genéricas: esas quedaron descartadas por diseño.
 
 **Dos pruebas que el propio mecanismo permite, y sus resultados:**
 

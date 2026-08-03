@@ -109,7 +109,7 @@ def contorno_provincias(ax, cfg, lw=0.5, color="#ffffff"):
 
 
 def leyenda_clases(ax, cortes, cmap, titulo, formato="{:.0f}", loc="lower left",
-                   anchor=(-0.02, 0.02), sin_dato=True):
+                   anchor=(-0.02, 0.02), sin_dato=True, ncol=1):
     parches, etiquetas = [], []
     n = len(cortes) - 1
     for i in range(n):
@@ -121,7 +121,8 @@ def leyenda_clases(ax, cortes, cmap, titulo, formato="{:.0f}", loc="lower left",
         etiquetas.append("sin datos")
     leg = ax.legend(parches, etiquetas, title=titulo, loc=loc, bbox_to_anchor=anchor,
                     fontsize=6.8, title_fontsize=6.8, handlelength=1.1,
-                    handleheight=1.1, labelspacing=0.35, borderpad=0.5)
+                    handleheight=1.1, labelspacing=0.35, borderpad=0.5,
+                    ncol=ncol, columnspacing=1.0)
     leg.get_title().set_color(style.INK_2)
     leg._legend_box.align = "left"
     for t in leg.get_texts():

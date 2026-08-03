@@ -663,12 +663,95 @@ def fig27_criterio_del_registro(cfg, p):
     f.guardar("fig27_criterio_del_registro", p.figures)
 
 
+def fig28_placebo(cfg, p):
+    """El test placebo: la geografía es del deporte, no del país.
+
+    Es la validación externa del trabajo. Si el patrón del fútbol lo produjeran
+    la infraestructura general, el registro civil o la cobertura de Wikipedia,
+    todos los deportes darían el mismo mapa. Dan mapas opuestos.
+    """
+    t = _t(p, "placebo_por_tramo")
+    rr = _t(p, "placebo_contraste_optimo")
+    # Voley (70) y hockey (36) tienen demasiado poco n para una curva por tramo:
+    # quedan en las tablas y fuera de la figura.
+    deportes = [("futbol", "Fútbol", style.PRIMARY),
+                ("basquet", "Básquet", style.SERIES[2]),
+                ("rugby", "Rugby", style.ACCENT)]
+
+    f = Figura(7.2, 4.4,
+               "El básquet argentino sí tiene el efecto que el fútbol no tiene",
+               "Mismo país, mismas cohortes, mismo denominador de nacidos vivos y "
+               "misma cadena de\ngeocoding. Lo único que cambia es el deporte",
+               "Izquierda: observado sobre esperado por nacimientos. En 1,0 un deporte "
+               "produce exactamente lo que le corresponde por los nacimientos de ese "
+               "tramo. El básquet tiene su pico en 50–100k —el óptimo que predice Côté "
+               "et al. (2006)— y el fútbol crece hacia la metrópoli.\n"
+               "Derecha: el contraste que define el birthplace effect, con IC 95%. "
+               "Vóley (n=70) y hockey (n=36) quedan fuera de la figura por tamaño de "
+               "muestra; están en `placebo_por_tramo.csv`.\n"
+               "Las tasas NO son comparables entre deportes —la cobertura de Wikidata "
+               "es muy distinta—; lo comparable es la forma.\n" + FUENTE, cfg)
+    izq, der = f.ejes_lado_a_lado(2, separacion=0.10, sangria_izq=0.015, abajo=0.11,
+                                  titulos=["La forma, tramo por tramo",
+                                           "RR 50–100k vs >500.000"])
+
+    # --- panel izquierdo -----------------------------------------------------
+    x = np.arange(len(ORDEN_TRAMOS))
+    izq.axhline(1.0, color=style.INK_2, lw=1.0, ls="--", zorder=2)
+    for clave, etiqueta, color in deportes:
+        d = t[t["deporte"] == clave].set_index("tramo").reindex(ORDEN_TRAMOS)
+        izq.plot(x, d["obs_sobre_esp"], marker="o", ms=5.5, lw=2.0, color=color,
+                 label=etiqueta, zorder=4)
+    izq.text(0.03, 1.02, "lo esperado por nacimientos", transform=izq.get_yaxis_transform(),
+             fontsize=style.PT_BASE - 2, color=style.INK_2, va="bottom")
+    izq.set_xticks(x, ORDEN_TRAMOS, rotation=30, ha="right")
+    izq.set_ylabel("Observado / esperado")
+    izq.set_xlabel("Tamaño de la ciudad de nacimiento")
+    izq.legend(frameon=False, fontsize=style.PT_BASE - 1, loc="upper left")
+    izq.grid(True, axis="y")
+    style.despine(izq)
+
+    # --- panel derecho -------------------------------------------------------
+    d = rr[rr["deporte"].isin([k for k, _, _ in deportes])].copy()
+    orden = {k: i for i, (k, _, _) in enumerate(deportes)}
+    d = d.sort_values("deporte", key=lambda s: s.map(orden))
+    y = np.arange(len(d))[::-1]
+    colores = [dict((k, c) for k, _, c in deportes)[k] for k in d["deporte"]]
+    etiquetas = [dict((k, e) for k, e, _ in deportes)[k] for k in d["deporte"]]
+    der.axvline(1.0, color=style.INK_2, lw=1.0, ls="--", zorder=2)
+    der.errorbar(d["RR"], y, xerr=[d["RR"] - d["RR_ic_lo"], d["RR_ic_hi"] - d["RR"]],
+                 fmt="none", ecolor=style.INK_2, elinewidth=1.2, capsize=3, zorder=4)
+    der.scatter(d["RR"], y, s=60, c=colores, zorder=5, edgecolor="white", linewidth=0.8)
+    # La etiqueta va del lado opuesto al 1: si se pone siempre a la derecha, la
+    # del fútbol (RR 0,72) queda encima de la línea de referencia.
+    # A la derecha del IC, salvo cuando eso lo montaría sobre la línea del 1
+    # (el caso del fútbol): ahí va a la izquierda.
+    for yi, (v, lo, hi) in enumerate(zip(d["RR"], d["RR_ic_lo"], d["RR_ic_hi"])):
+        texto = f"{v:.2f}".replace(".", ",")
+        if v < 1 and hi > 0.6:
+            der.text(lo * 0.85, y[yi], texto, va="center", ha="right",
+                     fontsize=style.PT_BASE - 1, color=style.INK)
+        else:
+            der.text(hi * 1.15, y[yi], texto, va="center", ha="left",
+                     fontsize=style.PT_BASE - 1, color=style.INK)
+    der.set_yticks(y, etiquetas)
+    der.set_xscale("log")
+    der.set_xlim(0.03, 7.0)
+    der.set_xticks([0.05, 0.1, 0.25, 0.5, 1, 2, 4],
+                   ["0,05", "0,1", "0,25", "0,5", "1", "2", "4"])
+    der.set_xlabel("← invertido   ·   razón de tasas (log)   ·   clásico →")
+    der.tick_params(axis="y", length=0)
+    der.grid(True, axis="x")
+    style.despine(der, izquierda=True)
+    f.guardar("fig28_placebo_otros_deportes", p.figures)
+
+
 FIGURAS = [fig14_conversion_tramo, fig15_conversion_region, fig16_embudo,
            fig17_seleccion_clubes, fig18_seleccion_migracion,
            fig19_sesgo_denominador, fig20_deciles_sin_gradiente, fig21_funnel,
            fig22_efecto_por_cohorte, fig23_ranking_provincias,
            fig24_sensibilidad_denominador, fig25_matriz_flujo, fig26_retencion,
-           fig27_criterio_del_registro]
+           fig27_criterio_del_registro, fig28_placebo]
 
 
 def main() -> None:

@@ -23,6 +23,7 @@ from scipy import stats as st
 from src.analysis.stats import (
     add_rate_columns,
     chi2_gof,
+    empirical_bayes_poisson,
     fdr_bh,
     odds_ratio_ci,
     rate_ratio_ci,
@@ -202,7 +203,18 @@ def h2_geografia(cfg, players, denom_dept, denom_prov, tests: list) -> dict[str,
     t["provincia"] = t["unidad"].str[:2].map(prov_nombre)
     t["region"] = t["unidad"].map(denom_dept.set_index("dept_id")["region"])
     t["reportable"] = t["jugadores"] >= cfg["cohorts"]["min_n_subgroup"]
-    salidas["h2_departamentos"] = t.sort_values("tasa", ascending=False)
+
+    # Tasa contraída hacia la media nacional. El ranking crudo lo encabezan los
+    # departamentos con dos jugadores y mil nacimientos, no los productivos; el
+    # IC lo muestra pero no corrige el orden. `tasa_eb` es la que hay que mapear
+    # y rankear, y `peso_eb` dice cuánto del dato propio conserva cada unidad.
+    eb, alpha_eb, beta_eb, peso = empirical_bayes_poisson(
+        t["jugadores"].values, t["nacimientos"].values)
+    t["tasa_eb"] = eb * cfg["stats"]["rate_per"]
+    t["peso_eb"] = peso
+    log.info("empirical Bayes departamental: alpha=%.3f beta=%.0f "
+             "(equivale a %.0f nacimientos de previa)", alpha_eb, beta_eb, beta_eb)
+    salidas["h2_departamentos"] = t.sort_values("tasa_eb", ascending=False)
     tests.append(_gof("H2", "departamentos", t))
 
     # --- AMBA vs interior ----------------------------------------------------
@@ -351,7 +363,16 @@ def main() -> None:
     salidas |= temporal(cfg, players, denom_dept)
     salidas |= exploratorio_posiciones(cfg, players)
     salidas |= regresion_tamano(cfg, con_ciudad, ciudades)
-    salidas["tests_bondad_ajuste"] = pd.DataFrame(tests)
+    # Comparaciones múltiples también en los contrastes confirmatorios. La regla
+    # del proyecto la exigía solo en los exploratorios, y así se cumplía al pie
+    # de la letra y se esquivaba en espíritu: los confirmatorios son más (doce
+    # tests de bondad de ajuste contra veinticuatro cruces) y no se corregían.
+    tb = pd.DataFrame(tests)
+    rechaza, p_adj = fdr_bh(tb["p"].values, cfg["stats"]["alpha"])
+    tb["p_fdr_bh"], tb["significativo_tras_fdr"] = p_adj, rechaza
+    salidas["tests_bondad_ajuste"] = tb
+    log.info("bondad de ajuste: %d de %d tests sobreviven a Benjamini-Hochberg",
+             int(rechaza.sum()), len(tb))
 
     for nombre, tabla in salidas.items():
         tabla.to_csv(p.tables / f"{nombre}.csv", index=False, encoding="utf-8")

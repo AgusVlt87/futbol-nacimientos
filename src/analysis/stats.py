@@ -124,6 +124,49 @@ def odds_ratio_ci(a, b, c, d, level: float = 0.95):
 
 
 # --------------------------------------------------------------------------- #
+# Contracción (empirical Bayes)
+# --------------------------------------------------------------------------- #
+def empirical_bayes_poisson(count, exposure):
+    """Tasas contraídas hacia la media nacional (gamma-Poisson).
+
+    **Por qué hace falta.** El ranking departamental crudo lo encabezan los
+    departamentos chicos, no los productivos: con dos o tres jugadores y un
+    denominador de mil nacimientos, cualquier ruido de Poisson da una tasa
+    enorme. El IC lo muestra pero no corrige el orden, y el mapa colorea el
+    valor puntual.
+
+    **Qué hace.** Estima una gamma previa sobre el conjunto de departamentos por
+    el método de los momentos y devuelve la media posterior
+    `(count + α) / (exposure + β)`. Un departamento con mucha exposición
+    prácticamente no se mueve; uno con poca se acerca a la media nacional. El
+    resultado es el ranking que sobrevive al ruido.
+
+    Devuelve `(tasa_contraida, alpha, beta, peso)`, donde `peso` es la fracción
+    del dato propio que conserva cada unidad: `exposure / (exposure + β)`.
+    """
+    count = np.asarray(count, dtype=float)
+    exposure = np.asarray(exposure, dtype=float)
+    ok = exposure > 0
+    tasa = np.divide(count, exposure, out=np.zeros_like(count), where=ok)
+
+    # Momentos ponderados por exposición: la media es la tasa global y la
+    # varianza entre unidades se corrige por la varianza de muestreo esperada.
+    media = count[ok].sum() / exposure[ok].sum()
+    peso_w = exposure[ok] / exposure[ok].sum()
+    var_obs = float(np.sum(peso_w * (tasa[ok] - media) ** 2))
+    var_muestreo = float(media * np.sum(peso_w / exposure[ok]))
+    var_prev = max(var_obs - var_muestreo, 1e-12)
+
+    alpha = media ** 2 / var_prev
+    beta = media / var_prev
+    contraida = np.divide(count + alpha, exposure + beta,
+                          out=np.full_like(count, media), where=(exposure + beta) > 0)
+    peso = np.divide(exposure, exposure + beta,
+                     out=np.zeros_like(count), where=(exposure + beta) > 0)
+    return contraida, float(alpha), float(beta), peso
+
+
+# --------------------------------------------------------------------------- #
 # Comparaciones múltiples
 # --------------------------------------------------------------------------- #
 def fdr_bh(pvalues, alpha: float = 0.05):
