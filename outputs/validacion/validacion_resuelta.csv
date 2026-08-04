@@ -1,0 +1,134 @@
+caso,localidad_encontrada,provincia_encontrada,club_debut_encontrado,fuente_url,encontrado,player_qid,nombre,p19_label,prov_nombre,localidad_nombre,tramo,estrato,birth_year,prov_resuelta,ciudad_id_real,nivel_matcheo,tramo_real,estrato_real
+1,Córdoba Capital,Córdoba,Instituto,https://www.bdfa.com.ar/jugadores-GASTON-NICOLAS-CAPRARI-24710.html,1,Q5876167,Gastón Caprari,Córdoba,Córdoba,Córdoba,>500k,metropoli,1985,14,AGLO_2,sin_adornos,>500k,metropoli
+2,Sancti Spiritu,Santa Fe,Boca Juniors,https://www.bdfa.com.ar/jugadores-GUILLERMO-MIGUEL-VALDEZ-2645.html,1,Q5888988,Guillermo Valdez,Sancti Spiritu,Santa Fe,Gaboto,<10k,resto,1978,82,LOC_82042260,exacto,<10k,resto
+3,Monte Cristo,Córdoba,Belgrano,https://www.bdfa.com.ar/jugadores-GABRIEL-GUSTAVO-ALANIS-100284.html,1,Q19984518,Gabriel Alanís,Córdoba,Córdoba,Córdoba,>500k,metropoli,1994,14,LOC_14105190,compacto,10–50k,resto
+4,San Salvador,Jujuy,Gimnasia y Esgrima de Jujuy,https://www.bdfa.com.ar/jugadores-JULIAN-AGUSTIN-RAMIREZ-111647.html,1,Q60737009,Julián Ramírez,San Salvador de Jujuy,Jujuy,San Salvador de Jujuy,100–500k,resto,1999,38,AGLO_18,prefijo,100–500k,resto
+5,Ciudad Autónoma de Buenos aires,Ciudad Autónoma de Buenos aires,San Lorenzo de Almagro,https://www.bdfa.com.ar/jugadores-GERARDO-DAMIAN-RIVERO-2194.html,1,Q537937,Gerardo Rivero,Buenos Aires,Ciudad Autónoma de Buenos Aires,Ciudad Autónoma de Buenos Aires,>500k,metropoli,1975,02,AGLO_1,exacto,>500k,metropoli
+6,,,,,0,Q55375268,Santiago López,La Carlota,Córdoba,La Carlota,10–50k,resto,1997,,,no_verificable,,
+7,Avellaneda,Buenos Aires,Lanús,https://www.bdfa.com.ar/jugadores-BRIAN-MAURICIO-AGUILAR-137507.html,1,Q116168715,Brian Aguilar,Avellaneda,Buenos Aires,Avellaneda,>500k,metropoli,2003,06,AGLO_1,exacto,>500k,metropoli
+8,,,,,0,Q8194131,Alejandro Molina,Tres Isletas,Chaco,Tres Isletas,10–50k,resto,1997,,,no_verificable,,
+9,Alberti,Buenos aires,Vélez Sarsfield,https://www.bdfa.com.ar/jugadores-ALEJO-URIEL-SARCO-149731.html,1,Q125812845,Alejo Sarco,Alberti,Buenos Aires,Alberti,<10k,resto,2006,06,LOC_06021010,exacto,<10k,resto
+10,Mendoza,Mendoza,Jorge Newbery de Villa Mercedes,https://www.bdfa.com.ar/jugadores-JULIAN-ALEJANDRO-NAVAS-100812.html,1,Q61245671,Julián Navas,Mendoza,Mendoza,Mendoza,>500k,metropoli,1993,50,AGLO_4,exacto,>500k,metropoli
+11,,,,,0,Q102155276,Fabián Sánchez,Mar del Plata,Buenos Aires,Mar del Plata,>500k,metropoli,2001,,,no_verificable,,
+12,Pujato,Santa Fe,Newells Old Boys,https://www.bdfa.com.ar/jugadores-LIONEL-SEBASTIAN-SCALONI-5406.html,1,Q311586,Lionel Scaloni,Pujato,Santa Fe,Pujato,<10k,resto,1978,82,LOC_82119090,exacto,<10k,resto
+13,Ciudad Autónoma de Buenos Aires,Ciudad Autónoma de Buenos Aires,Xerez,https://www.bdfa.com.ar/jugadores-FRANCO-DANIEL-AMOROSO-99101.html,1,Q16149566,Franco Amoroso,Buenos Aires,Ciudad Autónoma de Buenos Aires,Ciudad Autónoma de Buenos Aires,>500k,metropoli,1994,02,AGLO_1,exacto,>500k,metropoli
+14,Cañada de Gomez,Santa Fe,Rosario Central,https://www.bdfa.com.ar/jugadores-NERY-ANDRES-DOMINGUEZ-91334.html,1,Q6041064,Nery Domínguez,Rosario,Santa Fe,Rosario,>500k,metropoli,1990,82,LOC_82056030,exacto,10–50k,resto
+15,Carcaraña,Santa Fe,Defensa y Justicia,https://www.bdfa.com.ar/jugadores-JUAN-IGNACIO-DOBBOLETTA-101944.html,1,Q28137180,Juan Dobboletta,Carcarañá,Santa Fe,Carcarañá,10–50k,resto,1993,82,LOC_82119030,exacto,10–50k,resto
+16,Resistencia,Chaco,Tigre,https://www.bdfa.com.ar/jugadores-RAMON-NAZARENO-MIEREZ-106097.html,1,Q28058689,Ramón Mierez,Resistencia,Chaco,Resistencia,100–500k,resto,1997,22,AGLO_11,exacto,100–500k,resto
+17,Ciudad Autónoma de Buenos Aires,Ciudad Autónoma de Buenos Aires,Argentinos Juniors,https://www.bdfa.com.ar/jugadores-LEANDRO-DE-MUNER-33980.html,1,Q5972290,Leandro de Muner,Buenos Aires,Ciudad Autónoma de Buenos Aires,Ciudad Autónoma de Buenos Aires,>500k,metropoli,1983,02,AGLO_1,exacto,>500k,metropoli
+18,Ciudad Autónoma de Buenos Aires,Ciudad Autónoma de Buenos Aires,Independiente,https://www.bdfa.com.ar/jugadores-MARIANO-ANDRES-PERNIA-348.html,1,Q316992,Mariano Pernía,Tandil,Buenos Aires,Tandil,100–500k,resto,1977,02,AGLO_1,exacto,>500k,metropoli
+19,Santa Rosa,La Pampa,Boca Juniors,https://www.bdfa.com.ar/jugadores-JOSE-MARIA-CALVO-111.html,1,Q1379592,José María Calvo,Buenos Aires,Ciudad Autónoma de Buenos Aires,Ciudad Autónoma de Buenos Aires,>500k,metropoli,1981,42,AGLO_29,exacto,100–500k,resto
+20,Sáenz Peña,Buenos Aires,Tigre,https://www.bdfa.com.ar/jugadores-VICTOR-LEONEL-ALTOBELLI-33977.html,1,Q6526215,Leonel Altobelli,Presidencia Roque Sáenz Peña,Chaco,Presidencia Roque Sáenz Peña,50–100k,resto,1986,06,AGLO_1,alias_manual,>500k,metropoli
+21,Carcaraña,Santa Fe,Estudiantes de La Plata,https://www.bdfa.com.ar/jugadores-JOSE-ERNESTO-SOSA-14461.html,1,Q314241,José Sosa,Carcarañá,Santa Fe,Carcarañá,10–50k,resto,1985,82,LOC_82119030,exacto,10–50k,resto
+22,Esperanza,Santa Fe,Unión de Santa Fe,https://www.bdfa.com.ar/jugadores-MAURO-ANGEL-MAIDANA-77213.html,1,Q6007172,Mauro Maidana,Esperanza,Santa Fe,Esperanza,10–50k,resto,1990,82,LOC_82070050,exacto,10–50k,resto
+23,,,,,0,Q140299237,Matias Panigazzi,Buenos Aires,Ciudad Autónoma de Buenos Aires,Ciudad Autónoma de Buenos Aires,>500k,metropoli,1997,,,no_verificable,,
+24,Monteros,Tucumán,Gimnasia y Esgrima de Jujuy,https://www.bdfa.com.ar/jugadores-FRANCO-SEBASTIAN-SOSA-8964.html,1,Q2706611,Franco Sebastián Sosa,Monteros,Tucumán,Monteros,10–50k,resto,1981,90,LOC_90070030,exacto,10–50k,resto
+25,Santa Fe,Santa Fe,Unión de Santa Fe,https://www.bdfa.com.ar/jugadores-FERNANDO-ANDRES-MARQUEZ-49367.html,1,Q5859181,Fernando Andrés Márquez,Santa Fe,Santa Fe,Santa Fe,>500k,metropoli,1987,82,AGLO_8,exacto,>500k,metropoli
+26,San Jerónimo Norte,Santa Fe,Unión de Santa Fe,https://www.bdfa.com.ar/jugadores-SANTIAGO-ZURBRIGGEN-77563.html,1,Q6121209,Santiago Zurbriggen,San Jerónimo Norte,Santa Fe,San Jerónimo Norte,<10k,resto,1990,82,LOC_82070270,exacto,<10k,resto
+27,Bouvril,Entre Rios,Colón de Santa Fe,https://www.bdfa.com.ar/jugadores-GABRIEL-MAXIMILIANO-GRACIANI-85019.html,1,Q3756478,Gabriel Graciani,Bovril,Entre Ríos,Bovril,<10k,resto,1993,30,LOC_30070010,alias_manual,<10k,resto
+28,Barranqueras,Chaco,Chacarita juniors,https://www.bdfa.com.ar/jugadores-CARLOS-SAUL-MOREL-70367.html,1,Q65030072,Carlos Morel,Barranqueras,Chaco,Barranqueras,100–500k,resto,1987,22,AGLO_11,exacto,100–500k,resto
+29,Ciudad Autónoma de Buenos Aires,Ciudad Autónoma de Buenos Aires,Cesena,https://www.bdfa.com.ar/jugadores-EZEQUIEL-MATIAS-SCHELOTTO-75001.html,1,Q510596,Ezequiel Schelotto,Buenos Aires,Ciudad Autónoma de Buenos Aires,Ciudad Autónoma de Buenos Aires,>500k,metropoli,1989,02,AGLO_1,exacto,>500k,metropoli
+30,Quilmes,Buenos Aires,Lanús,https://www.bdfa.com.ar/jugadores-LEANDRO-RAUL-MOREIRA-144870.html,1,Q136789178,Leandro Moreira,Longchamps,Buenos Aires,Almirante Brown,>500k,metropoli,2002,06,AGLO_1,exacto,>500k,metropoli
+31,,,,,0,Q33125135,Guido Corteggiano,Buenos Aires,Ciudad Autónoma de Buenos Aires,Ciudad Autónoma de Buenos Aires,>500k,metropoli,1987,,,no_verificable,,
+32,Mar del Plata,Buenos Aires,San Lorenzo de Almagro,https://www.bdfa.com.ar/jugadores-EZEQUIEL-ARIEL-MONTAGNA-102032.html,1,Q22676592,Ezequiel Montagna,Mar del Plata,Buenos Aires,Mar del Plata,>500k,metropoli,1994,06,LOC_06357110,exacto,>500k,metropoli
+33,Rosario,Santa Fe,Estudiantes de La Plata,https://www.bdfa.com.ar/jugadores-BRIAN-OSCAR-SARMIENTO-53918.html,1,Q3822716,Brian Sarmiento,Rosario,Santa Fe,Rosario,>500k,metropoli,1990,82,AGLO_3,exacto,>500k,metropoli
+34,San Miguel de Tucumán,tucumán,Independiente Rivadavia de Mendoza,https://www.bdfa.com.ar/jugadores-MARCOS-EMANUEL-OVEJERO-64944.html,1,Q5996679,Marcos Ovejero,La Plata,Buenos Aires,La Plata,>500k,metropoli,1986,90,AGLO_6,exacto,>500k,metropoli
+35,Paraná,Entre ríos,Ben Hur,https://www.bdfa.com.ar/jugadores-SERGIO-CHITERO-77320.html,1,Q6125385,Sergio Chitero,Paraná,Entre Ríos,Paraná,100–500k,resto,1983,30,AGLO_16,exacto,100–500k,resto
+36,Los Cóndores,Córdoba,Guillermo Brown de Puerto Madryn,https://www.bdfa.com.ar/jugadores-BRIAN-NICOLAS-GARINO-92455.html,1,Q29638877,Brian Garino,Los Cóndores,Córdoba,Los Cóndores,<10k,resto,1995,14,LOC_14007110,exacto,<10k,resto
+37,,,,,0,Q19863023,Lucas Suárez,Río Cuarto,Córdoba,Río Cuarto,100–500k,resto,1995,,,no_verificable,,
+38,San Francisco,Córdoba,Newells Old Boys,https://www.bdfa.com.ar/jugadores-DIEGO-HECTOR-GARAY-516.html,1,Q3027395,Diego Héctor Garay,San Francisco,Córdoba,San Francisco,50–100k,resto,1975,14,AGLO_43,exacto,50–100k,resto
+39,Ezeiza,Buenos Aires,Boca Juniors,https://www.bdfa.com.ar/jugadores-GABRIEL-AGUSTIN-ARANDA-133621.html,1,Q108137766,Gabriel Aranda,Ezeiza,Buenos Aires,Ezeiza,>500k,metropoli,2001,06,AGLO_1,exacto,>500k,metropoli
+40,San Miguel de Tucumán,tucumán,Atlético Tucumán,https://www.bdfa.com.ar/jugadores-MAXIMILIANO-FLORES-102803.html,1,Q16605659,Maximiliano Flores,San Miguel de Tucumán,Tucumán,San Miguel de Tucumán,>500k,metropoli,1991,90,AGLO_6,exacto,>500k,metropoli
+41,Quilmes,Buenos Aires,Racing Club,https://www.bdfa.com.ar/jugadores-ANGEL-NAHUEL-GOMEZ-130651.html,1,Q104834452,Ángel Gómez,San Francisco Solano,Buenos Aires,Quilmes,>500k,metropoli,2001,06,AGLO_1,exacto,>500k,metropoli
+42,,Buenos Aires,Deportivo Español,https://www.bdfa.com.ar/jugadores-DIEGO-GASTON-ROMANCIKAS-16157.html,1,Q17308277,Diego Romancikas,Buenos Aires,Ciudad Autónoma de Buenos Aires,Ciudad Autónoma de Buenos Aires,>500k,metropoli,1977,06,,solo_provincia,,
+43,San Miguel de Tucumán,Tucumán,Atlético Tucumán,https://www.bdfa.com.ar/jugadores-CESAR-NICOLAS-MORE-78434.html,1,Q5796325,César More,San Miguel de Tucumán,Tucumán,San Miguel de Tucumán,>500k,metropoli,1989,90,AGLO_6,exacto,>500k,metropoli
+44,Ciudad autónoma de buenos Aires,Ciudad autónoma de buenos Aires,Arsenal de Sarandí,https://www.bdfa.com.ar/jugadores-EMILIANO-PURITA-112840.html,1,Q43257193,Emiliano Purita,Buenos Aires,Ciudad Autónoma de Buenos Aires,Ciudad Autónoma de Buenos Aires,>500k,metropoli,1997,02,AGLO_1,exacto,>500k,metropoli
+45,La Plata,Buenos Aires,Defensa y Justicia,https://www.bdfa.com.ar/jugadores-JUAN-IGNACIO-VINACCIA-49121.html,1,Q5952856,Juan Vinaccia,La Plata,Buenos Aires,La Plata,>500k,metropoli,1985,06,AGLO_1,exacto,>500k,metropoli
+46,,Santa Fe,Paniliakos,https://www.bdfa.com.ar/jugadores-LEONARDO-MARIO-IORLANO-72345.html,1,Q6526010,Leonardo Iorlano,Santa Fe,Santa Fe,Santa Fe,>500k,metropoli,1986,82,,solo_provincia,,
+47,Ciudad Autónoma de buenos Aires,Ciudad autonoma de buenos Aires,Velez Sarsfield,https://www.bdfa.com.ar/jugadores-JUAN-ERNESTO-CASADO-587.html,1,Q4267554,Juan Casado,Buenos Aires,Ciudad Autónoma de Buenos Aires,Ciudad Autónoma de Buenos Aires,>500k,metropoli,1980,02,AGLO_1,exacto,>500k,metropoli
+48,Ciudad autónoma de buenos Aires,Ciudad autónoma de buenos Aires,San Lorenzo de Almagro,https://www.bdfa.com.ar/jugadores-GONZALO-LUJAN-132804.html,1,Q109937760,Gonzalo Luján,Buenos Aires,Ciudad Autónoma de Buenos Aires,Ciudad Autónoma de Buenos Aires,>500k,metropoli,2001,02,AGLO_1,exacto,>500k,metropoli
+49,La Cañada,Tucumán,Atlético Tucumán,https://www.bdfa.com.ar/jugadores-ALVARO-AGUSTIN-LAGOS-123037.html,1,Q88891488,Agustín Lagos,La Cañada,Santiago del Estero,La Cañada,<10k,resto,2001,90,LOC_90035017,exacto,<10k,resto
+50,Tandil,Buenos Aires,Independiente de Avellaneda,https://www.bdfa.com.ar/jugadores-JUAN-CRUZ-REAL-7268.html,1,Q16215743,Juan Cruz Real,Tandil,Buenos Aires,Tandil,100–500k,resto,1976,06,LOC_06791050,exacto,100–500k,resto
+51,Lincoln,Buenos Aires,Sarmiento,https://www.bdfa.com.ar/jugadores-JOAQUIN-GHO-130815.html,1,Q104667010,Joaquín Gho,Lincoln,Buenos Aires,Lincoln,10–50k,resto,2003,06,LOC_06469080,exacto,10–50k,resto
+52,,,,,0,Q55375313,Daniel Martínez,San Miguel,Buenos Aires,San Miguel,>500k,metropoli,1997,,,no_verificable,,
+53,,Córdoba,Huracán,https://www.bdfa.com.ar/jugadores-GUILLERMO-EZEQUIEL-ROFFES-78589.html<,1,Q5888889,Guillermo Roffés,Córdoba,Córdoba,Córdoba,>500k,metropoli,1991,14,,solo_provincia,,
+54,Salta,Salta,Gimnasia y Tiro de Salta,https://www.bdfa.com.ar/jugadores-JESUS-FRANCISCO-CALDERON-70946.html,1,Q65553930,Jesús Francisco Calderón,Salta,Salta,Salta,>500k,metropoli,1990,66,AGLO_9,exacto,>500k,metropoli
+55,Ciudad autónoma de Buenos Aires,Ciudad autónoma de Buenos Aires,Velez Sarsfield,https://www.bdfa.com.ar/jugadores-LEANDRO-DANIEL-SOMOZA-593.html,1,Q720572,Leandro Somoza,Buenos Aires,Ciudad Autónoma de Buenos Aires,Ciudad Autónoma de Buenos Aires,>500k,metropoli,1981,02,AGLO_1,exacto,>500k,metropoli
+56,Magdalena,Buenos Aires,Estudiante,https://www.bdfa.com.ar/jugadores-FRANCO-ZAPIOLA-133498.html,1,Q108532936,Franco Zapiola,Magdalena,Buenos Aires,Magdalena,10–50k,resto,2001,06,LOC_06505040,exacto,10–50k,resto
+57,Alsina,Buenos Aires,Villa Dálmine,https://www.bdfa.com.ar/jugadores-JUAN-MANUEL-MAZZOCCHI-76058.html,1,Q49629170,Juan Manuel Mazzocchi,Baradero,Buenos Aires,Baradero,10–50k,resto,1997,06,,sin_resolver,,
+58,Santa Fe,Santa Fe,Colón de Santa Fe,http://bdfa.com.ar/jugadores-FRANCISCO-FILIPPI-101993.html,1,Q44724541,Francisco Filippi,Santa Fe,Santa Fe,Santa Fe,>500k,metropoli,1994,82,AGLO_8,exacto,>500k,metropoli
+59,,,,,0,Q26915347,Germán Márquez,Buenos Aires,Ciudad Autónoma de Buenos Aires,Ciudad Autónoma de Buenos Aires,>500k,metropoli,1976,,,no_verificable,,
+60,Resistencia,Chaco,Boca Juniors,https://www.bdfa.com.ar/jugadores-CHRISTIAN-GIMENEZ-116.html,1,Q1079859,Christian Giménez,Resistencia,Chaco,Resistencia,100–500k,resto,1981,22,AGLO_11,exacto,100–500k,resto
+61,Rivadavia,Mendoza,Godoy Cruz,https://www.bdfa.com.ar/jugadores-LEANDRO-EZEQUIEL-LENCINAS-112821.html,1,Q50223139,Leandro Lencinas,Rivadavia,Mendoza,Rivadavia,10–50k,resto,1995,50,LOC_50084140,exacto,10–50k,resto
+62,Rawson,Chubut,Ferro Carril Oeste,https://www.bdfa.com.ar/jugadores-CRISTIAN-ALBERTO-TULA-5291.html,1,Q5186269,Cristian Tula,Rawson,Chubut,Rawson,10–50k,resto,1978,26,LOC_26077030,exacto,10–50k,resto
+63,Bernardo Larroudé,La Pampa,Boca Juniors,https://www.bdfa.com.ar/jugadores-AARON-ANSELMINO-143978.html,1,Q123227962,Aaron Anselmino,Bernardo Larroudé,La Pampa,Bernardo Larroude,<10k,resto,2005,42,LOC_42056010,exacto,<10k,resto
+64,Oberá,Misiones,Olimpia,https://www.bdfa.com.ar/jugadores-FEDERICO-SEBASTIAN-NEYRA-76627.html,1,Q5441039,Federico Neyra,Oberá,Misiones,Oberá,50–100k,resto,1987,54,AGLO_68,exacto,50–100k,resto
+65,Ciudad Autónoma de Buenos Aires,Ciudad Autónoma de Buenos Aires,Cerro Largo,https://www.bdfa.com.ar/jugadores-LUCAS-NAHUEL-ARZAMENDIA-117731.html,1,Q61764047,Lucas Arzamendia,Buenos Aires,Ciudad Autónoma de Buenos Aires,Ciudad Autónoma de Buenos Aires,>500k,metropoli,1999,02,AGLO_1,exacto,>500k,metropoli
+66,Santa Rosa,La Pampa,Alvear General Pico,https://www.bdfa.com.ar/jugadores-JOAQUIN-SUSVIELLES-88061.html,1,Q18923330,Joaquín Susvielles,Santa Rosa,La Pampa,Santa Rosa,100–500k,resto,1991,42,AGLO_29,exacto,100–500k,resto
+67,Henderson,Buenos Aires,Gimnasia y Esgrima de La Plata,https://www.bdfa.com.ar/jugadores-ANTONIO-PIERGUIDI-40328.html,1,Q4776872,Antonio Piergüidi,Henderson,Buenos Aires,Henderson,<10k,resto,1985,06,LOC_06406010,exacto,<10k,resto
+68,Córdoba,Córdoba,Tiro Federal de Morteros,https://www.bdfa.com.ar/jugadores-MAURICIO-FRANCO-SOLDANO-71314.html,1,Q17364520,Franco Soldano,Córdoba,Córdoba,Córdoba,>500k,metropoli,1994,14,AGLO_2,exacto,>500k,metropoli
+69,Rosario,Santa Fe,Real Santa Cruz,https://www.bdfa.com.ar/jugadores-MARTIN-ADRIAN-PALAVICINI-32404.html,1,Q6777816,Martín Palavicini,Rosario,Santa Fe,Rosario,>500k,metropoli,1977,82,AGLO_3,exacto,>500k,metropoli
+70,Paraná,Entre Rios,Patronato,https://www.bdfa.com.ar/jugadores-IVAN-ALEJANDRO-FURIOS-195.html,1,Q2895202,Iván Furios,Paraná,Entre Ríos,Paraná,100–500k,resto,1979,30,AGLO_16,exacto,100–500k,resto
+71,,,,,0,Q66929490,adolfo hitler buendia,Nelson,Santa Fe,Nelson,<10k,resto,2002,,,no_verificable,,
+72,General Belgrano,Buenos Aires,Estudiantes de La Plata,https://www.bdfa.com.ar/jugadores-LEANDRO-GUIDO-TESTA-266.html,1,Q6509760,Leandro Testa,General Belgrano,Buenos Aires,General Belgrano,10–50k,resto,1976,06,LOC_06301010,exacto,10–50k,resto
+73,villa mercedes,San Luis,Boca Juniors,https://www.bdfa.com.ar/jugadores-LEONARDO-JULIAN-BALERDI-116566.html,1,Q50233588,Leonardo Balerdi,Villa Mercedes,San Luis,Villa Mercedes,100–500k,resto,1999,74,LOC_74035070,exacto,100–500k,resto
+74,Romang,Santa Fe,Unión de Santa Fe,https://www.bdfa.com.ar/jugadores-LUIS-ALBERTO-OJEDA-55073.html,1,Q3840400,Luis Ojeda,Romang,Santa Fe,Romang,<10k,resto,1990,82,LOC_82098050,exacto,<10k,resto
+75,San Carlos,Santa Fe,Colón de Santa Fe,https://www.bdfa.com.ar/jugadores-CLAUDIO-CENCI-95284.html,1,Q5771893,Claudio Cenci,San Carlos Centro,Santa Fe,San Carlos Centro,10–50k,resto,1985,82,AGLO_237,prefijo,10–50k,resto
+76,Adrogué,Buenos Aires,Temperley,https://www.bdfa.com.ar/jugadores-FEDERICO-JAVIER-CRIVELLI-14670.html,1,Q5857571,Federico Crivelli,José Mármol,Buenos Aires,Almirante Brown,>500k,metropoli,1982,06,AGLO_1,alias_manual,>500k,metropoli
+77,Villa María,Córdoba,Talleres de Córdoba,https://www.bdfa.com.ar/jugadores-JUAN-CRUZ-GILL-29857.html,1,Q525734,Juan Cruz Gill,Villa María,Córdoba,Villa María,100–500k,resto,1983,14,AGLO_30,exacto,100–500k,resto
+78,Carcarañá,Santa Fe,Racing Club,https://www.bdfa.com.ar/jugadores-CLAUDIO-ARIEL-YACOB-51020.html,1,Q217921,Claudio Yacob,Carcarañá,Santa Fe,Carcarañá,10–50k,resto,1987,82,LOC_82119030,exacto,10–50k,resto
+79,Ciudad Autonoma de buenos Aires,Ciudad Autonoma de buenos Aires,Boca Juniors,https://www.bdfa.com.ar/jugadores-BRUNO-GABRIEL-GALVAN-104919.html,1,Q20650499,Bruno Galván,Buenos Aires,Ciudad Autónoma de Buenos Aires,Ciudad Autónoma de Buenos Aires,>500k,metropoli,1994,02,AGLO_1,exacto,>500k,metropoli
+80,Concordia,Entre Rios,San Miguel,https://www.bdfa.com.ar/jugadores-HERNAN-PABLO-GARIN-33778.html,1,Q5742440,Hernán Garin,Concordia,Entre Ríos,Concordia,100–500k,resto,1983,30,LOC_30015060,exacto,100–500k,resto
+81,,,,,0,Q25677249,Diego Fabián Torres,Villa Nueva,Córdoba,Villa Nueva,100–500k,resto,1990,,,no_verificable,,
+82,,,,,0,Q491538,Fabián Caballero,Posadas,Misiones,Posadas,100–500k,resto,1978,,,no_verificable,,
+83,Ciudad Autonoma de buenos Aires,Ciudad Autonoma de buenos Aires,Temperley,https://www.bdfa.com.ar/jugadores-ENZO-SALAS-117435.html,1,Q63248404,Enzo Salas,Concordia,Entre Ríos,Concordia,100–500k,resto,2000,02,AGLO_1,exacto,>500k,metropoli
+84,Villaguay,Entre Rios,Argentino,https://www.bdfa.com.ar/jugadores-CARLOS-EMANUEL-VILLA-9771.html,1,Q657442,Emanuel Villa,Casilda,Santa Fe,Casilda,10–50k,resto,1982,30,LOC_30113080,exacto,10–50k,resto
+85,,,,,0,Q5644596,Emanuel García,Tigre,Buenos Aires,Tigre,>500k,metropoli,1990,,,no_verificable,,
+86,godoy Cruz,Mendoza,Argentinos Juniors,https://www.bdfa.com.ar/jugadores-LEANDRO-IVAN-BARRERA-81744.html,1,Q5972194,Leandro Barrera,Godoy Cruz,Mendoza,Guaymallén,>500k,metropoli,1991,50,AGLO_4,exacto,>500k,metropoli
+87,Corrientes,Corrientes,Boca Unidos,-,1,Q55375284,Martín Ojeda,Corrientes,Corrientes,Corrientes,<10k,resto,1997,18,AGLO_1330,exacto,<10k,resto
+88,,,,,0,Q10329918,Miguel Ángel Bazán,Buenos Aires,Ciudad Autónoma de Buenos Aires,Ciudad Autónoma de Buenos Aires,>500k,metropoli,1985,,,no_verificable,,
+89,Escobar,Buenos Aires,Deportivo Armenio,-,1,Q5995984,Marcelo Vieytes,Buenos Aires,Ciudad Autónoma de Buenos Aires,Ciudad Autónoma de Buenos Aires,>500k,metropoli,1979,06,AGLO_1,exacto,>500k,metropoli
+90,Goya,Corrientes,Chacarita Juniors,-,1,Q18223462,Ángel Piz,Goya,Corrientes,Goya,<10k,resto,1992,18,AGLO_2514,exacto,<10k,resto
+91,Laboulaye,Córdoba,Arsenal,-,1,Q27786548,Juan Brunetta,Laboulaye,Córdoba,Laboulaye,10–50k,resto,1997,14,LOC_14084030,exacto,10–50k,resto
+92,Berazategui,Buenos Aires,Berazategui,-,1,Q18221014,Adrián Arregui,Berazategui,Buenos Aires,Berazategui,>500k,metropoli,1992,06,AGLO_1,exacto,>500k,metropoli
+93,,,,,0,Q3857270,Miguel Pedro López,Ensenada,Buenos Aires,Ensenada,>500k,metropoli,1988,,,no_verificable,,
+94,,,,,0,Q86603993,Ariel Cháves,Rosario,Santa Fe,Rosario,>500k,metropoli,1992,,,no_verificable,,
+95,Salliquelo,Buenos Aires,Banfield,-,1,Q5888518,Guillermo Esteban,Salliqueló,Buenos Aires,Salliqueló,<10k,resto,1987,06,LOC_06721020,exacto,<10k,resto
+96,Zarate,Buenos Aires,River Plate,-,1,Q1350162,Oscar Ahumada,Zárate,Buenos Aires,Zárate,>500k,metropoli,1982,06,AGLO_1,exacto,>500k,metropoli
+97,Ciudad Autónoma de Buenos Aires,Ciudad Autónoma de Buenos Aires,Argentinos Juniors,-,1,Q63818353,Leandro Finochietto,Buenos Aires,Ciudad Autónoma de Buenos Aires,Ciudad Autónoma de Buenos Aires,>500k,metropoli,1997,02,AGLO_1,exacto,>500k,metropoli
+98,,,,,0,Q131106940,Elías David Torres,Ucacha,Córdoba,Ucacha,<10k,resto,2001,,,no_verificable,,
+99,,,,,0,Q6792082,Matías Alejandro Quiroga,Batavia,San Luis,Batavia,<10k,resto,1986,,,no_verificable,,
+100,Tres Isletas,Chaco,Independiente,-,1,Q5233425,David Escalante,Tres Isletas,Chaco,Tres Isletas,10–50k,resto,1991,22,LOC_22091010,exacto,10–50k,resto
+101,,,,,0,Q134276701,Ulises Ojeda,Buenos Aires,Ciudad Autónoma de Buenos Aires,Ciudad Autónoma de Buenos Aires,>500k,metropoli,1995,,,no_verificable,,
+102,Rosario,Santa Fe,San Martín de San Juan,-,1,Q5552319,Germán Pietrobon,San Juan,San Juan,San Juan,>500k,metropoli,1983,82,AGLO_3,exacto,>500k,metropoli
+103,Rafaela,Santa Fe,,,1,Q59209492,Lautaro Navas,Rafaela,Santa Fe,Rafaela,100–500k,resto,1996,82,LOC_82021310,exacto,100–500k,resto
+104,Rafael Castillo,Buenos Aires,Huracán,-,1,Q19844291,Gabriel Robledo,Buenos Aires,Ciudad Autónoma de Buenos Aires,Ciudad Autónoma de Buenos Aires,>500k,metropoli,1993,06,AGLO_1,alias_manual,>500k,metropoli
+105,Villa Luzuriaga,Buenos Aires,Ferro Carril Oeste,-,1,Q116250233,Luciano Jachfe,Villa Luzuriaga,Buenos Aires,La Matanza,>500k,metropoli,2001,06,AGLO_1,alias_manual,>500k,metropoli
+106,Merlo,Buenos Aires,Huracán,-,1,Q27119603,Jonathan Campo,Merlo,Buenos Aires,Merlo,>500k,metropoli,1988,06,AGLO_1,exacto,>500k,metropoli
+107,,,,,0,Q5981913,Lucas Molina,Buenos Aires,Ciudad Autónoma de Buenos Aires,Ciudad Autónoma de Buenos Aires,>500k,metropoli,1984,,,no_verificable,,
+108,,,,,0,Q121182047,Lisandro Morales,Villa Gobernador Gálvez,Santa Fe,Villa Gobernador Gálvez,>500k,metropoli,2004,,,no_verificable,,
+109,,,,,0,Q124527918,Agustín Campana,Buenos Aires,Ciudad Autónoma de Buenos Aires,Ciudad Autónoma de Buenos Aires,>500k,metropoli,1998,,,no_verificable,,
+110,,,,,0,Q5951887,Juan Pablo Zárate,Córdoba,Córdoba,Córdoba,>500k,metropoli,1991,,,no_verificable,,
+111,Rosario,Santa Fe,San Telmo,-,1,Q56728837,Stefano Callegari,Rosario,Santa Fe,Rosario,>500k,metropoli,1997,82,AGLO_3,exacto,>500k,metropoli
+112,Moreno,Buenos Aires,Racing Club,-,1,Q630956,Valentín Viola,Moreno,Buenos Aires,Moreno,>500k,metropoli,1991,06,AGLO_1,exacto,>500k,metropoli
+113,San Martín,Buenos Aires,Argentinos Juniors,-,1,Q26972389,Andrés Grande,Buenos Aires,Ciudad Autónoma de Buenos Aires,Ciudad Autónoma de Buenos Aires,>500k,metropoli,1976,06,AGLO_1,alias_manual,>500k,metropoli
+114,Santa Fe,Santa Fe,Unión de Santa Fe,-,1,Q5783604,Conrado Peralta Pino,Santa Fe,Santa Fe,Santa Fe,>500k,metropoli,1985,82,AGLO_8,exacto,>500k,metropoli
+115,Ciudad Autónoma de Buenos Aires,Ciudad Autónoma de Buenos Aires,Deportivo Español,-,1,Q5963680,Héber Arriola,Buenos Aires,Ciudad Autónoma de Buenos Aires,Ciudad Autónoma de Buenos Aires,>500k,metropoli,1980,02,AGLO_1,exacto,>500k,metropoli
+116,,,,,0,Q27663481,Nico Olsak,Buenos Aires,Ciudad Autónoma de Buenos Aires,Ciudad Autónoma de Buenos Aires,>500k,metropoli,1991,,,no_verificable,,
+117,Florentino Ameghino,Buenos Aires,San Lorenzo,-,1,Q101250897,Alexis Sabella,Florentino Ameghino,Buenos Aires,Florentino Ameghino,<10k,resto,2001,06,LOC_06277020,exacto,<10k,resto
+118,,,,,0,Q60735821,Franco Ferrari,Rosario,Santa Fe,Rosario,>500k,metropoli,1992,,,no_verificable,,
+119,Chañar Ladeado,Santa Fe,Gimnasia y Esgrima de La Plata,-,1,Q588855,Lucas Landa,Chañar Ladeado,Santa Fe,Chañar Ladeado,<10k,resto,1986,82,LOC_82014070,exacto,<10k,resto
+120,,,,,0,Q5526910,Gastón Pisani,Buenos Aires,Ciudad Autónoma de Buenos Aires,Ciudad Autónoma de Buenos Aires,>500k,metropoli,1983,,,no_verificable,,
+121,Ramona,Santa Fe,Gimnasia y Esgrima,-,1,Q2474192,Abel Masuero,Ramona,Santa Fe,Ramona,<10k,resto,1988,82,LOC_82021320,exacto,<10k,resto
+122,Egusquiza,Santa Fe,Atlético Rafaela,-,1,Q132101618,Gino Albertengo,Egusquiza,Santa Fe,Egusquiza,<10k,resto,2003,82,LOC_82021140,exacto,<10k,resto
+123,Ensenada,Buenos Aires,Defensores de Cambaceres,-,1,Q17364555,Martín Zuccarelli,La Plata,Buenos Aires,La Plata,>500k,metropoli,1978,06,AGLO_1,exacto,>500k,metropoli
+124,,Santa Fe,Newells Old Boys,-,1,Q126365798,Ian Glavinovich,Elortondo,Santa Fe,Elortondo,<10k,resto,2001,82,,solo_provincia,,
+125,La Plata,Buenos Aires,Gimnasia y Esgrima de La Plata,-,1,Q2327959,Federico Turienzo,La Plata,Buenos Aires,La Plata,>500k,metropoli,1983,06,AGLO_1,exacto,>500k,metropoli
+126,Paraná,Entre Rios,Atlético Belgrano,-,1,Q116410175,Walter Rueda,Paraná,Entre Ríos,Paraná,100–500k,resto,1997,30,AGLO_16,exacto,100–500k,resto
+127,Olavarria,Buenos Aires,El Fortin de Olavarria,-,1,Q6110031,Roberto Tucker,Olavarría,Buenos Aires,Olavarrí­a,100–500k,resto,1983,06,LOC_06595070,exacto,100–500k,resto
+128,Parana,Entre Rios,Unión de Santa Fe,-,1,Q5857560,Federico Chiapello,San Jerónimo Norte,Santa Fe,San Jerónimo Norte,<10k,resto,1993,30,AGLO_16,exacto,100–500k,resto
+129,Pilar,Buenos Aires,Rivadavia Lincoln,-,1,Q16233715,Esteban Ciaccheri,Pilar,Buenos Aires,Pilar,>500k,metropoli,1991,06,AGLO_1,exacto,>500k,metropoli
+130,,,,,0,Q26155667,Rodrigo De Ciancio,Buenos Aires,Ciudad Autónoma de Buenos Aires,Ciudad Autónoma de Buenos Aires,>500k,metropoli,1995,,,no_verificable,,
+131,Zapala,Neuquén,Ferro Carril Oeste,-,1,Q17462635,Marcos Acuña,Zapala,Neuquén,Zapala,10–50k,resto,1991,58,LOC_58112040,exacto,10–50k,resto
+132,Rafaela,Santa Fe,Atlético Rafaela,-,1,Q28055553,Mauro Borgnino,Rafaela,Santa Fe,Rafaela,100–500k,resto,1997,82,LOC_82021310,exacto,100–500k,resto
+133,Roque Saenz Peña,Buenos Aires,Velez Sarsfield,-,1,Q208087,Jonás Gutiérrez,Buenos Aires,Ciudad Autónoma de Buenos Aires,Ciudad Autónoma de Buenos Aires,>500k,metropoli,1983,06,AGLO_1,alias_manual,>500k,metropoli

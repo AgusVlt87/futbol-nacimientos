@@ -51,8 +51,10 @@ estructura profesional que lo sostiene.
 
 **Cuarto, y es el resultado más robusto del trabajo: entre los que ya llegaron a
 un juvenil de la selección, los nacidos fuera de un gran aglomerado llegan a la
-Mayor con más frecuencia** —41,9% contra 28,1%; OR 1,85 (IC 95% 1,14–2,98),
-p = 0,013, y 1,85 ajustando por cohorte de nacimiento. Este análisis **no usa
+Mayor con más frecuencia** —41,1% contra 28,1%; OR 1,78 (IC 95% 1,09–2,93),
+p = 0,027, y 1,78 ajustando por cohorte de nacimiento. **Todo el contraste lo
+aporta un solo estrato**: sin el tramo de 10.000 a 50.000 habitantes, 25 casos,
+el OR cae a 1,42 y el intervalo cruza el 1. Este análisis **no usa
 denominador poblacional**, de modo que no lo afectan ni el sesgo de imputación de
 nacimientos ni la cobertura de Wikidata. Dicho en criollo: al pibe del interior le
 cuesta mucho más entrar, pero el que entra rinde más.
@@ -63,14 +65,15 @@ AMBA 28,3, contra 8,2 del NOA y 9,6 del NEA. Por provincia, CABA produce 2,6 vec
 lo que le correspondería por sus nacimientos y Santa Fe 2,3; Salta, Catamarca y
 San Juan producen menos de un cuarto.
 
-**Sexto, y con una advertencia que hay que leer antes que el número: entre los
-futbolistas que llegaron lejos, la formación está mucho más concentrada que el
-nacimiento.** El 47,1% se forma en una provincia distinta de aquella en la que
-nació y el NEA retiene al 8,6% de los suyos. **Pero esta submuestra está
-seleccionada por el desenlace**: la cobertura del club formador en Wikidata va
-del 99,2% entre jugadores de selección al 12,7% en el resto, de modo que describe
-a los que llegaron a la elite y no a la población de futbolistas. Son órdenes de
-magnitud, no estimaciones, y no se usan para sostener ninguna otra conclusión
+**Sexto: la formación está mucho más concentrada que el nacimiento, y el número
+bajó cuando se arregló la muestra.** El 44,5% se forma en una provincia distinta
+de aquella en la que nació y el NEA retiene al 11,2% de los suyos. Mientras el
+club formador salía solo de Wikidata, la cobertura iba del 99,2% entre jugadores
+de selección al 12,7% en el resto y la submuestra estaba **seleccionada por el
+desenlace**: describía a los que llegaron a la elite, que son los que se mudaron.
+Sumando el campo `equipo_debut` de las fichas de Wikipedia la cobertura del
+estrato «resto» sube a 72,1% y la migración cae de 47,1% a 44,5% (OR 5,58 →
+5,03). **El sesgo existía y estaba inflando el número**; el hallazgo sobrevive
 (§3.3, §4.3 limitación 5).
 
 El patrón se sostiene entre los jugadores de la selección mayor, donde la
@@ -291,12 +294,31 @@ Benjamini-Hochberg en los cruces exploratorios.
 ### 2.6 La limitación central: nacer ≠ formarse
 
 Wikidata da el lugar de **nacimiento**, no el de desarrollo. Para H3 se construyó
-un proxy del club formador: el vínculo jugador-club (`P54`) con la fecha de
-inicio (`P580`) más temprana, excluyendo selecciones. **Es un proxy.** Wikidata
-suele omitir las inferiores, con lo cual el primer club listado es muchas veces
-el de debut profesional; y su cobertura es muy desigual por nivel: 99,2% entre
-los jugadores de selección mayor contra 12,7% en el resto. H3 se apoya en 1.923
-jugadores con origen y club formador ubicados en Argentina.
+un proxy del club formador con **dos fuentes**, en este orden.
+
+**Primera: Wikidata.** El vínculo jugador-club (`P54`) con la fecha de inicio
+(`P580`) más temprana, excluyendo selecciones. Cubre el 40,9% de la muestra, y de
+forma muy desigual por nivel: 99,2% entre los jugadores de selección mayor contra
+12,7% en el resto.
+
+**Segunda: las fichas de Wikipedia.** El campo `equipo_debut` de la plantilla
+`{{Ficha de deportista}}`, que ningún bot volcó nunca al grafo. Se bajó por la
+API de acción de Wikimedia —publicada para uso programático, contenido CC BY-SA,
+218 pedidos en total— y el club se resolvió a QID por el **destino del enlace**,
+nunca por el nombre. Cubre un 41,8% adicional. **No se usó Transfermarkt**, que
+tiene el dato con mejor cobertura, porque sus términos de uso prohíben la
+extracción automatizada.
+
+**Por qué se pueden mezclar.** Contra los 106 clubes verificados a mano en BDFA,
+y en los 45 casos donde ambas fuentes tienen dato, aciertan igual: 88,9% cada una
+(McNemar exacto p = 1,00). Y el error de la ficha **no es diferencial por estrato
+de nacimiento** (83,7% contra 80,5%, Fisher p = 0,78). Wikidata va primero donde
+está solo porque trae la fecha del vínculo mejor definida; la columna
+`primer_club_fuente` registra la procedencia de cada caso.
+
+**Sigue siendo un proxy**: las dos fuentes suelen omitir las inferiores, con lo
+cual el primer club listado es muchas veces el de debut profesional. H3 se apoya
+en 3.879 jugadores con origen y club formador ubicados en Argentina.
 
 ---
 
@@ -414,14 +436,15 @@ acierta, y no alcanza para sostener el patrón general.
 
 **Figuras 8, 9 y 10.**
 
-> **Advertencia que condiciona toda la sección.** La submuestra de H3 —los 1.923
-> jugadores con club formador identificable— está **seleccionada por el
-> desenlace**. La cobertura del club formador en Wikidata va del 99,2% entre
-> jugadores de selección al 12,7% en el resto: la submuestra está enriquecida al
-> doble en jugadores de elite y vaciada cinco veces del resto. Todo lo que sigue
-> describe **a los futbolistas que llegaron lejos**, no a la población de
-> futbolistas argentinos. Los números son órdenes de magnitud, no estimaciones
-> poblacionales, y **no se usan para sostener H1, H2 ni el resultado de §3.5**.
+> **Advertencia que condiciona toda la sección.** La submuestra de H3 son 3.879
+> jugadores con club formador identificable, el 70,4% de la muestra. Estuvo
+> **seleccionada por el desenlace** mientras el club salía solo de Wikidata
+> (99,2% de cobertura en selección contra 12,7% en el resto); sumando las fichas
+> de Wikipedia el piso sube a 72,1% y la cobertura por estrato de **nacimiento**
+> queda plana (81 a 88% en los cinco tramos). Queda un 17,3% sin club, todavía
+> concentrado en los jugadores menos notables, así que la migración medida sigue
+> siendo probablemente una **cota superior**. Los números de esta sección no se
+> usan para sostener H1, H2 ni el resultado de §3.5.
 
 **Comparado con la población general, el futbolista migra cinco veces más.**
 
@@ -429,11 +452,11 @@ acierta, y no alcanza para sostener el patrón general.
 <!-- generado por `python -m src.report.sync_tablas_paper`; no editar a mano -->
 | Grupo | n | Fuera de su provincia |
 |---|---:|---:|
-| Futbolistas (nacimiento → club formador) | 1.923 | **47,0%** |
+| Futbolistas (nacimiento → club formador) | 3.879 | **44,5%** |
 | Población general (nacimiento → residencia, Censo 2022) | 42.640.509 | 13,8% |
 <!-- TABLA:h3_poblacion FIN -->
 
-OR 5,58 (IC 95% 5,10–6,10). El punto de comparación es lo que vuelve
+OR 5,03 (IC 95% 4,72–5,36). El punto de comparación es lo que vuelve
 interpretable el número.
 
 **El corte por origen es un escalón, no un gradiente:**
@@ -442,11 +465,11 @@ interpretable el número.
 <!-- generado por `python -m src.report.sync_tablas_paper`; no editar a mano -->
 | Ciudad de nacimiento | n | Cambia de departamento | Cambia de provincia | Distancia mediana |
 |---|---:|---:|---:|---:|
-| <10k | 150 | 94,0% | 61,3% | 307 km |
-| 10–50k | 209 | 97,6% | 64,1% | 312 km |
-| 50–100k | 107 | 86,0% | 65,4% | 256 km |
-| 100–500k | 225 | 86,7% | 67,6% | 470 km |
-| >500k | 1.197 | 52,0% | 36,7% | 7 km |
+| <10k | 326 | 92,6% | 57,7% | 290 km |
+| 10–50k | 426 | 96,2% | 57,5% | 280 km |
+| 50–100k | 199 | 85,4% | 64,8% | 277 km |
+| 100–500k | 444 | 76,8% | 60,6% | 358 km |
+| >500k | 2.383 | 52,0% | 35,7% | 7 km |
 <!-- TABLA:h3_tamano FIN -->
 
 Entre los cuatro tramos menores no hay gradiente: todos migran masivamente. El
@@ -459,12 +482,12 @@ Nacer en una ciudad grande significa formarse a siete kilómetros de casa.
 <!-- generado por `python -m src.report.sync_tablas_paper`; no editar a mano -->
 | Región | Nacidos | Formados allí | Saldo neto | Retención |
 |---|---:|---:|---:|---:|
-| AMBA | 677 | 1.260 | +583 | 90,8% |
-| Cuyo | 75 | 46 | -29 | 45,3% |
-| Patagonia | 65 | 23 | -42 | 27,7% |
-| NOA | 76 | 28 | -48 | 28,9% |
-| NEA | 81 | 8 | -73 | 8,6% |
-| Pampeana | 949 | 558 | -391 | 48,9% |
+| AMBA | 1.348 | 2.147 | +799 | 92,2% |
+| Cuyo | 171 | 138 | -33 | 59,6% |
+| Patagonia | 113 | 65 | -48 | 34,5% |
+| NOA | 176 | 100 | -76 | 42,6% |
+| NEA | 169 | 26 | -143 | 11,2% |
+| Pampeana | 1.902 | 1.403 | -499 | 63,6% |
 <!-- TABLA:h3_regiones FIN -->
 
 El NEA retiene a uno de cada doce futbolistas que nacen en su territorio.
@@ -475,12 +498,12 @@ El NEA retiene a uno de cada doce futbolistas que nacen en su territorio.
 <!-- generado por `python -m src.report.sync_tablas_paper`; no editar a mano -->
 | Club | Formados | Distancia mediana | De otra provincia |
 |---|---:|---:|---:|
-| Boca Juniors | 143 | 277 km | 77% |
-| Club Atlético River Plate | 122 | 265 km | 76% |
-| Club Atlético Vélez Sarsfield | 98 | 18 km | 56% |
+| Boca Juniors | 202 | 277 km | 79% |
+| Club Atlético River Plate | 123 | 253 km | 76% |
+| Racing Club | 110 | 97 km | 53% |
+| Club Atlético Vélez Sarsfield | 99 | 18 km | 57% |
 | Club Atlético Newell’s Old Boys | 98 | 37 km | 34% |
 | Club Atlético Rosario Central | 94 | 0 km | 18% |
-| Club Estudiantes de La Plata | 85 | 233 km | 41% |
 <!-- TABLA:clubes FIN -->
 
 Hay dos modelos distintos de club formador. Rosario Central y Newell's forman
@@ -537,11 +560,11 @@ dónde nacieron?** El denominador acá no es una estimación de nacimientos: son
 <!-- TABLA:conversion FIN -->
 
 Agrupando en el contraste que tiene potencia —fuera de un gran aglomerado contra
-adentro—: **41,9% (44 de 105) contra 28,1% (68 de 242)**. OR 1,85 (IC 95%
-1,14–2,98); χ²(1) = 5,77; p = 0,016; Fisher exacto p = 0,013.
+adentro—: **41,1% (39 de 95) contra 28,1% (68 de 242)**. OR 1,78 (IC 95%
+1,09–2,93); Fisher exacto p = 0,027.
 
 **No es un efecto generacional.** Una regresión logística que agrega el año de
-nacimiento como control deja el OR en 1,85 (IC 95% 1,13–3,02; p = 0,014).
+nacimiento como control deja el OR en 1,78 (IC 95% 1,08–2,96; p = 0,025).
 
 Por qué este resultado resiste lo que los otros no:
 
@@ -759,24 +782,27 @@ alguna transformación pierde nacimientos.
    proporción describe la que tenían antes de dividirse. Afecta a 44
    departamentos; el criterio de cada equivalencia está en
    `data/reference/crosswalk_departamentos.csv`.
-4. **Cobertura de Wikidata.** Es un corpus de notabilidad, no un registro, y
-   nunca se contrastó contra un padrón independiente de futbolistas
-   profesionales: **la tasa de error del `P19` no está medida**. Se intentó: la
-   fuente candidata —la Base de Datos del Fútbol Argentino— prohíbe explícitamente
-   en su `robots.txt` el acceso de agentes automáticos, de modo que la validación
-   requiere consulta manual o autorización del sitio. La cobertura además varía al
-   doble entre cohortes (la de 1975–1979 rinde el 47,5% del pico de 1985–1989). El
-   análisis por nivel competitivo acota el problema pero no lo elimina.
-5. **H3 se mide sobre una muestra seleccionada por el desenlace.** La cobertura
-   del club formador va del 99,2% en jugadores de selección al 12,7% en el resto,
-   de modo que la submuestra de H3 está enriquecida al doble en jugadores de
-   elite y vaciada cinco veces del resto. El 47,1% de migración y el «diez clubes
-   concentran el 48%» describen a los que llegaron lejos, no a la población de
-   futbolistas. Deben leerse como orden de magnitud y no como estimación. En esta
-   versión se degradó su alcance: la sección abre con la advertencia, el resumen
-   la lleva incorporada y ninguna otra conclusión del trabajo se apoya en H3.
+4. **Cobertura de Wikidata.** Es un corpus de notabilidad, no un registro. La
+   tasa de error del `P19` **sí quedó medida** en esta versión, sobre 133 casos
+   verificados a mano contra la Base de Datos del Fútbol Argentino: 94,1% de
+   acuerdo, error no diferencial (§3.7). La verificación fue manual porque el
+   `robots.txt` de BDFA bloquea agentes automáticos; el sitio se puede leer en un
+   navegador, que es como se hizo. Lo que sigue abierto es la **cobertura**: son
+   133 de los 300 casos previstos, así que los intervalos son más anchos de lo
+   diseñado, y la cobertura varía al doble entre cohortes (la de 1975–1979 rinde
+   el 47,5% del pico de 1985–1989).
+5. **La selección por el desenlace en H3 quedó muy reducida, no eliminada.** Con
+   el club formador saliendo solo de Wikidata, la cobertura iba del 99,2% en
+   jugadores de selección al 12,7% en el resto y H3 describía a los que llegaron
+   lejos. Sumadas las fichas de Wikipedia (§2.4) el piso sube a 72,1%, la muestra
+   de 1.923 a 3.879 casos y la cobertura por estrato de nacimiento queda plana.
+   **El efecto de haberlo corregido se ve en los resultados**: la migración baja
+   de 47,1% a 44,5% y el OR de 5,58 a 5,03, que es la dirección que predice haber
+   estado midiendo sobre los seleccionados. Queda un 17,3% sin club, concentrado
+   en los menos notables, así que los números siguen siendo probablemente cota
+   superior. Ninguna otra conclusión del trabajo se apoya en H3.
 6. **La comparación de H3 con la población general no es estrictamente
-   comparable**: 47,1% (futbolistas, nacimiento → primer club, alrededor de los
+   comparable**: 44,5% (futbolistas, nacimiento → primer club, alrededor de los
    18 años) contra 13,8% (toda la población, todas las edades, nacimiento →
    residencia 2022). La variable `P14` del censo no está cruzada con edad, así
    que la comparación no se puede acotar a las mismas cohortes.
@@ -806,7 +832,7 @@ Conviene separar lo que el dato sostiene de lo que sugiere.
 
 **Lo que el dato sostiene.** Entre los futbolistas que ya llegaron a un juvenil de
 la selección, los nacidos fuera de un gran aglomerado llegan a la Mayor con más
-frecuencia (OR 1,85; p = 0,013; sin cambios al controlar por cohorte). Es un
+frecuencia (OR 1,78; p = 0,027; sin cambios al controlar por cohorte). Es un
 contraste dentro de un grupo observado, sin denominador estimado. Si el acceso
 midiera talento, la tasa de conversión debería ser igual en los dos grupos; no lo
 es. **Eso es evidencia de que el filtro de acceso está dejando afuera jugadores
@@ -815,7 +841,7 @@ que habrían rendido.**
 Para quien tiene que decidir dónde poner un centro de detección, la implicancia es
 concreta y no depende de ninguna de las limitaciones de §4.3: **un juvenil del
 interior es, en promedio, mejor apuesta que uno del AMBA con el mismo nivel
-alcanzado.** Con 105 casos fuera del AMBA el intervalo es ancho (1,14–2,98) y
+alcanzado.** Con 95 casos fuera del AMBA el intervalo es ancho (1,09–2,93) y
 merece confirmarse con el padrón real de convocatorias de AFA, que existe y no es
 público.
 

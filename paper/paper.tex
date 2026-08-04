@@ -48,23 +48,40 @@ argentinos nacidos entre 1975 y 2008, contra el número de \textbf{nacidos vivos
 de cada cohorte en cada lugar. La tasa se lee directo: de cada \num{100000} bebés
 nacidos en un lugar, cuántos llegaron a futbolistas profesionales.
 
-\textbf{El \emph{birthplace effect} clásico no aparece en Argentina y lo que
-aparece es su inverso}, pero con dos matices que la literatura previa no
-registra. La producción va de 12,9 futbolistas cada \num{100000} nacidos en
-localidades de menos de \num{10000} habitantes a 28,4 en aglomerados de más de
-\num{500000} (RR 0,45; \ic{0,41}{0,50}); no hay pico en las ciudades medianas.
-Sin embargo el efecto \textbf{no es un gradiente sino un escalón} —los nueve
-deciles de tamaño por debajo de \num{10000} habitantes no muestran tendencia
-alguna— y el tamaño de la ciudad explica apenas el 1\,\% de la variación entre
-ciudades (pseudo-$R^2 = 0{,}011$).
+\textbf{El \emph{birthplace effect} clásico no aparece en Argentina: lo que hay es
+un contraste binario entre las metrópolis y todo lo demás.} La producción va de
+12,7 futbolistas cada \num{100000} nacidos en localidades de menos de \num{10000}
+habitantes a 28,4 en aglomerados de más de \num{500000} (RR 0,45;
+\ic{0,41}{0,50}), y no hay pico en las ciudades medianas. Pero \textbf{no es un
+gradiente invertido}: por decil de tamaño, los nueve deciles por debajo de
+\num{10000} habitantes no muestran ninguna tendencia ordenada, el tamaño de la
+ciudad explica el 1\,\% de la variación entre ciudades
+(pseudo-$R^2 = 0{,}011$) y dentro de la selección los cuatro tramos no
+metropolitanos son indistinguibles entre sí. Todo el efecto es el salto del decil
+superior.
 
-\textbf{El artefacto de las maternidades no está operando}, que es lo que vuelve
-interpretable a todo lo demás. Las dos puntas del cociente registran
-\textbf{residencia}, no parto: la serie del DEIS titulada «nacimientos ocurridos»
-es idéntica a la tabulación por residencia de la madre en las 432 celdas
+\textbf{La versión fuerte del artefacto de las maternidades queda refutada; la
+débil, acotada.} Las dos puntas del cociente registran \textbf{residencia}, no
+parto: la serie del DEIS titulada «nacimientos ocurridos» es idéntica a la
+tabulación por residencia de la madre en las 432 celdas
 provincia\,$\times$\,año en que se solapan, y hay 76 futbolistas cuyo
 \texttt{P19} apunta a localidades de menos de \num{2000} habitantes, en 63
-localidades distintas, donde ninguna maternidad puede existir.
+localidades distintas, donde ninguna maternidad puede existir. Eso descarta que
+el \texttt{P19} sea sistemáticamente el lugar del parto, pero no que lo sea en
+una fracción de los casos: la cota superior de mala atribución es del 44,5\,\%
+del déficit del interior, y la forma de escalón único del efecto es compatible
+con que el artefacto opere. \textbf{Un análisis de sensibilidad acota cuánto
+haría falta}: para que el hallazgo deje de ser distinguible de la ausencia de
+efecto, uno de cada cuatro futbolistas registrados en un gran aglomerado tendría
+que haber nacido en realidad fuera de él.
+
+\textbf{Hay un segundo sesgo, del lado del numerador, que empuja igual y es de
+magnitud comparable.} La \emph{granularidad} con que Wikidata registra el lugar
+de nacimiento no es independiente de la región: entre los jugadores cuyo
+\texttt{P19} es una provincia entera —y que por eso quedan fuera del análisis de
+tamaño de ciudad— el NOA, Cuyo y el NEA están sobrerrepresentados entre 2,7 y 2,9
+veces ($\chi^2(5) = 72{,}9$; $p < 10^{-13}$). Atribuir los 486 casos excluidos al
+tramo menor —una cota deliberadamente inverosímil— llevaría su RR de 0,45 a 0,96.
 
 \textbf{Y el patrón es del fútbol, no del país.} Corrido el mismo análisis sobre
 otros deportes, la geografía cambia por completo: en el contraste que define el
@@ -74,18 +91,58 @@ efecto clásico; el rugby está aún más concentrado que el fútbol. Ningún ar
 de medición compartido puede producir mapas opuestos para deportes distintos
 medidos con el mismo instrumento.
 
-\textbf{El resultado más robusto del trabajo es condicional y no usa denominador
-poblacional}: entre los futbolistas que ya llegaron a un juvenil de la selección,
-los nacidos fuera de un gran aglomerado llegan a la Mayor con más frecuencia
-—41,9\,\% contra 28,1\,\%; OR 1,85 (\ic{1,14}{2,98}), $p = 0{,}013$, y 1,85
-ajustando por cohorte de nacimiento—. Al jugador del interior le cuesta mucho más
-entrar, pero el que entra rinde más. Ese diseño no lo afectan ni el sesgo de
-imputación de nacimientos, ni el registro del parto en la ciudad cabecera, ni la
-cobertura del corpus.
+\textbf{Y la tasa de error del lugar de nacimiento ya no es una incógnita: se
+midió.} Sobre una muestra estratificada de 133 casos verificados a mano contra la
+Base de Datos del Fútbol Argentino —independiente de Wikipedia—, el acuerdo es
+del 94,1\,\% y, sobre todo, \textbf{el error no es diferencial}: 6,1\,\% entre los
+que Wikidata ubica en una metrópoli y 5,7\,\% entre los que ubica fuera (OR 1,09;
+$p = 1{,}00$). Un error uniforme atenúa el efecto en vez de fabricarlo:
+corrigiendo por la matriz medida, el RR pasa de 0,599 a \textbf{0,547}
+(\ic{0,397}{0,682}). Queda muy por debajo del 25\,\% de mala clasificación que
+haría falta para que el hallazgo deje de ser distinguible del nulo —y aun el
+extremo pesimista de su intervalo, 16,9\,\%, también.
 
-Se discute en detalle por qué las tasas por nacido —y no el resultado
-condicional— quedan expuestas a un artefacto del sistema de salud, y qué haría
-falta para descartarlo.
+La misma verificación mostró que el problema de H3 era otro: no la exactitud del
+club —Wikidata acierta el 88,2\,\% donde tiene dato— sino que \textbf{no tiene
+dato en el 52\,\% de los casos}, y la ausencia sigue al nivel del jugador, que es
+el desenlace. Se cubrió incorporando el campo \texttt{equipo\_debut} de las
+fichas de Wikipedia, que en los casos donde ambas fuentes existen acierta lo
+mismo (88,9\,\% cada una; McNemar $p = 1{,}00$) y cuyo error no depende del
+estrato de nacimiento ($p = 0{,}78$). La cobertura del club formador pasa de
+40,9\,\% a 82,7\,\% —y de 12,7\,\% a 72,1\,\% entre los jugadores menos
+notables—. \textbf{El sesgo estaba operando}: con la muestra completa la
+migración de H3 baja de 47,1\,\% a 44,5\,\% y el OR contra la población general
+de 5,58 a 5,03 (\ic{4,72}{5,36}). El hallazgo se sostiene; su magnitud estaba
+inflada por medir solo a los que llegaron.
+
+\textbf{El instrumento sabe encontrar sesgos de selección cuando existen.} Como
+control positivo se corrió el efecto de la edad relativa, el hallazgo más
+replicado del área: el corpus lo recupera limpio y con la forma esperada —34,8\,\%
+de los futbolistas nacen en el primer trimestre contra 16,7\,\% en el cuarto;
+razón Q1/Q4 = 2,09; $\chi^2(3) = 443{,}5$— y se intensifica con el nivel
+competitivo (2,88 en la selección mayor contra 1,83 en el resto). El gradiente
+plano por tamaño de ciudad no se explica por falta de potencia.
+
+\textbf{Con covariables, lo que domina es la pobreza y no la geografía de los
+clubes.} Agregados al modelo el NBI departamental y la distancia al club formador
+más cercano, el NBI explica siete veces más variación que el tamaño de la ciudad
+(pseudo-$R^2$ 0,071 contra 0,010) y la distancia —fuerte por sí sola, IRR 0,854—
+se apaga por completo (IRR 0,987; $p = 0{,}75$): era un proxy de pobreza. El
+tamaño sobrevive atenuado (1,175 $\rightarrow$ 1,107). Y solo el 17\,\% de la
+variación residual separa a un departamento de otro: el resto ocurre entre
+ciudades vecinas, de modo que el mapa departamental resume mal el fenómeno.
+
+\textbf{Un resultado condicional, sin denominador poblacional, apunta en
+dirección contraria al principal, pero es frágil}: entre los futbolistas que ya
+llegaron a un juvenil de la selección, los nacidos fuera de un gran aglomerado
+llegan a la Mayor con más frecuencia —41,1\,\% contra 28,1\,\%; OR 1,78
+(\ic{1,09}{2,93}), $p = 0{,}027$—. Al jugador del interior le costaría más entrar
+y rendiría más una vez adentro. Se reporta con la advertencia de que \textbf{todo el
+contraste lo aporta un solo estrato}: excluyendo el tramo de \num{10000} a
+\num{50000} habitantes, 25 casos, el OR cae a 1,42 y el intervalo cruza el 1.
+
+Se discute en detalle por qué las tasas por nacido quedan expuestas a dos
+artefactos de medición de signo concordante, y qué haría falta para descartarlos.
 \end{abstract}
 
 \vspace{0.5em}
@@ -284,7 +341,7 @@ no puede haber debutado.
 
 La censura a derecha se cuantifica cohorte por cohorte
 (figura~\ref{fig:censura}): la tasa sube de 17 por \num{100000} en 1975--1979 a
-un pico de 37 en 1985--1989, y cae a 15 en 2000--2004 y 3 en 2005--2009. La caída
+un pico de 37 en 1985--1989, y cae a 15 en 2000--2004 y 3 en 2005--2008. La caída
 final es censura; la inicial es cobertura, porque Wikidata registra peor a los
 jugadores más viejos. El análisis principal usa toda la ventana y se repite
 restringido a cohortes $\leq 2002$ como robustez.
@@ -320,6 +377,7 @@ Lugar resuelto dentro de argentina & 7.711\\
 \end{center}
 
 \subsection{Resolución geográfica}
+\label{sec:geografia}
 
 Los nombres de lugares argentinos en Wikidata son inconsistentes: hay homónimos
 entre provincias —cuatro localidades se llaman Santa Rosa— y entidades que son
@@ -341,7 +399,7 @@ departamentos, que así llegaban al top-12 nacional de tasa —Ullum y Tumbaya c
 la totalidad de su cuenta fabricada, Azul inflado un 222\,\%—. Ahora conservan la
 provincia, que es dato válido, y quedan excluidos del análisis departamental y
 del de tamaño de ciudad. \textbf{El análisis provincial usa \num{5511}
-jugadores; el departamental, \num{5389}; el de tamaño de ciudad, \num{5248}.}
+jugadores; el departamental, \num{5401}; el de tamaño de ciudad, \num{5248}.}
 
 \textbf{«Tamaño de ciudad» significa aglomerado urbano cuando existe.} Lanús no
 es una ciudad de \num{200000} habitantes: es una porción de un conurbano de 16,2
@@ -361,12 +419,39 @@ Benjamini-Hochberg en los cruces exploratorios.
 \subsection{La limitación central: nacer no es formarse}
 
 Wikidata da el lugar de nacimiento, no el de desarrollo. Para H3 se construyó un
-proxy del club formador: el vínculo jugador-club (\texttt{P54}) con la fecha de
-inicio más temprana, excluyendo selecciones. \textbf{Es un proxy.} Wikidata suele
-omitir las inferiores, con lo cual el primer club listado es muchas veces el de
-debut profesional; y su cobertura es muy desigual por nivel: 99,2\,\% entre los
-jugadores de selección mayor contra 12,7\,\% en el resto. H3 se apoya en
-\num{1923} jugadores con origen y club formador ubicados en Argentina.
+proxy del club formador con \textbf{dos fuentes}, en este orden.
+
+\textbf{Primera fuente: Wikidata.} El vínculo jugador-club (\texttt{P54}) con la
+fecha de inicio (\texttt{P580}) más temprana, excluyendo selecciones. Cubre el
+40,9\,\% de la muestra, y de forma muy desigual por nivel: 99,2\,\% entre los
+jugadores de selección mayor contra 12,7\,\% en el resto. Usada sola, H3 quedaba
+medida sobre una muestra seleccionada por el desenlace.
+
+\label{sec:fichas}\textbf{Segunda fuente: las fichas de Wikipedia.} El campo
+\texttt{equipo\_debut} de la plantilla \texttt{\{\{Ficha de deportista\}\}}, que
+ningún bot volcó nunca al grafo: es el mismo proyecto y la misma comunidad, pero
+el dato quedó en la parte redactada y no en la estructurada. Se bajó por la API
+de acción de Wikimedia —publicada para uso programático, contenido CC BY-SA— y
+el club se resolvió a QID por el \emph{destino del enlace}, nunca por el nombre.
+Cubre un 41,8\,\% adicional. \textbf{No se usó Transfermarkt}, que tiene el dato
+con mejor cobertura, porque sus términos de uso prohíben la extracción
+automatizada.
+
+\textbf{Por qué se pueden mezclar.} Contra los \num{106} clubes de debut
+verificados a mano en BDFA (sección~\ref{sec:validacion}), y restringiendo a los
+\num{45} casos donde las dos fuentes tienen dato, aciertan igual: 88,9\,\% cada
+una, McNemar exacto $p = 1{,}00$. Y el error de la ficha \textbf{no es
+diferencial por estrato de nacimiento} —83,7\,\% de acierto en metrópolis contra
+80,5\,\% en el resto, Fisher $p = 0{,}78$—, que es la condición para que no
+sesgue el contraste que H3 mide. Wikidata va primero donde está solo porque
+trae la fecha del vínculo mejor definida. La columna
+\texttt{primer\_club\_fuente} registra la procedencia de cada caso, de modo que
+cualquier resultado puede recalcularse excluyendo las fichas.
+
+\textbf{Sigue siendo un proxy.} Las dos fuentes suelen omitir las inferiores,
+con lo cual el primer club listado es muchas veces el de debut profesional y no
+el de formación. Con las dos, H3 se apoya en \num{3879} jugadores con origen y
+club formador ubicados en Argentina.
 
 % =============================================================================
 \section{Resultados}
@@ -407,9 +492,9 @@ menos de \num{1000} habitantes a 28,4 en las de más de \num{500000}.
 
 \textbf{No es un gradiente: es un escalón.} La tabla de cinco tramos sugiere una
 progresión ordenada, pero esa forma la produce el ancho de las categorías. Por
-decil de tamaño de ciudad las tasas son 22,6 \textbullet{} 4,6 \textbullet{} 14,0
-\textbullet{} 4,9 \textbullet{} 8,5 \textbullet{} 8,8 \textbullet{} 13,3
-\textbullet{} 11,3 \textbullet{} 16,0 \textbullet{} 25,9: tres de los nueve pasos
+decil de tamaño de ciudad las tasas son 22,7 \textbullet{} 4,6 \textbullet{} 13,7
+\textbullet{} 4,9 \textbullet{} 7,2 \textbullet{} 9,4 \textbullet{} 13,1
+\textbullet{} 11,2 \textbullet{} 15,7 \textbullet{} 24,6: tres de los nueve pasos
 bajan, y los nueve deciles por debajo de \num{10000} habitantes —463 futbolistas,
 el 9\,\% de la muestra— no muestran ninguna tendencia (figura~\ref{fig:deciles}).
 Todo el efecto es el salto del decil superior.
@@ -520,12 +605,12 @@ nacional y cuáles son varianza; el ranking crudo no debe leerse sin ella.
 
 \subsection{H3 — La formación está mucho más concentrada que el nacimiento}
 
-Comparado con la población general, el futbolista migra cinco veces más: 47,1\,\%
+Comparado con la población general, el futbolista migra cinco veces más: 44,5\,\%
 se forma fuera de su provincia de nacimiento contra 13,8\,\% de la población
-general que reside fuera de su provincia de nacimiento (OR 5,58;
-\ic{5,10}{6,10}). El corte por origen es un escalón, no un gradiente: quien nace
+general que reside fuera de su provincia de nacimiento (OR 5,03;
+\ic{4,72}{5,36}). El corte por origen es un escalón, no un gradiente: quien nace
 en un aglomerado de más de \num{500000} habitantes se forma a 7\,km de mediana;
-quien nace en cualquier otro lado cambia de departamento en el 86--98\,\% de los
+quien nace en cualquier otro lado cambia de departamento en el 77--96\,\% de los
 casos.
 
 \begin{figure}[!htb]
@@ -544,13 +629,22 @@ casos.
   \label{fig:matriz}
 \end{figure}
 
-\textbf{Esta subsección tiene un problema de muestra que hay que declarar antes
-de leer los números.} La cobertura del club formador va del 99,2\,\% en jugadores
-de selección al 12,7\,\% en el resto, de modo que la submuestra de H3 está
-enriquecida al doble en jugadores de elite y vaciada cinco veces del resto —
-precisamente los que se fueron a los clubes grandes. El 47,1\,\% de migración y
-la concentración en unos pocos clubes describen a los que llegaron lejos, no a la
-población de futbolistas. Deben leerse como orden de magnitud.
+\textbf{Estos números corrigen a la baja una versión anterior, y el motivo
+importa.} Mientras el club formador salía solo de Wikidata (\texttt{P54} con
+fecha de inicio), la cobertura iba del 99,2\,\% en jugadores de selección al
+12,7\,\% en el resto: H3 se medía sobre \num{1923} casos \textbf{seleccionados
+por el desenlace}, y los cubiertos eran justamente los que habían llegado lejos
+— que son los que se mudaron a un club grande. Esa submuestra daba 47,1\,\% de
+migración y OR 5,58.
+
+Incorporando el campo \texttt{equipo\_debut} de las fichas de Wikipedia
+(sección~\ref{sec:fichas}) la cobertura del estrato «resto» pasa de 12,7\,\% a
+72,1\,\% y la submuestra a \num{3879} casos. La migración cae a 44,5\,\% y el OR
+a 5,03: \textbf{el sesgo existía y operaba en la dirección esperada}, inflando la
+migración. Lo que no cambia es el orden de magnitud ni el signo. La retención
+regional sube en todas las regiones —la Pampeana del 48,9\,\% al 63,6\,\%, el
+NOA del 28,9\,\% al 42,6\,\%— porque los jugadores que se incorporan son, en
+proporción, los que se quedaron.
 
 \subsection{H4 — No lo fabrica la cobertura de Wikidata}
 
@@ -615,12 +709,50 @@ $<$10k & 19 & 7 & 36,8 & 16,3--61,6\\
 \end{table}
 
 Agrupando en el contraste que tiene potencia —fuera de un gran aglomerado contra
-adentro—: \textbf{41,9\,\% (44 de 105) contra 28,1\,\% (68 de 242)}. OR 1,85
-(\ic{1,14}{2,98}); $\chi^2(1) = 5{,}77$; $p = 0{,}016$; Fisher exacto
-$p = 0{,}013$ (figura~\ref{fig:conversion}).
+adentro—: \textbf{41,1\,\% (39 de 95) contra 28,1\,\% (68 de 242)}. OR 1,78
+(\ic{1,09}{2,93}); Fisher exacto $p = 0{,}027$ (figura~\ref{fig:conversion}).
 
 \textbf{No es un efecto generacional.} Una regresión logística que agrega el año
-de nacimiento como control deja el OR en 1,85 (\ic{1,13}{3,02}; $p = 0{,}014$).
+de nacimiento como control deja el OR en 1,78 (\ic{1,08}{2,96}; $p = 0{,}025$).
+
+\textbf{Pero el contraste lo aporta un solo estrato, y hay que decirlo antes que
+nada.} La tabla no muestra ningún patrón ordenado: 36,8 \textbullet{} 56,0
+\textbullet{} 30,0 \textbullet{} 38,7 contra 28,1. El tramo de \num{50000} a
+\num{100000} habitantes está prácticamente igual que el de los grandes
+aglomerados. Sacando un tramo por vez:
+
+\begin{center}\small
+\begin{tabular}{@{}lrrll@{}}
+\toprule
+\textbf{Tramo excluido} & \textbf{Fuera de metro} & \textbf{\%} & \textbf{OR} &
+\textbf{IC 95\,\%}\\
+\midrule
+$<$10k    & 32/76 & 42,1 & 1,86 & 1,09--3,18\\
+\textbf{10--50k}  & \textbf{25/70} & \textbf{35,7} & \textbf{1,42} &
+  \textbf{0,81--2,50}\\
+50--100k  & 33/75 & 44,0 & 2,01 & 1,18--3,43\\
+100--500k & 27/64 & 42,2 & 1,87 & 1,06--3,30\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Sin el tramo de \num{10000} a \num{50000} habitantes —25 casos— el intervalo
+cruza el 1 y el resultado desaparece. \textbf{Esto no es un hallazgo sobre el
+interior: es un hallazgo sobre una celda de veinticinco jugadores.} Se reporta
+porque la dirección es informativa y porque el diseño esquiva los artefactos que
+comprometen al resto del trabajo, no porque esté establecido.
+
+\textbf{Y hay un problema de identificación que ninguna cantidad de casos
+arregla.} Condicionar en «haber llegado a un juvenil de la selección» es
+condicionar en un \emph{collider}: un nodo al que apuntan tanto el origen
+geográfico como el talento. En un diseño así aparecen asociaciones entre las
+causas aunque no exista ningún vínculo entre ellas. El OR 1,78 es
+\emph{consistente} con la historia del filtro de acceso —el interior tiene que ser
+mejor para entrar, y por eso rinde más una vez adentro— pero también con cualquier
+otra selección diferencial. Una alternativa concreta y no descartada: si el
+jugador del interior es convocado más tarde, entra más maduro y convierte mejor
+por eso y no por talento. La edad a la primera convocatoria juvenil discriminaría
+entre las dos explicaciones y no está en el corpus con la cobertura necesaria.
 
 \begin{figure}[!htb]
   \centering
@@ -630,21 +762,26 @@ de nacimiento como control deja el OR en 1,85 (\ic{1,13}{3,02}; $p = 0{,}014$).
   \label{fig:conversion}
 \end{figure}
 
-Por qué este resultado resiste lo que los otros no:
+Con esas dos salvedades por delante, lo que el diseño sí evita:
 
 \begin{itemize}[leftmargin=1.4em,itemsep=0.2em]
   \item \textbf{No usa denominador poblacional.} El sesgo de imputación del
     17\,\% no lo toca.
   \item \textbf{No depende de dónde ocurrió el parto} para construir una tasa: el
     registro del nacimiento en la cabecera clasificaría a un jugador de pueblo
-    como $>$500k, y eso \emph{atenúa} el contraste en vez de crearlo. El efecto
-    medido es un piso.
+    como $>$500k, y eso \emph{atenúa} el contraste en vez de crearlo.
   \item \textbf{La cobertura de Wikidata es del 97\,\%} entre jugadores de
     selección, y es la misma para los dos grupos que se comparan.
-  \item \textbf{Compara dentro de un grupo ya filtrado por talento reconocido},
-    de modo que no hay que suponer que el talento latente se distribuye parejo
-    entre regiones.
+  \item \textbf{No supone que el talento latente se distribuya parejo} entre
+    regiones, porque compara dentro de un grupo ya filtrado.
 \end{itemize}
+
+Un detalle de criterio que vale la pena porque se equivocó en una versión previa:
+los diez juveniles cuyo \texttt{P19} es una provincia o un departamento —y que
+por lo tanto no tienen tramo de tamaño asignado— quedan \textbf{fuera} de este
+contraste, igual que en §\ref{sec:geografia}. Contarlos como «fuera de un gran
+aglomerado», que es lo que hace una comparación booleana ingenua contra un valor
+nulo, daba 44 de 105 en vez de 39 de 95 e inflaba el OR de 1,78 a 1,85.
 
 La figura~\ref{fig:embudo} pone los tres escalones juntos y muestra dónde se
 invierte el signo: en los dos primeros —que dependen del denominador— el AMBA
@@ -658,6 +795,367 @@ gana; en el tercero —que no— pierde.
   un grupo observado.}
   \label{fig:embudo}
 \end{figure}
+
+\subsection{El sesgo del numerador: la granularidad del \texttt{P19}}
+\label{sec:granularidad}
+
+El estudio le dedicó tres revisiones al denominador y ninguna al numerador más
+allá del geocoding. Pero el numerador tiene un sesgo propio y empuja en la misma
+dirección que el hallazgo principal.
+
+La \textbf{precisión} con que Wikidata registra el lugar de nacimiento depende de
+cuán documentado esté el jugador. A un futbolista nacido en la Capital le ponen la
+ciudad; a uno nacido en un pueblo de Santiago del Estero es más probable que le
+pongan la provincia, o directamente «Argentina». Esos casos se excluyen del
+análisis de tamaño de ciudad —correctamente, porque el centroide de una provincia
+no ubica a nadie (§\ref{sec:geografia})— pero si vienen desproporcionadamente del
+interior, la exclusión le saca futbolistas justo a los tramos chicos.
+
+\textbf{Viene del interior, y se puede probar.} De los jugadores con \texttt{P19}
+a nivel provincia se conoce la provincia: es lo único que Wikidata dice de ellos.
+Comparada contra la de los jugadores con \texttt{P19} a nivel localidad:
+
+\begin{center}\small
+\begin{tabular}{@{}lrrr@{}}
+\toprule
+\textbf{Región} & \textbf{\% con \texttt{P19} = provincia} &
+\textbf{\% con \texttt{P19} = localidad} & \textbf{Sobrerrepresentación}\\
+\midrule
+NOA       & 14,5 &  5,1 & \textbf{2,88}\\
+Cuyo      & 13,6 &  4,9 & \textbf{2,79}\\
+NEA       & 12,7 &  4,8 & \textbf{2,67}\\
+Patagonia &  5,5 &  2,9 & 1,88\\
+Pampeana  & 53,6 & 64,2 & 0,84\\
+AMBA      &  0,0 & 18,2 & 0,00\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+$\chi^2(5) = 72{,}9$; $p < 10^{-13}$. La granularidad del \texttt{P19} no es
+independiente de la región: las tres regiones del norte y Cuyo están
+sobrerrepresentadas entre 2,7 y 2,9 veces, y del AMBA no hay un solo caso.
+
+\textbf{La cota.} Son 486 los excluidos por granularidad gruesa —255 con
+«Argentina», 110 con una provincia, 121 con un departamento—, el 8,3\,\% de la
+ventana. Atribuyéndolos \emph{todos} al tramo de menos de \num{10000} habitantes,
+su tasa pasaría de 12,7 a 27,1 por \num{100000} y el RR contra los grandes
+aglomerados, de 0,45 a \textbf{0,96}.
+
+Ese supuesto es inverosímil por construcción y no se propone como estimación: es
+un techo. Pero deja una conclusión incómoda y honesta: \textbf{la exclusión por
+granularidad tiene, ella sola, palanca suficiente para borrar el efecto
+principal} (figura~\ref{fig:granularidad}). El valor real está en algún punto
+entre 0,45 y 0,96, y este trabajo no puede decir dónde. Es la contracara, del
+lado del numerador, de la cota del 44,5\,\% que se calculó para el artefacto de
+las maternidades, y las dos empujan en la misma dirección.
+
+\begin{figure}[!htb]
+  \centering
+  \includegraphics[width=\textwidth]{fig32_sesgo_granularidad.pdf}
+  \caption{Izquierda: composición regional según con qué precisión Wikidata
+  registró el lugar de nacimiento. Derecha: hasta dónde puede mover el resultado
+  principal la exclusión de los casos de precisión gruesa.}
+  \label{fig:granularidad}
+\end{figure}
+
+\subsection{La validación manual del \texttt{P19}}
+\label{sec:validacion}
+
+El bloqueante que este trabajo arrastró desde su primera revisión era que la tasa
+de error del lugar de nacimiento nunca se había medido contra una fuente
+independiente. Se midió.
+
+\textbf{Diseño.} Muestra de 300 casos estratificada por tamaño de ciudad
+—metrópoli contra el resto—, sorteada con semilla fija, mezclada, y presentada
+sin mostrar ni el estrato ni el valor cargado, para que la búsqueda no estuviera
+condicionada por ninguno de los dos. Se codificaron \textbf{133} casos.
+
+\textbf{Fuente.} La Base de Datos del Fútbol Argentino (BDFA), consultada
+manualmente. Es independiente del corpus que se valida: de 400 declaraciones
+\texttt{P19} consultadas, 363 provienen de una importación desde Wikipedia y
+ninguna de BDFA. La independencia además se verifica en el resultado —dos fuentes
+que copiaran una de la otra no discreparían en el 6\,\% de los casos ni lo harían
+en la dirección sustantiva que se ve abajo.
+
+\textbf{Resultado.} De los 133 codificados, 107 tenían lugar de nacimiento
+localizable y 102 resolvieron a un tramo de tamaño.
+
+\begin{center}\small
+\begin{tabular}{@{}lrr@{}}
+\toprule
+ & \textbf{Wikidata: metrópoli} & \textbf{Wikidata: resto}\\
+\midrule
+\textbf{BDFA: metrópoli} & 46 & 3\\
+\textbf{BDFA: resto} & 3 & 50\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\textbf{Acuerdo del 94,1\,\%.} Y, lo que decide el asunto, \textbf{el error no es
+diferencial}: 6,1\,\% (\ic{1,3}{16,9}) entre los que Wikidata ubica en una
+metrópoli y 5,7\,\% (\ic{1,2}{15,7}) entre los que ubica fuera. OR del error
+1,09 (\ic{0,21}{5,66}); Fisher exacto $p = 1{,}00$.
+
+Eso importa porque un error \emph{uniforme} no fabrica el gradiente: lo atenúa
+hacia el nulo. Aplicando la matriz medida, el RR corregido pasa de 0,599 a
+\textbf{0,547} (IC 95\,\% por \emph{bootstrap} 0,397--0,682): el efecto no solo
+sobrevive sino que se refuerza levemente, que es exactamente lo que predice la
+desatenuación.
+
+\textbf{Y queda por debajo del umbral que lo rompería.} El análisis de
+sensibilidad de §\ref{sec:quiebre} sitúa el punto de quiebre en un 25\,\% de mala
+clasificación en la dirección del artefacto. El valor medido es 6,1\,\%, y aun el
+extremo pesimista de su intervalo —16,9\,\%— queda por debajo de ese umbral.
+
+\textbf{Limitaciones de la validación.} Codificó una sola persona, de modo que no
+hay acuerdo entre codificadores que reportar; a cambio cada caso quedó con la URL
+de su fuente y es verificable. Son 133 de los 300 previstos, así que los
+intervalos son más anchos de lo diseñado. Y 26 casos no se pudieron verificar en
+ninguna fuente: si el error se concentrara ahí, la medición lo subestimaría.
+
+\subsection{El «primer club» de H3: el problema era la cobertura, no la exactitud}
+\label{sec:validacionclub}
+
+La misma planilla pidió el club de debut, porque es la variable sobre la que se
+apoya H3 entera. La validación separó dos cosas que conviene no confundir.
+
+\textbf{Exactitud: nunca fue el problema.} De los 51 casos donde Wikidata tenía
+un club cargado, coincide con BDFA en el 88,2\,\% (\ic{76,1}{95,6}). Difiere más
+cuando el primer vínculo aparece tarde: 90\,\% de acuerdo si el registro empieza
+antes de los 21 años, 78\,\% si empieza después.
+
+\textbf{Cobertura: ahí estaba el problema.} De los 106 casos con club verificado,
+\textbf{Wikidata no tenía ninguno cargado en 55 —el 52\,\%}— y esa ausencia no
+era al azar: seguía el nivel competitivo del jugador, que es el desenlace.
+
+\textbf{Qué se hizo.} Las fichas de Wikipedia (§\ref{sec:fichas}) cubren 84 de
+los mismos 106 casos, con 82,1\,\% de acierto (\ic{72,3}{89,6}). El número
+relevante no es ese sino el cara a cara: en los 45 casos donde \emph{ambas}
+fuentes tienen dato, las dos aciertan \textbf{88,9\,\%} (McNemar exacto $p =
+1{,}00$). La ficha no es un dato de peor calidad; cubre los casos que Wikidata
+deja afuera y acierta lo mismo donde compiten. Además su error no depende del
+estrato de nacimiento (83,7\,\% contra 80,5\,\%, Fisher $p = 0{,}78$), que es la
+condición para que no sesgue el contraste.
+
+Sumadas, el club formador queda cargado en el 82,7\,\% de la muestra y la
+cobertura del estrato «resto» sube de 12,7\,\% a 72,1\,\%. \textbf{El efecto de
+haberlo corregido se ve en los resultados}: la migración de H3 baja de 47,1\,\% a
+44,5\,\% y el OR de 5,58 a 5,03, exactamente lo que predice haber estado midiendo
+sobre los que llegaron. El hallazgo sobrevive; su magnitud estaba inflada.
+
+\textbf{Lo que sigue abierto.} Las dos fuentes registran mayormente el debut
+profesional y no las inferiores, así que el proxy sigue midiendo algo más tardío
+que «dónde se formó». Eso no lo arregla la cobertura.
+
+\subsection{Cuánto tendría que fallar el dato para que el hallazgo se caiga}
+\label{sec:quiebre}
+
+Las dos cotas anteriores —44,5\,\% para el artefacto de maternidad, 0,45
+$\rightarrow$ 0,96 para la granularidad— dicen hasta dónde \emph{podría} llegar
+el sesgo, pero no cuánto haría falta para que el resultado desaparezca. Esa es
+la pregunta que calibra cuánto preocuparse, y se puede contestar sin medir nada.
+
+El procedimiento es un análisis de sesgo cuantitativo. Se postula una matriz de
+mala clasificación: dado que un jugador nació realmente en un lugar del estrato
+$i$, ¿con qué probabilidad el \texttt{P19} lo ubica en el estrato $j$? Con esa
+matriz, el vector de conteos reales sale de resolver
+$\mathbf{M}^{\!\top}\mathbf{n}_{\text{real}} = \mathbf{n}_{\text{obs}}$, y la
+incertidumbre se propaga por \emph{bootstrap}. Se barre el escenario que
+preocupa —jugadores del interior registrados en la metrópoli— y se busca el
+punto en que el intervalo del RR corregido toca el 1.
+
+\begin{center}\small
+\begin{tabular}{@{}rrll@{}}
+\toprule
+\textbf{\% mal clasificado} & \textbf{RR corregido} & \textbf{IC 95\,\%} &
+\textbf{¿sigue $\neq$ 1?}\\
+\midrule
+ 0\,\% & 0,53 & 0,47--0,58 & sí\\
+10\,\% & 0,64 & 0,54--0,74 & sí\\
+20\,\% & 0,76 & 0,62--0,93 & sí\\
+\textbf{25\,\%} & \textbf{0,81} & \textbf{0,65--1,02} & \textbf{no}\\
+35\,\% & 0,88 & 0,68--1,13 & no\\
+50\,\% & 1,03 & 0,73--1,44 & no\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\textbf{El punto de quiebre está en el 25\,\%} (figura~\ref{fig:quiebre}). Para
+que el hallazgo principal deje de ser distinguible de la ausencia de efecto,
+\textbf{uno de cada cuatro} futbolistas registrados en un aglomerado de más de
+\num{500000} habitantes tendría que haber nacido en realidad fuera de él.
+
+Cómo leerlo. No es una estimación del error real —eso requiere la validación
+manual que el trabajo todavía no tiene— sino la calibración de cuánto error haría
+falta. Con un 10\,\% de mala clasificación el resultado apenas se mueve; recién a
+partir de un cuarto se vuelve frágil. Sirve además para dimensionar la
+verificación pendiente: una muestra de 300 casos estima esa proporción con un
+intervalo de unos 10 puntos, suficiente para distinguir el escenario benigno del
+que rompe.
+
+\begin{figure}[!htb]
+  \centering
+  \includegraphics[width=\textwidth]{fig33_punto_de_quiebre.pdf}
+  \caption{Análisis de sesgo cuantitativo. El RR corregido en función de qué
+  proporción de los registrados en un gran aglomerado hubiera nacido fuera de él.
+  La línea vertical marca dónde el intervalo empieza a tocar el 1.}
+  \label{fig:quiebre}
+\end{figure}
+
+\subsection{Control positivo: el efecto de la edad relativa}
+\label{sec:edadrelativa}
+
+El placebo de §\ref{sec:placebo} muestra que el instrumento no inventa señal
+donde no la hay. No muestra que sepa \textbf{recuperar} una señal que sí está, y
+esa es la objeción que quedaría en pie contra un gradiente plano: que el corpus
+sea demasiado ruidoso para detectar nada.
+
+El \emph{relative age effect} es el control positivo natural. Es el hallazgo más
+replicado de la literatura sobre desarrollo deportivo: los nacidos justo después
+de la fecha de corte de las categorías juveniles son mayores que sus compañeros
+de camada y quedan sobrerrepresentados entre los profesionales. En Argentina la
+AFA usa el año calendario, así que el corte es el 1 de enero.
+
+\begin{center}\small
+\begin{tabular}{@{}lrrrr@{}}
+\toprule
+\textbf{Trimestre de nacimiento} & \textbf{Futbolistas} & \textbf{\% observado} &
+\textbf{\% esperado} & \textbf{Obs./Esp.}\\
+\midrule
+Q1 (ene--mar) & \num{2007} & 34,8 & 24,7 & \textbf{1,41}\\
+Q2 (abr--jun) & \num{1547} & 26,9 & 24,9 & 1,08\\
+Q3 (jul--sep) & \num{1247} & 21,7 & 25,2 & 0,86\\
+Q4 (oct--dic) &  959 & 16,7 & 25,2 & \textbf{0,66}\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Razón Q1/Q4 = \textbf{2,09}; $\chi^2(3) = 443{,}5$; $p < 10^{-95}$; $w = 0{,}28$.
+El corpus recupera el efecto con la magnitud que reporta la literatura y con la
+forma correcta: caída monótona a lo largo del año, sin escalones.
+
+Y cumple la predicción adicional de que el efecto se intensifica con el nivel
+competitivo: la razón Q1/Q4 es 2,88 entre los jugadores de selección mayor, 2,46
+en los de Primera argentina y 1,83 en el resto (figura~\ref{fig:edadrelativa}).
+
+\begin{figure}[!htb]
+  \centering
+  \includegraphics[width=\textwidth]{fig31_edad_relativa.pdf}
+  \caption{El control positivo. Izquierda: distribución por trimestre de
+  nacimiento contra lo esperado. Derecha: la razón entre nacidos en el primer y
+  el último trimestre, según el nivel competitivo alcanzado.}
+  \label{fig:edadrelativa}
+\end{figure}
+
+\textbf{Qué habilita esto.} El mismo pipeline, el mismo corpus y el mismo tipo de
+test detectan sin dificultad un sesgo de selección deportiva conocido. El
+gradiente plano por tamaño de ciudad por debajo de \num{10000} habitantes no se
+explica, entonces, por falta de potencia del instrumento.
+
+Una salvedad sobre el denominador: la serie del DEIS es anual y no tiene apertura
+mensual, de modo que el esperado se calculó proporcional a los días de cada
+trimestre y no a los nacimientos reales de cada mes. La estacionalidad de los
+nacimientos argentinos es de pocos puntos porcentuales y no puede producir una
+razón de 2,09, pero el número exacto mejoraría con la apertura mensual.
+
+\subsection{Qué queda del tamaño al controlar por pobreza y por distancia}
+\label{sec:covariables}
+
+Hasta acá el único predictor del modelo fue el tamaño de la ciudad. Eso deja sin
+responder la pregunta que importa: si el tamaño mide algo propio o es un proxy de
+otra cosa. Se agregan las dos candidatas obvias.
+
+\textbf{Distancia al club formador más cercano.} El universo de clubes no se
+define a mano: son los 109 clubes argentinos geolocalizados que aparecen como
+primer club de al menos un futbolista de la muestra. Para cada ciudad se calcula
+la distancia haversine al más cercano (mediana nacional: 95 km). Es una medida
+cruda —no distingue un club de Primera con pensión de uno de Federal A, ni tiene
+en cuenta que la red cambió a lo largo de las cohortes— y hereda una
+circularidad: el universo sale de los mismos datos que el numerador.
+
+\textbf{Pobreza estructural.} El censo 2022 publica el NBI por hogar como
+variable derivada. Se agrega a departamento como porcentaje de hogares con al
+menos una necesidad básica insatisfecha (mediana 7,3\,\%; de 2,8\,\% en La Pampa
+a 15,5\,\% en Salta).
+
+\begin{center}\small
+\begin{tabular}{@{}lrrl@{}}
+\toprule
+\textbf{Modelo} & \textbf{AIC} & \textbf{pseudo-$R^2$} & \textbf{IRR (IC 95\,\%)}\\
+\midrule
+1. solo tamaño & 3653,1 & 0,010 & tamaño 1,175 (1,114--1,240)\\
+2. solo distancia & 3401,0 & 0,006 & distancia 0,854 (0,796--0,917)\\
+\textbf{3. solo NBI} & \textbf{3429,1} & \textbf{0,071} & NBI 0,843 (0,822--0,864)\\
+4. tamaño + distancia & 3394,4 & 0,008 & tamaño 1,089; distancia 0,884\\
+\textbf{5. las tres} & \textbf{3200,0} & \textbf{0,066} &
+  tamaño 1,107 (1,044--1,174)\\
+ & & & distancia 0,987 (0,912--1,069)\\
+ & & & NBI 0,850 (0,828--0,872)\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Tres resultados, y dos incomodan a la interpretación que el trabajo venía
+sosteniendo (figura~\ref{fig:covariables}):
+
+\begin{enumerate}[leftmargin=1.6em,itemsep=0.25em]
+  \item \textbf{La pobreza estructural es, de lejos, el mejor predictor.} Sola
+    explica siete veces más variación que el tamaño (pseudo-$R^2$ 0,071 contra
+    0,010). Cada punto porcentual de NBI baja la producción un 15\,\%.
+  \item \textbf{La distancia al club formador deja de importar cuando entra el
+    NBI.} Por sí sola es fuerte (IRR 0,854; $p < 10^{-4}$); con pobreza en el
+    modelo, se apaga (IRR 0,987; $p = 0{,}75$). \textbf{Era en buena medida un
+    proxy de pobreza}, no una medida de acceso. Es evidencia en contra de la
+    lectura del §\ref{sec:porque}, que atribuía el patrón a la distancia a la
+    infraestructura formativa.
+  \item \textbf{El tamaño sobrevive}, atenuado: de 1,175 a 1,107. No es un proxy
+    de ninguna de las dos, pero su efecto es todavía más chico de lo que ya era.
+\end{enumerate}
+
+\begin{figure}[!htb]
+  \centering
+  \includegraphics[width=\textwidth]{fig29_coeficientes_covariables.pdf}
+  \caption{Razón de tasas de cada covariable según qué otras estén en el modelo.
+  La distancia al club formador es fuerte por sí sola y se apaga al entrar la
+  pobreza estructural.}
+  \label{fig:covariables}
+\end{figure}
+
+\subsection{Dónde está la variación: entre departamentos o adentro}
+\label{sec:varianza}
+
+El pseudo-$R^2$ de 0,011 dice que el tamaño explica poco, pero no dice dónde está
+lo que queda sin explicar. Esa es la pregunta relevante para un trabajo cuyo
+producto principal es un mapa departamental.
+
+Sobre los residuos de Pearson del modelo con las tres covariables se descompone
+la variación entre la que separa a un departamento de otro y la que separa a dos
+ciudades del mismo departamento. El resultado es \textbf{ICC = 0,17}: apenas el
+17\,\% de la variación residual corresponde a diferencias entre departamentos, y
+el 83\,\% restante queda entre ciudades vecinas (figura~\ref{fig:varianza}).
+
+\begin{figure}[!htb]
+  \centering
+  \includegraphics[width=0.94\textwidth]{fig30_particion_de_varianza.pdf}
+  \caption{Partición de la variación residual. La mayor parte de lo que el modelo
+  no explica ocurre entre ciudades del mismo departamento, no entre
+  departamentos.}
+  \label{fig:varianza}
+\end{figure}
+
+\textbf{Qué implica.} Dos ciudades del mismo departamento, del mismo tamaño y con
+la misma pobreza producen cantidades muy distintas de futbolistas. El mapa
+departamental —figura~\ref{fig:mapa}, que es la imagen más citable del trabajo—
+resume mal el fenómeno: la unidad a la que el fenómeno ocurre es más chica que el
+departamento, o directamente no es geográfica.
+
+Dos salvedades. La descomposición se hace sobre residuos y no es el ICC de un
+modelo mixto: no separa la varianza de muestreo de Poisson de la varianza real
+entre departamentos, de modo que \textbf{sobreestima} el componente de adentro cuando
+las ciudades son chicas. El 17\,\% es entonces una cota inferior del agrupamiento
+departamental. Y no se ajustó un GLMM propiamente dicho porque la implementación
+disponible de Poisson con efectos aleatorios no admite \emph{offset}, y sin la
+exposición el modelo diverge.
 
 \subsection{Exploratorio: posición y región}
 
@@ -743,7 +1241,8 @@ tablas, no en la lectura de la forma. Básquet (356) y rugby (243) sí la sostie
 
 \section{Discusión}
 
-\subsection{Por qué el efecto está invertido}
+\subsection{Por qué las metrópolis producen más}
+\label{sec:porque}
 
 El \emph{birthplace effect} clásico se apoya en un supuesto implícito: que la
 infraestructura de desarrollo deportivo está razonablemente distribuida, de modo
@@ -752,16 +1251,38 @@ Bajo ese supuesto la ciudad mediana gana: tiene espacio y tiene liga.
 
 En Argentina ese supuesto no se cumple. La formación está concentrada: diez
 clubes concentran la mitad de la formación registrada del país, y están todos en
-el AMBA, Rosario o La Plata. La interpretación natural es que el lugar de
-nacimiento no mide acá la calidad del entorno formativo sino \textbf{la distancia
-a la infraestructura formativa}, y que esa distancia opera como filtro de acceso.
+el AMBA, Rosario o La Plata. La interpretación natural —y la que sostenían las
+versiones anteriores de este trabajo— era que el lugar de nacimiento no mide acá
+la calidad del entorno formativo sino la \emph{distancia} a la infraestructura
+formativa, y que esa distancia opera como filtro de acceso.
 
-Es una interpretación, no un resultado, y conviene ser explícito. El estudio
-\textbf{no mide distancia a un club con inferiores}: ninguna regresión incluye esa
-variable, ni nivel socioeconómico, ni densidad de ligas locales, ni existencia de
-pensión. El análisis es descriptivo y las asociaciones no están controladas.
+\textbf{Medida, esa interpretación no se sostiene.} Cuando la distancia al club
+formador más cercano entra al modelo junto con la pobreza estructural del
+departamento, su efecto se apaga por completo (IRR 0,987; $p = 0{,}75$;
+§\ref{sec:covariables}). Sola parecía fuerte porque los lugares lejos de un club
+son también los lugares pobres. Lo que el modelo señala como predictor dominante
+no es la geografía de los clubes sino \textbf{el NBI}: siete veces más capacidad
+explicativa que el tamaño de la ciudad, y un 15\,\% menos de producción por cada
+punto porcentual de hogares con necesidades básicas insatisfechas.
 
-El propio mecanismo permite dos pruebas, y dan resultados distintos:
+Eso reencuadra el hallazgo. El mapa de producción de futbolistas se parece mucho
+más al mapa de la pobreza estructural argentina que al mapa de los clubes. La
+explicación más simple compatible con estos datos no es «nacer lejos de un club
+es una desventaja» sino «nacer pobre lo es», y las regiones que producen un
+cuarto de lo esperado son las mismas que encabezan el NBI. Sigue siendo una
+asociación sin identificación causal —el NBI departamental es un agregado y opera
+acá como control, no como mecanismo estimado— pero es una asociación que existe,
+frente a una que se desvanece al controlarla.
+
+Los controles disponibles son dos y no agotan la lista: falta la densidad de
+ligas locales, la existencia de pensión en el club y cualquier medida de la red
+formativa vigente en la época de cada cohorte —la distancia se calcula contra los
+clubes que formaron a alguien en toda la ventana, no contra los que existían el
+año en que cada jugador cumplió quince—. Con esas ausencias declaradas, las
+asociaciones que siguen son observacionales.
+
+El mecanismo del filtro de acceso permite además dos pruebas indirectas, y dan
+resultados distintos:
 
 \begin{itemize}[leftmargin=1.4em,itemsep=0.25em]
   \item \emph{Si la causa fuera la centralización creciente de las inferiores, la
@@ -830,16 +1351,19 @@ rompían el reparto interno:
     López, e incluía La Plata, Marcos Paz, Pilar y Presidente Perón.
 \end{itemize}
 
-Corregidos los dos, \textbf{la región pampeana pasa a producir más que el AMBA}
-(34,5 contra 28,3) y la razón interior/AMBA pasa de 0,59 a 0,79. Versiones
-anteriores de este trabajo afirmaban lo contrario, y afirmaban además —como
-lección metodológica— que el cambio de denominador había puesto al AMBA por encima
-de la pampeana. Esa inversión era el error, no un hallazgo.
+Corregidos los dos, \textbf{la región pampeana produce más que el AMBA} (34,5
+contra 28,3) y la razón interior/AMBA es 0,79.
 
-Ahora los códigos se resuelven contra el padrón oficial del INDEC en lugar de
-escribirse a mano, hay un crosswalk histórico versionado con el criterio de cada
-equivalencia, y una verificación de conservación de masa corta el pipeline si
-alguna transformación pierde nacimientos.
+\textbf{La lección, que es lo que se lleva el lector.} Los dos errores conservaban
+el total nacional y rompían el reparto interno, así que ninguna verificación de
+totales los detectaba. La regla que sale de ahí es que \textbf{la conservación de masa
+hay que verificarla grupo por grupo, no por totales}, y que los códigos
+geográficos no se escriben a mano: se resuelven contra el padrón oficial. El
+pipeline ahora hace las dos cosas, y una verificación de conservación por grupo
+corta la ejecución si alguna transformación pierde nacimientos.
+
+El registro de qué afirmó cada versión anterior y por qué cambió está en
+\texttt{docs/changelog-resultados.md}, fuera de este documento.
 
 \subsection{Limitaciones}
 \label{sec:limitaciones}
@@ -869,18 +1393,50 @@ alguna transformación pierde nacimientos.
     registro, y nunca se contrastó contra un padrón independiente de futbolistas
     profesionales: \textbf{la tasa de error del \texttt{P19} no está medida}. La
     cobertura además varía al doble entre cohortes.
-  \item \textbf{H3 se mide sobre una muestra seleccionada por el desenlace} (ver
-    §3.3). Sus números son orden de magnitud, no estimaciones.
+  \item \textbf{La selección por el desenlace en H3 quedó muy reducida, no
+    eliminada.} Con el club formador saliendo solo de Wikidata, la cobertura iba
+    de 99,2\,\% en la selección a 12,7\,\% en el resto y H3 describía a los que
+    llegaron. Sumadas las fichas de Wikipedia (§\ref{sec:fichas}) el piso sube a
+    72,1\,\% y la brecha entre estratos de \emph{nacimiento} desaparece (81 a
+    88\,\% en los cinco tramos). Queda un 17,3\,\% sin club, todavía concentrado
+    en los jugadores menos notables, así que la migración medida sigue siendo
+    probablemente una \textbf{cota superior}.
+  \item \textbf{El «primer club» sigue sin ser el primero.} Las dos fuentes
+    registran el debut profesional y no las inferiores. En Wikidata, el
+    \textbf{24\,\%} de los primeros vínculos aparece a los 21 años o más, edad a
+    la que el jugador ya venía jugando en otro lado; y el 19\,\% de los vínculos
+    no tiene fecha de inicio, con lo cual es invisible para la selección del más
+    temprano.
+
+    Lo que hace de esto un sesgo y no solo ruido es su dirección. Cuando el
+    primer registro es tardío, es mucho más probable que sea del exterior: el
+    club registrado está en Argentina en el 91\,\% de los casos si el vínculo
+    empieza antes de los 19, y en el 29\,\% si empieza después de los 25.
+    Wikidata anota la salida al exterior y se saltea el debut local. El caso que
+    lo ilustra: un futbolista nacido en 1985 cuyo primer club registrado es un
+    equipo mexicano en 2006, a los 21 años, sin ningún club argentino cargado
+    antes —había debutado en Instituto—. La ficha de Wikipedia, en ese caso, sí
+    dice «Instituto». Es el tipo de error que la segunda fuente corrige, pero no
+    hay garantía de que lo corrija siempre.
   \item \textbf{La comparación de H3 con la población general no es estrictamente
-    comparable}: 47,1\,\% (futbolistas, nacimiento a primer club, alrededor de
+    comparable}: 44,5\,\% (futbolistas, nacimiento a primer club, alrededor de
     los 18 años) contra 13,8\,\% (toda la población, todas las edades, nacimiento
     a residencia 2022). La variable \texttt{P14} del censo no está cruzada con
     edad.
-  \item \textbf{Sin controles.} No hay ninguna covariable más allá del tamaño de
-    la ciudad. Las lecturas causales de esta sección son interpretaciones, no
-    estimaciones.
+  \item \textbf{Controles parciales.} Hay dos covariables —pobreza estructural y
+    distancia al club formador— y faltan las demás: densidad de ligas locales,
+    existencia de pensión, y cualquier medida de la red formativa vigente en la
+    época de cada cohorte. La distancia se calcula además contra los clubes que
+    formaron a alguien en toda la ventana, no contra los que existían el año en
+    que cada jugador cumplió quince, y su universo sale de los mismos datos que
+    el numerador. Las asociaciones son observacionales.
   \item \textbf{Tamaño de efecto chico} donde se lo mide de forma continua:
-    pseudo-$R^2 = 0{,}011$.
+    pseudo-$R^2 = 0{,}011$ para el tamaño, 0,066 para el modelo completo.
+  \item \textbf{La unidad geográfica del análisis no es la del fenómeno.} Solo el
+    17\,\% de la variación residual separa a un departamento de otro
+    (§\ref{sec:varianza}); el resto ocurre entre ciudades del mismo departamento.
+    El mapa departamental es el producto más visible del trabajo y es también su
+    resumen más flojo.
   \item \textbf{Números chicos en el mapa departamental}: sin \emph{shrinkage}
     (ver figura~\ref{fig:funnel}).
   \item \textbf{Censura a derecha} en las cohortes 2003--2008, cuantificada y
@@ -897,7 +1453,7 @@ Conviene separar lo que el dato sostiene de lo que sugiere.
 
 \textbf{Lo que el dato sostiene.} Entre los futbolistas que ya llegaron a un
 juvenil de la selección, los nacidos fuera de un gran aglomerado llegan a la
-Mayor con más frecuencia (OR 1,85; $p = 0{,}013$; sin cambios al controlar por
+Mayor con más frecuencia (OR 1,78; $p = 0{,}027$; sin cambios al controlar por
 cohorte). Es un contraste dentro de un grupo observado, sin denominador estimado.
 Si el acceso midiera talento, la tasa de conversión debería ser igual en los dos
 grupos; no lo es. \textbf{Eso es evidencia de que el filtro de acceso está
@@ -924,28 +1480,127 @@ casualidad.
 
 \subsection{Qué haría falta para cerrar el argumento}
 
-Dos cosas, en este orden:
+En orden de prioridad:
 
-\begin{enumerate}[leftmargin=1.6em,itemsep=0.2em]
-  \item \textbf{Medir la tasa de error del \texttt{P19}} contra una fuente
-    independiente, sobre una muestra estratificada por tamaño de ciudad. Sin eso,
-    todo lo que depende del lugar de nacimiento descansa sobre un dato sin
-    validar.
-  \item \textbf{Acotar el artefacto de maternidad}, contrastando nacimientos por
-    ocurrencia contra nacimientos por residencia de la madre en el nivel
-    geográfico más fino que publique la fuente.
+\begin{enumerate}[leftmargin=1.6em,itemsep=0.25em]
+  \item \textbf{Completar la validación del \texttt{P19}} hasta los 300 casos
+    previstos. Los primeros 133 ya están (§\ref{sec:validacion}) y dan un error
+    del 5,9\,\% no diferencial, pero con intervalos más anchos de lo diseñado;
+    llegar a 300 los cierra. El diseño y la maquinaria están construidos
+    (\texttt{docs/plan-valida\-cion-p19.md}): 300 casos, 150 por brazo, muestra
+    sorteada con semilla fija, planillas ciegas al estrato y al valor cargado, dos
+    codificadores y adjudicación de desacuerdos. Detecta una diferencia de diez
+    puntos en la tasa de error y estima la matriz de mala clasificación con la
+    precisión necesaria para corregir, no solo para acotar. Falta únicamente el
+    juicio humano.
+
+    Hay una restricción que condiciona el resto: \textbf{el \texttt{P19} sale de
+    Wikipedia}. De 400 declaraciones consultadas, 363 tienen como referencia
+    «importado de Wikipedia» en algún idioma y solo 3 una fuente externa. Wikipedia
+    no puede ser entonces el patrón de oro, porque es el origen del dato.
+
+    Y no hay ninguna fuente argentina estructurada que pueda tomar su lugar por vía
+    automática. Se revisó una por una: \textbf{BDFA} bloquea en su
+    \texttt{robots.txt} los agentes automatizados y los \emph{endpoints} de consulta
+    de jugadores; \textbf{Transfermarkt} permite las rutas de ficha en su
+    \texttt{robots.txt} pero sus términos de uso (§11) prohíben expresamente el
+    acceso mediante «bots, spiders, screen scraping u otros procesos
+    automatizados»; y el sitio de la \textbf{AFA} sí admite el rastreo —su
+    \texttt{robots.txt} solo excluye \texttt{/cache/}— pero no publica fichas con
+    lugar de nacimiento. Por eso la verificación es necesariamente manual, y por
+    eso este hueco sigue abierto en la literatura.
+  \item \textbf{Bajar el análisis a la unidad en la que el fenómeno ocurre.} El
+    83\,\% de la variación residual está entre ciudades del mismo departamento
+    (§\ref{sec:varianza}), así que el nivel departamental es demasiado grueso.
+    Requiere denominadores por localidad que hoy son estimados en dos pasos, y
+    es el cambio que más mejoraría el trabajo después de validar el
+    \texttt{P19}.
+  \item \textbf{Perseguir la pista socioeconómica, que es la que quedó abierta.}
+    El NBI departamental resultó el predictor dominante, pero es un agregado y
+    opera como control, no como mecanismo. La versión seria necesita el NBI a
+    nivel de radio censal —que el censo publica— cruzado con el lugar de
+    nacimiento, y alguna medida de la red formativa vigente por cohorte en lugar
+    de una distancia calculada sobre toda la ventana.
+  \item \textbf{Un GLMM propiamente dicho} en lugar de la descomposición sobre
+    residuos, para separar la varianza de muestreo de Poisson de la varianza real
+    entre departamentos. Requiere una implementación de Poisson con efectos
+    aleatorios que admita \emph{offset}, que statsmodels no tiene.
+  \item \textbf{Publicar el volcado crudo de Wikidata} con DOI, sin lo cual la
+    reproducción es parcial (§\ref{sec:repro}).
 \end{enumerate}
 
-El resultado de §\ref{sec:conversion} no depende de ninguna de las dos.
+% =============================================================================
+\section{Conclusión}
+
+Este trabajo se propuso probar el folklore del «crack del interior» con el método
+que la literatura internacional usa para el \emph{birthplace effect}, y con un
+denominador mejor que el que esa literatura suele emplear: los nacidos vivos de
+cada cohorte en cada lugar, en vez de la población censada décadas después.
+
+\textbf{El folklore no se sostiene, pero el hallazgo tiene menos forma de la que
+parecía.} Los futbolistas argentinos no nacen desproporcionadamente en ciudades
+chicas y medianas: nacen desproporcionadamente en los grandes aglomerados y en un
+corredor que va del AMBA a Santa Fe. Ahora bien, lo que hay no es un gradiente
+invertido sino un \textbf{contraste binario} entre las metrópolis y todo lo
+demás: por debajo de los \num{10000} habitantes no hay ninguna tendencia
+ordenada, el tamaño de la ciudad explica el 1\,\% de la variación entre ciudades,
+y dentro de la selección los cuatro tramos no metropolitanos son indistinguibles
+entre sí. Describir el resultado como «el efecto invertido» sugiere una pendiente
+en la otra dirección que los datos no muestran.
+
+\textbf{Que el patrón sea del fútbol y no del país está bien establecido.} El mismo
+pipeline, sobre el mismo corpus, encuentra el efecto clásico en el básquet
+argentino y lo contrario en el rugby. Ningún artefacto de medición compartido
+produce mapas opuestos para deportes distintos medidos con el mismo instrumento.
+Y el control positivo de la edad relativa muestra que el instrumento recupera
+sesgos de selección deportiva cuando existen.
+
+\textbf{Lo que el patrón parece medir no es la geografía de los clubes sino la
+pobreza.} Con covariables, la distancia al club formador más cercano —que este
+trabajo venía proponiendo como explicación— se apaga por completo al entrar el
+NBI departamental, mientras que el NBI queda como el predictor dominante, con
+siete veces la capacidad explicativa del tamaño de la ciudad. El mapa de
+producción de futbolistas se parece más al mapa de la pobreza estructural
+argentina que al de la infraestructura formativa. Y la unidad en la que el
+fenómeno ocurre es más chica que el departamento: el 83\,\% de la variación
+residual separa a ciudades vecinas, no a departamentos, de modo que el mapa
+departamental —la imagen más citable del trabajo— es también su resumen más
+flojo.
+
+\textbf{Lo que queda sin cerrar es la medición del lugar de nacimiento, no el
+análisis.} Dos sesgos independientes empujan en la dirección del hallazgo y
+ninguno está estimado, solo acotado: el registro del parto en la ciudad cabecera
+—cota del 44,5\,\% del déficit del interior— y la granularidad diferencial del
+\texttt{P19}, que excluye del análisis a jugadores del norte y de Cuyo a casi tres
+veces la tasa del resto y cuya cota, sola, alcanza para llevar el RR de 0,45 a
+0,96. El efecto real está dentro de esas cotas y este trabajo no puede decir
+dónde —aunque sí puede decir cuánto haría falta: para que el hallazgo deje de ser
+distinguible del nulo, uno de cada cuatro futbolistas registrados en un gran
+aglomerado tendría que haber nacido fuera de él (§\ref{sec:quiebre})—. Y para la primera de las dos cotas
+—la del registro del parto— ahora hay una medición: sobre 133 casos verificados
+contra una fuente independiente, el error del \texttt{P19} es del 5,9\,\% y no
+depende del tamaño de la ciudad (§\ref{sec:validacion}), muy por debajo del
+25\,\% que haría falta para tumbar el resultado. Con eso, el hallazgo pasa de
+plausible a razonablemente establecido; lo que queda es completar la muestra
+hasta los 300 casos previstos y acotar la granularidad con el mismo método.
+
+\textbf{Para quien detecta talento}, la lectura defendible es más modesta que la
+inicial: no hay evidencia de que los pueblos produzcan más futbolistas por
+nacido, sí de que las regiones del norte producen entre un cuarto y un tercio de
+lo que les correspondería, y el indicio —frágil, dependiente de un solo estrato—
+de que el juvenil que llega desde el interior convierte mejor. Esto último merece
+confirmarse con el padrón real de convocatorias de la AFA, que existe y no es
+público, y sería el aporte más útil que el trabajo podría hacer.
 
 % =============================================================================
 \section{Reproducibilidad}
+\label{sec:repro}
 
 Todo el pipeline es código; \texttt{data/raw/} no se edita y cada descarga deja un
 manifiesto fechado con URL y SHA-256. Las decisiones de diseño están en
 \texttt{config.yaml} con su justificación, y las funciones que comparten
 numerador y denominador tienen tests. El orden de ejecución está en el README.
-Las 28 figuras se generan con dos módulos y se exportan en PDF, SVG y PNG.
+Las 33 figuras se generan con tres módulos y se exportan en PDF, SVG y PNG.
 Las tablas de este documento no se escriben a mano: se generan desde
 \texttt{outputs/tables/} con \texttt{src.report.sync\_tablas\_paper}, que en modo
 \texttt{-{}-check} falla si el texto quedó desfasado del pipeline.
@@ -953,10 +1608,26 @@ Las tablas de este documento no se escriben a mano: se generan desde
 \paragraph{Fuentes.}
 Wikidata vía SPARQL (CC0, snapshot 2026-07-30);
 DEIS, serie histórica de nacidos vivos por jurisdicción 1914--2024;
+DEIS, nacidos vivos por residencia de la madre 2005--2022;
 RENAPER, nacimientos por departamento 2012--2022 (validación);
 INDEC, Censo 2022 y radios censales 1991--2022;
 API Georef e IGN.
 Transfermarkt no se utilizó: sus términos prohíben el scraping automatizado.
+
+\paragraph{Código y datos.}
+El repositorio con el pipeline completo, los manifiestos de descarga y las
+tablas de salida está en
+\url{https://github.com/AgusVlt87/futbol-nacimientos}.
+
+\textbf{Advertencia sobre el snapshot.} Wikidata es una base viva: una consulta
+SPARQL corrida hoy no devuelve lo mismo que el 30 de julio de 2026. Una fecha en
+el manifiesto documenta \emph{cuándo} se consultó, pero no permite reconstruir
+\emph{qué} se obtuvo. Para que la reproducción sea posible, el volcado crudo de
+las consultas —\texttt{data/raw/wikidata/}, unos 40 MB en JSON— debe publicarse
+junto con el código, con DOI, en un repositorio archivístico como Zenodo. Hasta
+que eso ocurra, la reproducibilidad de este trabajo es \textbf{parcial}: el
+análisis se reproduce bit a bit desde los datos crudos, pero los datos crudos no
+se pueden regenerar.
 
 \begin{thebibliography}{9}
 \small
@@ -972,10 +1643,6 @@ Aurrekoetxea-Casaus, M. (2024).
 Birthplace Effect in Soccer: A Systematic Review.
 \emph{Journal of Human Kinetics}.
 
-\bibitem{geografia2022}
-\emph{The geography of talent development} (2022).
-\emph{Frontiers in Sports and Active Living}. PMC9582327.
-\textcolor{gray}{[autoría y año verificados solo parcialmente]}
 \end{thebibliography}
 
 \end{document}

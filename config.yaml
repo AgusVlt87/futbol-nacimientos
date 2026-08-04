@@ -291,6 +291,17 @@ ingest:
     polite_delay_seconds: 1.5
     # Paginado por año de nacimiento para evitar timeouts del endpoint público.
     page_by: birth_year
+  wikipedia:
+    # La API de acción de Wikimedia es pública y está publicada para uso
+    # programático; el contenido es CC BY-SA. La política de etiqueta pide un
+    # User-Agent identificable con contacto, que es el de arriba.
+    api_url: "https://{wiki}.wikipedia.org/w/api.php"
+    wikis: ["es", "en"]      # preferencia: el artículo en español primero
+    batch_titles: 50         # tope de la API para prop=revisions
+    polite_delay_seconds: 1.0
+    timeout_seconds: 90
+    max_retries: 4
+    backoff_seconds: 10
   georef:
     polite_delay_seconds: 0.2
     batch_size: 500          # el endpoint acepta lotes vía POST

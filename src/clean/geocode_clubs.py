@@ -38,8 +38,29 @@ def main() -> None:
         return
 
     car = pd.read_parquet(p.processed / "careers.parquet")
-    clubs = (car[["team_qid", "team_label", "club_lat", "club_lon", "club_country_qid"]]
-             .drop_duplicates("team_qid").reset_index(drop=True))
+    clubs = car[["team_qid", "team_label", "club_lat", "club_lon", "club_country_qid"]]
+
+    # Los clubes que solo salen del `equipo_debut` de una ficha no aparecen en
+    # ninguna carrera, así que no están en `careers.parquet`. Sin ubicarlos, el
+    # jugador entra a la muestra de H3 y se cae de la matriz origen→destino.
+    nivel = p.processed / "player_level.parquet"
+    if nivel.exists():
+        lv = pd.read_parquet(nivel)
+        if "primer_club_fuente" in lv.columns:
+            solo_ficha = (lv[lv["primer_club_fuente"].eq("wikipedia")
+                             & lv["primer_club_qid"].notna()]
+                          [["primer_club_qid", "primer_club", "club_lat",
+                            "club_lon", "club_country_qid"]]
+                          .rename(columns={"primer_club_qid": "team_qid",
+                                           "primer_club": "team_label"}))
+            nuevos = set(solo_ficha["team_qid"]) - set(clubs["team_qid"])
+            if nuevos:
+                clubs = pd.concat(
+                    [clubs, solo_ficha[solo_ficha["team_qid"].isin(nuevos)]],
+                    ignore_index=True)
+                log.info("clubes que solo aparecen en fichas: %d", len(nuevos))
+
+    clubs = clubs.drop_duplicates("team_qid").reset_index(drop=True)
     log.info("%d equipos, %d con coordenada", len(clubs), clubs["club_lat"].notna().sum())
 
     # `reverse_geocode` espera las columnas place_qid/lat/lon.

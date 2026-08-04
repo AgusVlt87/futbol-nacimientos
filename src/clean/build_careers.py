@@ -100,6 +100,65 @@ def asignar_tiers(car: pd.DataFrame, cfg: dict) -> pd.DataFrame:
     return out
 
 
+def completar_con_ficha(out: pd.DataFrame, p, clubs: pd.DataFrame) -> pd.DataFrame:
+    """Rellena `primer_club` con el `equipo_debut` de la ficha de Wikipedia.
+
+    **Por qué hace falta.** `P54`+`P580` cubre el 41 % de la muestra, y la
+    cobertura sube con el nivel del jugador: 99 % en la selección, 13 % en el
+    resto. H3 corría, entonces, sobre una muestra seleccionada por el desenlace.
+
+    **Por qué se puede.** Contra los 106 clubes que se verificaron a mano en
+    BDFA, y en los 45 casos donde las dos fuentes tienen dato, aciertan **igual**:
+    88,9 % cada una (McNemar p=1,00). La ficha no es un dato de peor calidad; es
+    el mismo dato, escrito en prosa en vez de en el grafo. Y su error **no es
+    diferencial por estrato de nacimiento** (83,7 % metrópoli vs 80,5 % resto,
+    Fisher p=0,78), que es la condición para que no sesgue el contraste de H3.
+
+    **Por qué Wikidata igual va primero** donde está: trae `P580`, o sea el año
+    real del vínculo, mientras que la ficha trae `|inicio =`, que es lo que el
+    editor entendió por debut. Empatando en precisión, gana el que tiene la
+    fecha mejor definida. Queda registrado en `primer_club_fuente` para que
+    cualquier análisis pueda cortar por procedencia — o excluir la ficha entera.
+    """
+    origen = p.interim / "club_debut_wiki.parquet"
+    if not origen.exists():
+        log.warning("sin club_debut_wiki.parquet: H3 queda con la cobertura de "
+                    "Wikidata sola (correr src.clean.build_club_debut)")
+        out["primer_club_fuente"] = np.where(out["primer_club_qid"].notna(),
+                                             "wikidata", None)
+        return out
+
+    w = (pd.read_parquet(origen)
+         .loc[lambda d: d["club_wiki_qid"].notna(),
+              ["player_qid", "club_wiki_qid", "club_wiki_nombre",
+               "club_wiki_anio"]])
+    antes = int(out["primer_club_qid"].notna().sum())
+
+    out = out.merge(w, on="player_qid", how="left")
+    hueco = out["primer_club_qid"].isna() & out["club_wiki_qid"].notna()
+    out["primer_club_fuente"] = np.select(
+        [out["primer_club_qid"].notna(), hueco], ["wikidata", "wikipedia"],
+        default=None)
+    out.loc[hueco, "primer_club_qid"] = out.loc[hueco, "club_wiki_qid"]
+    out.loc[hueco, "primer_club"] = out.loc[hueco, "club_wiki_nombre"]
+    out.loc[hueco, "primer_club_anio"] = out.loc[hueco, "club_wiki_anio"]
+
+    # Las coordenadas del club también hay que traerlas: sin ellas el jugador
+    # entra a la muestra pero desaparece de la matriz origen→destino de H3.
+    faltan_coord = hueco & out["club_lat"].isna()
+    coords = clubs.set_index("team_qid")
+    for col in ("club_lat", "club_lon", "club_sede", "club_country_qid"):
+        if col in coords.columns:
+            out.loc[faltan_coord, col] = (
+                out.loc[faltan_coord, "primer_club_qid"].map(coords[col]))
+
+    out = out.drop(columns=["club_wiki_qid", "club_wiki_nombre", "club_wiki_anio"])
+    log.info("primer_club: %d de Wikidata + %d de la ficha = %d (%.1f%% de %d)",
+             antes, int(hueco.sum()), antes + int(hueco.sum()),
+             100 * (antes + hueco.sum()) / len(out), len(out))
+    return out
+
+
 def primer_club(car: pd.DataFrame, cfg: dict) -> pd.DataFrame:
     """Club más temprano con fecha de inicio. Excluye selecciones."""
     t = cfg["competitive_level"]["tiers"]
@@ -118,6 +177,13 @@ def main() -> None:
 
     car = load_careers(p.raw / "wikidata" / "careers")
     clubs = load_clubs(p.raw / "wikidata" / "clubs.json")
+    # Los clubes que solo aparecen en un `equipo_debut` de ficha no están en
+    # ninguna carrera `P54`, así que su sede se pidió por separado.
+    extra = p.raw / "wikidata" / "clubs_wiki.json"
+    if extra.exists():
+        clubs = (pd.concat([clubs, load_clubs(extra)], ignore_index=True)
+                 .drop_duplicates("team_qid"))
+        log.info("clubes ubicados: %d (incluye los de las fichas)", len(clubs))
     car = car.merge(clubs, on="team_qid", how="left")
     car.to_parquet(p.processed / "careers.parquet", index=False)
     log.info("carreras: %d vínculos, %d jugadores, %d equipos",
@@ -137,6 +203,7 @@ def main() -> None:
                 "primera_argentina"]:
         out[col] = out[col].fillna(False).astype(bool)
     out["n_clubes"] = out["n_clubes"].fillna(0).astype(int)
+    out = completar_con_ficha(out, p, clubs)
     out.to_parquet(p.processed / "player_level.parquet", index=False)
 
     qa = (out.groupby("tier").agg(jugadores=("player_qid", "size"),

@@ -136,7 +136,16 @@ def conversion(cfg, d) -> dict[str, pd.DataFrame]:
     # Los cinco tramos por separado tienen entre 19 y 31 casos fuera del AMBA:
     # no alcanzan para un gradiente. El contraste binario sí tiene potencia y es
     # además la forma que tiene el efecto en el resto del estudio.
-    jj = j.dropna(subset=["metro"])
+    #
+    # OJO con el filtro. `metro` sale de `tramo.eq(">500k")`, y `.eq()` devuelve
+    # **False** —no NaN— cuando `tramo` es nulo. Como `metro` queda booleano
+    # puro, el `dropna(subset=["metro"])` que había acá no descartaba nada y los
+    # jugadores sin ciudad asignada (los que tienen `P19` a nivel provincia o
+    # departamento) entraban al contraste como si hubieran nacido fuera de un
+    # gran aglomerado: 105 casos en vez de 95. Son exactamente los mismos que
+    # §2.4 excluye del análisis de tamaño de ciudad, así que el contraste usaba
+    # un criterio distinto del resto del trabajo. Hay que filtrar por `tramo`.
+    jj = j[j["tramo"].notna()]
     a = int(((~jj["metro"]) & jj["seleccion_mayor"]).sum())
     b = int(((~jj["metro"]) & ~jj["seleccion_mayor"]).sum())
     c = int((jj["metro"] & jj["seleccion_mayor"]).sum())
@@ -169,12 +178,37 @@ def conversion(cfg, d) -> dict[str, pd.DataFrame]:
          "lectura": ("no usa denominador poblacional: el denominador son los "
                      "juveniles observados. No lo afecta ni el reparto "
                      "intraprovincial ni el artefacto de maternidad ni la "
-                     "cobertura de Wikidata.")},
+                     "cobertura de Wikidata. Leer junto a la tabla "
+                     "seleccion_conversion_loso: el contraste depende de un "
+                     "solo estrato.")},
     ])
+
+    # --- ¿de qué estrato depende el contraste? -------------------------------
+    # El agregado «fuera de un gran aglomerado» junta cuatro tramos con 19 a 31
+    # casos cada uno. Si el resultado lo aporta uno solo, el agregado no es un
+    # hallazgo sobre el interior sino sobre esa celda. Se saca un tramo por vez.
+    filas = []
+    ref_metro = cfg["city_size"]["schemes"][cfg["city_size"]["default_scheme"]]["reference_label"]
+    for tramo in [t for t in por_tramo["tramo"] if t != ref_metro]:
+        s = jj[jj["tramo"] != tramo]
+        a2 = int(((~s["metro"]) & s["seleccion_mayor"]).sum())
+        b2 = int(((~s["metro"]) & ~s["seleccion_mayor"]).sum())
+        c2 = int((s["metro"] & s["seleccion_mayor"]).sum())
+        e2 = int((s["metro"] & ~s["seleccion_mayor"]).sum())
+        o2, l2, h2 = odds_ratio_ci(a2, b2, c2, e2, cfg["stats"]["ci_level"])
+        filas.append({
+            "tramo_excluido": tramo, "n": a2 + b2 + c2 + e2,
+            "fuera_metro_llegan": a2, "fuera_metro_total": a2 + b2,
+            "fuera_metro_pct": 100 * a2 / max(a2 + b2, 1),
+            "OR": o2, "OR_ic_lo": l2, "OR_ic_hi": h2,
+            "p_fisher_exacto": stats.fisher_exact([[a2, b2], [c2, e2]])[1],
+            "sobrevive": bool(l2 > 1.0)})
+    loso = pd.DataFrame(filas)
 
     return {"seleccion_conversion_por_tramo": por_tramo,
             "seleccion_conversion_por_region": por_region,
-            "seleccion_conversion_tests": tests}
+            "seleccion_conversion_tests": tests,
+            "seleccion_conversion_loso": loso}
 
 
 # --------------------------------------------------------------------------- #

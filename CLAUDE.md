@@ -43,10 +43,21 @@ impacto de cada uno en `docs/impacto-lote-{1,2,3}.md`.
 | 2 · `fix/artefacto-maternidad` | Qué criterio usan realmente las dos puntas del cociente | Ninguna tabla cambia. **El artefacto de maternidad no opera**: las dos puntas registran residencia. |
 | 3 · `feat/placebo-y-robustez` | Test placebo con otros deportes, contracción bayesiana, FDR en confirmatorios | 2 tablas. **El básquet tiene el efecto clásico y el fútbol el inverso**: el patrón es del deporte. |
 
-**Estado de los bloqueantes:** de los siete que listó el re-análisis queda uno
-—H3 medida sobre muestra seleccionada por el desenlace, declarada como tal— más
-BL4 (tasa de error del `P19`), bloqueado por los términos de uso de BDFA y con el
-alcance muy reducido por el placebo. Lo abierto está en
+**Estado de los bloqueantes:** los siete que listó el re-análisis están cerrados.
+
+- **BL4 — tasa de error del `P19`:** medida. 133 casos verificados a mano contra
+  BDFA (leído en un navegador; su `robots.txt` bloquea agentes automáticos, no
+  personas): 94,1 % de acuerdo, **error no diferencial** (6,1 % metrópoli contra
+  5,7 % resto, Fisher p = 1,00). Corregido por la matriz medida el RR pasa de
+  0,599 a 0,547 — el error uniforme atenuaba, no fabricaba.
+- **H3 medida sobre muestra seleccionada por el desenlace:** cerrado el
+  2026-08-03 sumando el `equipo_debut` de las fichas de Wikipedia. La cobertura
+  del club formador pasa de 40,9 % a 82,7 %, y de 12,7 % a 72,1 % en el estrato
+  «resto». **El sesgo existía**: la migración baja de 47,1 % a 44,5 % y el OR de
+  5,58 a 5,03. Queda un 17,3 % sin club, así que los números siguen siendo
+  probablemente cota superior.
+
+Lo que sigue abierto —el proxy mide debut profesional y no inferiores— está en
 [docs/hallazgos-pendientes.md](docs/hallazgos-pendientes.md).
 
 ### Trampas encontradas (no volver a pisarlas)
@@ -118,6 +129,25 @@ alcance muy reducido por el placebo. Lo abierto está en
 15. **`outputs/` está en `.gitignore`**, así que `git diff outputs/` **siempre**
     sale vacío. No sirve para verificar que el pipeline reproduce: hay que
     congelar una copia y comparar archivos.
+16. **`wbgetentities` no sigue redirecciones.** Los enlaces a clubes en
+    es.wikipedia usan casi siempre el nombre corto —«Rosario Central», «Boca
+    Juniors», «Newell's Old Boys»— que redirige a la razón social completa. Sin
+    una segunda pasada que las resuelva se perdían 608 jugadores, y **no al azar:
+    los de los clubes más grandes**, que son los que tienen nombre corto de uso
+    corriente. Un faltante que sigue el tamaño del club es exactamente el sesgo
+    que rompería H3. Ver `build_club_debut.resolver_redirecciones`.
+17. **Más cobertura no es mejor dato.** Wikidata tiene club sin fecha para el 78 %
+    de los que no tenían `primer_club`; usar «el único club listado» habría
+    llevado la cobertura del 41 % al 77 % en una línea. Validado contra los 106
+    clubes verificados a mano: **acierta el 52 %**, y falla hacia clubes
+    posteriores y del exterior. Se descartó. La regla: **ninguna fuente nueva
+    entra sin medirse contra `outputs/validacion/`**, que es la única verdad de
+    campo del proyecto.
+18. **Las cifras de la prosa que no están en `CIFRAS` no se auditan.** Al sumar
+    las fichas, H3 pasó de 47,1 % a 44,5 % y el paper siguió diciendo lo viejo:
+    `sync_tablas_paper --check` daba verde porque las **tablas** estaban al día y
+    esas tres cifras no estaban registradas. Toda cifra que la prosa afirme y una
+    tabla respalde va a `CIFRAS`.
 
 ---
 

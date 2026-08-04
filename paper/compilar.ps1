@@ -21,12 +21,31 @@ Set-Location $PSScriptRoot
 
 foreach ($pasada in 1, 2) {
     Write-Host "pasada $pasada de 2..."
-    pdflatex -interaction=nonstopmode paper.tex | Out-Null
-    if ($LASTEXITCODE -ne 0) {
-        Write-Host "`nFalló. Errores:" -ForegroundColor Red
+    # MiKTeX escribe a stderr un aviso sobre actualizaciones aunque la
+    # compilación salga bien. En PowerShell 5.1 cada línea de stderr de un
+    # ejecutable nativo se envuelve en un ErrorRecord: con
+    # $ErrorActionPreference = "Stop" aborta el script sin que haya fallado nada,
+    # y con "Continue" igual ensucia la consola con NativeCommandError.
+    #
+    # Se invoca a través de cmd para que stderr nunca llegue al stream de errores
+    # de PowerShell. La señal real de éxito es $LASTEXITCODE, no stderr: pdflatex
+    # escribe avisos ahí de rutina.
+    cmd /c "pdflatex -interaction=nonstopmode paper.tex > nul 2>&1"
+    $codigo = $LASTEXITCODE
+
+    if ($codigo -ne 0) {
+        Write-Host "`nFalló en la pasada $pasada. Errores de LaTeX:" -ForegroundColor Red
         Select-String -Path paper.log -Pattern "^!" -Context 0, 3
         exit 1
     }
+}
+
+# Una referencia sin resolver sale como «??» en el PDF y no es un error de
+# compilación: hay que buscarla explícitamente.
+$sueltas = Select-String -Path paper.log -Pattern "Reference .* undefined|Citation .* undefined"
+if ($sueltas) {
+    Write-Host "`nReferencias sin resolver (van a salir como ?? en el PDF):" -ForegroundColor Yellow
+    $sueltas | ForEach-Object { "  " + $_.Line.Trim() }
 }
 
 # Los auxiliares no aportan nada una vez que el PDF está hecho.

@@ -235,6 +235,121 @@ CONSTRUCTORES = {
 
 
 # --------------------------------------------------------------------------- #
+# Auditoría de la prosa
+# --------------------------------------------------------------------------- #
+# Sincronizar las tablas no alcanza. El abstract decía «12,9 futbolistas cada
+# 100.000» mientras la tabla generada decía 12,7, y nada lo detectaba porque la
+# cifra vivía en una oración, no en un bloque marcado. Un referee lo encontró en
+# veinte minutos.
+#
+# Cada entrada define una cifra que aparece en la prosa: de dónde sale y con qué
+# tolerancia se compara. `--check` extrae del documento los números que rodean a
+# `contexto` y falla si ninguno coincide. No reescribe la prosa —eso pediría
+# entender la oración— pero impide que se desfase en silencio.
+def _valor(p, tabla: str, columna: str, filtro=None, escala: float = 1.0) -> float:
+    d = _leer(p, tabla)
+    if filtro is not None:
+        d = d[filtro(d)]
+    return float(d[columna].iloc[0]) * escala
+
+
+def _frase(texto: str) -> str:
+    """Frase literal -> regex que tolera saltos de línea.
+
+    El `.tex` y el `.md` van envueltos a 80 columnas, así que cualquier frase de
+    más de unas pocas palabras tiene un salto de línea adentro en algún lugar
+    impredecible. Buscar la frase con espacios literales encuentra unas
+    apariciones y se pierde otras — que fue lo que pasó con la del abstract.
+    """
+    return r"\s+".join(re.escape(w) for w in texto.split())
+
+
+CIFRAS = {
+    "tasa_menos_10k": dict(
+        contexto=_frase("nacidos en localidades de menos de"),
+        valor=lambda p: _valor(p, "h1_tramos_principal", "tasa",
+                               lambda d: d["unidad"] == "<10k"),
+        dec=1),
+    "tasa_mas_500k": dict(
+        contexto=_frase("en aglomerados de más de"),
+        valor=lambda p: _valor(p, "h1_tramos_principal", "tasa",
+                               lambda d: d["unidad"] == ">500k"),
+        dec=1),
+    "conversion_fuera": dict(
+        contexto=_frase("fuera de un gran aglomerado llegan a la Mayor"),
+        valor=lambda p: _valor(p, "seleccion_conversion_tests", "fuera_metro_pct"),
+        dec=1),
+    "conversion_or": dict(
+        contexto=_frase("OR cae a"),
+        valor=lambda p: _valor(p, "seleccion_conversion_loso", "OR",
+                               lambda d: d["tramo_excluido"] == "10–50k"),
+        dec=2),
+    # H3. Estas tres se movieron al sumar el club de las fichas de Wikipedia y
+    # el paper las repetía viejas sin que nada avisara: no estaban registradas.
+    "h3_migracion_pct": dict(
+        contexto=_frase("se forma fuera de su provincia de nacimiento contra"),
+        valor=lambda p: _valor(p, "h3_migracion_vs_poblacion",
+                               "pct_fuera_de_su_provincia",
+                               lambda d: d["grupo"].str.startswith("Futbolistas")),
+        dec=1),
+    "h3_or": dict(
+        contexto=_frase("general que reside fuera de su provincia de nacimiento"),
+        valor=lambda p: _valor(p, "h3_migracion_vs_poblacion", "OR",
+                               lambda d: d["OR"].notna()),
+        dec=2),
+    "h3_n": dict(
+        contexto=_frase("jugadores con origen y club formador ubicados"),
+        valor=lambda p: _valor(p, "h3_migracion_vs_poblacion", "n",
+                               lambda d: d["grupo"].str.startswith("Futbolistas")),
+        dec=0),
+}
+
+
+def _numeros(texto: str) -> set[float]:
+    """Todos los números con coma decimal o enteros que aparecen en un fragmento."""
+    out = set()
+    for m in re.finditer(r"\d[\d.]*(?:,\d+)?", texto):
+        s = m.group(0).replace(".", "").replace(",", ".")
+        try:
+            out.add(float(s))
+        except ValueError:
+            pass
+    return out
+
+
+def auditar_prosa(texto: str, p, ventana: int = 220) -> list[str]:
+    """Cifras de la prosa que no coinciden con `outputs/tables/`.
+
+    Basta con que **una** de las apariciones del contexto tenga el valor al lado.
+    Exigirlo en todas daba falsos positivos legítimos: la discusión cita el OR de
+    la conversión sin repetir el porcentaje, y eso no es un desfasaje. Lo que
+    importa es que el documento diga el número correcto en alguna parte y que no
+    haya quedado uno viejo cuando el pipeline cambió: si la cifra se mueve,
+    ninguna aparición coincide y el chequeo falla igual.
+    """
+    problemas = []
+    for nombre, spec in CIFRAS.items():
+        try:
+            esperado = round(spec["valor"](p), spec["dec"])
+        except (FileNotFoundError, IndexError, KeyError):
+            continue
+        apariciones = list(re.finditer(spec["contexto"], texto))
+        if not apariciones:
+            continue
+        vistos_total: set[float] = set()
+        for m in apariciones:
+            frag = texto[max(0, m.start() - ventana): m.end() + ventana]
+            vistos_total |= {round(v, spec["dec"]) for v in _numeros(frag)}
+        if esperado not in vistos_total:
+            problemas.append(
+                f"{nombre}: outputs/tables dice {esperado} y la prosa no lo "
+                f"menciona en ninguna de las {len(apariciones)} apariciones de "
+                f"«{apariciones[0].group(0)[:45].strip()}…» "
+                f"(encontrados: {sorted(v for v in vistos_total if v < 1e4)[:10]})")
+    return problemas
+
+
+# --------------------------------------------------------------------------- #
 def sincronizar(texto: str, p, formato: str = "md") -> tuple[str, list[str]]:
     """Reescribe los bloques marcados con la tabla que sale de `outputs/tables/`.
 
@@ -289,6 +404,11 @@ def main() -> int:
             else:
                 log.info("%s: las %d tablas coinciden con outputs/tables/",
                          destino.name, len(vistos))
+            # Las tablas pueden estar al día y la prosa desfasada: son dos
+            # mecanismos distintos y el segundo no tiene marcas que sincronizar.
+            for problema in auditar_prosa(original, p):
+                log.error("%s [prosa] %s", destino.name, problema)
+                codigo = 1
             continue
         if nuevo == original:
             log.info("%s: las %d tablas ya estaban al día", destino.name, len(vistos))

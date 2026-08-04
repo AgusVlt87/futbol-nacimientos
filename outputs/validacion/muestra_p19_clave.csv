@@ -1,0 +1,301 @@
+caso,player_qid,nombre,p19_label,prov_nombre,localidad_nombre,tramo,estrato,birth_year
+1,Q5876167,Gastón Caprari,Córdoba,Córdoba,Córdoba,>500k,metropoli,1985
+2,Q5888988,Guillermo Valdez,Sancti Spiritu,Santa Fe,Gaboto,<10k,resto,1978
+3,Q19984518,Gabriel Alanís,Córdoba,Córdoba,Córdoba,>500k,metropoli,1994
+4,Q60737009,Julián Ramírez,San Salvador de Jujuy,Jujuy,San Salvador de Jujuy,100–500k,resto,1999
+5,Q537937,Gerardo Rivero,Buenos Aires,Ciudad Autónoma de Buenos Aires,Ciudad Autónoma de Buenos Aires,>500k,metropoli,1975
+6,Q55375268,Santiago López,La Carlota,Córdoba,La Carlota,10–50k,resto,1997
+7,Q116168715,Brian Aguilar,Avellaneda,Buenos Aires,Avellaneda,>500k,metropoli,2003
+8,Q8194131,Alejandro Molina,Tres Isletas,Chaco,Tres Isletas,10–50k,resto,1997
+9,Q125812845,Alejo Sarco,Alberti,Buenos Aires,Alberti,<10k,resto,2006
+10,Q61245671,Julián Navas,Mendoza,Mendoza,Mendoza,>500k,metropoli,1993
+11,Q102155276,Fabián Sánchez,Mar del Plata,Buenos Aires,Mar del Plata,>500k,metropoli,2001
+12,Q311586,Lionel Scaloni,Pujato,Santa Fe,Pujato,<10k,resto,1978
+13,Q16149566,Franco Amoroso,Buenos Aires,Ciudad Autónoma de Buenos Aires,Ciudad Autónoma de Buenos Aires,>500k,metropoli,1994
+14,Q6041064,Nery Domínguez,Rosario,Santa Fe,Rosario,>500k,metropoli,1990
+15,Q28137180,Juan Dobboletta,Carcarañá,Santa Fe,Carcarañá,10–50k,resto,1993
+16,Q28058689,Ramón Mierez,Resistencia,Chaco,Resistencia,100–500k,resto,1997
+17,Q5972290,Leandro de Muner,Buenos Aires,Ciudad Autónoma de Buenos Aires,Ciudad Autónoma de Buenos Aires,>500k,metropoli,1983
+18,Q316992,Mariano Pernía,Tandil,Buenos Aires,Tandil,100–500k,resto,1977
+19,Q1379592,José María Calvo,Buenos Aires,Ciudad Autónoma de Buenos Aires,Ciudad Autónoma de Buenos Aires,>500k,metropoli,1981
+20,Q6526215,Leonel Altobelli,Presidencia Roque Sáenz Peña,Chaco,Presidencia Roque Sáenz Peña,50–100k,resto,1986
+21,Q314241,José Sosa,Carcarañá,Santa Fe,Carcarañá,10–50k,resto,1985
+22,Q6007172,Mauro Maidana,Esperanza,Santa Fe,Esperanza,10–50k,resto,1990
+23,Q140299237,Matias Panigazzi,Buenos Aires,Ciudad Autónoma de Buenos Aires,Ciudad Autónoma de Buenos Aires,>500k,metropoli,1997
+24,Q2706611,Franco Sebastián Sosa,Monteros,Tucumán,Monteros,10–50k,resto,1981
+25,Q5859181,Fernando Andrés Márquez,Santa Fe,Santa Fe,Santa Fe,>500k,metropoli,1987
+26,Q6121209,Santiago Zurbriggen,San Jerónimo Norte,Santa Fe,San Jerónimo Norte,<10k,resto,1990
+27,Q3756478,Gabriel Graciani,Bovril,Entre Ríos,Bovril,<10k,resto,1993
+28,Q65030072,Carlos Morel,Barranqueras,Chaco,Barranqueras,100–500k,resto,1987
+29,Q510596,Ezequiel Schelotto,Buenos Aires,Ciudad Autónoma de Buenos Aires,Ciudad Autónoma de Buenos Aires,>500k,metropoli,1989
+30,Q136789178,Leandro Moreira,Longchamps,Buenos Aires,Almirante Brown,>500k,metropoli,2002
+31,Q33125135,Guido Corteggiano,Buenos Aires,Ciudad Autónoma de Buenos Aires,Ciudad Autónoma de Buenos Aires,>500k,metropoli,1987
+32,Q22676592,Ezequiel Montagna,Mar del Plata,Buenos Aires,Mar del Plata,>500k,metropoli,1994
+33,Q3822716,Brian Sarmiento,Rosario,Santa Fe,Rosario,>500k,metropoli,1990
+34,Q5996679,Marcos Ovejero,La Plata,Buenos Aires,La Plata,>500k,metropoli,1986
+35,Q6125385,Sergio Chitero,Paraná,Entre Ríos,Paraná,100–500k,resto,1983
+36,Q29638877,Brian Garino,Los Cóndores,Córdoba,Los Cóndores,<10k,resto,1995
+37,Q19863023,Lucas Suárez,Río Cuarto,Córdoba,Río Cuarto,100–500k,resto,1995
+38,Q3027395,Diego Héctor Garay,San Francisco,Córdoba,San Francisco,50–100k,resto,1975
+39,Q108137766,Gabriel Aranda,Ezeiza,Buenos Aires,Ezeiza,>500k,metropoli,2001
+40,Q16605659,Maximiliano Flores,San Miguel de Tucumán,Tucumán,San Miguel de Tucumán,>500k,metropoli,1991
+41,Q104834452,Ángel Gómez,San Francisco Solano,Buenos Aires,Quilmes,>500k,metropoli,2001
+42,Q17308277,Diego Romancikas,Buenos Aires,Ciudad Autónoma de Buenos Aires,Ciudad Autónoma de Buenos Aires,>500k,metropoli,1977
+43,Q5796325,César More,San Miguel de Tucumán,Tucumán,San Miguel de Tucumán,>500k,metropoli,1989
+44,Q43257193,Emiliano Purita,Buenos Aires,Ciudad Autónoma de Buenos Aires,Ciudad Autónoma de Buenos Aires,>500k,metropoli,1997
+45,Q5952856,Juan Vinaccia,La Plata,Buenos Aires,La Plata,>500k,metropoli,1985
+46,Q6526010,Leonardo Iorlano,Santa Fe,Santa Fe,Santa Fe,>500k,metropoli,1986
+47,Q4267554,Juan Casado,Buenos Aires,Ciudad Autónoma de Buenos Aires,Ciudad Autónoma de Buenos Aires,>500k,metropoli,1980
+48,Q109937760,Gonzalo Luján,Buenos Aires,Ciudad Autónoma de Buenos Aires,Ciudad Autónoma de Buenos Aires,>500k,metropoli,2001
+49,Q88891488,Agustín Lagos,La Cañada,Santiago del Estero,La Cañada,<10k,resto,2001
+50,Q16215743,Juan Cruz Real,Tandil,Buenos Aires,Tandil,100–500k,resto,1976
+51,Q104667010,Joaquín Gho,Lincoln,Buenos Aires,Lincoln,10–50k,resto,2003
+52,Q55375313,Daniel Martínez,San Miguel,Buenos Aires,San Miguel,>500k,metropoli,1997
+53,Q5888889,Guillermo Roffés,Córdoba,Córdoba,Córdoba,>500k,metropoli,1991
+54,Q65553930,Jesús Francisco Calderón,Salta,Salta,Salta,>500k,metropoli,1990
+55,Q720572,Leandro Somoza,Buenos Aires,Ciudad Autónoma de Buenos Aires,Ciudad Autónoma de Buenos Aires,>500k,metropoli,1981
+56,Q108532936,Franco Zapiola,Magdalena,Buenos Aires,Magdalena,10–50k,resto,2001
+57,Q49629170,Juan Manuel Mazzocchi,Baradero,Buenos Aires,Baradero,10–50k,resto,1997
+58,Q44724541,Francisco Filippi,Santa Fe,Santa Fe,Santa Fe,>500k,metropoli,1994
+59,Q26915347,Germán Márquez,Buenos Aires,Ciudad Autónoma de Buenos Aires,Ciudad Autónoma de Buenos Aires,>500k,metropoli,1976
+60,Q1079859,Christian Giménez,Resistencia,Chaco,Resistencia,100–500k,resto,1981
+61,Q50223139,Leandro Lencinas,Rivadavia,Mendoza,Rivadavia,10–50k,resto,1995
+62,Q5186269,Cristian Tula,Rawson,Chubut,Rawson,10–50k,resto,1978
+63,Q123227962,Aaron Anselmino,Bernardo Larroudé,La Pampa,Bernardo Larroude,<10k,resto,2005
+64,Q5441039,Federico Neyra,Oberá,Misiones,Oberá,50–100k,resto,1987
+65,Q61764047,Lucas Arzamendia,Buenos Aires,Ciudad Autónoma de Buenos Aires,Ciudad Autónoma de Buenos Aires,>500k,metropoli,1999
+66,Q18923330,Joaquín Susvielles,Santa Rosa,La Pampa,Santa Rosa,100–500k,resto,1991
+67,Q4776872,Antonio Piergüidi,Henderson,Buenos Aires,Henderson,<10k,resto,1985
+68,Q17364520,Franco Soldano,Córdoba,Córdoba,Córdoba,>500k,metropoli,1994
+69,Q6777816,Martín Palavicini,Rosario,Santa Fe,Rosario,>500k,metropoli,1977
+70,Q2895202,Iván Furios,Paraná,Entre Ríos,Paraná,100–500k,resto,1979
+71,Q66929490,adolfo hitler buendia,Nelson,Santa Fe,Nelson,<10k,resto,2002
+72,Q6509760,Leandro Testa,General Belgrano,Buenos Aires,General Belgrano,10–50k,resto,1976
+73,Q50233588,Leonardo Balerdi,Villa Mercedes,San Luis,Villa Mercedes,100–500k,resto,1999
+74,Q3840400,Luis Ojeda,Romang,Santa Fe,Romang,<10k,resto,1990
+75,Q5771893,Claudio Cenci,San Carlos Centro,Santa Fe,San Carlos Centro,10–50k,resto,1985
+76,Q5857571,Federico Crivelli,José Mármol,Buenos Aires,Almirante Brown,>500k,metropoli,1982
+77,Q525734,Juan Cruz Gill,Villa María,Córdoba,Villa María,100–500k,resto,1983
+78,Q217921,Claudio Yacob,Carcarañá,Santa Fe,Carcarañá,10–50k,resto,1987
+79,Q20650499,Bruno Galván,Buenos Aires,Ciudad Autónoma de Buenos Aires,Ciudad Autónoma de Buenos Aires,>500k,metropoli,1994
+80,Q5742440,Hernán Garin,Concordia,Entre Ríos,Concordia,100–500k,resto,1983
+81,Q25677249,Diego Fabián Torres,Villa Nueva,Córdoba,Villa Nueva,100–500k,resto,1990
+82,Q491538,Fabián Caballero,Posadas,Misiones,Posadas,100–500k,resto,1978
+83,Q63248404,Enzo Salas,Concordia,Entre Ríos,Concordia,100–500k,resto,2000
+84,Q657442,Emanuel Villa,Casilda,Santa Fe,Casilda,10–50k,resto,1982
+85,Q5644596,Emanuel García,Tigre,Buenos Aires,Tigre,>500k,metropoli,1990
+86,Q5972194,Leandro Barrera,Godoy Cruz,Mendoza,Guaymallén,>500k,metropoli,1991
+87,Q55375284,Martín Ojeda,Corrientes,Corrientes,Corrientes,<10k,resto,1997
+88,Q10329918,Miguel Ángel Bazán,Buenos Aires,Ciudad Autónoma de Buenos Aires,Ciudad Autónoma de Buenos Aires,>500k,metropoli,1985
+89,Q5995984,Marcelo Vieytes,Buenos Aires,Ciudad Autónoma de Buenos Aires,Ciudad Autónoma de Buenos Aires,>500k,metropoli,1979
+90,Q18223462,Ángel Piz,Goya,Corrientes,Goya,<10k,resto,1992
+91,Q27786548,Juan Brunetta,Laboulaye,Córdoba,Laboulaye,10–50k,resto,1997
+92,Q18221014,Adrián Arregui,Berazategui,Buenos Aires,Berazategui,>500k,metropoli,1992
+93,Q3857270,Miguel Pedro López,Ensenada,Buenos Aires,Ensenada,>500k,metropoli,1988
+94,Q86603993,Ariel Cháves,Rosario,Santa Fe,Rosario,>500k,metropoli,1992
+95,Q5888518,Guillermo Esteban,Salliqueló,Buenos Aires,Salliqueló,<10k,resto,1987
+96,Q1350162,Oscar Ahumada,Zárate,Buenos Aires,Zárate,>500k,metropoli,1982
+97,Q63818353,Leandro Finochietto,Buenos Aires,Ciudad Autónoma de Buenos Aires,Ciudad Autónoma de Buenos Aires,>500k,metropoli,1997
+98,Q131106940,Elías David Torres,Ucacha,Córdoba,Ucacha,<10k,resto,2001
+99,Q6792082,Matías Alejandro Quiroga,Batavia,San Luis,Batavia,<10k,resto,1986
+100,Q5233425,David Escalante,Tres Isletas,Chaco,Tres Isletas,10–50k,resto,1991
+101,Q134276701,Ulises Ojeda,Buenos Aires,Ciudad Autónoma de Buenos Aires,Ciudad Autónoma de Buenos Aires,>500k,metropoli,1995
+102,Q5552319,Germán Pietrobon,San Juan,San Juan,San Juan,>500k,metropoli,1983
+103,Q59209492,Lautaro Navas,Rafaela,Santa Fe,Rafaela,100–500k,resto,1996
+104,Q19844291,Gabriel Robledo,Buenos Aires,Ciudad Autónoma de Buenos Aires,Ciudad Autónoma de Buenos Aires,>500k,metropoli,1993
+105,Q116250233,Luciano Jachfe,Villa Luzuriaga,Buenos Aires,La Matanza,>500k,metropoli,2001
+106,Q27119603,Jonathan Campo,Merlo,Buenos Aires,Merlo,>500k,metropoli,1988
+107,Q5981913,Lucas Molina,Buenos Aires,Ciudad Autónoma de Buenos Aires,Ciudad Autónoma de Buenos Aires,>500k,metropoli,1984
+108,Q121182047,Lisandro Morales,Villa Gobernador Gálvez,Santa Fe,Villa Gobernador Gálvez,>500k,metropoli,2004
+109,Q124527918,Agustín Campana,Buenos Aires,Ciudad Autónoma de Buenos Aires,Ciudad Autónoma de Buenos Aires,>500k,metropoli,1998
+110,Q5951887,Juan Pablo Zárate,Córdoba,Córdoba,Córdoba,>500k,metropoli,1991
+111,Q56728837,Stefano Callegari,Rosario,Santa Fe,Rosario,>500k,metropoli,1997
+112,Q630956,Valentín Viola,Moreno,Buenos Aires,Moreno,>500k,metropoli,1991
+113,Q26972389,Andrés Grande,Buenos Aires,Ciudad Autónoma de Buenos Aires,Ciudad Autónoma de Buenos Aires,>500k,metropoli,1976
+114,Q5783604,Conrado Peralta Pino,Santa Fe,Santa Fe,Santa Fe,>500k,metropoli,1985
+115,Q5963680,Héber Arriola,Buenos Aires,Ciudad Autónoma de Buenos Aires,Ciudad Autónoma de Buenos Aires,>500k,metropoli,1980
+116,Q27663481,Nico Olsak,Buenos Aires,Ciudad Autónoma de Buenos Aires,Ciudad Autónoma de Buenos Aires,>500k,metropoli,1991
+117,Q101250897,Alexis Sabella,Florentino Ameghino,Buenos Aires,Florentino Ameghino,<10k,resto,2001
+118,Q60735821,Franco Ferrari,Rosario,Santa Fe,Rosario,>500k,metropoli,1992
+119,Q588855,Lucas Landa,Chañar Ladeado,Santa Fe,Chañar Ladeado,<10k,resto,1986
+120,Q5526910,Gastón Pisani,Buenos Aires,Ciudad Autónoma de Buenos Aires,Ciudad Autónoma de Buenos Aires,>500k,metropoli,1983
+121,Q2474192,Abel Masuero,Ramona,Santa Fe,Ramona,<10k,resto,1988
+122,Q132101618,Gino Albertengo,Egusquiza,Santa Fe,Egusquiza,<10k,resto,2003
+123,Q17364555,Martín Zuccarelli,La Plata,Buenos Aires,La Plata,>500k,metropoli,1978
+124,Q126365798,Ian Glavinovich,Elortondo,Santa Fe,Elortondo,<10k,resto,2001
+125,Q2327959,Federico Turienzo,La Plata,Buenos Aires,La Plata,>500k,metropoli,1983
+126,Q116410175,Walter Rueda,Paraná,Entre Ríos,Paraná,100–500k,resto,1997
+127,Q6110031,Roberto Tucker,Olavarría,Buenos Aires,Olavarrí­a,100–500k,resto,1983
+128,Q5857560,Federico Chiapello,San Jerónimo Norte,Santa Fe,San Jerónimo Norte,<10k,resto,1993
+129,Q16233715,Esteban Ciaccheri,Pilar,Buenos Aires,Pilar,>500k,metropoli,1991
+130,Q26155667,Rodrigo De Ciancio,Buenos Aires,Ciudad Autónoma de Buenos Aires,Ciudad Autónoma de Buenos Aires,>500k,metropoli,1995
+131,Q17462635,Marcos Acuña,Zapala,Neuquén,Zapala,10–50k,resto,1991
+132,Q28055553,Mauro Borgnino,Rafaela,Santa Fe,Rafaela,100–500k,resto,1997
+133,Q208087,Jonás Gutiérrez,Buenos Aires,Ciudad Autónoma de Buenos Aires,Ciudad Autónoma de Buenos Aires,>500k,metropoli,1983
+134,Q350270,Cata Díaz,San Fernando del Valle de Catamarca,Catamarca,San Fernando del Valle de Catamarca,100–500k,resto,1979
+135,Q5552284,Germán Castillo,El Trébol,Santa Fe,El Trébol,10–50k,resto,1977
+136,Q282915,Ignacio Piatti,General Baldissera,Córdoba,General Baldissera,<10k,resto,1985
+137,Q50034839,Emanuel Zagert,Resistencia,Chaco,Resistencia,100–500k,resto,1995
+138,Q30916785,Braian Álvarez,Mar del Plata,Buenos Aires,Mar del Plata,>500k,metropoli,1997
+139,Q5582291,Gonzalo del Bono,Rafaela,Santa Fe,Rafaela,100–500k,resto,1981
+140,Q6795775,Maximiliano Scapparoni,Caseros,Buenos Aires,Tres de Febrero,>500k,metropoli,1989
+141,Q5951040,Juan Manuel Imbert,San Miguel de Tucumán,Tucumán,San Miguel de Tucumán,>500k,metropoli,1990
+142,Q16599821,Mario Mussón,Chivilcoy,Buenos Aires,Chivilcoy,50–100k,resto,1982
+143,Q20017167,Marcelo Barreña,Ingeniero Luiggi,La Pampa,Ingeniero Luiggi,<10k,resto,1987
+144,Q26333586,Dario Hernan Drudi,Buenos Aires,Ciudad Autónoma de Buenos Aires,Ciudad Autónoma de Buenos Aires,>500k,metropoli,1987
+145,Q66920442,Gastón Comas,Paraná,Entre Ríos,Paraná,100–500k,resto,1998
+146,Q6108027,Ricardo Bernay,Libertador San Martín,Entre Ríos,Villa Libertador San Martín,<10k,resto,1986
+147,Q15617954,Franco Mazurek,Puerto Rico,Misiones,Puerto Rico,10–50k,resto,1993
+148,Q16980149,Agustín Emanuel Pastoriza Cacabelos,Adrogué,Buenos Aires,Almirante Brown,>500k,metropoli,1996
+149,Q52740367,Jonathan Farias,Buenos Aires,Ciudad Autónoma de Buenos Aires,Ciudad Autónoma de Buenos Aires,>500k,metropoli,1998
+150,Q5896281,Hernán Silva,Buenos Aires,Ciudad Autónoma de Buenos Aires,Ciudad Autónoma de Buenos Aires,>500k,metropoli,1986
+151,Q5257145,Denis Caputo,Córdoba,Córdoba,Córdoba,>500k,metropoli,1989
+152,Q4118273,Ezequiel Luna,Rosario,Santa Fe,Rosario,>500k,metropoli,1986
+153,Q6122847,Sebastián Bértoli,Paraná,Entre Ríos,Paraná,100–500k,resto,1977
+154,Q131312238,Rafael Profini,San José de la Esquina,Santa Fe,San José de la Esquina,<10k,resto,2003
+155,Q61961488,Franco Lefiñir,Bahía Blanca,Buenos Aires,Bahía Blanca,100–500k,resto,1988
+156,Q103838851,Facundo Garcés,Santa Fe,Santa Fe,Santa Fe,>500k,metropoli,1999
+157,Q61439195,Cristian Parano,Aguilares,Tucumán,Aguilares,10–50k,resto,1999
+158,Q2059054,Nereo Champagne,Salto,Buenos Aires,Salto,10–50k,resto,1985
+159,Q20014396,Danilo Sandrigo,Santa Fe,Santa Fe,Santa Fe,>500k,metropoli,1992
+160,Q2878019,Roberto Laumann,Bahía Blanca,Buenos Aires,Bahía Blanca,100–500k,resto,1979
+161,Q16491967,Diego Alejandro García,La Paz,Entre Ríos,La Paz,10–50k,resto,1986
+162,Q62570251,Mauro Cerutti,Mendoza,Mendoza,Mendoza,>500k,metropoli,1994
+163,Q5948119,Juan Caracoche,Navarro,Buenos Aires,Navarro,10–50k,resto,1988
+164,Q122854925,Francisco Facello,Cosquín,Córdoba,Cosquín,100–500k,resto,2003
+165,Q60734319,Nahuel Rodríguez,Ciudadela,Buenos Aires,Tres de Febrero,>500k,metropoli,1996
+166,Q28090013,Manuel González,Buenos Aires,Ciudad Autónoma de Buenos Aires,Ciudad Autónoma de Buenos Aires,>500k,metropoli,1991
+167,Q63107261,Lautaro Lusnig,Buenos Aires,Ciudad Autónoma de Buenos Aires,Ciudad Autónoma de Buenos Aires,>500k,metropoli,1998
+168,Q6757918,Marcos Pirchio,Casilda,Santa Fe,Casilda,10–50k,resto,1986
+169,Q5901801,Horacio Anzorena,General Alvear,Mendoza,General Alvear,10–50k,resto,1985
+170,Q5110139,Christian Smigiel,Quilmes,Buenos Aires,Quilmes,>500k,metropoli,1977
+171,Q6099182,Ramiro Arrú,San José de Metán,Salta,San José de Metán,10–50k,resto,1989
+172,Q3675623,Cristian Borruto,Buenos Aires,Ciudad Autónoma de Buenos Aires,Ciudad Autónoma de Buenos Aires,>500k,metropoli,1987
+173,Q4714584,Alejandro Kruchowski,Buenos Aires,Ciudad Autónoma de Buenos Aires,Ciudad Autónoma de Buenos Aires,>500k,metropoli,1983
+174,Q5883051,Gonzalo Marinelli,José C. Paz,Buenos Aires,Jose C. Paz,>500k,metropoli,1989
+175,Q63147024,Franco Calderón,Hermoso Campo,Chaco,Hermoso Campo,<10k,resto,1998
+176,Q5935825,Jorge Piñero da Silva,Candelaria,Misiones,Candelaria,10–50k,resto,1987
+177,Q62806839,Rodrigo Villagra,Morteros,Córdoba,Morteros,10–50k,resto,2001
+178,Q5951808,Juan Pablo Manzoco,Carlos Casares,Buenos Aires,Carlos Casares,10–50k,resto,1982
+179,Q6509619,Leandro Chichizola,San Justo,Santa Fe,San Justo,10–50k,resto,1990
+180,Q6125529,Sergio Maximiliano Ojeda,Río Cuarto,Córdoba,Río Cuarto,100–500k,resto,1992
+181,Q5042797,Carlos Zorrilla,Lanús,Buenos Aires,Lanus,>500k,metropoli,1985
+182,Q61755102,Mateo Levato,Pergamino,Buenos Aires,Pergamino,100–500k,resto,1996
+183,Q5526892,Gastón Aguirre,Adrogué,Buenos Aires,Almirante Brown,>500k,metropoli,1981
+184,Q5981918,Lucas Márquez,Paraná,Entre Ríos,Paraná,100–500k,resto,1988
+185,Q16301129,Carlos Llamos,Pasteur (Buenos Aires),Buenos Aires,Pasteur,<10k,resto,1982
+186,Q85756858,Diego Silva,Buenos Aires,Ciudad Autónoma de Buenos Aires,Ciudad Autónoma de Buenos Aires,>500k,metropoli,1997
+187,Q5791307,Cristian Gaitán,Capitán Bermúdez,Santa Fe,Capitán Bermúdez,>500k,metropoli,1990
+188,Q115800149,Pío Bonacci,Chepes,La Rioja,Chepes,10–50k,resto,1998
+189,Q6055984,Pablo Gabas,Rosario,Santa Fe,Rosario,>500k,metropoli,1982
+190,Q106768944,Nicolás Valentini,Junín,Buenos Aires,Juní­n,50–100k,resto,2001
+191,Q3616516,Andrés San Martín,Lomas de Zamora,Buenos Aires,Lomas de Zamora,>500k,metropoli,1978
+192,Q5934447,Jorge Alejandro Molina,Córdoba,Córdoba,Córdoba,>500k,metropoli,1984
+193,Q5927861,Javier Ignacio García,Rosario,Santa Fe,Rosario,>500k,metropoli,1981
+194,Q57293205,Ignacio Aliseda,Buenos Aires,Ciudad Autónoma de Buenos Aires,Ciudad Autónoma de Buenos Aires,>500k,metropoli,2000
+195,Q108137715,Alexis Alvariño,Gregorio de Laferrere,Buenos Aires,La Matanza,>500k,metropoli,2001
+196,Q5806410,Diego Montenegro,Bragado,Buenos Aires,Bragado,10–50k,resto,1985
+197,Q101070061,Facundo Cáseres,Arteaga,Santa Fe,Arteaga,<10k,resto,2001
+198,Q140010910,Marcelo Giménez,Buenos Aires,Ciudad Autónoma de Buenos Aires,Ciudad Autónoma de Buenos Aires,>500k,metropoli,1986
+199,Q3804957,Iván Bella,Buenos Aires,Ciudad Autónoma de Buenos Aires,Ciudad Autónoma de Buenos Aires,>500k,metropoli,1989
+200,Q725366,Germán Voboril,Lanús,Buenos Aires,Lanus,>500k,metropoli,1987
+201,Q22082565,Daniel Albornós,Deán Funes,Córdoba,Deán Funes,<10k,resto,1978
+202,Q19305296,José Lincopán,Bahía Blanca,Buenos Aires,Bahía Blanca,100–500k,resto,1991
+203,Q10555650,Mauro dos Santos,Santo Tomé,Corrientes,Santo Tomé,10–50k,resto,1989
+204,Q584187,Marcelo Larrondo,Tunuyán,Mendoza,Tunuyán,10–50k,resto,1988
+205,Q20015590,Maximiliano Cavallotti,Santa Teresa,Santa Fe,Santa Teresa,<10k,resto,1984
+206,Q43306586,Martín Peralta,San Miguel de Tucumán,Tucumán,San Miguel de Tucumán,>500k,metropoli,1997
+207,Q5212617,Damián Akerman,Morteros,Córdoba,Morteros,10–50k,resto,1980
+208,Q55070243,Lucas Comachi,Santa Fe,Santa Fe,Santa Fe,>500k,metropoli,1994
+209,Q20679784,Miguel Ballejo,Calchaquí,Santa Fe,Calchaquí,10–50k,resto,1975
+210,Q2461836,José Luis Fernández,Buenos Aires,Ciudad Autónoma de Buenos Aires,Ciudad Autónoma de Buenos Aires,>500k,metropoli,1987
+211,Q28603540,Cristian Ignacio Paz,Lomas de Zamora,Buenos Aires,Lomas de Zamora,>500k,metropoli,1995
+212,Q160206,Hernán Crespo,Florida,Buenos Aires,Vicente López,>500k,metropoli,1975
+213,Q652887,Lucio Filomeno,Buenos Aires,Ciudad Autónoma de Buenos Aires,Ciudad Autónoma de Buenos Aires,>500k,metropoli,1980
+214,Q64668012,Mauro René Gómez,Posadas,Misiones,Posadas,100–500k,resto,1989
+215,Q4760135,Andrés Aimar,Río Cuarto,Córdoba,Río Cuarto,100–500k,resto,1981
+216,Q56377742,Sebastián Scalise,Mar del Plata,Buenos Aires,Mar del Plata,>500k,metropoli,1979
+217,Q40683968,Jose Caspary,Puerto Rico,Misiones,Puerto Rico,10–50k,resto,1986
+218,Q123024438,Ariel Fuscaldo,Berazategui,Buenos Aires,Berazategui,>500k,metropoli,1980
+219,Q16301365,Martin Género,Villa Mercedes,San Luis,Villa Mercedes,100–500k,resto,1988
+220,Q5859411,Fernando Coniglio,Laborde,Córdoba,Laborde,<10k,resto,1991
+221,Q124371651,Jonás Luna,Ciudad de Santiago del Estero,Santiago del Estero,Santiago del Estero,100–500k,resto,2005
+222,Q6042146,Nicolás Castro,Azul,Buenos Aires,Azul,50–100k,resto,1989
+223,Q5444846,Fernando Méndez,Caleta Olivia,Santa Cruz,Caleta Olivia,50–100k,resto,1984
+224,Q244894,Lucho González,Buenos Aires,Ciudad Autónoma de Buenos Aires,Ciudad Autónoma de Buenos Aires,>500k,metropoli,1981
+225,Q104668423,Alan Murialdo,Del Campillo,Córdoba,Del Campillo,<10k,resto,1992
+226,Q30110097,Juan Manuel Leroyer,Santa Fe,Santa Fe,Santa Fe,>500k,metropoli,1991
+227,Q5952693,Juan Torres Mozzoni,Manfredi (Córdoba),Córdoba,Manfredi,<10k,resto,1981
+228,Q6696072,Lucas Abraham,Buenos Aires,Ciudad Autónoma de Buenos Aires,Ciudad Autónoma de Buenos Aires,>500k,metropoli,1979
+229,Q16584523,Juan Cruz Goycochea,Buenos Aires,Ciudad Autónoma de Buenos Aires,Ciudad Autónoma de Buenos Aires,>500k,metropoli,1991
+230,Q107345687,Tomás Galván,El Talar,Jujuy,El Talar,<10k,resto,2000
+231,Q512760,Mauro Laspada,Punta Alta,Buenos Aires,Punta Alta,50–100k,resto,1975
+232,Q5371721,Emiliano Tabone,Balcarce,Buenos Aires,Balcarce,10–50k,resto,1991
+233,Q54319924,Mauricio Toni,Comodoro Rivadavia,Chubut,Comodoro Rivadavia,100–500k,resto,1998
+234,Q25407618,Santiago Stelcaldo,Brinkmann,Córdoba,Brinkmann,10–50k,resto,1994
+235,Q533643,Mario Santana,Comodoro Rivadavia,Chubut,Comodoro Rivadavia,100–500k,resto,1981
+236,Q23668580,Agustín Bouzat,Bahía Blanca,Buenos Aires,Bahía Blanca,100–500k,resto,1994
+237,Q118248097,Guillermo Enrique,Goya,Corrientes,Goya,<10k,resto,2000
+238,Q5664958,Alejandro Donatti,Rafaela,Santa Fe,Rafaela,100–500k,resto,1986
+239,Q616555,Daniel Islas,Buenos Aires,Ciudad Autónoma de Buenos Aires,Ciudad Autónoma de Buenos Aires,>500k,metropoli,1979
+240,Q24457415,Martín Pucheta,Córdoba,Córdoba,Córdoba,>500k,metropoli,1988
+241,Q15629614,Daniel Cigogna,Santa Fe,Santa Fe,Santa Fe,>500k,metropoli,1982
+242,Q116482097,Lucas Abascia,Rosario,Santa Fe,Rosario,>500k,metropoli,1995
+243,Q22131274,Matias Hernan Mayedonchi,Buenos Aires,Ciudad Autónoma de Buenos Aires,Ciudad Autónoma de Buenos Aires,>500k,metropoli,1989
+244,Q55281491,Matías Ruiz Díaz,La Plata,Buenos Aires,La Plata,>500k,metropoli,1996
+245,Q97587411,Juan Flere,San Carlos de Bariloche,Río Negro,San Carlos de Bariloche,100–500k,resto,1998
+246,Q18417991,Gustavo Arce,Tartagal,Salta,Tartagal,50–100k,resto,1979
+247,Q66314612,Santiago Rinaudo,Córdoba,Córdoba,Córdoba,>500k,metropoli,1998
+248,Q59782670,Ezequiel Aguirre,Rosario,Santa Fe,Rosario,>500k,metropoli,1992
+249,Q95724253,Franco Sosa,Buenos Aires,Ciudad Autónoma de Buenos Aires,Ciudad Autónoma de Buenos Aires,>500k,metropoli,1999
+250,Q5274618,Diego Cochas,Saldán,Córdoba,Villa Allende,>500k,metropoli,1979
+251,Q107656025,Eros Mancuso,Haedo,Buenos Aires,Morón,>500k,metropoli,1999
+252,Q2881772,Pablo Alvarado,El Calafate,Santa Cruz,El Calafate,10–50k,resto,1986
+253,Q6525941,Leonardo Carboni,Río Cuarto,Córdoba,Río Cuarto,100–500k,resto,1984
+254,Q133554595,Brian Alexis Duarte,Adrogué,Buenos Aires,Almirante Brown,>500k,metropoli,1995
+255,Q136503456,Santiago Grella,Devoto,Córdoba,Devoto,<10k,resto,2005
+256,Q131100706,Santino Barbi,El Tío,Córdoba,El Tí­o,<10k,resto,2005
+257,Q124407373,Enzo López,Paraná,Entre Ríos,Paraná,100–500k,resto,1998
+258,Q5876263,Gastón Stang,Buenos Aires,Ciudad Autónoma de Buenos Aires,Ciudad Autónoma de Buenos Aires,>500k,metropoli,1980
+259,Q5973123,Leonardo Acosta,Paraná,Entre Ríos,Paraná,100–500k,resto,1989
+260,Q37766676,Alan Robledo,José León Suárez,Buenos Aires,General San Martín,>500k,metropoli,1998
+261,Q5812234,Luis Aseff,San Nicolás de los Arroyos,Buenos Aires,San Nicolás de los Arroyos,100–500k,resto,1983
+262,Q85713528,Cristian Medina,Moreno,Buenos Aires,Moreno,>500k,metropoli,2002
+263,Q29950446,Santiago Villarreal,Buenos Aires,Ciudad Autónoma de Buenos Aires,Ciudad Autónoma de Buenos Aires,>500k,metropoli,1996
+264,Q5406100,Eduardo Casais,Buenos Aires,Ciudad Autónoma de Buenos Aires,Ciudad Autónoma de Buenos Aires,>500k,metropoli,1985
+265,Q115059100,Simón Rivero,Malagueño,Córdoba,Malagueno,>500k,metropoli,2003
+266,Q732701,Fernando Ávalos,Paso de los Libres,Corrientes,Paso de los Libres,50–100k,resto,1978
+267,Q4714668,Alejandro Schiapparelli,Córdoba,Córdoba,Córdoba,>500k,metropoli,1980
+268,Q6110811,Rodrigo Soria,Villa Domínico,Buenos Aires,Avellaneda,>500k,metropoli,1987
+269,Q56368153,Oscar Piris,Formosa,Formosa,Formosa,100–500k,resto,1989
+270,Q19117831,Sebastián Aciar,Puerto Madryn,Chubut,Puerto Madryn,50–100k,resto,1992
+271,Q5972258,Leandro Navarro,Mar del Plata,Buenos Aires,Mar del Plata,>500k,metropoli,1992
+272,Q16300515,Fabio Giménez,Puerto Madryn,Chubut,Puerto Madryn,50–100k,resto,1990
+273,Q2083383,Sebastián Tagliabúe,Olivos,Buenos Aires,Vicente López,>500k,metropoli,1985
+274,Q5557897,Agustin Curima,La Plata,Buenos Aires,La Plata,>500k,metropoli,1992
+275,Q47541846,Pedro Nahuel Fernández,Villa Adelina,Buenos Aires,San Isidro,>500k,metropoli,1987
+276,Q19360297,Alex Werner,Rafaela,Santa Fe,Rafaela,100–500k,resto,1996
+277,Q131930043,Tobías Morinigo,Buenos Aires,Ciudad Autónoma de Buenos Aires,Ciudad Autónoma de Buenos Aires,>500k,metropoli,2005
+278,Q116730940,Mauricio Nicolas Fernández,Villa Ballester,Buenos Aires,General San Martín,>500k,metropoli,1994
+279,Q20898191,Estanislao Ayuso,Teodelina,Santa Fe,Teodelina,<10k,resto,1975
+280,Q59450,Sebastián Sciorilli,Buenos Aires,Ciudad Autónoma de Buenos Aires,Ciudad Autónoma de Buenos Aires,>500k,metropoli,1989
+281,Q3809944,Jonathan Phillippe,Navarro,Buenos Aires,Navarro,10–50k,resto,1988
+282,Q2446221,Guillermo Burdisso,Altos de Chipión,Córdoba,Altos de Chipión,<10k,resto,1988
+283,Q6007209,Mauro Scaloni,Pujato,Santa Fe,Pujato,<10k,resto,1976
+284,Q1773270,Javier Gandolfi,San Lorenzo,Santa Fe,San Lorenzo,>500k,metropoli,1980
+285,Q5834628,Enzo Noir,Colón,Entre Ríos,Colón,10–50k,resto,1982
+286,Q3949392,Santiago Bianchi,Buenos Aires,Ciudad Autónoma de Buenos Aires,Ciudad Autónoma de Buenos Aires,>500k,metropoli,1983
+287,Q5772053,Claudio Mosca,Bernal,Buenos Aires,Quilmes,>500k,metropoli,1991
+288,Q9012932,Jorge Torres,Rosario,Santa Fe,Rosario,>500k,metropoli,1982
+289,Q5042673,Carlos Soto,Clorinda,Formosa,Clorinda,50–100k,resto,1984
+290,Q18221315,Mariano Barbieri,Chivilcoy,Buenos Aires,Chivilcoy,50–100k,resto,1990
+291,Q5834049,Enry Rui,Morteros,Córdoba,Morteros,10–50k,resto,1990
+292,Q6696826,Luciano Goux,Lanús,Buenos Aires,Lanus,>500k,metropoli,1980
+293,Q65029199,Tomás Blanco,Chajarí,Entre Ríos,Chajarí,10–50k,resto,1999
+294,Q28663844,Matías Di Benedetto,José Mármol,Buenos Aires,Almirante Brown,>500k,metropoli,1992
+295,Q61230952,Thomas Silvero,Posadas,Misiones,Posadas,100–500k,resto,2000
+296,Q20014992,Facundo Pumpido,Olivos,Buenos Aires,Vicente López,>500k,metropoli,1988
+297,Q9012765,Jorge Bontemps,Santa Fe,Santa Fe,Santa Fe,>500k,metropoli,1977
+298,Q17504750,Pablo Andrés Aguilar,Villa Mercedes,San Luis,Villa Mercedes,100–500k,resto,1984
+299,Q5830908,Emiliano Olivero,Colón,Buenos Aires,Colón,10–50k,resto,1986
+300,Q9015137,Juan Alvacete,Mendoza,Mendoza,Mendoza,>500k,metropoli,1991

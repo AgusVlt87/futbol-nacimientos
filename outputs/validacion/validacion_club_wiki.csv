@@ -1,0 +1,107 @@
+caso,player_qid,nombre,club_bdfa,estrato,tramo,club_wiki_nombre,club_wiki_origen,club_wiki_qid,primer_club,primer_club_qid,ok_wiki,ok_wd
+1,Q5876167,Gastón Caprari,Instituto,metropoli,>500k,Instituto,ficha:equipo_debut,Q1421829,Pumas Morelos,Q1134577,True,False
+2,Q5888988,Guillermo Valdez,Boca Juniors,resto,<10k,Club Atlético Boca Juniors,ficha:equipo_debut,Q170703,,,True,False
+3,Q19984518,Gabriel Alanís,Belgrano,metropoli,>500k,Belgrano,ficha:equipo_debut,Q59962,Club Atlético Belgrano,Q59962,True,True
+4,Q60737009,Julián Ramírez,Gimnasia y Esgrima de Jujuy,resto,100–500k,,sin_dato,,,,False,False
+5,Q537937,Gerardo Rivero,San Lorenzo de Almagro,metropoli,>500k,San Lorenzo de Almagro,ficha:equipo_debut,Q218282,,,True,False
+7,Q116168715,Brian Aguilar,Lanús,metropoli,>500k,,sin_dato,,,,False,False
+9,Q125812845,Alejo Sarco,Vélez Sarsfield,resto,<10k,Vélez Sarsfield,ficha:equipo_debut,Q215163,,,True,False
+10,Q61245671,Julián Navas,Jorge Newbery de Villa Mercedes,metropoli,>500k,Independiente Rivadavia,tabla_clubes,Q2454482,,,False,False
+12,Q311586,Lionel Scaloni,Newells Old Boys,resto,<10k,,sin_dato,,Club Atlético Newell’s Old Boys,Q221882,False,True
+13,Q16149566,Franco Amoroso,Xerez,metropoli,>500k,,sin_dato,,Xerez Club Deportivo,Q12308,False,True
+14,Q6041064,Nery Domínguez,Rosario Central,metropoli,>500k,Rosario Central,ficha:equipo_debut,Q318307,Club Atlético Rosario Central,Q318307,True,True
+15,Q28137180,Juan Dobboletta,Defensa y Justicia,resto,10–50k,Defensores de Belgrano (VR),ficha:equipo_debut,Q5251499,,,False,False
+16,Q28058689,Ramón Mierez,Tigre,resto,100–500k,C. A. Tigre,ficha:equipo_debut,Q80886,,,True,False
+17,Q5972290,Leandro de Muner,Argentinos Juniors,metropoli,>500k,Tigre,ficha:equipo_debut,Q80886,,,False,False
+18,Q316992,Mariano Pernía,Independiente,resto,100–500k,Independiente,ficha:equipo_debut,Q214978,Club Atlético San Lorenzo de Almagro,Q218282,True,False
+19,Q1379592,José María Calvo,Boca Juniors,metropoli,>500k,Boca Juniors,ficha:equipo_debut,Q170703,Boca Juniors,Q170703,True,True
+20,Q6526215,Leonel Altobelli,Tigre,resto,50–100k,Tigre,ficha:equipo_debut,Q80886,Club Atlético Tigre,Q80886,True,True
+21,Q314241,José Sosa,Estudiantes de La Plata,resto,10–50k,Estudiantes de La Plata,ficha:equipo_debut,Q214940,Club Estudiantes de La Plata,Q214940,True,True
+22,Q6007172,Mauro Maidana,Unión de Santa Fe,resto,10–50k,Unión de Santa Fe,ficha:equipo_debut,Q80899,Club Atlético Unión,Q80899,True,True
+24,Q2706611,Franco Sebastián Sosa,Gimnasia y Esgrima de Jujuy,resto,10–50k,Gimnasia de Jujuy,ficha:equipo_debut,Q1022923,Club Atlético Gimnasia y Esgrima (Jujuy),Q1022923,True,True
+25,Q5859181,Fernando Andrés Márquez,Unión de Santa Fe,metropoli,>500k,Unión de Santa Fe,ficha:equipo_debut,Q80899,Club Atlético Unión,Q80899,True,True
+26,Q6121209,Santiago Zurbriggen,Unión de Santa Fe,resto,<10k,Unión de Santa Fe,ficha:equipo_debut,Q80899,Club Atlético Unión,Q80899,True,True
+27,Q3756478,Gabriel Graciani,Colón de Santa Fe,resto,<10k,C. A. Colón,ficha:equipo_debut,Q80897,Club Atlético Colón,Q80897,True,True
+28,Q65030072,Carlos Morel,Chacarita juniors,resto,100–500k,,sin_dato,,,,False,False
+29,Q510596,Ezequiel Schelotto,Cesena,metropoli,>500k,A. C. Cesena,ficha:equipo_debut,Q16848949,Associazione Calcio Cesena,Q6664,True,True
+30,Q136789178,Leandro Moreira,Lanús,metropoli,>500k,Arsenal de Sarandí,ficha:equipo_debut,Q476836,,,False,False
+32,Q22676592,Ezequiel Montagna,San Lorenzo de Almagro,metropoli,>500k,Club Atlético San Lorenzo de Almagro,ficha:equipo_debut,Q218282,,,True,False
+33,Q3822716,Brian Sarmiento,Estudiantes de La Plata,metropoli,>500k,Xerez C. D.,ficha:equipo_debut,Q12308,Club Estudiantes de La Plata,Q214940,False,True
+34,Q5996679,Marcos Ovejero,Independiente Rivadavia de Mendoza,metropoli,>500k,Independiente Rivadavia,ficha:equipo_debut,Q2454482,,,True,False
+35,Q6125385,Sergio Chitero,Ben Hur,resto,100–500k,Atlético Paraná,ficha:equipo_debut,Q18621008,,,False,False
+36,Q29638877,Brian Garino,Guillermo Brown de Puerto Madryn,resto,<10k,Guillermo Brown,ficha:equipo_debut,Q686739,,,True,False
+38,Q3027395,Diego Héctor Garay,Newells Old Boys,resto,50–100k,Newell's Old Boys,ficha:equipo_debut,Q221882,Club Atlético Newell’s Old Boys,Q221882,True,True
+39,Q108137766,Gabriel Aranda,Boca Juniors,metropoli,>500k,Boca Juniors,tabla_clubes,Q170703,,,True,False
+40,Q16605659,Maximiliano Flores,Atlético Tucumán,metropoli,>500k,Atlético Tucumán,ficha:equipo_debut,Q757470,,,True,False
+41,Q104834452,Ángel Gómez,Racing Club,metropoli,>500k,,sin_dato,,,,False,False
+42,Q17308277,Diego Romancikas,Deportivo Español,metropoli,>500k,,,,Club Deportivo Español,Q1191661,False,True
+43,Q5796325,César More,Atlético Tucumán,metropoli,>500k,Atlético Tucumán,ficha:equipo_debut,Q757470,,,True,False
+44,Q43257193,Emiliano Purita,Arsenal de Sarandí,metropoli,>500k,Arsenal de Sarandí,tabla_clubes,Q476836,,,True,False
+45,Q5952856,Juan Vinaccia,Defensa y Justicia,metropoli,>500k,Defensa y Justicia,ficha:equipo_debut,Q1024338,,,True,False
+46,Q6526010,Leonardo Iorlano,Paniliakos,metropoli,>500k,,sin_dato,,FK Radnički Niš,Q1137993,False,False
+47,Q4267554,Juan Casado,Velez Sarsfield,metropoli,>500k,Vélez Sarsfield,ficha:equipo_debut,Q215163,,,True,False
+48,Q109937760,Gonzalo Luján,San Lorenzo de Almagro,metropoli,>500k,C. A. San Lorenzo de Almagro,tabla_clubes,Q218282,Club Atlético San Lorenzo de Almagro,Q218282,True,True
+49,Q88891488,Agustín Lagos,Atlético Tucumán,resto,<10k,,sin_dato,,,,False,False
+50,Q16215743,Juan Cruz Real,Independiente de Avellaneda,resto,100–500k,Independiente,tabla_clubes,Q214978,Club Atlético Independiente,Q214978,True,True
+51,Q104667010,Joaquín Gho,Sarmiento,resto,10–50k,Sarmiento de Junín,ficha:equipo_debut,Q519966,,,True,False
+53,Q5888889,Guillermo Roffés,Huracán,metropoli,>500k,Club Atlético Huracán,ficha:equipo_debut,Q327172,,,True,False
+54,Q65553930,Jesús Francisco Calderón,Gimnasia y Tiro de Salta,metropoli,>500k,Gimnasia y Tiro de Salta,ficha:equipo_debut,Q2759870,,,True,False
+55,Q720572,Leandro Somoza,Velez Sarsfield,metropoli,>500k,Vélez Sarsfield,tabla_clubes,Q215163,Club Atlético Vélez Sarsfield,Q215163,True,True
+56,Q108532936,Franco Zapiola,Estudiante,resto,10–50k,,sin_dato,,,,False,False
+57,Q49629170,Juan Manuel Mazzocchi,Villa Dálmine,resto,10–50k,,sin_dato,,,,False,False
+58,Q44724541,Francisco Filippi,Colón de Santa Fe,metropoli,>500k,Freamunde,ficha:equipo_debut,Q1031307,,,False,False
+60,Q1079859,Christian Giménez,Boca Juniors,resto,100–500k,Boca Juniors,tabla_clubes,Q170703,Boca Juniors,Q170703,True,True
+61,Q50223139,Leandro Lencinas,Godoy Cruz,resto,10–50k,,sin_dato,,,,False,False
+62,Q5186269,Cristian Tula,Ferro Carril Oeste,resto,10–50k,Ferro Carril Oeste,tabla_clubes,Q910444,Club Ferro Carril Oeste,Q910444,True,True
+63,Q123227962,Aaron Anselmino,Boca Juniors,resto,<10k,C. A. Boca Juniors,tabla_clubes,Q170703,Boca Juniors,Q170703,True,True
+64,Q5441039,Federico Neyra,Olimpia,resto,50–100k,,,,,,False,False
+65,Q61764047,Lucas Arzamendia,Cerro Largo,metropoli,>500k,,sin_dato,,,,False,False
+66,Q18923330,Joaquín Susvielles,Alvear General Pico,resto,100–500k,Alvear FBC,ficha:equipo_debut,Q140640666,,,False,False
+67,Q4776872,Antonio Piergüidi,Gimnasia y Esgrima de La Plata,resto,<10k,Gimnasia y Esgrima (LP),ficha:equipo_debut,Q18640,Club de Gimnasia y Esgrima La Plata,Q18640,True,True
+68,Q17364520,Franco Soldano,Tiro Federal de Morteros,metropoli,>500k,Unión de Sunchales,ficha:equipo_debut,Q3294873,,,False,False
+69,Q6777816,Martín Palavicini,Real Santa Cruz,metropoli,>500k,Real Santa Cruz,tabla_clubes,Q2017405,Club Real Santa Cruz,Q2017405,True,True
+70,Q2895202,Iván Furios,Patronato,resto,100–500k,Boca Juniors,ficha:equipo_debut,Q170703,Boca Juniors,Q170703,False,False
+72,Q6509760,Leandro Testa,Estudiantes de La Plata,resto,10–50k,Estudiantes de La Plata,ficha:equipo_debut,Q214940,Club Estudiantes de La Plata,Q214940,True,True
+73,Q50233588,Leonardo Balerdi,Boca Juniors,resto,100–500k,C. A. Boca Juniors,ficha:equipo_debut,Q170703,Boca Juniors,Q170703,True,True
+74,Q3840400,Luis Ojeda,Unión de Santa Fe,resto,<10k,Unión de Santa Fe,ficha:equipo_debut,Q80899,Club Atlético Unión,Q80899,True,True
+75,Q5771893,Claudio Cenci,Colón de Santa Fe,resto,10–50k,Argentino de San Carlos,ficha:equipo_debut,Q5773010,,,False,False
+76,Q5857571,Federico Crivelli,Temperley,metropoli,>500k,Temperley,ficha:equipo_debut,Q2778591,,,True,False
+77,Q525734,Juan Cruz Gill,Talleres de Córdoba,resto,100–500k,Talleres de Córdoba,ficha:equipo_debut,Q1022939,Talleres de Córdoba,Q1022939,True,True
+78,Q217921,Claudio Yacob,Racing Club,resto,10–50k,Racing Club,ficha:equipo_debut,Q276533,Racing Club,Q276533,True,True
+79,Q20650499,Bruno Galván,Boca Juniors,metropoli,>500k,Boca Juniors,tabla_clubes,Q170703,,,True,False
+80,Q5742440,Hernán Garin,San Miguel,resto,100–500k,,sin_dato,,Club Atlético San Miguel,Q972701,False,True
+83,Q63248404,Enzo Salas,Temperley,resto,100–500k,,sin_dato,,,,False,False
+84,Q657442,Emanuel Villa,Argentino,resto,10–50k,C. A. Huracán,ficha:equipo_debut,Q327172,Club Atlético Huracán,Q327172,False,False
+86,Q5972194,Leandro Barrera,Argentinos Juniors,metropoli,>500k,Argentinos Juniors,ficha:equipo_debut,Q220621,Asociación Atlética Argentinos Juniors,Q220621,True,True
+87,Q55375284,Martín Ojeda,Boca Unidos,resto,<10k,,,,,,False,False
+89,Q5995984,Marcelo Vieytes,Deportivo Armenio,metropoli,>500k,Deportivo Armenio,ficha:equipo_debut,Q965275,,,True,False
+90,Q18223462,Ángel Piz,Chacarita Juniors,resto,<10k,Chacarita,tabla_clubes,Q853053,Club Atlético Chacarita Juniors,Q853053,True,True
+91,Q27786548,Juan Brunetta,Arsenal,resto,10–50k,Arsenal de Sarandí,ficha:equipo_debut,Q476836,Arsenal Fútbol Club,Q476836,True,True
+92,Q18221014,Adrián Arregui,Berazategui,metropoli,>500k,Berazategui,tabla_clubes,Q4807500,,,True,False
+95,Q5888518,Guillermo Esteban,Banfield,resto,<10k,Banfield,ficha:equipo_debut,Q692646,,,True,False
+96,Q1350162,Oscar Ahumada,River Plate,metropoli,>500k,River Plate,ficha:equipo_debut,Q15799,Club Atlético River Plate,Q15799,True,True
+97,Q63818353,Leandro Finochietto,Argentinos Juniors,metropoli,>500k,,,,,,False,False
+100,Q5233425,David Escalante,Independiente,resto,10–50k,Independiente,ficha:equipo_debut,Q214978,Club Atlético Independiente,Q214978,True,True
+102,Q5552319,Germán Pietrobon,San Martín de San Juan,metropoli,>500k,,sin_dato,,Club Atlético San Martín (San Juan),Q80921,False,True
+104,Q19844291,Gabriel Robledo,Huracán,metropoli,>500k,Huracán,ficha:equipo_debut,Q327172,,,True,False
+105,Q116250233,Luciano Jachfe,Ferro Carril Oeste,metropoli,>500k,,sin_dato,,,,False,False
+106,Q27119603,Jonathan Campo,Huracán,metropoli,>500k,Huracán,ficha:equipo_debut,Q327172,,,True,False
+111,Q56728837,Stefano Callegari,San Telmo,metropoli,>500k,Newell's Old Boys,tabla_clubes,Q221882,,,False,False
+112,Q630956,Valentín Viola,Racing Club,metropoli,>500k,Racing Club U20,ficha:equipo_debut,Q276533,Racing Club,Q276533,True,True
+113,Q26972389,Andrés Grande,Argentinos Juniors,metropoli,>500k,Argentinos Juniors,ficha:equipo_debut,Q220621,,,True,False
+114,Q5783604,Conrado Peralta Pino,Unión de Santa Fe,metropoli,>500k,Unión de Santa Fe,ficha:equipo_debut,Q80899,,,True,False
+115,Q5963680,Héber Arriola,Deportivo Español,metropoli,>500k,Deportivo Español,ficha:equipo_debut,Q1191661,Club Deportivo Español,Q1191661,True,True
+117,Q101250897,Alexis Sabella,San Lorenzo,resto,<10k,San Lorenzo de Almagro,ficha:equipo_debut,Q218282,,,True,False
+119,Q588855,Lucas Landa,Gimnasia y Esgrima de La Plata,resto,<10k,Gimnasia y Esgrima La Plata,ficha:equipo_debut,Q18640,Club de Gimnasia y Esgrima La Plata,Q18640,True,True
+121,Q2474192,Abel Masuero,Gimnasia y Esgrima,resto,<10k,Gimnasia La Plata,tabla_clubes,Q18640,Club de Gimnasia y Esgrima La Plata,Q18640,False,True
+122,Q132101618,Gino Albertengo,Atlético Rafaela,resto,<10k,Atlético Rafaela,ficha:equipo_debut,Q59839,,,True,False
+123,Q17364555,Martín Zuccarelli,Defensores de Cambaceres,metropoli,>500k,Defensores de Cambaceres,tabla_clubes,Q2979846,,,True,False
+124,Q126365798,Ian Glavinovich,Newells Old Boys,resto,<10k,,sin_dato,,,,False,False
+125,Q2327959,Federico Turienzo,Gimnasia y Esgrima de La Plata,metropoli,>500k,Gimnasia y Esgrima La Plata,ficha:equipo_debut,Q18640,Club de Gimnasia y Esgrima La Plata,Q18640,True,True
+126,Q116410175,Walter Rueda,Atlético Belgrano,resto,100–500k,,sin_dato,,,,False,False
+127,Q6110031,Roberto Tucker,El Fortin de Olavarria,resto,100–500k,Racing de Olavarría,ficha:equipo_debut,Q6096017,Racing de Olavarría,Q6096017,False,False
+128,Q5857560,Federico Chiapello,Unión de Santa Fe,resto,<10k,Unión de Santa Fe,ficha:equipo_debut,Q80899,,,True,False
+129,Q16233715,Esteban Ciaccheri,Rivadavia Lincoln,metropoli,>500k,Rivadavia de Lincoln,ficha:equipo_debut,Q649044,Club Rivadavia,Q649044,True,True
+131,Q17462635,Marcos Acuña,Ferro Carril Oeste,resto,10–50k,Ferro Carril Oeste,ficha:equipo_debut,Q910444,Club Ferro Carril Oeste,Q910444,True,True
+132,Q28055553,Mauro Borgnino,Atlético Rafaela,resto,100–500k,Atlético Rafaela,ficha:equipo_debut,Q59839,Asociación Mutual Social y Deportiva Atlético de Rafaela,Q59839,True,True
+133,Q208087,Jonás Gutiérrez,Velez Sarsfield,metropoli,>500k,Vélez Sársfield,ficha:equipo_debut,Q215163,Club Atlético Vélez Sarsfield,Q215163,True,True

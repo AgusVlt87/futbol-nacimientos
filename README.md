@@ -39,7 +39,7 @@ deciles de tamaño por debajo de ~10.000 habitantes no tienen tendencia, y el
 tamaño de la ciudad explica el 1% de la variación entre ciudades
 (pseudo-R² = 0,011).
 
-**El artefacto de las maternidades no está operando.** Era la objeción de fondo
+**La versión fuerte del artefacto de las maternidades queda refutada; la débil, acotada.** Era la objeción de fondo
 contra cualquier estudio de lugar de nacimiento —el parto ocurre donde hay
 maternidad, así que los pueblos se vacían y las cabeceras se llenan— y era la
 limitación central declarada del trabajo. Se probó: la serie del DEIS titulada
@@ -48,13 +48,34 @@ madre** en las 432 celdas provincia×año en que se solapan (diferencia máxima:
 cero), y hay 76 futbolistas cuyo `P19` apunta a localidades de menos de 2.000
 habitantes, en 63 localidades distintas, donde ninguna maternidad puede existir.
 Emiliano Sala figura nacido en Cululú, Santa Fe: 106 habitantes.
+Eso descarta que el `P19` sea *sistemáticamente* el lugar del parto, pero no que
+lo sea en una fracción de los casos: la cota superior de mala atribución es del
+44,5% del déficit del interior.
 
 **Al pibe del interior le cuesta mucho más entrar, pero el que entra rinde más.**
 Entre los futbolistas que ya llegaron a un juvenil de la selección, los nacidos
-fuera de un gran aglomerado llegan a la Mayor en el 41,9% de los casos contra el
-28,1% de los nacidos en una ciudad grande (OR 1,85; IC 95% 1,14–2,98; p = 0,013;
+fuera de un gran aglomerado llegan a la Mayor en el 41,1% de los casos contra el
+28,1% de los nacidos en una ciudad grande (OR 1,78; IC 95% 1,09–2,93; p = 0,027;
 igual al controlar por cohorte). **No usa denominador poblacional**, así que no lo
-afectan ni el reparto estimado de nacimientos ni la cobertura de Wikidata.
+afectan ni el reparto estimado de nacimientos ni la cobertura de Wikidata. **Pero
+todo el contraste lo aporta un solo estrato**: sin el tramo de 10.000 a 50.000
+habitantes —25 casos— el OR cae a 1,42 y el intervalo cruza el 1. Y condiciona en
+un *collider*, así que es consistente con la historia del filtro de acceso pero
+también con cualquier otra selección diferencial.
+
+**Lo que mejor predice dónde nace un futbolista no es el tamaño de la ciudad ni
+la cercanía a un club: es la pobreza.** Agregados al modelo el NBI departamental
+del censo y la distancia al club formador más cercano, el **NBI explica siete
+veces más variación que el tamaño** (pseudo-R² 0,071 contra 0,010) y cada punto
+porcentual de NBI baja la producción un 15%. La distancia al club —fuerte por sí
+sola, RR 0,854— **se apaga por completo al entrar la pobreza** (RR 0,987;
+p = 0,75): era un proxy. El mapa de producción de futbolistas se parece más al
+mapa de la pobreza estructural argentina que al de la infraestructura formativa.
+
+**Y el mapa departamental resume mal el fenómeno.** Solo el 17% de la variación
+residual separa a un departamento de otro; el 83% restante ocurre entre ciudades
+del mismo departamento. La unidad a la que el fenómeno pasa es más chica que la
+que el trabajo dibuja.
 
 **La producción se concentra en el corredor pampeano y en el AMBA, en ese orden.**
 La región pampeana produce 34,5 futbolistas cada 100.000 nacidos y el AMBA 28,3,
@@ -70,10 +91,10 @@ el AMBA al 90,8%. Hay dos modelos de club formador: Rosario Central forma 94
 jugadores a 0 km de mediana y con el 18% venido de otra provincia; Boca forma 143
 a 277 km y con el 77% de afuera.
 
-**El paper completo es [paper/paper.pdf](paper/paper.pdf)** — 21 páginas, con las
+**El paper completo es [paper/paper.pdf](paper/paper.pdf)** — 28 páginas, con las
 figuras que sostienen el argumento intercaladas en el texto. Se compila con
 `paper/compilar.ps1` desde [paper/paper.tex](paper/paper.tex). La misma cosa en
-markdown está en [reports/paper.md](reports/paper.md), y las 28 figuras sueltas en
+markdown está en [reports/paper.md](reports/paper.md), y las 33 figuras sueltas en
 [outputs/figures/](outputs/figures/).
 
 Las tablas de las dos versiones **se generan desde `outputs/tables/`**, no se
@@ -89,13 +110,19 @@ Vale la pena leerlo antes que los resultados.
 - **Nacer no es criarse.** El lugar de nacimiento no es el de crianza, y la
   literatura reciente señala a la transición entre los dos como lo que más pesa.
   El pipeline no tiene lugar de crianza en ninguna parte.
-- **No hay controles.** La única covariable es el tamaño de la ciudad. Ni
-  distancia a un club con inferiores, ni nivel socioeconómico, ni densidad de
-  ligas locales. Las lecturas causales son interpretaciones, no estimaciones.
-- **La tasa de error del `P19` no está medida** contra un padrón independiente.
-  Se intentó: la fuente candidata (BDFA) prohíbe el acceso automatizado en su
-  `robots.txt`, y no se evadió. El placebo acota el problema —un error de
-  registro afectaría a los cinco deportes por igual— pero no lo mide.
+- **Los controles son parciales.** Hay dos covariables —NBI departamental y
+  distancia al club formador más cercano— y faltan las demás: densidad de ligas
+  locales, existencia de pensión, y la red formativa vigente en la época de cada
+  cohorte. Las asociaciones son observacionales.
+- **La tasa de error del `P19` está medida** —133 casos verificados a mano contra
+  BDFA, una fuente independiente de Wikipedia— y da **5,9 % de error, no
+  diferencial**: 6,1 % entre los ubicados en metrópolis y 5,7 % entre los del
+  resto (OR 1,09; p = 1,00). Un error uniforme atenúa el efecto en vez de
+  fabricarlo: el RR corregido pasa de 0,599 a **0,547** (IC 0,397–0,682). Falta
+  completar la muestra hasta los 300 previstos para cerrar los intervalos. Lo que
+  sí quedó mal parado es el club formador de H3: Wikidata **no tiene ninguno
+  cargado en el 52 %** de los casos, y entre los que sí, difiere del real en el
+  11,8 %.
 - **H3 (formación) está seleccionada por el desenlace.** La cobertura del club
   formador va del 99,2% entre jugadores de selección al 12,7% en el resto. Sus
   números son órdenes de magnitud, no estimaciones poblacionales, y ninguna otra
@@ -178,6 +205,9 @@ python -m src.clean.crosswalk_localidades
 python -m src.clean.geocode_places
 python -m src.clean.build_denominators
 python -m src.clean.build_analysis_dataset
+python -m src.ingest.wikipedia_fichas    # equipo_debut de las fichas (H3)
+python -m src.clean.build_club_debut
+python -m src.ingest.wikidata_clubs_wiki # sede de los clubes que solo salen de fichas
 python -m src.clean.build_careers
 python -m src.clean.geocode_clubs
 
@@ -186,6 +216,10 @@ python -m src.analysis.run_all
 python -m src.analysis.run_levels_and_flow
 python -m src.analysis.run_futbol
 python -m src.analysis.run_seleccion      # selección: Mayor, juveniles y conversión
+python -m src.analysis.run_edad_relativa  # control positivo
+python -m src.analysis.run_sesgo_granularidad
+python -m src.clean.build_covariables     # NBI y distancia al club
+python -m src.analysis.run_modelo         # covariables y varianza
 python -m src.analysis.run_criterio_denominador   # qué criterio usan las dos puntas del cociente
 python -m src.ingest.wikidata_placebo     # deportistas de otros deportes
 python -m src.analysis.run_placebo        # test placebo: ¿la geografía es del fútbol?
@@ -203,6 +237,7 @@ Cada script es idempotente: si el crudo ya está descargado no lo vuelve a pedir
 | Qué | Fuente | Licencia / acceso |
 |---|---|---|
 | Jugadores, lugar de nacimiento, posición, clubes | [Wikidata](https://query.wikidata.org/) vía SPARQL | CC0 |
+| **Club de debut** (`equipo_debut` de la ficha), el 41,8% de la cobertura de H3 | [API de acción de Wikimedia](https://www.mediawiki.org/wiki/API:Main_page) sobre es/en.wikipedia | CC BY-SA 4.0 |
 | **Nacidos vivos por jurisdicción y año, 1914–2024** (el denominador) | [DEIS](https://datos.gob.ar/dataset/serie-historica-de-nacimientos-ocurridos-en-argentina-por-jurisdiccion) | Datos abiertos |
 | Nacimientos por departamento 2012–2022 (validación del denominador) | [RENAPER](https://datos.gob.ar/dataset/nacimientos-en-argentina) | Datos abiertos |
 | Población por departamento, localidad, edad, sexo y provincia de nacimiento | [INDEC — Censo 2022, microdatos REDATAM](https://datos.gob.ar/dataset/censo-nacional-de-poblacion-hogares-y-viviendas-2022) | Datos abiertos |
@@ -212,10 +247,28 @@ Cada script es idempotente: si el crudo ya está descargado no lo vuelve a pedir
 
 | **Nacidos vivos por residencia de la madre, 2005–2022** (la serie contrafáctica) | [DEIS](https://datos.gob.ar/dataset/nacidos-vivos-registrados-por-jurisdiccion-de-residencia-de-la-madre-republica-argentina) | CC-BY 4.0 |
 
-**Fuentes que NO se usan.** Transfermarkt: sus términos prohíben el scraping
-automatizado. **BDFA** (`bdfa.com.ar`): su `robots.txt` bloquea explícitamente el
-acceso de agentes automáticos, y no se evadió cambiando el `User-Agent` — por eso
-la validación del `P19` sigue pendiente.
+**Fuentes que NO se usan, y dónde vive la restricción de cada una** —son dos
+documentos distintos y no dicen lo mismo, conviene no confundirlos:
+
+- **Transfermarkt**: su `robots.txt` **sí permite** las rutas de ficha de jugador
+  (`Allow: /`; solo excluye `/ceapi`, `/quickselect`, `/jumplist` y
+  `/navigation/getSubNavigation`). La prohibición está en los **términos de uso
+  §11**: «el usuario no tiene permitido acceder o copiar el contenido digital
+  utilizando bots, spiders, screen scraping u otros procesos automatizados».
+- **BDFA** (`bdfa.com.ar`): acá sí es el `robots.txt`, y es explícito: bloquea
+  `ClaudeBot`, `curl`, `wget` y `Python-requests` por nombre, más los endpoints
+  `/lista_jugadores.asp?*` y `/api_jugadores_ajax.asp`. No se evadió cambiando el
+  `User-Agent`.
+- **AFA**: su `robots.txt` permite el rastreo (solo excluye `/cache/`), pero el
+  sitio no publica fichas con lugar de nacimiento.
+
+Por eso la validación del `P19` se hizo **a mano**, leyendo BDFA en un navegador:
+133 casos, 94,1% de acuerdo, error no diferencial. Y por eso el club de debut se
+completó desde **Wikipedia** y no desde Transfermarkt, que lo tiene mejor: la API
+de Wikimedia está publicada para uso programático y su política de etiqueta pide
+un `User-Agent` identificable con contacto, lotes en vez de pedidos sueltos y
+pausa entre llamadas — que es lo que hace `src/ingest/wikipedia_fichas.py`. Los
+5.511 jugadores salieron en **218 pedidos HTTP**.
 
 ---
 
