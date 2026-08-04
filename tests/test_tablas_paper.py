@@ -47,6 +47,7 @@ def test_las_tablas_del_paper_coinciden_con_las_salidas(ruta, formato):
 @pytest.mark.parametrize("ruta", [
     P.reports / "paper.md",
     P.root / "paper" / "paper.tex",
+    P.root / "README.md",
 ])
 def test_las_cifras_de_la_prosa_coinciden_con_las_salidas(ruta):
     """Las tablas al día no alcanzan: la prosa se desfasa por su cuenta.

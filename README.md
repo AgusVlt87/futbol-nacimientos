@@ -92,7 +92,7 @@ Hay dos modelos de club formador: Rosario Central forma 155 jugadores a 0 km de
 mediana y con el 20% venido de otra provincia; Boca forma 216 a 277 km y con el
 81% de afuera.
 
-**El paper completo es [paper/paper.pdf](paper/paper.pdf)** — 28 páginas, con las
+**El paper completo es [paper/paper.pdf](paper/paper.pdf)** — 32 páginas, con las
 figuras que sostienen el argumento intercaladas en el texto. Se compila con
 `paper/compilar.ps1` desde [paper/paper.tex](paper/paper.tex). La misma cosa en
 markdown está en [reports/paper.md](reports/paper.md), y las 33 figuras sueltas en

@@ -970,11 +970,11 @@ punto en que el intervalo del RR corregido toca el 1.
 \textbf{\% mal clasificado} & \textbf{RR corregido} & \textbf{IC 95\,\%} &
 \textbf{¿sigue $\neq$ 1?}\\
 \midrule
- 0\,\% & 0,53 & 0,47--0,58 & sí\\
+ 0\,\% & 0,53 & 0,46--0,58 & sí\\
 10\,\% & 0,64 & 0,54--0,74 & sí\\
 20\,\% & 0,76 & 0,62--0,93 & sí\\
-\textbf{25\,\%} & \textbf{0,81} & \textbf{0,65--1,02} & \textbf{no}\\
-35\,\% & 0,88 & 0,68--1,13 & no\\
+\textbf{25\,\%} & \textbf{0,81} & \textbf{0,64--1,02} & \textbf{no}\\
+35\,\% & 0,88 & 0,67--1,13 & no\\
 50\,\% & 1,03 & 0,73--1,44 & no\\
 \bottomrule
 \end{tabular}
@@ -985,13 +985,12 @@ que el hallazgo principal deje de ser distinguible de la ausencia de efecto,
 \textbf{uno de cada cuatro} futbolistas registrados en un aglomerado de más de
 \num{500000} habitantes tendría que haber nacido en realidad fuera de él.
 
-Cómo leerlo. No es una estimación del error real —eso requiere la validación
-manual que el trabajo todavía no tiene— sino la calibración de cuánto error haría
-falta. Con un 10\,\% de mala clasificación el resultado apenas se mueve; recién a
-partir de un cuarto se vuelve frágil. Sirve además para dimensionar la
-verificación pendiente: una muestra de 300 casos estima esa proporción con un
-intervalo de unos 10 puntos, suficiente para distinguir el escenario benigno del
-que rompe.
+Cómo leerlo. No es una estimación del error real —para eso está la validación
+manual de §\ref{sec:validacion}— sino la calibración de cuánto error haría falta.
+Con un 10\,\% de mala clasificación el resultado apenas se mueve; recién a partir
+de un cuarto se vuelve frágil. Puesto junto al 6,1\,\% medido, el margen es
+amplio: el error real está a un cuarto de distancia del que rompería el
+resultado.
 
 \begin{figure}[!htb]
   \centering
@@ -1025,7 +1024,7 @@ AFA usa el año calendario, así que el corte es el 1 de enero.
 Q1 (ene--mar) & \num{2007} & 34,8 & 24,7 & \textbf{1,41}\\
 Q2 (abr--jun) & \num{1547} & 26,9 & 24,9 & 1,08\\
 Q3 (jul--sep) & \num{1247} & 21,7 & 25,2 & 0,86\\
-Q4 (oct--dic) &  959 & 16,7 & 25,2 & \textbf{0,66}\\
+Q4 (oct--dic) &  959 & 16,6 & 25,2 & \textbf{0,66}\\
 \bottomrule
 \end{tabular}
 \end{center}

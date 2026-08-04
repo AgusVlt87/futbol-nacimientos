@@ -198,19 +198,82 @@ exactamente para lo que se agregó.
 
 ---
 
-## Lo que queda abierto
+## Cierre — 2026-08-04
 
-1. **Los dos documentos siguen siendo documentos distintos.** El `.tex` tiene
-   cinco subsecciones de resultados que el `.md` no: granularidad del `P19`,
-   validación manual del `P19`, el «primer club» de H3, cuánto tendría que fallar
-   el dato, y el control positivo de edad relativa. Más «Qué haría falta para
-   cerrar el argumento» y una Conclusión. **No las porté**: eso no es sincronizar
-   cifras, es decidir si el `.md` debe ser el `.tex` o un resumen de él. Es tuya
-   la decisión.
-2. **`_run.json` sigue mintiendo** sobre `run_all`, `run_criterio_denominador` y
-   `run_placebo` hasta que se los vuelva a correr y grabe el manifiesto.
-3. **`paper/paper.pdf` está sin recompilar** — hay que pasarle `paper/compilar.ps1`.
-4. El `README.md` quedó corregido en las mismas cifras (migración, retención,
-   Boca, cobertura de H3, covariables, pseudo-R², +19%) y ya no se contradice
-   solo en «Sin controles», pero **no tiene chequeo automático**: es el próximo
-   candidato a desfasarse.
+Los cuatro pendientes quedaron cerrados.
+
+### 1. Los dos documentos convergieron
+
+El `.md` tenía **siete** secciones menos que el `.tex`. Se portaron todas,
+verificando cada número contra `outputs/` en vez de copiarlo —lo que estuvo bien,
+porque el `.tex` traía cifras viejas—:
+
+| Nueva sección del `.md` | Qué apareció mal en el `.tex` al verificar |
+|---|---|
+| §3.6 El sesgo del numerador: granularidad del `P19` | — |
+| §3.7 La validación manual del `P19` | — |
+| §3.8 El «primer club» de H3 | — |
+| §3.9 Cuánto tendría que fallar el dato | tres cotas inferiores del IC redondeadas de más (0,47 → 0,46; 0,65 → 0,64; 0,68 → 0,67) y un «la validación manual que el trabajo todavía no tiene» que contradecía a §3.7 |
+| §3.10 Control positivo: edad relativa | Q4 al 16,7 % cuando la tabla dice **16,6 %** |
+| §4.5 Qué haría falta para cerrar el argumento | — |
+| §5 Conclusión | — |
+
+El `.md` quedó además reordenado al orden del `.tex` (§3.11 covariables, §3.12
+varianza, §3.13 exploratorio, §3.14 placebo) y `Reproducibilidad` pasó a §6.
+
+**El renumerado arregló dos referencias cruzadas rotas** que ya estaban ahí: la
+limitación 4 mandaba a «§3.7» para la validación del `P19` cuando §3.7 era el
+placebo —ahora §3.7 *es* la validación— y la limitación 5 mandaba a «§2.4» para
+las fichas de Wikipedia, que están en §2.6.
+
+También se agregó al resumen el ítem sobre la granularidad, que el `.tex` tenía y
+el `.md` no. Es la limitación más seria del trabajo —su cota sola alcanza para
+llevar el RR de 0,45 a 0,96— y el resumen del `.md` no la mencionaba.
+
+### 2. `_run.json` dice la verdad
+
+Se recorrieron los diez módulos de análisis. Los seis que dejan manifiesto quedan
+en el mismo commit y el mismo hash de config. De paso sirvió de verificación de
+reproducibilidad: **76 de 76 tablas byte a byte** contra la copia congelada.
+
+### 3. El PDF está recompilado
+
+`paper/compilar.ps1`, dos pasadas, sin referencias sin resolver. **32 páginas**
+(eran 28 antes de las secciones portadas); el README decía 28 y ahora dice 32.
+
+### 4. El README entró al chequeo
+
+Era el próximo candidato a desfasarse y ahora no puede: `sync_tablas_paper`
+audita su prosa igual que la de los dos papers. Hubo que cambiar el bucle, que
+salteaba la auditoría cuando el documento no tenía tablas marcadas —y el README
+no tiene ninguna—.
+
+De paso, `_frase` acepta ahora varias redacciones para la misma cifra. Los dos
+documentos dicen lo mismo con distintas palabras («se forma fuera de su provincia
+de nacimiento» en el `.tex`, «se forma en una provincia distinta» en el `.md`) y
+dos cifras de H3 estaban auditadas en el `.tex` y libres en el `.md`. Con eso el
+`.md` pasó de 23 a **25 de 25** contextos cubiertos.
+
+### Verificación final
+
+| | |
+|---|---|
+| `--check` | ✅ verde en `paper.md`, `paper.tex` y `README.md` |
+| Tests | ✅ **96 passed** |
+| `CIFRAS` | **25 entradas** (eran 7 al empezar la revisión) |
+| Cobertura de contextos | `paper.md` 25/25 · `paper.tex` 19/25 · `README.md` 6/25 |
+| Reproducibilidad | 76/76 tablas idénticas tras recorrer el pipeline |
+| PDF | 32 páginas, recompilado |
+
+### Lo único que queda anotado
+
+- El OR del error de clasificación del `P19` —1,09 (0,21–5,66) en §3.7— es la
+  única cifra de la prosa que no sale de una tabla. Se verificó a mano desde la
+  matriz de confusión que el propio paper publica: (3/46)/(3/50) = 1,087, y el
+  intervalo por la fórmula estándar da 0,21–5,66. Es auditable por el lector,
+  pero convendría que `run_correccion_p19` lo emitiera.
+- **Ni el `.md` ni el `.tex` tienen la granularidad del `P19` como limitación
+  numerada** de §4.3. Está en el resumen, en §3.6 y en la conclusión, así que no
+  desaparece; pero es la limitación con más palanca del trabajo y la lista de
+  doce no la incluye. Es decisión de encuadre, no de sincronización, así que la
+  dejo señalada y no la toco.

@@ -253,15 +253,20 @@ def _valor(p, tabla: str, columna: str, filtro=None, escala: float = 1.0) -> flo
     return float(d[columna].iloc[0]) * escala
 
 
-def _frase(texto: str) -> str:
+def _frase(*textos: str) -> str:
     """Frase literal -> regex que tolera saltos de línea.
 
     El `.tex` y el `.md` van envueltos a 80 columnas, así que cualquier frase de
     más de unas pocas palabras tiene un salto de línea adentro en algún lugar
     impredecible. Buscar la frase con espacios literales encuentra unas
     apariciones y se pierde otras — que fue lo que pasó con la del abstract.
+
+    Acepta varias frases y arma la alternación. Los dos documentos dicen lo
+    mismo con palabras distintas —el `.tex` «se forma fuera de su provincia de
+    nacimiento», el `.md` «se forma en una provincia distinta»— y con una sola
+    frase la cifra quedaba auditada en un documento y libre en el otro.
     """
-    return r"\s+".join(re.escape(w) for w in texto.split())
+    return "|".join(r"\s+".join(re.escape(w) for w in t.split()) for t in textos)
 
 
 CIFRAS = {
@@ -287,13 +292,15 @@ CIFRAS = {
     # H3. Estas tres se movieron al sumar el club de las fichas de Wikipedia y
     # el paper las repetía viejas sin que nada avisara: no estaban registradas.
     "h3_migracion_pct": dict(
-        contexto=_frase("se forma fuera de su provincia de nacimiento contra"),
+        contexto=_frase("se forma fuera de su provincia de nacimiento contra",
+                        "se forma en una provincia distinta"),
         valor=lambda p: _valor(p, "h3_migracion_vs_poblacion",
                                "pct_fuera_de_su_provincia",
                                lambda d: d["grupo"].str.startswith("Futbolistas")),
         dec=1),
     "h3_or": dict(
-        contexto=_frase("general que reside fuera de su provincia de nacimiento"),
+        contexto=_frase("general que reside fuera de su provincia de nacimiento",
+                        "El punto de comparación es lo que vuelve"),
         valor=lambda p: _valor(p, "h3_migracion_vs_poblacion", "OR",
                                lambda d: d["OR"].notna()),
         dec=2),
@@ -369,6 +376,35 @@ CIFRAS = {
         valor=lambda p: _valor(p, "temporal_rr_pueblo_metropoli", "rr",
                                lambda d: d["decada"] == 1970),
         dec=2),
+    # Secciones portadas del .tex al .md en el cierre del 2026-08-04. Al
+    # verificarlas contra outputs aparecieron cifras viejas en el .tex —Q4 al
+    # 16,7 %, tres cotas de la curva de quiebre— así que entran acá antes de
+    # existir en los dos documentos.
+    "granularidad_cota_rr": dict(
+        contexto=_frase("y el RR contra los grandes aglomerados, de 0,45 a"),
+        valor=lambda p: _valor(p, "granularidad_cota", "RR_cota"),
+        dec=2),
+    "granularidad_excluidos": dict(
+        contexto=_frase("los excluidos por granularidad gruesa"),
+        valor=lambda p: _valor(p, "granularidad_cota", "excluidos_total"),
+        dec=0),
+    "p19_acuerdo": dict(
+        contexto=_frase("Acuerdo del"),
+        valor=lambda p: _valor(p, "validacion_p19_resumen", "acuerdo_pct"),
+        dec=1),
+    "p19_rr_corregido": dict(
+        contexto=_frase("el RR corregido pasa de"),
+        valor=lambda p: _valor(p, "correccion_p19", "RR_corregido"),
+        dec=3),
+    "edad_relativa_razon": dict(
+        contexto=_frase("Razón Q1/Q4 ="),
+        valor=lambda p: _valor(p, "edad_relativa_resumen", "razon_Q1_sobre_Q4"),
+        dec=2),
+    "edad_relativa_q4": dict(
+        contexto=_frase("Q4 (oct"),
+        valor=lambda p: _valor(p, "edad_relativa_trimestres", "pct_observado",
+                               lambda d: d["trimestre"].str.startswith("Q4")),
+        dec=1),
 }
 
 
@@ -451,8 +487,12 @@ def main() -> int:
     args = ap.parse_args()
 
     p = paths()
+    # El README no tiene tablas marcadas, pero repite cifras del paper y ya se
+    # desfasó una vez —migración de H3, retención del NEA, cuántos forma Boca—.
+    # Entra por la puerta de la auditoría de prosa, que es lo único que le aplica.
     destinos = [(p.reports / "paper.md", "md"),
-                (p.root / "paper" / "paper.tex", "tex")]
+                (p.root / "paper" / "paper.tex", "tex"),
+                (p.root / "README.md", "md")]
     codigo = 0
     for destino, formato in destinos:
         if not destino.exists():
@@ -460,22 +500,25 @@ def main() -> int:
             continue
         original = destino.read_text(encoding="utf-8")
         nuevo, vistos = sincronizar(original, p, formato)
-        if not vistos:
-            log.warning("%s no tiene ninguna marca de tabla", destino.name)
-            continue
         if args.check:
-            if nuevo != original:
+            # La auditoría de prosa corre siempre, tenga o no tablas marcadas:
+            # es lo único que aplica al README y es el mecanismo que se desfasa
+            # solo. Saltearla cuando no hay marcas dejaba al README sin chequeo.
+            for problema in auditar_prosa(original, p):
+                log.error("%s [prosa] %s", destino.name, problema)
+                codigo = 1
+            if not vistos:
+                log.info("%s: sin tablas marcadas; auditada solo la prosa",
+                         destino.name)
+            elif nuevo != original:
                 log.error("%s NO coincide con outputs/tables/. "
                           "Correr `python -m src.report.sync_tablas_paper`.", destino.name)
                 codigo = 1
             else:
                 log.info("%s: las %d tablas coinciden con outputs/tables/",
                          destino.name, len(vistos))
-            # Las tablas pueden estar al día y la prosa desfasada: son dos
-            # mecanismos distintos y el segundo no tiene marcas que sincronizar.
-            for problema in auditar_prosa(original, p):
-                log.error("%s [prosa] %s", destino.name, problema)
-                codigo = 1
+            continue
+        if not vistos:
             continue
         if nuevo == original:
             log.info("%s: las %d tablas ya estaban al día", destino.name, len(vistos))
