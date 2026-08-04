@@ -43,7 +43,16 @@ def clubes_formadores(cfg, players, clubs) -> dict[str, pd.DataFrame]:
                            m["club_lat"].values, m["club_lon"].values)
     m["de_otra_provincia"] = m["prov_id"] != m["club_prov_id"]
 
-    g = m.groupby(["primer_club_qid", "primer_club"]).agg(
+    # Se agrupa por QID y NUNCA por nombre. `primer_club` trae el texto visible
+    # del enlace cuando el dato salió de una ficha de Wikipedia, y ese texto es
+    # lo que tipeó cada editor: Q18640 aparece como «Gimnasia (LP)», «Gimnasia
+    # La Plata», «Gimnasia y Esgrima de La Plata» y cuatro variantes más.
+    # Agrupar por (qid, nombre) partía un club en tantas filas como formas de
+    # escribirlo hubiera —Boca en 4, Newell's en 7— y las contaba como clubes
+    # distintos, lo que hundía la concentración y alteraba el orden del ranking.
+    # Es la otra mitad de la trampa 16: resolver las redirecciones arregló el
+    # QID y dejó el nombre crudo de cada fuente.
+    g = m.groupby("primer_club_qid").agg(
         formados=("player_qid", "size"),
         km_mediana=("km", "median"),
         km_p90=("km", lambda s: s.quantile(0.90)),
@@ -52,10 +61,13 @@ def clubes_formadores(cfg, players, clubs) -> dict[str, pd.DataFrame]:
         a_seleccion=("seleccion_mayor", "sum"),
         a_europa_top=("liga_elite_uefa", "sum"),
     ).reset_index()
-    g["prov_club"] = g["primer_club_qid"].map(
-        clubs.set_index("team_qid")["club_prov_id"])
-    g["region_club"] = g["primer_club_qid"].map(
-        clubs.set_index("team_qid")["club_region"])
+    ref = clubs.drop_duplicates("team_qid").set_index("team_qid")
+    # El nombre para mostrar sale del padrón de clubes, que tiene uno por QID.
+    g["primer_club"] = g["primer_club_qid"].map(ref["team_label"])
+    g["prov_club"] = g["primer_club_qid"].map(ref["club_prov_id"])
+    g["region_club"] = g["primer_club_qid"].map(ref["club_region"])
+    g = g[["primer_club_qid", "primer_club"]
+          + [c for c in g.columns if c not in ("primer_club_qid", "primer_club")]]
     g = g.sort_values("formados", ascending=False)
     g["reportable"] = g["formados"] >= 10
 

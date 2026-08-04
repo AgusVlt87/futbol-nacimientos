@@ -13,7 +13,7 @@ from __future__ import annotations
 import pytest
 
 from src.common import paths
-from src.report.sync_tablas_paper import sincronizar
+from src.report.sync_tablas_paper import auditar_prosa, sincronizar
 
 P = paths()
 
@@ -41,3 +41,23 @@ def test_las_tablas_del_paper_coinciden_con_las_salidas(ruta, formato):
     assert nuevo == original, (
         f"las tablas de {ruta.name} están desfasadas respecto de outputs/tables/. "
         "Correr `python -m src.report.sync_tablas_paper`.")
+
+
+@requiere_salidas
+@pytest.mark.parametrize("ruta", [
+    P.reports / "paper.md",
+    P.root / "paper" / "paper.tex",
+])
+def test_las_cifras_de_la_prosa_coinciden_con_las_salidas(ruta):
+    """Las tablas al día no alcanzan: la prosa se desfasa por su cuenta.
+
+    Con las diez tablas sincronizadas y este chequeo solo en el CLI, diecisiete
+    cifras del texto corrido quedaron viejas —el χ² de H2, la muestra
+    departamental, el AIC, el n de juveniles, la retención del NEA— y la suite
+    daba verde igual. `--check` ya las miraba; lo que faltaba era que las mirara
+    también el test.
+    """
+    if not ruta.exists():
+        pytest.skip(f"no existe {ruta.name}")
+    problemas = auditar_prosa(ruta.read_text(encoding="utf-8"), P)
+    assert not problemas, f"cifras desfasadas en {ruta.name}:\n" + "\n".join(problemas)

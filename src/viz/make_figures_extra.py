@@ -286,6 +286,13 @@ def fig20_deciles_sin_gradiente(cfg, p):
     g = d.groupby("decil").agg(j=("jugadores", "sum"), n=("nacimientos_cohorte", "sum"),
                                tam=("pob_ciudad", "median"))
     r, lo, hi = poisson_rate_ci(g["j"], g["n"])
+    # La secuencia de diez tasas la cita el §3.1 y hasta acá vivía solo acá
+    # adentro: siete de sus diez valores se desfasaron sin que nada avisara,
+    # porque `--check` solo audita cifras que tienen una tabla detrás.
+    (g.assign(tasa=r, tasa_ic_lo=lo, tasa_ic_hi=hi)
+     .rename(columns={"j": "jugadores", "n": "nacimientos", "tam": "pob_mediana"})
+     .reset_index().to_csv(p.tables / "h1_deciles_tamano.csv",
+                           index=False, encoding="utf-8"))
 
     f = Figura(6.8, 4.2,
                "El «gradiente» es un escalón, y está todo en el decil más grande",
@@ -407,6 +414,9 @@ def fig22_efecto_por_cohorte(cfg, p):
                       "hi": rr * np.exp(1.96 * se), "n": int(obs.sum()),
                       "censurada": int(dec) >= 2000})
     g = pd.DataFrame(filas)
+    # Igual que en fig20: el §4.1 cita esta serie y necesita respaldo auditable.
+    g.to_csv(p.tables / "temporal_rr_pueblo_metropoli.csv",
+             index=False, encoding="utf-8")
 
     f = Figura(6.8, 4.1,
                "El efecto no se profundiza con el tiempo",

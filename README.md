@@ -37,7 +37,7 @@ a 28,4 en aglomerados de más de 500.000 (RR 0,45; IC 95% 0,41–0,50). No hay p
 en las ciudades medianas. Pero **es un escalón, no un gradiente**: los nueve
 deciles de tamaño por debajo de ~10.000 habitantes no tienen tendencia, y el
 tamaño de la ciudad explica el 1% de la variación entre ciudades
-(pseudo-R² = 0,011).
+(pseudo-R² = 0,010).
 
 **La versión fuerte del artefacto de las maternidades queda refutada; la débil, acotada.** Era la objeción de fondo
 contra cualquier estudio de lugar de nacimiento —el parto ocurre donde hay
@@ -68,8 +68,8 @@ la cercanía a un club: es la pobreza.** Agregados al modelo el NBI departamenta
 del censo y la distancia al club formador más cercano, el **NBI explica siete
 veces más variación que el tamaño** (pseudo-R² 0,071 contra 0,010) y cada punto
 porcentual de NBI baja la producción un 15%. La distancia al club —fuerte por sí
-sola, RR 0,854— **se apaga por completo al entrar la pobreza** (RR 0,987;
-p = 0,75): era un proxy. El mapa de producción de futbolistas se parece más al
+sola, RR 0,825— **se apaga por completo al entrar la pobreza** (RR 0,981;
+p = 0,63): era un proxy. El mapa de producción de futbolistas se parece más al
 mapa de la pobreza estructural argentina que al de la infraestructura formativa.
 
 **Y el mapa departamental resume mal el fenómeno.** Solo el 17% de la variación
@@ -83,13 +83,14 @@ contra 8,2 del NOA. Por provincia, CABA produce 2,6 veces lo que le tocaría por
 sus nacimientos y Santa Fe 2,3; Salta 0,23. Las cunas son Rafaela (98 cada 100.000
 nacidos), Gran Santa Fe (73) y Gran Rosario (58).
 
-**Entre los que llegaron lejos, la formación está mucho más concentrada que el
-nacimiento** — con la advertencia de que esa submuestra está seleccionada por el
-desenlace y describe a la elite, no a la población de futbolistas. El 47,1% se
-forma fuera de su provincia de nacimiento; el NEA retiene al 8,6% de los suyos y
-el AMBA al 90,8%. Hay dos modelos de club formador: Rosario Central forma 94
-jugadores a 0 km de mediana y con el 18% venido de otra provincia; Boca forma 143
-a 277 km y con el 77% de afuera.
+**La formación está mucho más concentrada que el nacimiento** — con la
+advertencia de que la submuestra sigue teniendo un 17,3% sin club formador
+identificado, concentrado en los jugadores menos notables, así que la migración
+medida es probablemente una cota superior. El 44,5% se forma fuera de su
+provincia de nacimiento; el NEA retiene al 11,2% de los suyos y el AMBA al 92,2%.
+Hay dos modelos de club formador: Rosario Central forma 155 jugadores a 0 km de
+mediana y con el 20% venido de otra provincia; Boca forma 216 a 277 km y con el
+81% de afuera.
 
 **El paper completo es [paper/paper.pdf](paper/paper.pdf)** — 28 páginas, con las
 figuras que sostienen el argumento intercaladas en el texto. Se compila con
@@ -123,9 +124,11 @@ Vale la pena leerlo antes que los resultados.
   sí quedó mal parado es el club formador de H3: Wikidata **no tiene ninguno
   cargado en el 52 %** de los casos, y entre los que sí, difiere del real en el
   11,8 %.
-- **H3 (formación) está seleccionada por el desenlace.** La cobertura del club
-  formador va del 99,2% entre jugadores de selección al 12,7% en el resto. Sus
-  números son órdenes de magnitud, no estimaciones poblacionales, y ninguna otra
+- **H3 (formación) estuvo seleccionada por el desenlace, y quedó muy reducida.**
+  Con el club formador saliendo solo de Wikidata la cobertura iba del 99,2% entre
+  jugadores de selección al 12,7% en el resto; sumadas las fichas de Wikipedia el
+  piso sube a 72,1% y la cobertura por estrato de nacimiento queda plana. Queda
+  un 17,3% sin club, así que sus números son cota superior, y ninguna otra
   conclusión se apoya en ellos.
 - **Solo fútbol masculino** en el análisis principal. El femenino entra como
   contraste (n = 213) y resulta indistinguible del masculino.
@@ -320,11 +323,13 @@ condicionan la lectura:
    del peor modo posible.
 2. **El reparto sub-provincial es un supuesto con sesgo direccional.** A nivel
    provincia el denominador es dato real; por debajo es estimación, con un error
-   del +17% en el decil de departamentos más chicos que empuja en la misma
+   del +19% en el decil de departamentos más chicos que empuja en la misma
    dirección que el hallazgo. El placebo lo neutraliza como amenaza a la
    identificación —afecta igual a los cinco deportes— pero sigue midiendo mal la
    magnitud.
-3. **Sin controles.** Ninguna covariable más allá del tamaño de la ciudad.
+3. **Controles parciales.** Hay dos covariables —NBI departamental y distancia al
+   club formador— y faltan las demás: densidad de ligas locales, pensión, y la
+   red formativa vigente en la época de cada cohorte.
 
 ---
 

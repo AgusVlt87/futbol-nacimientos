@@ -22,7 +22,7 @@ binomial negativo no aporta ajuste: no hay pico en las ciudades medianas. Pero e
 efecto **no es un gradiente sino un escalón**: por decil de tamaño, los nueve
 deciles por debajo de ~10.000 habitantes no muestran tendencia alguna, y el
 tamaño de la ciudad explica apenas el 1% de la variación entre ciudades
-(pseudo-R² = 0,011).
+(pseudo-R² = 0,010).
 
 **Segundo, y es lo que vuelve interpretable a todo lo demás: el artefacto de las
 maternidades no está operando.** La objeción de fondo contra cualquier estudio de
@@ -75,6 +75,15 @@ Sumando el campo `equipo_debut` de las fichas de Wikipedia la cobertura del
 estrato «resto» sube a 72,1% y la migración cae de 47,1% a 44,5% (OR 5,58 →
 5,03). **El sesgo existía y estaba inflando el número**; el hallazgo sobrevive
 (§3.3, §4.3 limitación 5).
+
+**Séptimo: con covariables, lo que domina es la pobreza y no la geografía de los
+clubes.** Agregados al modelo el NBI departamental y la distancia al club
+formador más cercano, el NBI explica siete veces más variación que el tamaño de
+la ciudad (pseudo-R² 0,071 contra 0,010) y la distancia —fuerte por sí sola, IRR
+0,825— se apaga por completo (IRR 0,981; p = 0,63): era un proxy de pobreza. El
+tamaño sobrevive atenuado (1,175 → 1,105). Y solo el 17% de la variación residual
+separa a un departamento de otro: el resto ocurre entre ciudades vecinas, de modo
+que el mapa departamental resume mal el fenómeno (§3.8, §3.9).
 
 El patrón se sostiene entre los jugadores de la selección mayor, donde la
 cobertura de Wikidata es prácticamente censal: no lo fabrica el corpus.
@@ -148,13 +157,13 @@ departamentos cae dentro del 20% (tabla `qa_validacion_denominador.csv`).
 
 **Ese error tiene signo y tiene pendiente, y hay que decirlo (Figura 19).** No se
 distribuye parejo: al decil de departamentos más chicos el estimador le asigna un
-**17% más** de nacimientos de los reales, mientras que en el decil más grande no
-se equivoca (Spearman entre tamaño y ratio estimado/real = −0,355; p < 10⁻¹⁵). Un
+**19% más** de nacimientos de los reales, mientras que en el decil más grande no
+se equivoca (Spearman entre tamaño y ratio estimado/real = −0,362; p < 10⁻¹⁶). Un
 denominador inflado deprime la tasa, de modo que **el sesgo empuja en la misma
 dirección que el hallazgo principal**: corregirlo llevaría el RR de las
-localidades chicas de 0,45 a aproximadamente 0,52 —el efecto sobreviviría, pero
-es un 17% más chico de lo que la tabla sugiere. La correlación global de 0,993
-que se reportaba antes no mide exactitud: entre unidades que van de 435 a 60.160
+localidades chicas de 0,45 a aproximadamente 0,53 —el efecto sobreviviría, pero
+es un 19% más chico de lo que la tabla sugiere. La correlación global de 0,993
+que se reportaba antes no mide exactitud: entre unidades que van de 38 a 266.434
 nacimientos, cualquier reparto proporcional al tamaño la alcanza.
 
 Una advertencia sobre la validación: la serie del RENAPER está construida por
@@ -230,7 +239,7 @@ ninguno de ellos** (Figura 24).
 
 La censura a derecha se cuantifica cohorte por cohorte (**Figura 12**, tabla
 `diagnostico_censura_cohortes.csv`): la tasa sube de 17 por 100.000 en 1975–1979
-a un pico de 37 en 1985–1989, y cae a 15 en 2000–2004 y 3 en 2005–2009. La caída
+a un pico de 37 en 1985–1989, y cae a 15 en 2000–2004 y 3 en 2005–2008. La caída
 final es censura; la inicial es cobertura, porque Wikidata registra peor a los
 jugadores más viejos. El análisis principal usa toda la ventana y se repite
 restringido a cohortes ≤ 2002 como robustez.
@@ -261,7 +270,7 @@ contra la API Georef del Estado argentino; el nombre solo se usa como chequeo
 cruzado.
 
 La granularidad de cada entidad se clasifica antes de usarla: 20 lugares de
-nacimiento son provincias, 83 departamentos o partidos, dos regiones y cuatro
+nacimiento son provincias, 83 departamentos o partidos, tres regiones y cuatro
 países. El caso más consecuente es la entidad «Argentina», que 255 jugadores
 tienen como lugar de nacimiento: su centroide cae en el departamento Presidente
 Roque Sáenz Peña de Córdoba y, sin ese filtro, convertía a General Levalle
@@ -275,7 +284,7 @@ departamentos, que así llegaban al top-12 nacional de tasa —Ullum y Tumbaya c
 la totalidad de su cuenta fabricada, Azul inflado un 222%—. Ahora conservan la
 provincia, que es dato válido, y quedan **excluidos del análisis departamental y
 del de tamaño de ciudad**. El análisis provincial usa los 5.511; el departamental,
-5.389; el de tamaño de ciudad, 5.248.
+5.401; el de tamaño de ciudad, 5.248.
 
 **«Tamaño de ciudad» = aglomerado urbano cuando existe.** Lanús no es una ciudad
 de 200.000 habitantes: es una porción de un conurbano de 16,2 millones. Se usa la
@@ -348,8 +357,8 @@ las de más de 500.000.
 
 **No es un gradiente: es un escalón (Figura 20).** La tabla de cinco tramos
 sugiere una progresión ordenada, pero esa forma la produce el ancho de las
-categorías. Por decil de tamaño de ciudad las tasas son 22,6 · 4,6 · 14,0 · 4,9 ·
-8,5 · 8,8 · 13,3 · 11,3 · 16,0 · 25,9: **tres de los nueve pasos bajan**, y los
+categorías. Por decil de tamaño de ciudad las tasas son 22,7 · 4,6 · 13,7 · 4,9 ·
+7,2 · 9,4 · 13,1 · 11,2 · 15,7 · 24,6: **tres de los nueve pasos bajan**, y los
 nueve deciles por debajo de ~10.000 habitantes —463 futbolistas, el 9% de la
 muestra— no muestran ninguna tendencia. Todo el efecto es el salto del decil
 superior. Esa forma —un escalón único— es también la que produciría el registro
@@ -360,15 +369,15 @@ está operando: la forma del efecto queda sin explicación por esa vía y pide o
 **Regresión.** Modelo binomial negativo sobre 3.477 ciudades: cada *e-fold* de
 tamaño multiplica la tasa por 1,175 (IC 95% 1,114–1,240; p < 0,0001). Con el
 término cuadrático **ni el lineal ni el cuadrático resultan significativos**
-(p = 0,11 y p = 0,44) y el AIC empeora (3.654,3 contra 3.652,8). No hay curva en
+(p = 0,12 y p = 0,45) y el AIC empeora (3.654,6 contra 3.653,1). No hay curva en
 U invertida que ajustar.
 
 **Y el tamaño del efecto es chico (Figura 7).** El pseudo-R² de McFadden de ese
-modelo es **0,011** y la devianza explicada, 2,6%: el tamaño de la ciudad da
+modelo es **0,010** y la devianza explicada, 2,5%: el tamaño de la ciudad da
 cuenta de alrededor del 1% de la variación entre ciudades. La pendiente es real y
 está bien estimada; su capacidad para predecir cuántos futbolistas produce una
-ciudad determinada es casi nula. A 100.000 habitantes las ciudades reales van de
-3 a 100 por cada 100.000 nacidos.
+ciudad determinada es casi nula. Entre las trece ciudades de 90.000 a 110.000
+habitantes la producción va de 0 a 98 por cada 100.000 nacidos.
 
 **Robustez.** El patrón se sostiene en las dos variantes:
 
@@ -388,7 +397,7 @@ pueblos.
 
 ### 3.2 H2 — AMBA y corredor pampeano
 
-**Figuras 1, 3, 5 y 6.** Por región (χ²(5) = 1.050,7; *w* = 0,44):
+**Figuras 1, 3, 5 y 6.** Por región (χ²(5) = 1.110,8; *w* = 0,45):
 
 <!-- TABLA:h2_regiones INICIO -->
 <!-- generado por `python -m src.report.sync_tablas_paper`; no editar a mano -->
@@ -490,7 +499,7 @@ Nacer en una ciudad grande significa formarse a siete kilómetros de casa.
 | Pampeana | 1.902 | 1.403 | -499 | 63,6% |
 <!-- TABLA:h3_regiones FIN -->
 
-El NEA retiene a uno de cada doce futbolistas que nacen en su territorio.
+El NEA retiene a uno de cada nueve futbolistas que nacen en su territorio.
 
 **Los clubes** (**Figura 10**) muestran el mecanismo con nombre y apellido:
 
@@ -498,19 +507,21 @@ El NEA retiene a uno de cada doce futbolistas que nacen en su territorio.
 <!-- generado por `python -m src.report.sync_tablas_paper`; no editar a mano -->
 | Club | Formados | Distancia mediana | De otra provincia |
 |---|---:|---:|---:|
-| Boca Juniors | 202 | 277 km | 79% |
-| Club Atlético River Plate | 123 | 253 km | 76% |
-| Racing Club | 110 | 97 km | 53% |
-| Club Atlético Vélez Sarsfield | 99 | 18 km | 57% |
-| Club Atlético Newell’s Old Boys | 98 | 37 km | 34% |
-| Club Atlético Rosario Central | 94 | 0 km | 18% |
+| Boca Juniors | 216 | 277 km | 81% |
+| Club Atlético River Plate | 177 | 236 km | 77% |
+| Club Atlético Newell’s Old Boys | 159 | 38 km | 32% |
+| Club Atlético Vélez Sarsfield | 157 | 19 km | 58% |
+| Club Atlético Rosario Central | 155 | 0 km | 20% |
+| Club Estudiantes de La Plata | 130 | 144 km | 36% |
 <!-- TABLA:clubes FIN -->
 
 Hay dos modelos distintos de club formador. Rosario Central y Newell's forman
-jugadores que nacieron en Rosario o al lado: son una salida local para un talento
-local. Boca y River funcionan como aspiradoras nacionales: la mitad de sus
-formados nació a más de 270 km. **Diez clubes concentran el 48% de toda la
-formación registrada del país; veinte concentran el 71%.**
+jugadores que nacieron en Rosario o al lado —mediana de 0 y 38 km, con el 20% y
+el 32% venidos de otra provincia—: son una salida local para un talento local.
+Boca y River funcionan como aspiradoras nacionales: la mitad de sus formados
+nació a más de 277 y 236 km, y cuatro de cada cinco vienen de otra provincia.
+**Diez clubes concentran el 37,6% de toda la formación registrada del país;
+veinte concentran el 59,7%.**
 
 ### 3.4 H4 — No lo fabrica la cobertura de Wikidata
 
@@ -528,7 +539,7 @@ que la elite provenga más de ciudades chicas (OR 0,89; IC 95% 0,71–1,13).
 
 Un matiz que la tabla de cinco tramos esconde y que conviene decir: dentro de la
 selección, **los cuatro tramos no metropolitanos son indistinguibles entre sí**
-(7,5 · 7,0 · 8,6 · 9,2 por millón, con intervalos que se solapan por completo).
+(7,4 · 6,9 · 8,2 · 9,0 por millón, con intervalos que se solapan por completo).
 Como en H1, lo que hay es un contraste binario contra los grandes aglomerados,
 no una escalera.
 
@@ -546,7 +557,7 @@ heredan los dos problemas del denominador. Este análisis no.
 La pregunta es otra: **entre los futbolistas que ya llegaron a un juvenil de la
 selección (sub-17 o sub-20), ¿qué proporción llega después a la Mayor, según
 dónde nacieron?** El denominador acá no es una estimación de nacimientos: son los
-347 juveniles observados.
+337 juveniles observados.
 
 <!-- TABLA:conversion INICIO -->
 <!-- generado por `python -m src.report.sync_tablas_paper`; no editar a mano -->
@@ -586,11 +597,15 @@ mejor.
 
 ### 3.6 Exploratorio: posición y región
 
-**Estrictamente exploratorio.** De 24 contrastes, seis sobreviven a la corrección
-de Benjamini-Hochberg, y todos involucran a las dos regiones con más casos: el
-AMBA produce más defensores y menos mediocampistas de lo esperado, y la región
-pampeana lo inverso. **El mito de «las delanteras del norte» no aparece**: ningún
-contraste que involucre al NOA o al NEA sobrevive a la corrección.
+**Estrictamente exploratorio.** De 24 contrastes, siete sobreviven a la
+corrección de Benjamini-Hochberg. Seis involucran a las dos regiones con más
+casos: el AMBA produce más defensores y menos mediocampistas de lo esperado, y la
+región pampeana lo inverso. El séptimo es NEA × defensor, que queda justo del
+lado de adentro (*p* corregido = 0,042) y conviene no leer como hallazgo: es el
+contraste más débil de los que pasan, en la región con menos casos, dentro de un
+análisis que el diseño declara exploratorio. **El mito de «las delanteras del
+norte» no aparece**: ni NOA × delantero (*p* corregido = 0,098) ni NEA ×
+delantero (0,540) sobreviven a la corrección.
 
 ---
 
@@ -643,7 +658,7 @@ rechazo pese a n = 213). Lo que separa los mapas es el deporte, no la estructura
 profesional que lo sostiene ni la época en que se construyó.
 
 Los cuatro placebos difieren significativamente del fútbol en su distribución
-regional (χ² de homogeneidad, p < 0,001 en tres de cuatro). **Ningún artefacto de
+regional (χ² de homogeneidad, p < 0,001 en los cuatro). **Ningún artefacto de
 medición compartido —el registro de nacimientos, la imputación del denominador,
 la cobertura de Wikipedia, el nivel socioeconómico del departamento— puede
 producir mapas opuestos para deportes distintos medidos con el mismo
@@ -652,6 +667,75 @@ instrumento.** El patrón del fútbol es del fútbol.
 *Limitación:* vóley (n=70) y hockey (n=36) tienen muestras demasiado chicas para
 leer sus tramos por separado; entran en el contraste binario y en las tablas, no
 en la lectura de la forma. Básquet (356) y rugby (243) sí la sostienen.
+
+### 3.8 Qué queda del tamaño al controlar por pobreza y por distancia
+
+**Figura 29.** Hasta acá el único predictor del modelo fue el tamaño de la
+ciudad. Eso deja sin responder la pregunta que importa: si el tamaño mide algo
+propio o es un proxy de otra cosa. Se agregan las dos candidatas obvias.
+
+**Distancia al club formador más cercano.** El universo de clubes no se define a
+mano: son los 159 clubes argentinos geolocalizados que aparecen como primer club
+de al menos un futbolista de la muestra. Para cada ciudad se calcula la distancia
+haversine al más cercano (mediana nacional: 79 km). Es una medida cruda —no
+distingue un club de Primera con pensión de uno de Federal A, ni tiene en cuenta
+que la red cambió a lo largo de las cohortes— y hereda una circularidad: el
+universo sale de los mismos datos que el numerador.
+
+**Pobreza estructural.** El censo 2022 publica el NBI por hogar como variable
+derivada. Se agrega a departamento como porcentaje de hogares con al menos una
+necesidad básica insatisfecha (mediana 7,3%; de 2,6% en La Pampa a 14,2% en
+Salta).
+
+| Modelo | AIC | pseudo-R² | IRR (IC 95%) |
+|---|---:|---:|---|
+| 1. solo tamaño | 3.653,1 | 0,010 | tamaño 1,175 (1,114–1,240) |
+| 2. solo distancia | 3.389,3 | 0,009 | distancia 0,825 (0,771–0,882) |
+| **3. solo NBI** | **3.429,1** | **0,071** | NBI 0,843 (0,822–0,864) |
+| 4. tamaño + distancia | 3.385,4 | 0,011 | tamaño 1,074; distancia 0,847 |
+| **5. las tres** | **3.199,8** | **0,066** | tamaño 1,105 (1,042–1,172) |
+|  |  |  | distancia 0,981 (0,909–1,059) |
+|  |  |  | NBI 0,851 (0,828–0,873) |
+
+Tres resultados, y dos incomodan a la interpretación que el trabajo venía
+sosteniendo:
+
+1. **La pobreza estructural es, de lejos, el mejor predictor.** Sola explica
+   siete veces más variación que el tamaño (pseudo-R² 0,071 contra 0,010). Cada
+   punto porcentual de NBI baja la producción un 15%.
+2. **La distancia al club formador deja de importar cuando entra el NBI.** Por sí
+   sola es fuerte (IRR 0,825; p < 10⁻⁷); con pobreza en el modelo, se apaga
+   (IRR 0,981; p = 0,63). **Era en buena medida un proxy de pobreza**, no una
+   medida de acceso. Es evidencia en contra de la lectura del §4.1, que atribuía
+   el patrón a la distancia a la infraestructura formativa.
+3. **El tamaño sobrevive**, atenuado: de 1,175 a 1,105. No es un proxy de ninguna
+   de las dos, pero su efecto es todavía más chico de lo que ya era.
+
+### 3.9 Dónde está la variación: entre departamentos o adentro
+
+**Figura 30.** El pseudo-R² de 0,010 dice que el tamaño explica poco, pero no
+dice dónde está lo que queda sin explicar. Esa es la pregunta relevante para un
+trabajo cuyo producto principal es un mapa departamental.
+
+Sobre los residuos de Pearson del modelo con las tres covariables se descompone
+la variación entre la que separa a un departamento de otro y la que separa a dos
+ciudades del mismo departamento. El resultado es **ICC = 0,17**: apenas el 17% de
+la variación residual corresponde a diferencias entre departamentos, y el 83%
+restante queda entre ciudades vecinas.
+
+**Qué implica.** Dos ciudades del mismo departamento, del mismo tamaño y con la
+misma pobreza producen cantidades muy distintas de futbolistas. El mapa
+departamental —la **Figura 1**, que es la imagen más citable del trabajo— resume
+mal el fenómeno: la unidad a la que el fenómeno ocurre es más chica que el
+departamento, o directamente no es geográfica.
+
+Dos salvedades. La descomposición se hace sobre residuos y no es el ICC de un
+modelo mixto: no separa la varianza de muestreo de Poisson de la varianza real
+entre departamentos, de modo que **sobreestima** el componente de adentro cuando
+las ciudades son chicas. El 17% es entonces una cota inferior del agrupamiento
+departamental. Y no se ajustó un GLMM propiamente dicho porque la implementación
+disponible de Poisson con efectos aleatorios no admite *offset*, y sin la
+exposición el modelo diverge.
 
 ## 4. Discusión
 
@@ -662,17 +746,38 @@ infraestructura de desarrollo deportivo está razonablemente distribuida, de mod
 que lo que diferencia a los lugares es la calidad del entorno de juego informal.
 Bajo ese supuesto la ciudad mediana gana: tiene espacio y tiene liga.
 
-En Argentina ese supuesto no se cumple. La formación está concentrada: diez clubes
-concentran la mitad de la formación registrada del país, y están todos en el AMBA,
-el Gran Rosario o el Gran La Plata. La interpretación natural es que el lugar de nacimiento no
-mide acá la calidad del entorno formativo sino **la distancia a la infraestructura
-formativa**, y que esa distancia opera como filtro de acceso.
+En Argentina ese supuesto no se cumple. La formación está concentrada: diez
+clubes concentran el 37,6% de la formación registrada del país, y nueve de ellos
+están en el AMBA, el Gran Rosario o el Gran La Plata —el décimo, Unión, en el
+Gran Santa Fe—. La interpretación natural —y la que sostenían las versiones
+anteriores de este trabajo— era que el lugar de nacimiento no mide acá la calidad
+del entorno formativo sino **la distancia a la infraestructura formativa**, y que
+esa distancia opera como filtro de acceso.
 
-Es una interpretación, no un resultado, y conviene ser explícito sobre eso. El
-estudio **no mide distancia a un club con inferiores**: ninguna regresión incluye
-esa variable, ni nivel socioeconómico, ni densidad de ligas locales, ni existencia
-de pensión. Todo el análisis es descriptivo y las asociaciones no están
-controladas por nada.
+**Medida, esa interpretación no se sostiene.** Cuando la distancia al club
+formador más cercano entra al modelo junto con la pobreza estructural del
+departamento, su efecto se apaga por completo (IRR 0,981; p = 0,63; §3.8). Sola
+parecía fuerte porque los lugares lejos de un club son también los lugares
+pobres. Lo que el modelo señala como predictor dominante no es la geografía de
+los clubes sino **el NBI**: siete veces más capacidad explicativa que el tamaño
+de la ciudad, y un 15% menos de producción por cada punto porcentual de hogares
+con necesidades básicas insatisfechas.
+
+Eso reencuadra el hallazgo. El mapa de producción de futbolistas se parece mucho
+más al mapa de la pobreza estructural argentina que al mapa de los clubes. La
+explicación más simple compatible con estos datos no es «nacer lejos de un club
+es una desventaja» sino «nacer pobre lo es», y las regiones que producen un
+cuarto de lo esperado son las mismas que encabezan el NBI. Sigue siendo una
+asociación sin identificación causal —el NBI departamental es un agregado y opera
+acá como control, no como mecanismo estimado— pero es una asociación que existe,
+frente a una que se desvanece al controlarla.
+
+Los controles disponibles son dos y no agotan la lista: falta la densidad de
+ligas locales, la existencia de pensión en el club y cualquier medida de la red
+formativa vigente en la época de cada cohorte —la distancia se calcula contra los
+clubes que formaron a alguien en toda la ventana, no contra los que existían el
+año en que cada jugador cumplió quince—. Con esas ausencias declaradas, las
+asociaciones que siguen son observacionales.
 
 **El placebo acota qué clase de explicación puede servir (§3.7).** Cualquier
 mecanismo que se proponga tiene que explicar por qué el básquet argentino, en el
@@ -682,8 +787,8 @@ de nacimientos, la estructura urbana, el nivel socioeconómico, la cobertura de
 Wikipedia— y deja en pie solo las que dependen de cómo está organizado cada
 deporte. La centralización de la formación es una de esas: el básquet argentino
 tiene ligas federales fuertes y clubes formadores repartidos por el interior,
-mientras que la mitad de la formación futbolística registrada está en diez clubes
-del AMBA, Rosario y La Plata. **Sigue siendo una interpretación** —la
+mientras que casi el 38% de la formación futbolística registrada está en diez
+clubes del AMBA, Rosario, La Plata y Santa Fe. **Sigue siendo una interpretación** —la
 organización comparada de las dos estructuras formativas no se mide acá— pero ya
 no compite con las explicaciones genéricas: esas quedaron descartadas por diseño.
 
@@ -698,7 +803,8 @@ no compite con las explicaciones genéricas: esas quedaron descartadas por dise�
 - *Si el acceso filtrara por algo distinto del talento, quien atraviesa el filtro
   más exigente debería rendir mejor.* Eso sí aparece, y es el resultado más
   robusto del trabajo (§3.5): entre los juveniles de la selección, los nacidos
-  fuera de un gran aglomerado llegan a la Mayor un 42% de las veces contra un 28%.
+  fuera de un gran aglomerado llegan a la Mayor el 41,1% de las veces contra el
+  28,1%.
 
 Esa asimetría —menos acceso, mejor rendimiento condicional— es la evidencia más
 directa de que el patrón geográfico principal refleja acceso y no distribución de
@@ -768,13 +874,13 @@ alguna transformación pierde nacimientos.
    modo posible, y hay 63 localidades de menos de 2.000 habitantes que aparecen
    como lugar de nacimiento, lo que sugiere un valor bastante menor.
    Una advertencia que sobrevive intacta: el tramo `<10k` se construye sobre un
-   padrón que incluye 264 «localidades» de menos de 100 habitantes, entre ellas
+   padrón que incluye 258 «localidades» de menos de 100 habitantes, entre ellas
    `ZONA RURAL`. Sean o no artefacto, no son la categoría «small city» de Côté et
    al. (2006), que arranca en 1.000 habitantes con localidades urbanas.
 2. **El reparto intraprovincial es un supuesto con sesgo direccional.** No solo
-   es estimado: su error es del +17% en el decil de departamentos más chicos y
+   es estimado: su error es del +19% en el decil de departamentos más chicos y
    nulo en el más grande (§2.1, Figura 19), y empuja en la misma dirección que el
-   hallazgo. Corregirlo llevaría el RR de 0,45 a ~0,52.
+   hallazgo. Corregirlo llevaría el RR de 0,45 a ~0,53.
 3. **El reparto de los partidos divididos es un segundo supuesto.** Para bajar de
    un partido que ya no existe —General Sarmiento, Morón antes de 1994— a los
    partidos actuales, se reparte su población según la proporción que tienen los
@@ -806,12 +912,18 @@ alguna transformación pierde nacimientos.
    18 años) contra 13,8% (toda la población, todas las edades, nacimiento →
    residencia 2022). La variable `P14` del censo no está cruzada con edad, así
    que la comparación no se puede acotar a las mismas cohortes.
-7. **Sin controles.** No hay ninguna covariable más allá del tamaño de la ciudad:
-   ni distancia a un club con inferiores, ni nivel socioeconómico, ni densidad de
-   ligas. El trabajo es descriptivo y las lecturas causales de §4.1 y §4.4 son
-   interpretaciones, no estimaciones.
+7. **Controles parciales.** Hay dos covariables —pobreza estructural y distancia
+   al club formador más cercano (§3.8)— y faltan las demás: densidad de ligas
+   locales, existencia de pensión en el club y cualquier medida de la red
+   formativa vigente en la época de cada cohorte. La distancia, además, se
+   calcula contra los clubes que formaron a alguien en toda la ventana y no
+   contra los que existían el año en que cada jugador cumplió quince. El NBI
+   departamental resultó el predictor dominante, pero es un agregado y opera como
+   control, no como mecanismo estimado: la versión seria necesita el NBI a nivel
+   de la localidad. El trabajo sigue siendo descriptivo y las lecturas causales
+   de §4.1 y §4.4 son interpretaciones, no estimaciones.
 8. **Tamaño de efecto chico donde se lo mide de forma continua.** El tamaño de la
-   ciudad explica el 1% de la variación entre ciudades (pseudo-R² = 0,011).
+   ciudad explica el 1% de la variación entre ciudades (pseudo-R² = 0,010).
 9. **Números chicos en el mapa departamental.** No se aplica *shrinkage* ni
    Bayes empírico: un departamento con dos jugadores encabeza el ranking per
    cápita por puro ruido de Poisson. La **Figura 21** separa qué departamentos se
@@ -848,7 +960,7 @@ público.
 **Lo que el dato solo sugiere.** Que las regiones que producen un cuarto de lo
 esperado sean «reservas desaprovechadas» requiere suponer que el talento latente
 se distribuye parejo entre regiones —un supuesto razonable pero no testeado acá—.
-Y la retención del 8,3% del NEA sale de la submuestra sesgada de H3. La dirección
+Y la retención del 11,2% del NEA sale de la submuestra sesgada de H3. La dirección
 del argumento es plausible; su magnitud, no está establecida.
 
 Y una advertencia metodológica que sí se sostiene sola: **cualquier métrica de

@@ -148,6 +148,26 @@ Lo que sigue abierto —el proxy mide debut profesional y no inferiores— está
     `sync_tablas_paper --check` daba verde porque las **tablas** estaban al día y
     esas tres cifras no estaban registradas. Toda cifra que la prosa afirme y una
     tabla respalde va a `CIFRAS`.
+19. **Un club es un QID, no una forma de escribirlo.** `primer_club` guarda el
+    texto visible del enlace cuando el dato sale de una ficha de Wikipedia, o sea
+    lo que tipeó cada editor: `Q18640` llega como «Gimnasia (LP)», «Gimnasia La
+    Plata», «Gimnasia y Esgrima de La Plata» y cuatro variantes más. `run_futbol`
+    agrupaba por `(qid, nombre)` y `run_seleccion` por `nombre` a secas, así que
+    un club se partía en tantas filas como grafías tuviera —Boca en cuatro,
+    Newell's en siete, **116 de 159 QIDs**—. El ranking del §3.3 salía con el
+    orden cambiado (Racing 3º, cuando no entra al top 6) y la concentración
+    hundida a la mitad (top-10 26,6 % en vez de 37,6 %). Es la otra mitad de la
+    trampa 16: resolver las redirecciones arregló el QID y dejó el nombre crudo.
+    **Agrupar siempre por identificador y traer el nombre del padrón**;
+    `tests/test_clubes_por_qid.py` lo verifica.
+20. **Que `--check` esté verde no quiere decir que el paper esté al día.** En la
+    revisión del 2026-08-04 había **veinte** cifras de prosa desfasadas con las
+    catorce tablas sincronizadas y la suite en verde: las 20 caían fuera de las 7
+    entradas que tenía `CIFRAS`, y la auditoría de prosa ni siquiera corría en
+    `pytest` —vivía solo en el CLI—. Dos de las series estaban dentro del código
+    de una figura, sin ninguna tabla contra la cual compararse. Ahora `CIFRAS`
+    tiene 19 entradas, las figuras 20 y 22 emiten su agregado a `outputs/tables/`
+    y el test corre la auditoría de prosa sobre los dos documentos.
 
 ---
 

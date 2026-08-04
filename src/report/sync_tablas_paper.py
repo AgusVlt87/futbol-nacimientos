@@ -302,6 +302,73 @@ CIFRAS = {
         valor=lambda p: _valor(p, "h3_migracion_vs_poblacion", "n",
                                lambda d: d["grupo"].str.startswith("Futbolistas")),
         dec=0),
+    # Las que siguen se desfasaron sin que nada avisara, en la revisión del
+    # 2026-08-04: diecisiete cifras de prosa contra ninguna alarma, porque
+    # `--check` daba verde con las tablas al día. Toda cifra que la prosa afirme
+    # y una tabla respalde va acá; ésa es la regla y ésta es su aplicación.
+    "h2_chi2_regiones": dict(
+        contexto=_frase("Por región (χ²(5) ="),
+        valor=lambda p: _valor(p, "tests_bondad_ajuste", "chi2",
+                               lambda d: d["variante"] == "regiones"),
+        dec=1),
+    "muestra_departamental": dict(
+        contexto=_frase("El análisis provincial usa los"),
+        valor=lambda p: _valor(p, "tests_bondad_ajuste", "n",
+                               lambda d: d["variante"] == "departamentos"),
+        dec=0),
+    "pseudo_r2_tamano": dict(
+        contexto=_frase("El pseudo-R² de McFadden de ese"),
+        valor=lambda p: _valor(p, "modelo_comparacion", "pseudo_r2_mcfadden",
+                               lambda d: d["modelo"].str.startswith("1.")),
+        dec=3),
+    "aic_cuadratico": dict(
+        contexto=_frase("y el AIC empeora"),
+        valor=lambda p: _valor(p, "regresion_tamano_ciudad", "aic",
+                               lambda d: d["modelo"] == "cuadratico"),
+        dec=1),
+    "juveniles_observados": dict(
+        contexto=_frase("no es una estimación de nacimientos: son los"),
+        valor=lambda p: _valor(p, "seleccion_conversion_tests", "n"),
+        dec=0),
+    "retencion_nea": dict(
+        contexto=_frase("retención del"),
+        valor=lambda p: _valor(p, "h3_saldo_por_region", "pct_retencion",
+                               lambda d: d["region"] == "NEA"),
+        dec=1),
+    "concentracion_top10": dict(
+        contexto=_frase("Diez clubes concentran el"),
+        valor=lambda p: _valor(p, "futbol_concentracion_clubes", "pct_del_total",
+                               lambda d: d["top_n"] == 10),
+        dec=1),
+    "concentracion_top20": dict(
+        contexto=_frase("veinte concentran el"),
+        valor=lambda p: _valor(p, "futbol_concentracion_clubes", "pct_del_total",
+                               lambda d: d["top_n"] == 20),
+        dec=1),
+    "nbi_pseudo_r2": dict(
+        contexto=_frase("siete veces más variación que el tamaño"),
+        valor=lambda p: _valor(p, "modelo_comparacion", "pseudo_r2_mcfadden",
+                               lambda d: d["modelo"].str.contains("solo NBI")),
+        dec=3),
+    "distancia_irr_con_nbi": dict(
+        contexto=_frase("con pobreza en el modelo, se apaga"),
+        valor=lambda p: _valor(p, "modelo_coeficientes", "IRR",
+                               lambda d: d["modelo"].str.startswith("5.")
+                               & d["termino"].eq("log_km")),
+        dec=3),
+    # Estas dos series vivían solo dentro de `fig20` y `fig22`. Ahora las
+    # figuras dejan su agregado en una tabla y acá se audita el primer valor de
+    # cada una, que es el que ancla la lectura en la prosa.
+    "decil_1_tasa": dict(
+        contexto=_frase("Por decil de tamaño de ciudad las tasas son"),
+        valor=lambda p: _valor(p, "h1_deciles_tamano", "tasa",
+                               lambda d: d["decil"] == 0),
+        dec=1),
+    "rr_cohorte_1970": dict(
+        contexto=_frase("entre pueblo y gran aglomerado es"),
+        valor=lambda p: _valor(p, "temporal_rr_pueblo_metropoli", "rr",
+                               lambda d: d["decada"] == 1970),
+        dec=2),
 }
 
 

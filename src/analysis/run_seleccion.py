@@ -214,7 +214,7 @@ def conversion(cfg, d) -> dict[str, pd.DataFrame]:
 # --------------------------------------------------------------------------- #
 # 3. Migración y clubes formadores de los seleccionados
 # --------------------------------------------------------------------------- #
-def migracion_y_clubes(cfg, d) -> dict[str, pd.DataFrame]:
+def migracion_y_clubes(cfg, d, clubs) -> dict[str, pd.DataFrame]:
     s = d[d["club_lat"].notna() & d["lat"].notna()].copy()
     s["km"] = haversine_km(s["lat"].values, s["lon"].values,
                            s["club_lat"].values, s["club_lon"].values)
@@ -236,11 +236,16 @@ def migracion_y_clubes(cfg, d) -> dict[str, pd.DataFrame]:
                       edad_mediana_primer_club=("edad_primer_club", "median"))
                  .reset_index().rename(columns={col: "tramo"}))
 
-    sel = d[d["seleccionado"] & d["primer_club"].notna()]
-    clubes = (sel.groupby("primer_club")
+    # Por QID, no por nombre: `primer_club` trae el texto del enlace que tipeó
+    # el editor de la ficha, y un mismo club llega con media docena de grafías.
+    # Ver el comentario largo en `run_futbol.clubes_formadores`.
+    sel = d[d["seleccionado"] & d["primer_club_qid"].notna()]
+    nombre = clubs.drop_duplicates("team_qid").set_index("team_qid")["team_label"]
+    clubes = (sel.groupby("primer_club_qid")
               .agg(seleccionados=("player_qid", "size"),
                    de_los_cuales_mayor=("seleccion_mayor", "sum"))
               .reset_index().sort_values("seleccionados", ascending=False))
+    clubes.insert(1, "primer_club", clubes["primer_club_qid"].map(nombre))
     clubes["pct_del_total"] = 100 * clubes["seleccionados"] / clubes["seleccionados"].sum()
     clubes["acumulado_pct"] = clubes["pct_del_total"].cumsum()
 
@@ -256,6 +261,7 @@ def main() -> None:
 
     ciudades = cargar_ciudades(p)
     denom_dept = cargar_departamentos(p, ["nacimientos_cohorte"])
+    clubs = pd.read_parquet(p.interim / "clubs_resolved.parquet")
 
     log.info("muestra: %d jugadores | Mayor: %d | juveniles: %d | juvenil y Mayor: %d",
              len(d), int(d["seleccion_mayor"].sum()), int(d["seleccion_juvenil"].sum()),
@@ -264,7 +270,7 @@ def main() -> None:
     salidas = {}
     salidas |= tasas_de_produccion(cfg, d, ciudades, denom_dept)
     salidas |= conversion(cfg, d)
-    salidas |= migracion_y_clubes(cfg, d)
+    salidas |= migracion_y_clubes(cfg, d, clubs)
 
     for nombre, tabla in salidas.items():
         tabla.to_csv(p.tables / f"{nombre}.csv", index=False, encoding="utf-8")

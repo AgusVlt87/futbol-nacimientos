@@ -7,6 +7,52 @@ metodológica sí queda en el paper (§4.2); el relato de cómo se llegó a ella
 
 ---
 
+## 2026-08-04 · La concentración de la formación estaba partida por el nombre del club
+
+**El problema.** `run_futbol` agrupaba los clubes por `(QID, nombre)` y
+`run_seleccion` por nombre a secas. `primer_club` guarda el texto del enlace que
+tipeó el editor de cada ficha de Wikipedia, así que un mismo club llegaba con
+media docena de grafías y se contaba como varios: **116 de 159 QIDs partidos,
+3.832 de 3.955 jugadores afectados**. Boca en cuatro filas, Newell's en siete.
+
+**Efecto.** La tabla de clubes formadores del §3.3 cambia de orden, no solo de
+valores:
+
+| | publicado | corregido |
+|---|---:|---:|
+| Boca Juniors | 202 | **216** |
+| River Plate | 123 | **177** |
+| Newell's Old Boys | 98 (5º) | **159 (3º)** |
+| Rosario Central | 94 | **155** |
+| Racing Club | 110 (3º) | *sale del top 6* |
+| Estudiantes LP | — | **130 (6º)** |
+
+| concentración | publicado | corregido |
+|---|---:|---:|
+| top 10 | 26,6 % | **37,6 %** |
+| top 20 | 40,7 % | **59,7 %** |
+
+El paper venía diciendo **48 % y 71 %**, cifras de cuando H3 tenía 1.923 casos y
+que no salían de ninguna tabla. O sea: la afirmación publicada estaba mal y la
+tabla que debía corregirla también.
+
+**Consecuencia sobre el argumento.** El §4.1 apoyaba su mecanismo en que «diez
+clubes concentran la mitad de la formación». Son el 37,6 %, y nueve de los diez
+están en el AMBA, Rosario o La Plata —el décimo, Unión, en el Gran Santa Fe—. La
+concentración sigue siendo alta y el argumento se sostiene, con el número real.
+
+**Lo que no se movió**: H3 se calcula por jugador, así que migración (44,5 %), OR
+(5,03), saldos y retenciones quedan igual. H1, H2, H4, el placebo y la conversión
+juvenil → Mayor tampoco dependen del club.
+
+**Además.** Se corrigieron 20 cifras de prosa en los dos documentos y se portó al
+`reports/paper.md` la sección de covariables, que solo estaba en `paper/paper.tex`
+mientras el `.md` afirmaba «Sin controles. No hay ninguna covariable más allá del
+tamaño de la ciudad». Detalle completo en
+[docs/paper-sync-2026-08-03.md](paper-sync-2026-08-03.md).
+
+---
+
 ## 2026-08-03 · El club formador deja de estar seleccionado por el desenlace
 
 **El problema.** H3 se apoyaba en el `primer_club`, que salía del vínculo `P54`
